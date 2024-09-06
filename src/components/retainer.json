@@ -1,0 +1,54 @@
+[
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "thirdday": "Fri: 8:00am - 1:00pm",
+    "Title": "Consulting and Coaching",
+    "servicetype": "Service type:",
+    "oneoff": "Retainer",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "services1": "Business Consulting",
+    "services2": "Life or Career Coaching",
+    "services3": "HR Consulting",
+    "services4": "Legal Advisory",
+
+    "pricing": "Pricing:",
+    "minutes": "3 months",
+    "virtual": "Virtual",
+    "amount": "₦250,000",
+    "session": "for 3 months session"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Legal Services",
+    "servicetype": "Service type:",
+    "oneoff": "Retainer",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "services1": "Corporate Legal Services",
+    "services2": "Intellectual Property Management",
+    "services3": "Compliance and Risk Management",
+    "pricing": "Pricing:",
+    "minutes": "3 months",
+    "virtual": "in-person",
+    "amount": "₦500,000",
+    "session": "for 3 months session"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Financial Services",
+    "servicetype": "Service type:",
+    "oneoff": "Retainer",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "services1": "Business Consulting",
+    "services2": "Life or Career Coaching",
+    "services3": "HR Consulting:",
+    "services4": "Legal Advisory",
+    "pricing": "Pricing:",
+    "minutes": "3 months",
+    "virtual": "in-person",
+    "amount": "₦750,000",
+    "session": "for 3 months session"
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Personal Training",
+    "servicetype": "Service type:",
+    "oneoff": "one-off",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "pricing": "Pricing:",
+    "minutes": "15 mins",
+    "virtual": "Virtual",
+    "amount": "₦25,000",
+    "session": "for 15 minutes session"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Content Writing",
+    "servicetype": "Service type:",
+    "oneoff": "one-off",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "pricing": "Pricing:",
+    "minutes": "15 mins",
+    "virtual": "in-person",
+    "amount": "₦170,000",
+    "session": "for 15 minutes session"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Consulting",
+    "servicetype": "Service type:",
+    "oneoff": "one-off",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "pricing": "Pricing:",
+    "minutes": "15 mins",
+    "virtual": "in-person",
+    "amount": "₦50,000",
+    "session": "for 15 minutes session"
+  },
+
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Personal Training",
+    "servicetype": "Service type:",
+    "oneoff": "one-off",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "pricing": "Pricing:",
+    "minutes": "15 mins",
+    "virtual": "Virtual",
+    "amount": "₦25,000",
+    "session": "for 15 minutes session"
+  }
+]
