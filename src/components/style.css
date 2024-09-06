@@ -663,6 +663,10 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 12px;
+
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
 }
 
 .vectorretainer {
