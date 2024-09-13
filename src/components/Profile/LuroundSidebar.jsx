@@ -1,11 +1,9 @@
 /** @format */
+
 import "../style.css";
 import Luround from "../elements/LuroundApp.jpg";
 
 export default function Sidebar() {
-  {
-    /*functionality of arrowdown and arrowup for more div */
-  }
   function arrowDown() {
     var arrowdown = document.querySelector(".vector2");
     var arrowup = document.querySelector(".vector");
@@ -51,6 +49,7 @@ export default function Sidebar() {
     var retainer = document.querySelector(".retainer");
     var event = document.querySelector(".event");
     var profile = document.querySelector(".profile");
+    var bookings = document.querySelector(".bookings");
     profilenone.style.display = "none";
     profile.style.backgroundColor = "white";
     profile.style.borderLeft = "none";
@@ -61,6 +60,7 @@ export default function Sidebar() {
     program.style.display = "ngridone";
     retainer.style.display = "none";
     event.style.display = "none";
+    bookings.style.display = "none";
   }
 
   function Retainer() {
@@ -72,6 +72,8 @@ export default function Sidebar() {
     var program = document.querySelector(".program");
     var event = document.querySelector(".event");
     var profile = document.querySelector(".profile");
+    var bookings = document.querySelector(".bookings");
+    bookings.style.display = "none";
     profilenone.style.display = "none";
     profile.style.backgroundColor = "white";
     retainer.style.display = "grid";
@@ -91,6 +93,8 @@ export default function Sidebar() {
     var retainer = document.querySelector(".retainer");
     var event = document.querySelector(".event");
     var profile = document.querySelector(".profile");
+    var bookings = document.querySelector(".bookings");
+    bookings.style.display = "none";
     profilenone.style.display = "none";
     profile.style.backgroundColor = "white";
     program.style.display = "grid";
@@ -111,6 +115,8 @@ export default function Sidebar() {
     var program = document.querySelector(".program");
     var event = document.querySelector(".event");
     var profile = document.querySelector(".profile");
+    var bookings = document.querySelector(".bookings");
+    bookings.style.display = "none";
     profilenone.style.display = "none";
     profile.style.backgroundColor = "white";
     about.style.display = "none";
@@ -130,6 +136,8 @@ export default function Sidebar() {
     var event = document.querySelector(".event");
     var retainer = document.querySelector(".retainer");
     var program = document.querySelector(".program");
+    var bookings = document.querySelector(".bookings");
+    bookings.style.display = "none";
     profilenone.style.display = "grid";
     profile.style.backgroundColor = "rgba(235, 255, 255, 1)";
 
@@ -141,6 +149,32 @@ export default function Sidebar() {
     event.style.display = "none";
     program.style.display = "none";
     retainer.style.display = "none";
+  }
+
+  function Book() {
+    var profilenone = document.querySelector(".reviewprofile");
+    var about = document.querySelector(".about");
+    var details = document.querySelector(".details");
+    var profile = document.querySelector(".profile");
+    var oneoff = document.querySelector(".oneoff");
+    var event = document.querySelector(".event");
+    var retainer = document.querySelector(".retainer");
+    var program = document.querySelector(".program");
+    var bookings = document.querySelector(".bookings");
+    var seemore = document.querySelector(".see");
+    // seemore.style.display = "none";
+
+    bookings.style.display = "grid";
+    profilenone.style.display = "none";
+    profile.style.backgroundColor = "white";
+    about.style.display = "none";
+    details.style.display = "none";
+    oneoff.style.display = "none";
+    event.style.display = "none";
+    program.style.display = "none";
+    retainer.style.display = "none";
+    profile.style.borderLeft = "none";
+    profile.style.color = "rgba(29, 46, 46, 0.8)";
   }
   return (
     <div className='sidebar'>
@@ -247,7 +281,7 @@ export default function Sidebar() {
           </li>
         </ul>
 
-        <li className='profilelist'>
+        <li onClick={Book} className='profilelist book'>
           <svg
             width='24'
             height='24'
@@ -279,7 +313,7 @@ export default function Sidebar() {
             </defs>
           </svg>
 
-          <span className='sidebarspan'> Bookings</span>
+          <span className='sidebarspan '>Bookings</span>
         </li>
         <li>
           <div className='moreicon'>

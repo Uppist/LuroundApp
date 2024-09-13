@@ -129,7 +129,9 @@ export default function Search() {
               </div>
               <button>Edit Profile</button>
             </div>
+            <hr className='linehr' />
           </div>
+
           <button>Log out</button>
         </div>
         <li className='icons'>

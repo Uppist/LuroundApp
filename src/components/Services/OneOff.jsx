@@ -33,7 +33,7 @@ export default function One() {
       </div>
       <div className='dataoneoff'>
         {Data.map((data) => (
-          <div className='OneOffcontainer'>
+          <div className='OneOffcontainer' key={data.title}>
             <div className='days-time'>
               <span>{data.firstday}</span>
               <hr className='linedays' />

@@ -33,7 +33,7 @@ export default function Retainer() {
       </div>
       <div className='dataretainer'>
         {retainer.map((data) => (
-          <div className='retainercontainer'>
+          <div className='retainercontainer' key={data.title}>
             <div className='days-time'>
               <span>{data.firstday}</span>
               <hr className='linedays' />

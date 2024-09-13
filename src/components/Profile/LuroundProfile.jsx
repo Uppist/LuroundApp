@@ -1,4 +1,6 @@
 /** @format */
+import Bookings from "../Bookings/Bookings";
+import See from "../Bookings/SeeMore";
 import Event from "../Services/Event";
 import One from "../Services/OneOff";
 import Program from "../Services/Program";
@@ -18,6 +20,9 @@ export default function LuroundProfile() {
       <Retainer />
       <Program />
       <Event />
+
+      <Bookings />
+      <See />
     </div>
   );
 }
