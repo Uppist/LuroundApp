@@ -1,4 +1,5 @@
 /** @format */
+import { useState } from "react";
 import Bookings from "../Bookings/Bookings";
 import See from "../Bookings/SeeMore";
 import Event from "../Services/Event";
@@ -9,20 +10,40 @@ import "../style.css";
 import AboutDetails from "./AboutDetails";
 import Search from "./LuroundSearch";
 import Profile from "./Profile";
+import Sidebar from "./LuroundSidebar";
 export default function LuroundProfile() {
+  const [activeComponent, setActiveComponent] = useState("profile");
+  function OneOff() {
+    alert("Hello");
+    setIsOneOff(true);
+  }
+
+  const handleOneOffClick = () => {
+    setActiveComponent("oneOff");
+  };
   return (
-    <div className='profiledashboard'>
-      <Search />
-      <Profile />
-      <AboutDetails />
-
-      <One />
-      <Retainer />
-      <Program />
-      <Event />
-
-      <Bookings />
-      <See />
-    </div>
+    <>
+      {/* <Sidebar onOneOffClick={handleOneOffClick} /> */}
+      <div className='profiledashboard'>
+        {/* <Sidebar onOneOffClick={handleOneOffClick} />{" "} */}
+        {/* Pass the click handler */}
+        <Search />
+        <div className='profile-details'>
+          {activeComponent === "oneOff" ? (
+            <One />
+          ) : (
+            <>
+              <Profile />
+              <AboutDetails />
+            </>
+          )}
+        </div>
+        <Retainer />
+        <Program />
+        <Event />
+        <Bookings />
+        {/* <See /> */}
+      </div>
+    </>
   );
 }

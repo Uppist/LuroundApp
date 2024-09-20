@@ -21,7 +21,7 @@ export default function Profile() {
 
   return (
     <div className='reviewprofile'>
-      <div>
+      <div className='svg-review'>
         <div className='svg'>
           <svg
             onClick={handleSvg}

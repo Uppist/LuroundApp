@@ -6,7 +6,11 @@
     "Title": "Consulting and Coaching",
     "servicetype": "Service type:",
     "oneoff": "Retainer",
-    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor",
+    "dots": "...",
+    "text2": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "text3": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+
     "services1": "Business Consulting",
     "services2": "Life or Career Coaching",
     "services3": "HR Consulting",

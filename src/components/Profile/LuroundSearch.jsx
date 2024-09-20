@@ -1,21 +1,19 @@
 /** @format */
 import { useState } from "react";
 import "../style.css";
-import image3 from "../elements/image2.png";
 import image2 from "../elements/image.png";
+import Dropdown from "./DropDown";
 export default function Search() {
   const [value, setValue] = useState("");
+  const [isdropDown, setIsdropdown] = useState(false);
 
   function profileDown() {
-    var profiledown = document.querySelector(".profileedit");
-
-    if (profiledown.style.visibility === "hidden") {
-      profiledown.style.visibility = "visible";
-      profiledown.classList.toggle("active");
-    } else {
-      profiledown.style.visibility = "hidden";
-    }
+    setIsdropdown(true);
   }
+
+  const closeModal = () => {
+    setIsdropdown(false);
+  };
   return (
     <div className='searchbar'>
       <div className='searchinput'>
@@ -96,44 +94,34 @@ export default function Search() {
             />
           </svg>
         </li>
-        <li className='icons active' onClick={profileDown}>
-          <div className='imagearrow'>
-            <img className='smallerimage' src={image2} />
-            <svg
-              className='arrow'
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeMiterlimit='10'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </div>
-        </li>
 
-        <div className='profileedit'>
-          <div className='imagename'>
-            <img src={image3} />
-            <div className='namebutton'>
-              <div className='spanname'>
-                <span className='ronaldname'>Ronald Richards</span>
-                <span className='email'>ronaldrichards@gmail.com</span>
-              </div>
-              <button>Edit Profile</button>
+        <div>
+          <li className='icons active' onClick={profileDown}>
+            <div className='imagearrow'>
+              <img className='smallerimage' src={image2} alt='Profile' />
+              <svg
+                className={`arrow ${isdropDown ? "open" : ""}`} // Add 'open' class when dropdown is open
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeMiterlimit='10'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
             </div>
-            <hr className='linehr' />
-          </div>
+          </li>
 
-          <button>Log out</button>
+          {isdropDown && <Dropdown onClose={closeModal} />}
         </div>
+
         <li className='icons'>
           <button className='share'>Share Profile</button>
         </li>

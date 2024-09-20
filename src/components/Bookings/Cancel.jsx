@@ -53,9 +53,7 @@ export default function CancelN({ booking, onClose }) {
             <button className='do-not-cancel' onClick={onClose}>
               Do not cancel
             </button>
-            <button className='do-cancel' onClick={onClose}>
-              Cancel
-            </button>
+            <button className='do-cancel'>Cancel</button>
           </div>
         </div>
       </div>

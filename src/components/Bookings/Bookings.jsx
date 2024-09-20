@@ -5,9 +5,11 @@ import React, { useState } from "react";
 
 import book from "../../booking.json";
 import See from "./SeeMore";
+import AllTime from "./Alltime";
 export default function Bookings(ChangeBack) {
   const [visibleBooking, setVisibleBooking] = useState(null);
 
+  const [isAlltime, setIsAlltime] = useState(false);
   function SeeMore(index) {
     setVisibleBooking(index);
   }
@@ -20,6 +22,14 @@ export default function Bookings(ChangeBack) {
     setSelectedTime(false);
   }
 
+  function Alltime() {
+    setIsAlltime((prev) => !prev);
+  }
+
+  function onCloseTime() {
+    setIsAlltime(false);
+  }
+
   return (
     <div className='bookings'>
       {visibleBooking === null ? (
@@ -29,10 +39,31 @@ export default function Bookings(ChangeBack) {
               <span className='one-offservice'>Bookings</span>
               <span className='number'>{book.length}</span>
             </div>
-            <div className='add-service'>
+            <div className='filter-by'>
               <span>Filter by:</span>
+              {isAlltime && <AllTime onClosealltime={onCloseTime} />}
 
-              <div className='addservice'>All time</div>
+              <div className='addservice alltime' onClick={Alltime}>
+                <span>All time</span>
+
+                <svg
+                  className={` ${isAlltime ? "open" : ""}`}
+                  width='24'
+                  height='24'
+                  viewBox='0 0 16 16'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                    stroke='currentColor'
+                    strokeOpacity='0.8'
+                    strokeMiterlimit='10'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </div>
             </div>
           </div>
           <div className='bookingcontainer'>
@@ -52,7 +83,7 @@ export default function Bookings(ChangeBack) {
                     </div>
                   </div>
                   <svg
-                    width='38'
+                    width='24'
                     height='38'
                     viewBox='0 0 24 28'
                     fill='none'

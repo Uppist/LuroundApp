@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import SelectTime from "./Time";
 
-export default function Calendar({ booking, ChangeBack }) {
+export default function Calendar({ booking, ChangeBack, onSeeLess }) {
   const [currentDate, setcurrentDate] = useState(new Date());
   const [daysInMonth, setdaysInMonth] = useState([]);
   const [startDay, setstartDay] = useState(0);
@@ -41,9 +41,9 @@ export default function Calendar({ booking, ChangeBack }) {
   }
 
   return (
-    <div className='fullcalendar'>
+    <>
       {!selectedTime ? (
-        <>
+        <div className='fullcalendar'>
           <span className='select'>Select Date</span>
           <div className='calendar'>
             <div className='header'>
@@ -122,14 +122,15 @@ export default function Calendar({ booking, ChangeBack }) {
               </div>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <SelectTime
           booking={booking}
           selectedDate={selectedDate}
           ChangeBack={ChangeBack}
+          onSeeLess={onSeeLess}
         />
       )}
-    </div>
+    </>
   );
 }

@@ -1,186 +1,39 @@
 /** @format */
 
 import "../style.css";
-import Luround from "../elements/LuroundApp.jpg";
+import { useState } from "react";
+import Luround from "../elements/LuroundApp.png";
 
-export default function Sidebar() {
-  function arrowDown() {
-    var arrowdown = document.querySelector(".vector2");
-    var arrowup = document.querySelector(".vector");
-    var moreDown = document.querySelector(".moreDown");
+export default function Sidebar({ onComponentSwitch }) {
+  const [isArrowDownVisible, setIsArrowDownVisible] = useState(false);
+  const [isArrowDownServiceVisible, setIsArrowDownServiceVisible] =
+    useState(false);
 
-    if (arrowdown.style.display === "none") {
-      arrowdown.style.display = "block"; //show arrowdwn
-      arrowup.style.visibility = "hidden"; //hide arrowup
-      moreDown.style.visibility = "visible"; //show content when arrowdown is clicked
-    } else {
-      //vice versa
-      arrowdown.style.display = "none";
-      arrowup.style.visibility = "visible";
-      moreDown.style.visibility = "hidden";
-    }
+  const [activeItem, setActiveItem] = useState(null);
+
+  function Arrow() {
+    setIsArrowDownVisible(!isArrowDownVisible);
   }
 
-  function arrowService() {
-    var arrowdownservice = document.querySelector(".vector2service");
-    var arrowupservice = document.querySelector(".vectorservice");
-    var moreDownservice = document.querySelector(".moreDownservice");
-
-    if (arrowdownservice.style.display === "none") {
-      arrowdownservice.style.display = "block"; //show arrowdwn
-      arrowupservice.style.visibility = "hidden"; //hide arrowup
-      moreDownservice.style.visibility = "visible"; //show content when arrowdown is clicked
-      moreDownservice.style.position = "relative";
-    } else {
-      //vice versa
-      arrowdownservice.style.display = "none";
-      arrowupservice.style.visibility = "visible";
-      moreDownservice.style.visibility = "hidden";
-      moreDownservice.style.position = "absolute";
-    }
+  function ArrowService() {
+    setIsArrowDownServiceVisible(!isArrowDownServiceVisible);
   }
 
-  function OneOff() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-    var oneoff = document.querySelector(".oneoff");
-    var program = document.querySelector(".program");
-    var retainer = document.querySelector(".retainer");
-    var event = document.querySelector(".event");
-    var profile = document.querySelector(".profile");
-    var bookings = document.querySelector(".bookings");
-    profilenone.style.display = "none";
-    profile.style.backgroundColor = "white";
-    profile.style.borderLeft = "none";
-    profile.style.color = "rgba(29, 46, 46, 0.8)";
-    oneoff.style.display = "grid";
-    about.style.display = "none";
-    details.style.display = "none";
-    program.style.display = "ngridone";
-    retainer.style.display = "none";
-    event.style.display = "none";
-    bookings.style.display = "none";
+  function handleItemClick(item) {
+    setActiveItem(item);
+    onComponentSwitch(item);
   }
 
-  function Retainer() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-    var oneoff = document.querySelector(".oneoff");
-    var retainer = document.querySelector(".retainer");
-    var program = document.querySelector(".program");
-    var event = document.querySelector(".event");
-    var profile = document.querySelector(".profile");
-    var bookings = document.querySelector(".bookings");
-    bookings.style.display = "none";
-    profilenone.style.display = "none";
-    profile.style.backgroundColor = "white";
-    retainer.style.display = "grid";
-    about.style.display = "none";
-    details.style.display = "none";
-    oneoff.style.display = "none";
-    program.style.display = "none";
-    event.style.display = "none";
-  }
-
-  function Program() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-    var program = document.querySelector(".program");
-    var oneoff = document.querySelector(".oneoff");
-    var retainer = document.querySelector(".retainer");
-    var event = document.querySelector(".event");
-    var profile = document.querySelector(".profile");
-    var bookings = document.querySelector(".bookings");
-    bookings.style.display = "none";
-    profilenone.style.display = "none";
-    profile.style.backgroundColor = "white";
-    program.style.display = "grid";
-    about.style.display = "none";
-    details.style.display = "none";
-    oneoff.style.display = "none";
-    retainer.style.display = "none";
-    event.style.display = "none";
-  }
-
-  function Event() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-
-    var oneoff = document.querySelector(".oneoff");
-    var retainer = document.querySelector(".retainer");
-    var program = document.querySelector(".program");
-    var event = document.querySelector(".event");
-    var profile = document.querySelector(".profile");
-    var bookings = document.querySelector(".bookings");
-    bookings.style.display = "none";
-    profilenone.style.display = "none";
-    profile.style.backgroundColor = "white";
-    about.style.display = "none";
-    details.style.display = "none";
-    oneoff.style.display = "none";
-    retainer.style.display = "none";
-    program.style.display = "none";
-    event.style.display = "grid";
-  }
-
-  function Profile() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-    var profile = document.querySelector(".profile");
-    var oneoff = document.querySelector(".oneoff");
-    var event = document.querySelector(".event");
-    var retainer = document.querySelector(".retainer");
-    var program = document.querySelector(".program");
-    var bookings = document.querySelector(".bookings");
-    bookings.style.display = "none";
-    profilenone.style.display = "grid";
-    profile.style.backgroundColor = "rgba(235, 255, 255, 1)";
-
-    profile.style.borderLeft = "2px solid hsla(180, 100%, 40%, 1)";
-    profile.style.color = "hsla(180, 100%, 32%, 1)";
-    about.style.display = "block";
-    details.style.display = "grid";
-    oneoff.style.display = "none";
-    event.style.display = "none";
-    program.style.display = "none";
-    retainer.style.display = "none";
-  }
-
-  function Book() {
-    var profilenone = document.querySelector(".reviewprofile");
-    var about = document.querySelector(".about");
-    var details = document.querySelector(".details");
-    var profile = document.querySelector(".profile");
-    var oneoff = document.querySelector(".oneoff");
-    var event = document.querySelector(".event");
-    var retainer = document.querySelector(".retainer");
-    var program = document.querySelector(".program");
-    var bookings = document.querySelector(".bookings");
-    var seemore = document.querySelector(".see");
-    // seemore.style.display = "none";
-
-    bookings.style.display = "grid";
-    profilenone.style.display = "none";
-    profile.style.backgroundColor = "white";
-    about.style.display = "none";
-    details.style.display = "none";
-    oneoff.style.display = "none";
-    event.style.display = "none";
-    program.style.display = "none";
-    retainer.style.display = "none";
-    profile.style.borderLeft = "none";
-    profile.style.color = "rgba(29, 46, 46, 0.8)";
-  }
   return (
     <div className='sidebar'>
       <img className='luround' src={Luround} />
       <ul className='list'>
-        <li className='profilelist profile' onClick={Profile}>
+        <li
+          className={`profilelist profile ${
+            activeItem === "profile" ? "activeprofile" : ""
+          }`}
+          onClick={() => handleItemClick("profile")}
+        >
           <svg
             width='24'
             height='24'
@@ -208,8 +61,8 @@ export default function Sidebar() {
           <span className='sidebarspan'> Profile</span>
         </li>
         <li>
-          <div className='iconservice'>
-            <div className='moreservice' onClick={arrowService}>
+          <div className='iconservice' onClick={ArrowService}>
+            <div className='moreservice' onClick={ArrowService}>
               <svg
                 width='24'
                 height='24'
@@ -226,62 +79,75 @@ export default function Sidebar() {
 
               <span className='sidebarspan'> Services</span>
             </div>
-            <svg
-              onClick={arrowService}
-              className='vectorservice'
-              width='7'
-              height='12'
-              viewBox='0 0 7 12'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1 11L6 6L1 1'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>{" "}
-            <svg
-              onClick={arrowService}
-              className='vector2service'
-              width='25'
-              height='25'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeMiterlimit='10'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>{" "}
+            {isArrowDownServiceVisible ? (
+              <svg
+                onClick={ArrowService}
+                className='vector2service'
+                width='25'
+                height='25'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeMiterlimit='10'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            ) : (
+              <svg
+                onClick={ArrowService}
+                className='vectorservice'
+                width='7'
+                height='12'
+                viewBox='0 0 7 12'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M1 11L6 6L1 1'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            )}{" "}
           </div>
         </li>
 
-        <ul className='moreDownservice'>
-          <hr />
-          <li className='downlist' onClick={OneOff}>
-            One-Off
-          </li>
-          <li className='downlist' onClick={Retainer}>
-            Retainer
-          </li>
-          <li className='downlist' onClick={Program}>
-            Program
-          </li>
-          <li className='downlist' onClick={Event}>
-            Events
-          </li>
-        </ul>
+        {isArrowDownServiceVisible && (
+          <ul className='moreDownservice'>
+            <hr />
 
-        <li onClick={Book} className='profilelist book'>
+            <li className='downlist' onClick={() => handleItemClick("oneoff")}>
+              One-Off
+            </li>
+
+            <li
+              className='downlist'
+              onClick={() => handleItemClick("retainer")}
+            >
+              Retainer
+            </li>
+            <li className='downlist' onClick={() => handleItemClick("program")}>
+              Program
+            </li>
+            <li className='downlist' onClick={() => handleItemClick("event")}>
+              Events
+            </li>
+          </ul>
+        )}
+
+        <li
+          onClick={() => handleItemClick("bookings")}
+          className='profilelist book'
+        >
           <svg
             width='24'
             height='24'
@@ -292,17 +158,17 @@ export default function Sidebar() {
             <g clipPath='url(#clip0_96_1822)'>
               <path
                 d='M19.2 2.32258V0H17.6V2.32258H6.4V0H4.8V2.32258H0V24H24V13.1613V2.32258H19.2ZM1.6 3.87097H4.8V6.19355H6.4V3.87097H17.6V6.19355H19.2V3.87097H22.4V10.0645H1.6V3.87097ZM22.4 22.4516H1.6V11.6129H22.4V22.4516Z'
-                fill='#1D2E2E'
+                fill='currentColor'
                 fillOpacity='0.8'
               />
               <path
                 d='M10.7622 21.6V14.9348L11.7108 15.9158L12.2968 15.3102L10.3484 13.2978L8.39999 15.3102L8.986 15.9158L9.93454 14.9348V21.6H10.7622Z'
-                fill='#1D2E2E'
+                fill='currentColor'
                 fillOpacity='0.8'
               />
               <path
                 d='M13.8313 13.2V19.8652L12.8828 18.8842L12.2968 19.4897L14.2452 21.5022L16.1935 19.4897L15.6075 18.8842L14.659 19.8652V13.2H13.8313Z'
-                fill='#1D2E2E'
+                fill='currentColor'
                 fillOpacity='0.8'
               />
             </g>
@@ -316,8 +182,8 @@ export default function Sidebar() {
           <span className='sidebarspan '>Bookings</span>
         </li>
         <li>
-          <div className='moreicon'>
-            <div className='more' onClick={arrowDown}>
+          <div className='moreicon' onClick={Arrow}>
+            <div className='more' onClick={Arrow}>
               <svg
                 width='24'
                 height='24'
@@ -337,54 +203,58 @@ export default function Sidebar() {
 
               <span className='sidebarspan'> More</span>
             </div>
-            <svg
-              onClick={arrowDown}
-              className='vector'
-              width='7'
-              height='12'
-              viewBox='0 0 7 12'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M1 11L6 6L1 1'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-            <svg
-              onClick={arrowDown}
-              className='vector2'
-              width='25'
-              height='25'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeMiterlimit='10'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>{" "}
+            {!isArrowDownVisible ? (
+              <svg
+                onClick={Arrow}
+                className='vector'
+                width='7'
+                height='12'
+                viewBox='0 0 7 12'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M1 11L6 6L1 1'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            ) : (
+              <svg
+                onClick={Arrow}
+                className='vector2'
+                width='25'
+                height='25'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeMiterlimit='10'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            )}{" "}
           </div>
         </li>
       </ul>
-
-      <ul className='moreDown'>
-        <hr />
-        <li className='downlist'>Calendar</li>
-        <li className='downlist'>Transactions</li>
-        <li className='downlist'>Financials</li>
-        <li className='downlist'>Contacts</li>
-        <li className='downlist'>Support</li>
-      </ul>
+      {isArrowDownVisible && (
+        <ul className='moreDown'>
+          <hr />
+          <li className='downlist'>Calendar</li>
+          <li className='downlist'>Transactions</li>
+          <li className='downlist'>Financials</li>
+          <li className='downlist'>Contacts</li>
+          <li className='downlist'>Support</li>
+        </ul>
+      )}
     </div>
   );
 }

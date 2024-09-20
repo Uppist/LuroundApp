@@ -12,17 +12,59 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.profile-details {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+input,
+textarea {
+  font-family: "Inter";
+  font-size: 16px;
+  color: hsla(197, 100%, 11%, 1);
+}
+
+textarea:focus {
+  outline: none;
+}
+
 button {
   cursor: pointer;
+  font-family: "Inter";
+}
+
+input:focus {
+  outline: none;
+}
+
+hr {
+  margin: 0;
+}
+
+svg {
+  cursor: pointer;
+}
+
+textarea {
+  margin-bottom: 20px;
 }
 
 .oneoff,
 .retainer,
 .program,
 .event,
-.bookings {
-  display: none;
-  gap: 48px;
+.bookings,
+.time-based-container,
+.project-based-container {
+  display: grid;
+  gap: 24px;
   margin: 25px;
 }
 
@@ -44,7 +86,9 @@ button {
 .luround {
   display: grid;
   margin: 0 auto;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
+  width: 138px;
+  height: 40px;
 }
 
 .list {
@@ -73,6 +117,16 @@ button {
   padding: 6px 8px;
 }
 
+.activeprofile {
+  background-color: white;
+  color: rgba(29, 46, 46, 0.8);
+  border-left: none;
+}
+
+.book > svg:hover {
+  color: hsla(180, 100%, 36%, 1);
+}
+
 .moreservice {
   display: flex;
   align-items: center;
@@ -87,14 +141,6 @@ button {
   justify-content: space-between;
 }
 
-.vectorservice {
-  visibility: visible;
-}
-
-.vector2service {
-  display: none;
-}
-
 .vectorservice:hover {
   cursor: pointer;
 }
@@ -105,12 +151,11 @@ button {
 
 .moreDownservice {
   display: grid;
-  visibility: hidden;
   margin-left: 10px;
   list-style: none;
   gap: 30px;
   padding: 0;
-  position: absolute;
+  position: relative;
   font-size: 16px;
   font-weight: 500;
   color: rgba(29, 46, 46, 0.8);
@@ -143,14 +188,6 @@ button {
   font-family: "Inter";
 }
 
-.vector {
-  visibility: visible;
-}
-
-.vector2 {
-  display: none;
-}
-
 .vector:hover {
   cursor: pointer;
 }
@@ -161,7 +198,6 @@ button {
 
 .moreDown {
   display: grid;
-  visibility: hidden;
   margin-left: 10px;
   list-style: none;
   gap: 30px;
@@ -205,7 +241,7 @@ button {
   display: flex;
   justify-content: space-between;
   background-color: white;
-  padding: 24px;
+  padding: 16px 24px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
 }
 
@@ -236,7 +272,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -253,26 +289,53 @@ button {
 }
 
 .imagearrow {
+  background-color: hsla(180, 17%, 98%, 1);
+  width: 57px;
+  height: 32px;
   display: flex;
+  gap: 8px;
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(217, 217, 217, 1);
-  border-radius: 32px;
+  border-radius: 50px;
+}
+
+.smallerimage {
+  width: 24px;
+  height: 24px;
+}
+
+.profiledropdown {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1000;
+}
+
+.overlaydropdown {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
 }
 
 .profileedit {
   background-color: white;
   position: absolute;
-  width: 360px;
   display: flex;
   align-items: center;
-  top: 100px;
-  visibility: hidden;
-  left: 850px;
   z-index: 1000;
   flex-direction: column;
   gap: 8px;
   border-radius: 8px;
+  top: 90px;
+  right: 115px;
 }
 
 .profileedit > button {
@@ -283,6 +346,17 @@ button {
   font-size: 16px;
   border: 0;
   color: hsla(180, 23%, 15%, 1);
+}
+
+.profileedit::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  background-color: white;
+  position: relative;
+  top: -8px;
+  left: 100px;
 }
 
 .imagename {
@@ -339,19 +413,12 @@ button {
   margin: 0;
 }
 
-.profileedit::before {
-  content: "";
-  width: 24px;
-  height: 24px;
-  transform: rotate(45deg);
-  background-color: white;
-  position: relative;
-  top: -11px;
-  left: 100px;
-}
-
 .arrow {
   margin-right: 5px;
+}
+
+.arrow.open {
+  transition: 0.4s;
 }
 
 .share {
@@ -377,9 +444,15 @@ button {
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
 }
 
+.svg-review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .svg {
   display: flex;
-  gap: 5px;
+  gap: 12px;
 }
 
 .svg:hover {
@@ -435,6 +508,8 @@ button {
 
 .profspec {
   margin-left: 400px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 .britnext {
@@ -444,11 +519,14 @@ button {
 .imagebrit {
   display: flex;
   align-items: center;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 .loremicon {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .lorem {
@@ -471,6 +549,8 @@ button {
 
 /*About container styling*/
 .about {
+  display: grid;
+  gap: 24px;
   height: fit-content;
   margin: 25px;
   margin-top: 0px;
@@ -487,6 +567,7 @@ button {
 }
 
 .paragraph {
+  margin: 0;
   font-size: 16px;
   font-weight: 400;
   color: rgba(29, 46, 46, 0.8);
@@ -591,7 +672,7 @@ button {
 }
 
 .one-offservice {
-  font-size: 32px;
+  font-size: 24px;
   color: hsla(180, 23%, 15%, 1);
   font-weight: 600;
 }
@@ -599,7 +680,7 @@ button {
 .numberofservice {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .oneoffservice,
@@ -620,17 +701,154 @@ button {
   display: flex;
   align-items: center;
   gap: 4px;
-}
-
-.add-service > a {
-  display: flex;
-  align-items: center;
-  text-decoration-color: hsla(180, 100%, 40%, 1);
+  background-color: rgba(248, 250, 250, 1);
+  border: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  border-bottom: 1.5px solid hsla(180, 100%, 40%, 1);
 }
 
 .addservice {
   color: hsla(180, 100%, 40%, 1);
   font-weight: 600;
+}
+
+.type-of-service {
+  background-color: white;
+  padding: 24px 16px 12px 16px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 8px;
+  top: 145px;
+  right: 20px;
+}
+
+.all-time-container {
+  background-color: white;
+  padding: 24px 16px 12px 16px;
+  position: absolute;
+
+  z-index: 1000;
+  width: 269px;
+  padding: 12px 0px 12px 0px;
+  border-radius: 8px;
+  top: 150px;
+  right: 20px;
+}
+
+.choose-service {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.choose-service > hr {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  margin: 0;
+}
+
+.type-of-service > ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.dropdown-service > li {
+  padding: 12px 120px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.dropdown-service > li:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+  border-radius: 8px;
+}
+
+.alltime-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alltime {
+  width: 171px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsla(180, 23%, 15%, 0.8);
+  padding: 8px 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-radius: 8px;
+}
+
+.alltime-container {
+  padding: 12px 12px 12px 16px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.alltime-container:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+  border-radius: 8px;
+}
+
+.oneoff-dropdown {
+  display: grid;
+  gap: 8px;
+}
+
+.filter-by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.time-project-service {
+  display: flex;
+  gap: 16px;
+}
+
+.time-based,
+.project-based {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  padding: 12px 24px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.time-based:hover,
+.project-based:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+}
+
+.oneoff-service {
+  padding: 12px 120px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.oneoff-service:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+  border-radius: 8px;
 }
 
 .dataoneoff,
@@ -639,15 +857,35 @@ button {
   gap: 24px;
 }
 
+.eachoneoffcontainer,
+.eachretainercontainer,
+.eachprogramcontainer,
+.eacheventcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
 .OneOffcontainer,
 .retainercontainer {
   display: flex;
-
+  width: -webkit-fill-available;
   gap: 24px;
-  padding: 24px;
+  padding: 24px 0px 24px 24px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+}
+
+.OneOffcontainer:hover,
+.retainercontainer:hover {
+  background-color: hsla(180, 12%, 95%, 1);
+  cursor: pointer;
+}
+
+.titlecontainer {
+  display: flex;
+  gap: 24px;
 }
 
 .days-time {
@@ -672,22 +910,24 @@ button {
   display: flex;
 }
 
-.content-type {
-  display: grid;
-  gap: 48px;
+.gap-program {
+  display: flex;
+  gap: 60px;
 }
+
+.content-type,
 .content-type1 {
   display: grid;
-  gap: 8px;
+  gap: 48px;
 }
 
 .personal-service {
   display: grid;
-  gap: 16px;
+  gap: 8px;
 }
 
 .personal {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: hsla(180, 100%, 40%, 1);
 }
@@ -703,6 +943,7 @@ button {
   flex-direction: row;
   gap: 8px;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .servicetype {
@@ -727,9 +968,26 @@ button {
 }
 
 .text {
+  width: 330px;
   font-weight: 400;
   font-size: 14px;
   color: hsla(180, 5%, 43%, 1);
+}
+
+.oneoff-details {
+  display: flex;
+  transition: 0.4s ease-in-out;
+  position: relative;
+  height: fit-content;
+  gap: 8px;
+  align-items: center;
+  left: -20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+  border: 0;
+  font-family: "Inter";
 }
 
 .overallvector {
@@ -755,40 +1013,124 @@ button {
   background-color: hsla(180, 100%, 36%, 1);
 }
 
-.price-session {
+.virtual-inperson {
   display: flex;
+}
+
+.radio-virtual {
+  display: flex;
+  gap: 24px;
+}
+
+.pricing-amount {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.virtual,
+.in-person {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+input[type="radio"]:checked {
+  background-color: hsla(180, 23%, 15%, 1);
+  cursor: pointer;
+  accent-color: white;
+}
+
+.price-session {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+}
+
+.virtual-bg {
+  background-color: hsla(180, 100%, 32%, 1);
+  cursor: pointer;
+  color: white;
+  transition: 0.4s;
+}
+
+.in-person-bg {
+  background-color: hsla(197, 100%, 11%, 1);
+  cursor: pointer;
+  color: white;
+  transition: 0.4s;
+}
+
+.mins-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.virtual-bg .radio-virtual > div,
+.virtual-bg .pricing-amount .pricing,
+.virtual-bg .pricing-amount .pricing .mins-arrow,
+.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
+.virtual-bg .pricing-amount .pricing .naira-session,
+.virtual-bg .pricing-amount .naira-session > span {
+  color: white;
+}
+
+.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
+.in-person-bg .pricing-amount .pricing .mins-arrow > svg {
+  background-color: white;
+}
+
+.in-person-bg .pricing-amount .pricing .mins-arrow,
+.virtual-bg .pricing-amount .pricing .mins-arrow {
+  border-bottom: 1px solid white;
+}
+
+.in-person-bg .radio-virtual > div,
+.in-person-bg .pricing-amount .pricing,
+.in-person-bg .pricing-amount .pricing .mins-arrow,
+.in-person-bg .pricing-amount .pricing .naira-session,
+.in-person-bg .pricing-amount .naira-session > span {
+  color: white;
 }
 
 .pricing {
   display: flex;
   align-items: end;
-  font-size: 14px;
+  font-size: 12px;
   gap: 4px;
-  font-weight: 500;
+  font-weight: 400;
   color: hsla(180, 23%, 15%, 0.8);
 }
 
 .mins-arrow {
   display: flex;
-  width: 90px;
   align-items: center;
   gap: 8px;
-  text-decoration: underline;
-  text-decoration-color: 1px solid hsla(180, 23%, 15%, 1);
+  border: 0;
+  border-bottom: 1px solid hsla(180, 23%, 15%, 0.8);
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
 }
 
 .mins {
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
-}
-
-.virtual {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  gap: 16px;
-  font-size: 12px;
 }
 
 .virtual-arrow {
@@ -807,17 +1149,18 @@ button {
 .naira-session {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .naira {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: hsla(197, 100%, 11%, 1);
 }
 
 .session {
-  width: 129px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   color: hsla(180, 23%, 15%, 0.65);
 }
 
@@ -833,7 +1176,7 @@ button {
   padding: 24px;
   gap: 48px;
   background-color: white;
-  width: 270px;
+  width: -webkit-fill-available;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
   border-radius: 8px;
 }
@@ -845,6 +1188,7 @@ button {
 .imagesvg {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .imagecontainer {
@@ -967,13 +1311,14 @@ button {
 
 .date {
   font-weight: 500;
-  color: hsla(180, 9%, 32%, 1);
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 .title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: hsla(180, 9%, 32%, 1);
+  color: hsla(180, 23%, 15%, 0.8);
 }
 
 .dateam {
@@ -981,6 +1326,10 @@ button {
   color: hsla(180, 23%, 15%, 1);
 }
 
+.bookingdetails {
+  color: hsla(180, 23%, 15%, 0.8);
+  width: 286px;
+}
 .timer {
   display: flex;
   align-items: center;
@@ -1018,9 +1367,14 @@ button {
   cursor: pointer;
 }
 
+.see {
+  display: grid;
+  gap: 24px;
+}
+
 .seedetails {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 2fr;
   gap: 24px;
 }
 
@@ -1035,7 +1389,16 @@ button {
   padding: 24px 24px 38px 24px;
 }
 
+.reschedule {
+  padding: 0;
+}
+
 .reschedulebooking {
+  display: grid;
+  gap: 48px;
+}
+
+.former-reschedule {
   display: grid;
   gap: 24px;
 }
@@ -1043,22 +1406,25 @@ button {
 .linereschedule {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .linereschedule > hr {
-  width: -webkit-fill-available;
   margin: 0;
   border: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .reschedulebook {
+  border: 0;
+  background-color: white;
+  font-size: 18px;
+  font-family: "Inter";
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 18px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
+  padding: 24px 12px;
 }
 
 .formerschedule {
@@ -1067,6 +1433,10 @@ button {
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
+}
+
+.formerschedule > label {
+  padding: 0px 12px;
 }
 
 .formerschedule > hr {
@@ -1078,6 +1448,7 @@ button {
 .date-time {
   display: flex;
   justify-content: space-between;
+  padding: 0px 12px;
 }
 
 .svg-date,
@@ -1085,8 +1456,10 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  width: 150px;
+  font-size: 14px;
+  /* width: 150px; */
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 400;
 }
 
 .appointmentcon {
@@ -1097,12 +1470,11 @@ button {
 .appointmentdetails {
   display: grid;
   gap: 32px;
-  text-align: justify;
 }
 
 .appointment {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .bookingtitle {
@@ -1121,11 +1493,11 @@ button {
   margin-bottom: 0px;
 }
 
-.label {
+/* .label {
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
-}
+} */
 
 .label > span {
   color: hsla(180, 23%, 15%, 0.8);
@@ -1145,16 +1517,24 @@ button {
 
 .quickaction {
   display: grid;
-  gap: 24px;
+}
+
+.quickaction > label {
+  padding: 24px 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 .quickaction > hr {
-  width: -webkit-fill-available;
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .reschedule-cancel {
   display: grid;
   gap: 24px;
+  padding: 0px 12px;
 }
 
 .rescheduletext,
@@ -1162,6 +1542,12 @@ button {
   display: flex;
   align-items: center;
   gap: 24px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  background-color: white;
+  border: 0;
+  font-size: 16px;
+  font-family: "Inter";
 }
 
 .rescheduletext > svg:hover,
@@ -1182,6 +1568,7 @@ button {
 .fullcalendar {
   display: grid;
   gap: 24px;
+  padding: 0px 24px;
 }
 
 .select {
@@ -1235,7 +1622,8 @@ button {
 }
 
 .day:hover {
-  background-color: hsla(180, 100%, 96%, 1);
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
 }
 
 .selected {
@@ -1260,7 +1648,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
   transition: opacity 1.3s;
 }
 
@@ -1268,7 +1656,7 @@ button {
   position: relative;
   background: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 16px;
   z-index: 1001;
   display: grid;
   gap: 32px;
@@ -1353,18 +1741,28 @@ button {
 }
 
 .formatted-date {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: hsla(180, 23%, 15%, 0.8);
 }
 
+.updated {
+  color: hsla(180, 23%, 15%, 1);
+  /* width: 122px; */
+}
+
 .change {
-  font-size: 14px;
+  font-size: 16px;
+  font-family: "Inter";
   font-weight: 400;
   color: hsla(180, 100%, 36%, 1);
   border: 0;
   background-color: white;
   padding: 0;
+}
+
+.cg {
+  font-size: 14px;
 }
 
 .select-time {
@@ -1374,15 +1772,17 @@ button {
 }
 
 .duration {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
+  color: hsla(180, 23%, 15%, 0.8);
 }
 
 .update-schedule-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-top: -24px;
+  padding: 0px 12px;
 }
 
 .update-schedule {
@@ -1394,6 +1794,15 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.reason-for-change > textarea {
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  height: 88px;
 }
 
 .updatebutton {
@@ -1410,6 +1819,713 @@ button {
   border: 0;
   padding: 12px 72px;
   border-radius: 16px;
+}
+
+.time-based-grid-container,
+.project-based-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.create-time-based,
+.create-project-based {
+  padding: 24px 24px 38px 24px;
+  border-radius: 16px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.time-choose-daytime,
+.project-choose-daytime {
+  border-radius: 16px;
+  background-color: white;
+}
+
+.time-based-back,
+.project-based-back {
+  display: flex;
+  align-items: center;
+  background-color: rgba(248, 250, 250, 1);
+  border: 0;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.create-time-service,
+.create-project-service {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
+}
+
+.time-service-description,
+.project-service-description {
+  display: grid;
+  gap: 32px;
+}
+
+.time-service,
+.project-service {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.time-service > input,
+.project-service > input {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.time-description,
+.project-description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.time-description > textarea,
+.project-description > textarea {
+  height: 196px !important;
+  width: -webkit-fill-available !important;
+  border-radius: 16px;
+  padding: 12px 24px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.pricing-time-based {
+  padding: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.time-choose-daytime > hr {
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.input-time {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.warning-container {
+  display: grid;
+  gap: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 12px;
+  font-weight: 500;
+  background-color: hsla(197, 100%, 11%, 1);
+  color: hsla(198, 100%, 96%, 1);
+}
+
+.first-warning,
+.second-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-time-container {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+}
+
+.input-time-container2 {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.button-mins {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.button-timer {
+  padding: 14px 58px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+  background-color: white;
+}
+
+.button-timer > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.inperson-virtual {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-left: 110px;
+  width: 300px;
+  justify-content: space-around;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.naira-virtual > input,
+.naira-inperson > input {
+  background-color: white;
+  width: 100px;
+  padding: 14px 14px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+}
+
+.inperson-virtual > svg {
+  margin-top: 40px;
+}
+
+.add-time-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  background-color: white;
+  border: 0;
+}
+
+.time-container {
+  display: grid;
+  gap: 24px;
+}
+
+.naira-virtual-inperson {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.add-time-slot {
+  display: grid;
+  gap: 24px;
+}
+
+.next {
+  float: right;
+  border: 0;
+  padding: 12px 51px;
+  border-radius: 16px;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.next:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.to-fro {
+  margin-left: 150px;
+  width: 280px;
+}
+
+.days-selection {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.day-checked-container {
+  display: grid;
+  gap: 24px;
+}
+
+.days-selection > div > div {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.time-selection {
+  display: flex;
+  gap: 32px;
+}
+
+.checkbox {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  width: 20px;
+  border-radius: 4px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  background-color: hsla(180, 100%, 40%, 1);
+  border: 0;
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: 2px solid transparent;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox:checked::before {
+  border-color: white;
+}
+
+.moredetails {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.moredetails-container,
+.quickaction-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 8px;
+  padding: 24px 24px 38px 24px;
+}
+
+.availability {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(39, 100%, 50%, 1);
+}
+
+.availability-time {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  color: hsla(180, 9%, 32%, 1);
+}
+
+.service-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text2 {
+  width: auto;
+}
+.quickaction-container {
+  padding: 0;
+  gap: 0px;
+}
+
+.quickaction-detail {
+  padding: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.quickaction-detail > hr {
+  width: -webkit-fill-available;
+}
+
+.settings-detail {
+  display: grid;
+  padding: 24px;
+}
+
+.settings-container {
+  display: flex;
+  align-items: center;
+  padding: 16px 70px 16px 0px;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.settings-container > svg:hover {
+  color: hsla(180, 100%, 36%, 1);
+}
+
+.settings-container:hover {
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 100%, 36%, 1);
+  color: hsla(180, 100%, 36%, 1);
+}
+
+.toggle-button {
+  display: grid;
+}
+
+.toggle {
+  background-color: #d2d2d2;
+  width: 32px;
+  height: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.4s;
+}
+.toggle::before {
+  position: absolute;
+  content: "";
+  background-color: #fff;
+  width: 14px;
+  height: 14px;
+  border-radius: 200px;
+  margin: 2px;
+  transition: 0.4s;
+}
+
+.suspend {
+  display: flex;
+  padding: 14px 14px 14px 0px;
+  justify-content: space-between;
+}
+
+.suspend-div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+input:checked + .toggle {
+  background-color: hsla(180, 100%, 40%, 1);
+}
+input:checked + .toggle::before {
+  transform: translateX(13px);
+}
+
+.check {
+  display: none;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.select-list {
+  transition: 0.4s;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.select-time-container {
+  transition: 0.4s;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 14px 44px 14px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.menu {
+  list-style: none;
+  background-color: white;
+  border-radius: 0px 0px 4px 4px;
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  gap: 4px;
+  position: absolute;
+  transition: 0.4s;
+  z-index: 1;
+  color: hsla(180, 23%, 15%, 0.8);
+  margin: 0;
+}
+
+.menu li {
+  padding: 8px 8px 8px 4px;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+}
+
+.menu-open {
+  display: block;
+  opacity: 1;
+}
+
+.booking-notice-appoint {
+  display: grid;
+  gap: 24px;
+}
+
+.booking-period,
+.notice-period,
+.appointment-buffer {
+  display: grid;
+  gap: 16px;
+}
+
+.p-booking,
+.p-notice,
+.p-appoint {
+  display: grid;
+  gap: 4px;
+}
+.p-booking span,
+.p-notice span,
+.p-appoint span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.p-booking p,
+.p-notice p,
+.p-appoint p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.booking-period button {
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.booking-month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.buttons button {
+  width: 240px;
+  border-radius: 16px;
+  padding: 16px 24px;
+  background-color: white;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.cancel-done {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+}
+
+.time-booking-period {
+  display: grid;
+  gap: 32px;
+}
+
+.cancel-time,
+.done-time {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.done-time {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+
+.create-event-service {
+  padding: 24px;
+  background-color: white;
+  margin-left: 80px;
+  margin-right: 80px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+}
+
+.event-type {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.event-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.check-virtual,
+.check-inperson {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.backEvent {
+  background-color: #fff;
+  border: 0;
+  font-size: 20px;
+}
+
+.start-end-time {
+  display: flex;
+  justify-content: center;
+  gap: 90x;
+  margin-left: 20px;
+}
+
+.done-delete {
+  background-color: hsla(0, 69%, 49%, 1);
+}
+
+.list-offers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.list-offers > input {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.list-number-of-offers {
+  display: grid;
+  gap: 24px;
+}
+
+.offers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circle-offer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.circle-offer span {
+  text-transform: capitalize;
+}
+
+.pricing-project {
+  display: grid;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.nigeria-price {
+  display: flex;
+  gap: 24px;
+}
+
+.nigeria-price button {
+  width: 136px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  padding: 16px;
+}
+
+.nigeria-down {
+  display: flex;
+  gap: 4px;
+}
+
+.ngn-down {
+  display: flex;
+  gap: 24px;
+}
+
+.nigeria-price input {
+  padding: 16px 24px;
+  width: 150px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.title-service {
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.title-p {
+  text-align: center;
 }
 
 /*Screen Resolution*/

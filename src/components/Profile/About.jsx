@@ -18,7 +18,7 @@ export default function About() {
         pariatu.Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore.
       </p>
-
+      {/* 
       <hr className='linehr1' />
       <div className='education'>
         <span className='edu'>Education</span>
@@ -108,8 +108,8 @@ export default function About() {
             <span className='year'>Credential ID 7380020</span>
             <button className='certificate'>Show Certificate</button>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 }
