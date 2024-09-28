@@ -1,7 +1,11 @@
 /** @format */
 import image3 from "../elements/image2.png";
 
-export default function Dropdown({ onClose }) {
+export default function Dropdown({ onClose, onComponentSwitch }) {
+  function Editprofile(item) {
+    onComponentSwitch(item);
+    onClose();
+  }
   return (
     <div>
       <div className='profiledropdown'>
@@ -14,7 +18,9 @@ export default function Dropdown({ onClose }) {
                 <span className='ronaldname'>Ronald Richards</span>
                 <span className='email'>ronaldrichards@gmail.com</span>
               </div>
-              <button>Edit Profile</button>
+              <button onClick={() => Editprofile("editprofile")}>
+                Edit Profile
+              </button>
             </div>
             <hr className='linehr' />
           </div>

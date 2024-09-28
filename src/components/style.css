@@ -56,6 +56,7 @@ textarea {
   margin-bottom: 20px;
 }
 
+.editprofile,
 .oneoff,
 .retainer,
 .program,
@@ -80,6 +81,7 @@ textarea {
 .sidebar {
   width: 240px;
   padding: 25px;
+  height: 982px;
   background-color: white;
 }
 
@@ -336,6 +338,30 @@ textarea {
   border-radius: 8px;
   top: 90px;
   right: 115px;
+}
+
+.notificationdropdown {
+  background-color: white;
+  position: absolute;
+  width: 360px;
+  display: flex;
+  z-index: 1000;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  top: 90px;
+  right: 175px;
+}
+
+.notificationdropdown::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  background-color: white;
+  position: relative;
+  top: -8px;
+  left: 175px;
 }
 
 .profileedit > button {
@@ -1834,6 +1860,7 @@ input[type="radio"]:checked {
   border-radius: 16px;
   background-color: white;
   display: flex;
+  height: fit-content;
   flex-direction: column;
   gap: 32px;
 }
@@ -2526,6 +2553,236 @@ input:checked + .toggle::before {
 
 .title-p {
   text-align: center;
+}
+
+.editprofile {
+  grid-template-columns: 1fr 2fr;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+}
+
+.editprofile-first-container {
+  display: grid;
+  gap: 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+  height: 700px;
+}
+
+.editprofile-first-container > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.editprofile-second-container {
+  display: grid;
+  gap: 24px;
+  padding: 16px 24px 16px 0px;
+}
+
+.editprofile-first-container span {
+  padding: 16px 24px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 500;
+}
+
+.photos-intros {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 24px;
+
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.photo {
+  display: none;
+}
+.edit-image {
+  width: 380px;
+}
+
+.edit {
+  background-color: hsla(180, 100%, 40%, 1);
+  width: 32px;
+  height: 32px;
+  border-radius: 20px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -40px;
+  left: 340px;
+}
+
+.editprofile-about {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.editprofile-about textarea {
+  height: 172px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.otherdetails-editprofile {
+  display: grid;
+  gap: 48px;
+  padding: 16px 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.otherdetails-editprofile span {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.socialmediadetails {
+  display: grid;
+  gap: 32px;
+}
+
+.socialmedia {
+  display: flex;
+  gap: 88px;
+  align-items: center;
+}
+
+.socialmedia-svg,
+.socialmedia-input {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.socialmedia-input > input {
+  width: 310px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.editprofile-introduce {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.first-name {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.first-name span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.first-name input {
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.upload-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-logo span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.size span {
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.upload-your-logo {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  border: 2.5px solid hsla(180, 100%, 40%, 1);
+  border-style: dashed;
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 0px 16px;
+}
+
+.file-type {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.size {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-logo button {
+  height: 36px;
+  padding: 0px 16px;
+  color: white;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.scrollable-notification {
+  height: 320px;
+  overflow: scroll;
+}
+
+.scrollable-notification::-webkit-scrollbar {
+  display: none;
+}
+
+.notification-booked {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: hsla(180, 100%, 96%, 1);
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.notification-booked > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notificationdropdown > label {
+  text-align: center;
+  padding: 0px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 /*Screen Resolution*/

@@ -11,6 +11,8 @@ import "../style.css";
 import AboutDetails from "./AboutDetails";
 import Search from "./LuroundSearch";
 import Profile from "./Profile";
+import EditProfile from "./EditProfile";
+import DetailOne from "../Services/OneOff/DetailService";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -28,9 +30,11 @@ export default function LuroundApp() {
       <Sidebar onComponentSwitch={handleOneOffClick} />
       {/*Profile container */}
       <div className='profiledashboard'>
-        <Search />
+        <Search onComponentSwitch={handleOneOffClick} />
         <div className={`profile-details ${visible}`}>
+          {activeComponent === "editprofile" && <EditProfile />}
           {activeComponent === "oneoff" && <One />}
+
           {activeComponent === "retainer" && <Retainer />}
           {activeComponent === "program" && <Program />}
           {activeComponent === "event" && <Event />}
