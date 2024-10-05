@@ -92,6 +92,7 @@ export default function OtherDetails() {
         </div>
         <div className='socialmedia-input'>
           <input type='text' placeholder='Mobile' />
+
           <svg
             width='24'
             height='25'
