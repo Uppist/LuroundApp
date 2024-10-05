@@ -62,10 +62,7 @@ textarea {
 .program,
 .event,
 .bookings,
-<<<<<<< HEAD
 .transaction,
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 .time-based-container,
 .project-based-container {
   display: grid;
@@ -159,11 +156,7 @@ textarea {
   display: grid;
   margin-left: 10px;
   list-style: none;
-<<<<<<< HEAD
   gap: 8px;
-=======
-  gap: 30px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   padding: 0;
   position: relative;
   font-size: 16px;
@@ -210,11 +203,7 @@ textarea {
   display: grid;
   margin-left: 10px;
   list-style: none;
-<<<<<<< HEAD
   gap: 8px;
-=======
-  gap: 30px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   padding: 0;
   font-size: 16px;
   font-weight: 500;
@@ -355,25 +344,15 @@ textarea {
 .notificationdropdown {
   background-color: white;
   position: absolute;
-<<<<<<< HEAD
-=======
-  width: 360px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   display: flex;
   z-index: 1000;
   flex-direction: column;
   gap: 8px;
-<<<<<<< HEAD
   border-radius: 16px;
   top: 70px;
   right: 180px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-=======
-  border-radius: 8px;
-  top: 90px;
-  right: 175px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .notificationdropdown::before {
@@ -831,11 +810,7 @@ textarea {
 }
 
 .alltime {
-<<<<<<< HEAD
   width: 125px;
-=======
-  width: 171px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -844,11 +819,8 @@ textarea {
   padding: 8px 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   border-radius: 8px;
-<<<<<<< HEAD
   font-size: 16px;
   font-weight: 500;
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .alltime-container {
@@ -1700,12 +1672,8 @@ input[type="radio"]:checked {
   align-items: center;
   z-index: 1000;
 }
-<<<<<<< HEAD
 .overlay,
 .overlayshare {
-=======
-.overlay {
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   position: absolute;
   top: 0;
   left: 0;
@@ -1715,13 +1683,9 @@ input[type="radio"]:checked {
   transition: opacity 1.3s;
 }
 
-<<<<<<< HEAD
 .body-modal,
 .sharedropdown,
 .withdrawpin {
-=======
-.body-modal {
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   position: relative;
   background: white;
   padding: 20px;
@@ -1731,7 +1695,6 @@ input[type="radio"]:checked {
   gap: 32px;
 }
 
-<<<<<<< HEAD
 .withdrawpin {
   width: 509px;
 
@@ -1742,8 +1705,6 @@ input[type="radio"]:checked {
   width: 720px;
 }
 
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 .cancel-booking-line {
   display: grid;
   gap: 24px;
@@ -2366,7 +2327,6 @@ input:checked + .toggle::before {
   margin: 0;
 }
 
-<<<<<<< HEAD
 .transaction-time {
   position: absolute;
   left: 20px;
@@ -2374,8 +2334,6 @@ input:checked + .toggle::before {
   border-radius: 8px;
 }
 
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 .menu li {
   padding: 8px 8px 8px 4px;
   cursor: pointer;
@@ -2643,10 +2601,6 @@ input:checked + .toggle::before {
 .editprofile-second-container {
   display: grid;
   gap: 24px;
-<<<<<<< HEAD
-=======
-  padding: 16px 24px 16px 0px;
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .editprofile-first-container span {
@@ -2654,14 +2608,11 @@ input:checked + .toggle::before {
   border-bottom: 1px solid hsla(180, 11%, 89%, 1);
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
-<<<<<<< HEAD
   cursor: pointer;
 }
 
 .editprofile-first-container span:hover {
   background-color: hsla(180, 17%, 98%, 1);
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .photos-intros {
@@ -2675,14 +2626,11 @@ input:checked + .toggle::before {
   border-radius: 16px;
 }
 
-<<<<<<< HEAD
 .photos-intros > span {
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
 }
 
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 .photo {
   display: none;
 }
@@ -2718,10 +2666,7 @@ input:checked + .toggle::before {
   height: 172px;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
-<<<<<<< HEAD
   padding: 12px;
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .otherdetails-editprofile {
@@ -2786,10 +2731,7 @@ input:checked + .toggle::before {
   height: 56px;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
-<<<<<<< HEAD
   padding: 0px 16px;
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .upload-logo {
@@ -2849,11 +2791,8 @@ input:checked + .toggle::before {
 .scrollable-notification {
   height: 320px;
   overflow: scroll;
-<<<<<<< HEAD
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .scrollable-notification::-webkit-scrollbar {
@@ -2867,11 +2806,8 @@ input:checked + .toggle::before {
   padding: 16px;
   background-color: hsla(180, 100%, 96%, 1);
   border: 1px solid hsla(180, 11%, 89%, 1);
-<<<<<<< HEAD
   border-right: 0px;
   border-left: 0px;
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 }
 
 .notification-booked > div {
@@ -2888,7 +2824,6 @@ input:checked + .toggle::before {
   color: hsla(180, 23%, 15%, 1);
 }
 
-<<<<<<< HEAD
 .notification-name {
   font-size: 16px;
   font-weight: 500;
@@ -3157,8 +3092,6 @@ input[type="password"] {
   border: 1.5px solid hsla(180, 11%, 89%, 1);
 }
 
-=======
->>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 /*Screen Resolution*/
 @media only screen and (max-width: 900px) {
   .grid-container {
