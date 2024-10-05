@@ -35,11 +35,13 @@ export default function LuroundApp() {
         <div className={`profile-details ${visible}`}>
           {activeComponent === "editprofile" && <EditProfile />}
           {activeComponent === "oneoff" && <One />}
+
           {activeComponent === "retainer" && <Retainer />}
           {activeComponent === "program" && <Program />}
           {activeComponent === "event" && <Event />}
           {activeComponent === "bookings" && <Bookings />}
           {activeComponent === "transaction" && <Transaction />}
+
           {activeComponent === "profile" && (
             <>
               <Profile />

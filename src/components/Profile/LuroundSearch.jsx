@@ -5,10 +5,12 @@ import image2 from "../elements/image.png";
 import Dropdown from "./DropDown";
 import Notification from "./Notification";
 import ShareProfile from "./ShareProfile";
+
 export default function Search({ onComponentSwitch }) {
   const [value, setValue] = useState("");
   const [isdropDown, setIsdropdown] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
+
   const [isShareProfile, setisShareProfile] = useState(false);
 
   function profileDown() {
@@ -32,6 +34,7 @@ export default function Search({ onComponentSwitch }) {
   function Share() {
     setisShareProfile(true);
   }
+
   return (
     <div className='searchbar'>
       <div className='searchinput'>

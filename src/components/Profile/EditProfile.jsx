@@ -7,6 +7,7 @@ export default function EditProfile() {
   function scrollNext() {
     return alert("hello");
   }
+
   return (
     <div className='editprofile'>
       <div className='editprofile-first-container'>
@@ -21,6 +22,7 @@ export default function EditProfile() {
       <div className='editprofile-second-container'>
         <div className='photos-intros'>
           <span>Photo & Intro</span>
+
           <div>
             <div>
               <img className='img edit-image' src={profile} />
@@ -122,6 +124,7 @@ export default function EditProfile() {
         <div className='editprofile-about'>
           <span>About</span>
           <textarea placeholder='Write a brief summary of your experience, skills and achievements'></textarea>
+
           <div className='cancel-done'>
             <button className='cancel-time'>Cancel</button>
             <button className='done-time'>Save</button>
