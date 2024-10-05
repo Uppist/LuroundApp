@@ -4,23 +4,38 @@ import OtherDetails from "./OtherDetails";
 import profile from "../elements/Profile.jpg";
 
 export default function EditProfile() {
+<<<<<<< HEAD
   function scrollNext() {
     return alert("hello");
   }
+=======
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   return (
     <div className='editprofile'>
       <div className='editprofile-first-container'>
         <div>
+<<<<<<< HEAD
           <span onClick={scrollNext}>Photo & Intro</span>
           <span onClick={scrollNext}>About</span>
           <span onClick={scrollNext}>Education</span>
           <span onClick={scrollNext}>Endorsement & Certification</span>
           <span onClick={scrollNext}>Other Details</span>
+=======
+          <span>Photos & Intros</span>
+          <span>About</span>
+          <span>Education</span>
+          <span>Endorsement & Certification</span>
+          <span>Other Details</span>
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
         </div>
       </div>
       <div className='editprofile-second-container'>
         <div className='photos-intros'>
+<<<<<<< HEAD
           <span>Photo & Intro</span>
+=======
+          <span>Photos & Intros</span>
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <div>
             <div>
               <img className='img edit-image' src={profile} />
@@ -42,6 +57,7 @@ export default function EditProfile() {
             <div className='editprofile-introduce'>
               <div className='first-name'>
                 <span>First name</span>
+<<<<<<< HEAD
                 <input placeholder='First name' />
               </div>
               <div className='first-name'>
@@ -55,6 +71,21 @@ export default function EditProfile() {
               <div className='first-name'>
                 <span>What do you do?</span>
                 <input placeholder='Your profession' />
+=======
+                <input />
+              </div>
+              <div className='first-name'>
+                <span>Last name</span>
+                <input />
+              </div>
+              <div className='first-name'>
+                <span>Company name</span>
+                <input />
+              </div>
+              <div className='first-name'>
+                <span>What do you do?</span>
+                <input />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
               </div>
 
               <div className='upload-logo'>
@@ -121,7 +152,11 @@ export default function EditProfile() {
         </div>
         <div className='editprofile-about'>
           <span>About</span>
+<<<<<<< HEAD
           <textarea placeholder='Write a brief summary of your experience, skills and achievements'></textarea>
+=======
+          <textarea></textarea>
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <div className='cancel-done'>
             <button className='cancel-time'>Cancel</button>
             <button className='done-time'>Save</button>

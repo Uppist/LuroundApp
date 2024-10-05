@@ -37,7 +37,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Location' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -91,7 +95,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Mobile' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -145,7 +153,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Email' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -199,7 +211,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Website' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -253,7 +269,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='LinkedIn' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -307,7 +327,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Facebook' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -361,7 +385,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Instagram' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -417,7 +445,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Twitter' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'
@@ -479,7 +511,11 @@ export default function OtherDetails() {
           </svg>
         </div>
         <div className='socialmedia-input'>
+<<<<<<< HEAD
           <input type='text' placeholder='Youtube' />
+=======
+          <input type='text' />
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <svg
             width='24'
             height='25'

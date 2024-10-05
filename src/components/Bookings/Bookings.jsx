@@ -13,6 +13,7 @@ export default function Bookings(ChangeBack) {
   function SeeMore(index) {
     setVisibleBooking(index);
   }
+<<<<<<< HEAD
   const [visible, setVisible] = useState("fade-in");
 
   function handleOneOffClick(container) {
@@ -22,6 +23,9 @@ export default function Bookings(ChangeBack) {
       setVisible("fade-in");
     }, 200);
   }
+=======
+
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   function SeeLess() {
     setVisibleBooking(null);
   }

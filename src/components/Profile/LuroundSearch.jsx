@@ -4,12 +4,18 @@ import "../style.css";
 import image2 from "../elements/image.png";
 import Dropdown from "./DropDown";
 import Notification from "./Notification";
+<<<<<<< HEAD
 import ShareProfile from "./ShareProfile";
+=======
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 export default function Search({ onComponentSwitch }) {
   const [value, setValue] = useState("");
   const [isdropDown, setIsdropdown] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
+<<<<<<< HEAD
   const [isShareProfile, setisShareProfile] = useState(false);
+=======
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 
   function profileDown() {
     setIsdropdown(true);
@@ -22,6 +28,7 @@ export default function Search({ onComponentSwitch }) {
   function handleItemClick(item) {
     onComponentSwitch(item);
   }
+<<<<<<< HEAD
 
   function closeModal() {
     setIsdropdown(false);
@@ -32,6 +39,12 @@ export default function Search({ onComponentSwitch }) {
   function Share() {
     setisShareProfile(true);
   }
+=======
+  const closeModal = () => {
+    setIsdropdown(false);
+    setIsNotification(false);
+  };
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
   return (
     <div className='searchbar'>
       <div className='searchinput'>
@@ -124,7 +137,11 @@ export default function Search({ onComponentSwitch }) {
             <div className='imagearrow'>
               <img className='smallerimage' src={image2} alt='Profile' />
               <svg
+<<<<<<< HEAD
                 className={`arrow ${isdropDown ? "open" : ""}`}
+=======
+                className={`arrow ${isdropDown ? "open" : ""}`} // Add 'open' class when dropdown is open
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
                 width='16'
                 height='16'
                 viewBox='0 0 16 16'
@@ -151,6 +168,7 @@ export default function Search({ onComponentSwitch }) {
           )}
         </div>
 
+<<<<<<< HEAD
         <div>
           <li className='icons'>
             <button
@@ -163,6 +181,11 @@ export default function Search({ onComponentSwitch }) {
 
           {isShareProfile && <ShareProfile onClose={closeModal} />}
         </div>
+=======
+        <li className='icons'>
+          <button className='share'>Share Profile</button>
+        </li>
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
       </ul>
     </div>
   );

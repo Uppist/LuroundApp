@@ -1,5 +1,10 @@
 /** @format */
 
+<<<<<<< HEAD
+=======
+/** @format */
+import { useState } from "react";
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 export default function CancelN({ booking, onClose }) {
   return (
     <div>

@@ -29,7 +29,13 @@ export default function Sidebar({ onComponentSwitch }) {
       <img className='luround' src={Luround} />
       <ul className='list'>
         <li
+<<<<<<< HEAD
           className='profilelist profile'
+=======
+          className={`profilelist profile ${
+            activeItem === "profile" ? "activeprofile" : ""
+          }`}
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           onClick={() => handleItemClick("profile")}
         >
           <svg
@@ -247,12 +253,16 @@ export default function Sidebar({ onComponentSwitch }) {
         <ul className='moreDown'>
           <hr />
           <li className='downlist'>Calendar</li>
+<<<<<<< HEAD
           <li
             className='downlist'
             onClick={() => handleItemClick("transaction")}
           >
             Transactions
           </li>
+=======
+          <li className='downlist'>Transactions</li>
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           <li className='downlist'>Financials</li>
           <li className='downlist'>Contacts</li>
           <li className='downlist'>Support</li>

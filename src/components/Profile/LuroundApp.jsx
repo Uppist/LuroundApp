@@ -12,8 +12,12 @@ import AboutDetails from "./AboutDetails";
 import Search from "./LuroundSearch";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+<<<<<<< HEAD
 import Transaction from "../Transactions/TransactionPage";
 
+=======
+import DetailOne from "../Services/OneOff/DetailService";
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -35,11 +39,18 @@ export default function LuroundApp() {
         <div className={`profile-details ${visible}`}>
           {activeComponent === "editprofile" && <EditProfile />}
           {activeComponent === "oneoff" && <One />}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           {activeComponent === "retainer" && <Retainer />}
           {activeComponent === "program" && <Program />}
           {activeComponent === "event" && <Event />}
           {activeComponent === "bookings" && <Bookings />}
+<<<<<<< HEAD
           {activeComponent === "transaction" && <Transaction />}
+=======
+>>>>>>> 7647543148ab69e3dd2a2a04124596f1af011965
           {activeComponent === "profile" && (
             <>
               <Profile />
