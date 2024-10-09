@@ -80,25 +80,29 @@ export default function Event() {
             {event.map((data, index) => (
               <div className='eacheventcontainer'>
                 <div className='retainercontainer' key={data.Title}>
-                  <div className='days-time'>
-                    <span>{data.firstday}</span>
-                    <hr className='linedays' />
-                    <span>{data.secondday}</span>
+                  <div className='days-time-line'>
+                    <div className='days-time'>
+                      <span>{data.firstday}</span>
+                      <hr className='linedays' />
+                      <span>{data.secondday}</span>
+                    </div>
+                    <hr className='containerline' />
                   </div>
-                  <hr className='containerline' />
-                  <div className='personal-training gap-program'>
-                    <div className='content-type'>
-                      <div className='personal-service'>
-                        <span className='personal1'>{data.Title}</span>
-                        <div className='service-one'>
-                          <span className='servicetype'>
-                            {data.servicetype}
-                          </span>
-                          <span className='oneofftext'>{data.oneoff}</span>
+                  <div className='personal-training-details'>
+                    <div className='personal-training gap-program'>
+                      <div className='content-type'>
+                        <div className='personal-service'>
+                          <span className='personal1'>{data.Title}</span>
+                          <div className='service-one'>
+                            <span className='servicetype'>
+                              {data.servicetype}
+                            </span>
+                            <span className='oneofftext'>{data.oneoff}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className='textvector'>
-                        <span className='text'>{data.text}</span>
+                        <div className='textvector'>
+                          <span className='text'>{data.text}</span>
+                        </div>
                       </div>
                     </div>
                     <div

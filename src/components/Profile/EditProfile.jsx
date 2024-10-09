@@ -2,25 +2,32 @@
 
 import OtherDetails from "./OtherDetails";
 import profile from "../elements/Profile.jpg";
+import { useRef } from "react";
 
 export default function EditProfile() {
-  function scrollNext() {
-    return alert("hello");
-  }
+  const scrollNext = useRef(null);
+  const scrollPhoto = useRef(null);
+  const scrollDetails = useRef(null);
+  const scrollTo = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className='editprofile'>
       <div className='editprofile-first-container'>
         <div>
-          <span onClick={scrollNext}>Photo & Intro</span>
-          <span onClick={scrollNext}>About</span>
-          <span onClick={scrollNext}>Education</span>
-          <span onClick={scrollNext}>Endorsement & Certification</span>
-          <span onClick={scrollNext}>Other Details</span>
+          <span onClick={() => scrollTo(scrollPhoto)}>Photo & Intro</span>
+          <span onClick={() => scrollTo(scrollNext)}>About</span>
+          <span>Education</span>
+          <span>Endorsement & Certification</span>
+          <span onClick={() => scrollTo(scrollDetails)}>Other Details</span>
         </div>
       </div>
       <div className='editprofile-second-container'>
-        <div className='photos-intros'>
+        <div className='photos-intros' ref={scrollPhoto}>
           <span>Photo & Intro</span>
 
           <div>
@@ -103,7 +110,7 @@ export default function EditProfile() {
                         />
                       </svg>
 
-                      <button for='photo'>Upload Logo</button>
+                      <label for='photo'>Upload Logo</label>
                       <input
                         type='file'
                         className='photo'
@@ -121,7 +128,7 @@ export default function EditProfile() {
             <button className='done-time'>Save</button>
           </div>
         </div>
-        <div className='editprofile-about'>
+        <div className='editprofile-about' ref={scrollNext}>
           <span>About</span>
           <textarea placeholder='Write a brief summary of your experience, skills and achievements'></textarea>
 
@@ -132,9 +139,9 @@ export default function EditProfile() {
         </div>
         {/* <span>Education</span>
         <span>Endorsement & Certification</span> */}
-        <div className='otherdetails-editprofile'>
+        <div className='otherdetails-editprofile' ref={scrollDetails}>
           <span>Other Details</span>
-          <OtherDetails />
+          <OtherDetails ref={scrollDetails} />
           <div className='cancel-done'>
             <button className='cancel-time'>Cancel</button>
             <button className='done-time'>Save</button>

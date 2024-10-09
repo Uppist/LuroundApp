@@ -12,6 +12,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.profiledashboard {
+  position: absolute;
+  left: 290px;
+  width: -webkit-fill-available;
+}
+
 .profile-details {
   transition: opacity 0.4s ease-in-out;
 }
@@ -68,6 +74,8 @@ textarea {
   display: grid;
   gap: 24px;
   margin: 25px;
+  position: relative;
+  top: 80px;
 }
 
 /*Sidebar and Profile styling*/
@@ -84,6 +92,7 @@ textarea {
   padding: 25px;
   height: 982px;
   background-color: white;
+  position: fixed;
 }
 
 .luround {
@@ -246,6 +255,9 @@ textarea {
   background-color: white;
   padding: 16px 24px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  position: fixed;
+  z-index: 1000;
+  width: -webkit-fill-available;
 }
 
 .searchinput {
@@ -470,6 +482,8 @@ textarea {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+  position: relative;
+  top: 80px;
 }
 
 .svg-review {
@@ -535,6 +549,7 @@ textarea {
 }
 
 .profspec {
+  font-size: 16px;
   margin-left: 400px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
@@ -545,6 +560,7 @@ textarea {
 }
 
 .imagebrit {
+  font-size: 16px;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -573,6 +589,8 @@ textarea {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 6fr 1fr;
+  top: 80px;
+  position: relative;
 }
 
 /*About container styling*/
@@ -819,7 +837,7 @@ textarea {
   padding: 8px 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -892,7 +910,7 @@ textarea {
 .eachprogramcontainer,
 .eacheventcontainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
 
@@ -924,6 +942,12 @@ textarea {
   flex-direction: column;
   justify-content: center;
   color: hsla(180, 9%, 32%, 1);
+  width: max-content;
+}
+
+.days-time-line {
+  display: flex;
+  gap: 24px;
 }
 
 .linedays {
@@ -938,6 +962,11 @@ textarea {
 
 .personal-training {
   display: flex;
+}
+
+.personal-training-details {
+  display: grid;
+  grid-template-columns: 60fr 1fr;
 }
 
 .gap-program {
@@ -957,13 +986,13 @@ textarea {
 }
 
 .personal {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: hsla(180, 100%, 40%, 1);
 }
 
 .personal1 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: hsla(180, 100%, 40%, 1);
 }
@@ -1258,6 +1287,56 @@ input[type="radio"]:checked {
 .cancel-title {
   display: grid;
   place-items: center;
+}
+
+.cancel-container {
+  display: grid;
+  gap: 48px;
+}
+
+.cancel-image-share {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cancel-text-share {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cancel-text-share > span {
+  font-size: 24px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.cancel-text-share > label {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.cancel-share {
+  display: flex;
+  gap: 24px;
+}
+
+.cancel-share-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  width: 150px;
+  height: 120px;
+  border-radius: 24px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  cursor: pointer;
 }
 
 .cancel-container > p {
@@ -1568,7 +1647,9 @@ input[type="radio"]:checked {
 }
 
 .rescheduletext,
-.cancel {
+.cancel,
+.rescheduletext2,
+.cancel2 {
   display: flex;
   align-items: center;
   gap: 24px;
@@ -1593,6 +1674,11 @@ input[type="radio"]:checked {
   border-radius: 16px;
   width: -webkit-fill-available;
   cursor: pointer;
+}
+
+.rescheduletext2:hover,
+.cancel2:hover {
+  color: hsla(180, 100%, 40%, 1);
 }
 
 .fullcalendar {
@@ -1685,7 +1771,8 @@ input[type="radio"]:checked {
 
 .body-modal,
 .sharedropdown,
-.withdrawpin {
+.withdrawpin,
+.bookingsopen {
   position: relative;
   background: white;
   padding: 20px;
@@ -1719,9 +1806,9 @@ input[type="radio"]:checked {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
 }
 
 .time-selection-container {
@@ -2332,11 +2419,14 @@ input:checked + .toggle::before {
   left: 20px;
   width: 125px;
   border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
 }
 
 .menu li {
   padding: 8px 8px 8px 4px;
   cursor: pointer;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 .menu li:hover {
@@ -2608,6 +2698,7 @@ input:checked + .toggle::before {
   border-bottom: 1px solid hsla(180, 11%, 89%, 1);
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -2690,20 +2781,25 @@ input:checked + .toggle::before {
 }
 
 .socialmedia {
-  display: flex;
-  gap: 88px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
 
-.socialmedia-svg,
-.socialmedia-input {
+.socialmedia-svg {
   display: flex;
   align-items: center;
   gap: 24px;
 }
 
+.socialmedia-input {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  align-items: center;
+  justify-items: end;
+}
+
 .socialmedia-input > input {
-  width: 310px;
+  width: -webkit-fill-available;
   padding: 16px 24px;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
@@ -2774,7 +2870,8 @@ input:checked + .toggle::before {
   flex-direction: column;
 }
 
-.upload-logo button {
+.upload-logo label {
+  cursor: pointer;
   height: 36px;
   padding: 0px 16px;
   color: white;
@@ -2857,8 +2954,8 @@ input:checked + .toggle::before {
 
 .card-svg {
   position: absolute;
-  top: 90px;
-  right: 25px;
+  top: -35px;
+  right: 0px;
 }
 
 .balance {
@@ -2903,7 +3000,7 @@ input:checked + .toggle::before {
 }
 
 .transaction-text {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
 }
@@ -2950,7 +3047,14 @@ input:checked + .toggle::before {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.credit {
   color: hsla(136, 53%, 52%, 1);
+}
+
+.debit {
+  color: hsla(0, 69%, 49%, 1);
 }
 
 .transaction-amount label {
@@ -3090,6 +3194,13 @@ input[type="password"] {
   background-color: white;
   border-radius: 16px;
   border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.bookingsopen {
+  position: absolute;
+  border-radius: 8px;
+  top: 240px;
+  left: 400px;
 }
 
 /*Screen Resolution*/

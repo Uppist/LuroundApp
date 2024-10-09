@@ -31,16 +31,16 @@ export default function ShareProfile({ onClose }) {
           </div>
 
           <div className='cancel-container'>
-            <div>
+            <div className='cancel-image-share'>
               <img src={profile} />
-              <div>
+              <div className='cancel-text-share'>
                 {" "}
-                <label>Ronald Richards</label>
+                <span>Ronald Richards</span>
                 <label>Professional Specialist</label>
               </div>
             </div>
-            <div>
-              <div>
+            <div className='cancel-share'>
+              <div className='cancel-share-container'>
                 <svg
                   width='25'
                   height='24'
@@ -57,7 +57,7 @@ export default function ShareProfile({ onClose }) {
                 <span>copy link</span>
               </div>
 
-              <div>
+              <div className='cancel-share-container'>
                 <svg
                   width='24'
                   height='24'
@@ -74,7 +74,7 @@ export default function ShareProfile({ onClose }) {
                 <span>Email</span>
               </div>
 
-              <div>
+              <div className='cancel-share-container'>
                 <svg
                   width='25'
                   height='24'
@@ -91,7 +91,7 @@ export default function ShareProfile({ onClose }) {
                 <span>Whatsapp</span>
               </div>
 
-              <div>
+              <div className='cancel-share-container'>
                 <svg
                   width='24'
                   height='24'

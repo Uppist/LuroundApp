@@ -1,8 +1,13 @@
 /** @format */
 
-export default function OtherDetails() {
+import { useRef } from "react";
+import { forwardRef } from "react";
+
+/** @format */
+
+export default forwardRef(function OtherDetails(props, ref) {
   return (
-    <div className='socialmediadetails'>
+    <div className='socialmediadetails' ref={ref}>
       <div className='socialmedia'>
         <div className='socialmedia-svg'>
           <svg
@@ -501,4 +506,4 @@ export default function OtherDetails() {
       </div>
     </div>
   );
-}
+});

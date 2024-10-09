@@ -103,28 +103,37 @@ export default function One({ backone }) {
               <div className='eachoneoffcontainer'>
                 <div className='OneOffcontainer' key={data.title}>
                   <div className='titlecontainer'>
-                    <div className='days-time'>
-                      <span>{data.firstday}</span>
-                      <hr className='linedays' />
-                      <span>{data.secondday}</span>
+                    <div className='days-time-line'>
+                      <div className='days-time'>
+                        <span>{data.firstday}</span>
+                        <hr className='linedays' />
+                        <span>{data.secondday}</span>
+                      </div>
+                      <hr className='containerline' />
                     </div>
-                    <hr className='containerline' />
-                    <div className='personal-training '>
-                      <div className='content-type'>
-                        <div className='personal-service'>
-                          <span className='personal'>{data.Title}</span>
-                          <div className='service-one'>
-                            <span className='servicetype'>
-                              {data.servicetype}
-                            </span>
-                            <span className='oneofftext'>{data.oneoff}</span>
+                    <div className='personal-training-details'>
+                      <div className='personal-training '>
+                        <div className='content-type'>
+                          <div className='personal-service'>
+                            <span className='personal'>{data.Title}</span>
+                            <div className='service-one'>
+                              <span className='servicetype'>
+                                {data.servicetype}
+                              </span>
+                              <span className='oneofftext'>{data.oneoff}</span>
+                              <label
+                                dangerouslySetInnerHTML={{
+                                  __html: data.svg,
+                                }}
+                              ></label>
+                            </div>
                           </div>
-                        </div>
-                        <span className='text'>
-                          {data.text}
-                          {data.dots}
-                        </span>
-                      </div>{" "}
+                          <span className='text'>
+                            {data.text}
+                            {data.dots}
+                          </span>
+                        </div>{" "}
+                      </div>
                       <div
                         className={`oneoff-details ${isVisible}`}
                         onClick={() => openDetail(index)}

@@ -5,9 +5,21 @@ import React, { useState } from "react";
 
 import book from "../../booking.json";
 import See from "./SeeMore";
-import AllTime from "./Alltime";
+import Open from "./BookingsOpen";
 export default function Bookings(ChangeBack) {
   const [visibleBooking, setVisibleBooking] = useState(null);
+  const [isOpen, setIsOpen] = useState(null);
+  const [selectedTime, setSelectedTime] = useState("All time");
+
+  const [time] = useState([
+    "Today",
+    "Yesterday",
+    "This week",
+    "Last 7 days",
+    "This month",
+    "Last 30 days",
+    "All Time",
+  ]);
 
   const [isAlltime, setIsAlltime] = useState(false);
   function SeeMore(index) {
@@ -34,8 +46,18 @@ export default function Bookings(ChangeBack) {
     setIsAlltime((prev) => !prev);
   }
 
+  function handleAlltime(option) {
+    setSelectedTime(option);
+    setIsAlltime(false);
+  }
+
   function onCloseTime() {
     setIsAlltime(false);
+    setIsOpen(null);
+  }
+
+  function bookingsOpen(index) {
+    setIsOpen(isOpen === index ? null : index);
   }
 
   return (
@@ -49,31 +71,54 @@ export default function Bookings(ChangeBack) {
             </div>
             <div className='filter-by'>
               <span>Filter by:</span>
-              {isAlltime && <AllTime onClosealltime={onCloseTime} />}
 
-              <div className='addservice alltime' onClick={Alltime}>
-                <span>All time</span>
-
-                <svg
-                  className={` ${isAlltime ? "open" : ""}`}
-                  width='24'
-                  height='24'
-                  viewBox='0 0 16 16'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
+              {/* <div className='popupcancel'> */}
+              {/* <div className='overlayshare'></div> */}
+              <div className='dropdown'>
+                <div
+                  className={`select-list alltime ${
+                    isAlltime ? "select-clicked" : ""
+                  }`}
+                  onClick={Alltime}
                 >
-                  <path
-                    d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                    stroke='currentColor'
-                    strokeOpacity='0.8'
-                    strokeMiterlimit='10'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
+                  <span className='selected-list'>{selectedTime}</span>
+                  <svg
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                      stroke='currentColor'
+                      strokeOpacity='0.8'
+                      strokeMiterlimit='10'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </div>
+                {isAlltime && (
+                  <ul className='menu transaction-time'>
+                    {time.map((option) => (
+                      <li
+                        key={option}
+                        className={`menu-item ${
+                          selectedTime === option ? "active" : ""
+                        }`}
+                        onClick={() => handleAlltime(option)}
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
+          {/* </div> */}
+
           <div className='bookingcontainer'>
             {book.map((data, index) => (
               <div className='bookcontainer' key={data.Name}>
@@ -90,26 +135,39 @@ export default function Bookings(ChangeBack) {
                       </div>
                     </div>
                   </div>
-                  <svg
-                    width='24'
-                    height='38'
-                    viewBox='0 0 24 28'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M12 9C13.1046 9 14 8.10457 14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9Z'
-                      fill='#1D2E2E'
-                    />
-                    <path
-                      d='M12 16C13.1046 16 14 15.1046 14 14C14 12.8954 13.1046 12 12 12C10.8954 12 10 12.8954 10 14C10 15.1046 10.8954 16 12 16Z'
-                      fill='#1D2E2E'
-                    />
-                    <path
-                      d='M12 23C13.1046 23 14 22.1046 14 21C14 19.8954 13.1046 19 12 19C10.8954 19 10 19.8954 10 21C10 22.1046 10.8954 23 12 23Z'
-                      fill='#1D2E2E'
-                    />
-                  </svg>
+
+                  <div>
+                    <svg
+                      key={data.Name}
+                      className={`${isOpen} ? "open": "`}
+                      width='24'
+                      onClick={() => bookingsOpen(index)}
+                      height='38'
+                      viewBox='0 0 24 28'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M12 9C13.1046 9 14 8.10457 14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9Z'
+                        fill='#1D2E2E'
+                      />
+                      <path
+                        d='M12 16C13.1046 16 14 15.1046 14 14C14 12.8954 13.1046 12 12 12C10.8954 12 10 12.8954 10 14C10 15.1046 10.8954 16 12 16Z'
+                        fill='#1D2E2E'
+                      />
+                      <path
+                        d='M12 23C13.1046 23 14 22.1046 14 21C14 19.8954 13.1046 19 12 19C10.8954 19 10 19.8954 10 21C10 22.1046 10.8954 23 12 23Z'
+                        fill='#1D2E2E'
+                      />
+                    </svg>
+                    {isOpen === index && (
+                      <Open
+                        isOpen={isOpen === index}
+                        onClose={() => bookingsOpen(index)}
+                        data={data}
+                      />
+                    )}
+                  </div>
                 </div>
                 <div className='datetitle'>
                   <span className='date'>{data.Date}</span>

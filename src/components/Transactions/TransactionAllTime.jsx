@@ -24,7 +24,9 @@ export default function TransactionTime() {
               <label>{transfer.Time}</label>
             </div>
             <div className='transaction-amount'>
-              <span>{transfer.Amount}</span>
+              <span className={transfer.type === "credit" ? "credit" : "debit"}>
+                {transfer.Amount}
+              </span>
               <label
                 dangerouslySetInnerHTML={{ __html: transfer.Amountimg }}
               ></label>

@@ -3,11 +3,13 @@ import { useState } from "react";
 import Delete from "../OneOff/Delete";
 import EventService from "./EventService";
 import Event from "./Event";
+import ShareProfile from "../../Profile/ShareProfile";
 export default function EventDetail({ dataevent }) {
   const [isBack, setIsBack] = useState(false);
   const [isSuspended, setIsSuspended] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [isShare, setIsShare] = useState(false);
 
   function Back() {
     setIsBack(true);
@@ -23,6 +25,13 @@ export default function EventDetail({ dataevent }) {
 
   function DeleteOneoff() {
     setIsDelete(true);
+  }
+  function clickShare() {
+    setIsShare(true);
+  }
+
+  function closeModal() {
+    setIsShare(false);
   }
 
   return (
@@ -183,8 +192,9 @@ export default function EventDetail({ dataevent }) {
                   </div>
                 </div>
 
-                <div className='settings-container'>
+                <div className='settings-container' onClick={clickShare}>
                   <svg
+                    className={`${isShare} ? "open":""`}
                     width='24'
                     height='24'
                     viewBox='0 0 24 24'
@@ -198,6 +208,7 @@ export default function EventDetail({ dataevent }) {
                     />
                   </svg>
                   <span> Share Service</span>
+                  {isShare && <ShareProfile onClose={closeModal} />}
                 </div>
 
                 <div className='settings-container'>
