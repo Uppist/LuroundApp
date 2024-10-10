@@ -1,0 +1,44 @@
+[
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Grow your Business Masterclass",
+    "servicetype": "Service type:",
+    "oneoff": "Event",
+    "Duration": "6 weeks",
+    "reoccurence": "Twice a week (mons & thurs)",
+    "participation": "50",
+    "startdate": "March 14, 2024",
+    "enddate": "April 7, 2024",
+
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "virtual": "Virtual",
+    "amount": "₦250,000"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Tech Innovators Submit",
+    "servicetype": "Service type:",
+    "oneoff": "Event",
+    "Duration": "2 weeks",
+    "reoccurence": "Five times a week (mons, tues,wed, thurs & fri)",
+    "participation": "20",
+    "startdate": "Oct 1, 2024",
+    "enddate": "Oct 14, 2024",
+
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "virtual": "Virtual",
+    "amount": "₦70,000"
+  },
+  {
+    "firstday": "Mon: 9:00am - 12:00pm",
+    "secondday": "Thurs: 11:00am - 5:00pm",
+    "Title": "Business, Leadership & Career Summit",
+    "servicetype": "Service type:",
+    "oneoff": "Event",
+    "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",
+    "virtual": "in-person",
+    "amount": "₦0.00"
+  }
+]
