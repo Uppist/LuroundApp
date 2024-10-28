@@ -1,6 +1,5 @@
 /** @format */
 import profile from "../elements/profile.png";
-
 export default function ShareProfile({ onClose }) {
   return (
     <div>

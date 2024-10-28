@@ -32,9 +32,7 @@ export default function Search({ onComponentSwitch, Name, Email }) {
     setisShareProfile(false);
   }
 
-  const token =
-    " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphcGhldGViZWxlY2h1a3d1QGdtYWlsLmNvbSIsInVzZXJJZCI6IjY1YzRmMDQyMmZmM2I2NzUyYmRlMmViYSIsImRpc3BsYXlOYW1lIjoiSmFwaGV0aW5vIEViZWxlY2h1a3d1IiwicGhvdG9VcmwiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9keHl6ZWlpZ3YvaW1hZ2UvdXBsb2FkL3YxNzA3NDY2MDUxL2x1cm91bmRfdXNlcnNfcGhvdG8vbHVwXzY1YzRmMDQyMmZmM2I2NzUyYmRlMmViYS5qcGciLCJ1c2VyX25Ub2tlbiI6IiIsImlhdCI6MTcwOTkxNjYxMCwiZXhwIjoxNzEwMDAzMDEwfQ.SjshdixlXgHBeVWfpOHkmRgkBChslubs703gD2z8OfI";
-  function Share() {
+    function Share() {
     // setisShareProfile(true);
     axios
       .get("https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get")
