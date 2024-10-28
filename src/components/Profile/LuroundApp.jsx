@@ -60,31 +60,7 @@ export default function LuroundApp() {
   function Submit(e) {
     e.preventDefault();
 
-    if (
-      logindetail.email === data.email &&
-      logindetail.password === data.password
-    ) {
-      alert("Login");
-      setLogin(true);
-    } else if (
-      logindetail.email != data.email &&
-      logindetail.password === data.password
-    ) {
-      alert("Email not correct");
-      setLogin(false);
-    } else if (
-      logindetail.email === data.email &&
-      logindetail.password != data.password
-    ) {
-      alert("Password not correct");
-      setLogin(false);
-    } else {
-      alert("Kindly Sign up");
-      setLogin(false);
-    }
-
     // // Login function
-
     axios
       .post(
         "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/auth/login",
@@ -97,54 +73,100 @@ export default function LuroundApp() {
         }
       )
       .then((res) => {
-        // console.log("response:", res.data);
+        console.log("response:", res);
 
         const token = res.data.accessToken;
 
         localStorage.setItem("Token", token);
         console.log("Logged in token:", token);
+        alert("Login");
+        setLogin(true);
+
+        async function fetchData() {
+          try {
+            const response = await axios.get(
+              "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+                params: {
+                  email: data.email, // Pass email as a query parameter
+                },
+              }
+            );
+            console.log("Full API Response:", response.data);
+
+            setName(response.data.displayName);
+            seturl(response.data.luround_url);
+            setComapny(response.data.company);
+            setlogo(response.data.logo_url);
+            setphotourl(response.data.photourl);
+            setAbout(response.data.about);
+            setsocialLink(response.data.media_links);
+            setIsOccupation(response.data.occupation);
+            setIsEmail(response.data.email);
+          } catch (error) {
+            if (error.response) {
+              console.error("Error response:", error.response.data);
+            } else {
+              console.error("Error:", error);
+            }
+          }
+        }
+
+        fetchData();
+      })
+      .catch((err) => {
+        console.log("Error", err.status);
+        console.log("StatusText", err.statusText);
+        alert("Unauthorized");
+        setLogin(false);
       });
+
+    // alert("Wrong details");
+    setLogin(false);
   }
 
   //get profile details
-  useEffect(() => {
-    const local = localStorage.getItem("Token");
+  // useEffect(() => {
+  //   const local = localStorage.getItem("Token");
 
-    async function fetchData() {
-      try {
-        const response = await axios.get(
-          "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
-          {
-            headers: {
-              Authorization: `Bearer ${local}`,
-            },
-            params: {
-              email: logindetail.email, // Pass email as a query parameter
-            },
-          }
-        );
-        console.log("Full API Response:", response.data);
+  //   // async function fetchData() {
+  //   //   try {
+  //   //     const response = await axios.get(
+  //   //       "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
+  //   //       {
+  //   //         headers: {
+  //   //           Authorization: `Bearer ${token}`,
+  //   //         },
+  //   //         params: {
+  //   //           email: data.email, // Pass email as a query parameter
+  //   //         },
+  //   //       }
+  //   //     );
+  //   //     console.log("Full API Response:", response.data);
 
-        setName(response.data.displayName);
-        seturl(response.data.luround_url);
-        setComapny(response.data.company);
-        setlogo(response.data.logo_url);
-        setphotourl(response.data.photourl);
-        setAbout(response.data.about);
-        setsocialLink(response.data.media_links);
-        setIsOccupation(response.data.occupation);
-        setIsEmail(response.data.email);
-      } catch (error) {
-        if (error.response) {
-          console.error("Error response:", error.response.data);
-        } else {
-          console.error("Error:", error);
-        }
-      }
-    }
+  //   //     setName(response.data.displayName);
+  //   //     seturl(response.data.luround_url);
+  //   //     setComapny(response.data.company);
+  //   //     setlogo(response.data.logo_url);
+  //   //     setphotourl(response.data.photourl);
+  //   //     setAbout(response.data.about);
+  //   //     setsocialLink(response.data.media_links);
+  //   //     setIsOccupation(response.data.occupation);
+  //   //     setIsEmail(response.data.email);
+  //   //   } catch (error) {
+  //   //     if (error.response) {
+  //   //       console.error("Error response:", error.response.data);
+  //   //     } else {
+  //   //       console.error("Error:", error);
+  //   //     }
+  //   //   }
+  //   // }
 
-    fetchData(); // Call the fetch function
-  }, [refreshKey, logindetail.email]);
+  //   // fetchData(); // Call the fetch function
+  // }, [data.email]);
 
   //filter social media links
   useEffect(() => {
