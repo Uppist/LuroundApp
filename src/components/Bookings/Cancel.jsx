@@ -1,7 +1,6 @@
 /** @format */
 
 /** @format */
-import { useState } from "react";
 export default function CancelN({ booking, onClose }) {
   return (
     <div>

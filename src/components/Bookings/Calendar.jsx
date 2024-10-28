@@ -58,7 +58,7 @@ export default function Calendar({ booking, ChangeBack, onSeeLess }) {
                 <path
                   d='M6 1L1 6L6 11'
                   stroke='#1D2E2E'
-                  strokelidth='1.5'
+                  strokeWidth='1.5'
                   strokeLinecap='round'
                   strokeLinejoin='round'
                 />
