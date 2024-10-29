@@ -98,6 +98,7 @@ export default function EditProfile({
         },
       }
     );
+    alert("Updated");
 
     console.log("updated about", request);
 
@@ -187,6 +188,7 @@ export default function EditProfile({
       twitter: "",
       youtube: "",
     });
+    alert("Updated");
   }
 
   return (
