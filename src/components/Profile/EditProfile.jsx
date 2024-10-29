@@ -13,6 +13,9 @@ export default function EditProfile({
   setRefreshKey,
   handleChange,
   image,
+  LogoUpload,
+  logourl,
+  fileSizeInMB,
 }) {
   const [isAbout, setIsAbout] = useState({ about: "" });
 
@@ -238,7 +241,6 @@ export default function EditProfile({
                     className='photo'
                     id='photo-edit'
                     accept='image/png, image/jpeg, image/img'
-                    required
                   />
                 </label>
               </div>
@@ -251,7 +253,6 @@ export default function EditProfile({
                     type='text'
                     value={isValue.firstName}
                     onChange={(e) => handleEditProfile(e)}
-                    required
                   />
                 </div>
                 <div className='first-name'>
@@ -262,7 +263,6 @@ export default function EditProfile({
                     value={isValue.lastName}
                     name='lastName'
                     onChange={(e) => handleEditProfile(e)}
-                    required
                   />
                 </div>
                 <div className='first-name'>
@@ -273,7 +273,6 @@ export default function EditProfile({
                     value={isValue.company}
                     type='text'
                     onChange={handleEditProfile}
-                    required
                   />
                 </div>
                 <div className='first-name'>
@@ -284,7 +283,6 @@ export default function EditProfile({
                     type='text'
                     value={isValue.occupation}
                     onChange={(e) => handleEditProfile(e)}
-                    required
                   />
                 </div>
 
@@ -332,7 +330,7 @@ export default function EditProfile({
                           />
                         </svg>
 
-                        <label htmlFor='photo'>Upload Logo</label>
+                        {/* <label htmlFor='photo'>Upload Logo</label>
                         <input
                           type='file'
                           name='logo_url'
@@ -341,12 +339,45 @@ export default function EditProfile({
                           className='photo'
                           id='photo'
                           accept='image/png, image/jpeg, image/img'
-                          required
-                        />
+                           
+                        /> */}
+
+                        <div>
+                          <label htmlFor='photo'>Upload Logo</label>
+
+                          <input
+                            type='file'
+                            name='logo_url'
+                            onChange={(e) => LogoUpload(e)}
+                            id='photo'
+                            className='photo'
+                            accept='image/png, image/jpeg, image/img'
+                          />
+                        </div>
                       </div>
                     </span>
                   </div>
                 </div>
+                <>
+                  {logourl && (
+                    <div className='logo-delete'>
+                      <div className='logo-change'>
+                        <img
+                          className='logo-image'
+                          src={URL.createObjectURL(logourl)}
+                          alt='Uploaded Logo'
+                        />
+                        <div className='uploaded-logo'>
+                          <p>Uploaded Logo.{logourl.type.split("/").pop()}</p>
+                          <span>
+                            {logourl.type.split("/").pop()} . {fileSizeInMB} mb
+                          </span>
+                        </div>
+                      </div>
+                      <button>Delete</button>
+                    </div>
+                  )}
+                </>
               </div>
             </div>
             <div className='cancel-done'>
@@ -367,7 +398,6 @@ export default function EditProfile({
               value={isAbout.about}
               placeholder='Write a brief summary of your experience, skills and achievements'
               onChange={(e) => handleAbout(e)}
-              required
             ></textarea>
 
             <div className='cancel-done'>

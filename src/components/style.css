@@ -531,7 +531,7 @@ textarea {
 }
 
 .ronaldname {
-  font-size: 20px;
+  font-size: 80%;
   font-weight: 600;
   color: hsla(180, 23%, 15%, 1);
 }
@@ -670,6 +670,7 @@ textarea {
 .imagebrit {
   font-size: 12px;
   display: flex;
+  gap: 8px;
   align-items: center;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
@@ -3008,6 +3009,47 @@ input:checked + .toggle::before {
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+}
+
+.logo-image {
+  width: 24px;
+  height: 24px;
+}
+
+.logo-delete {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-delete button {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(0, 69%, 49%, 1);
+  background-color: white;
+  border: 0;
+  border-bottom: 1px solid hsla(0, 69%, 49%, 1);
+}
+
+.logo-change {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.uploaded-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.uploaded-logo p {
+  margin: 0;
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.uploaded-logo span {
+  font-size: 12px;
+  color: hsla(180, 23%, 15%, 0.65);
 }
 
 .size span {
