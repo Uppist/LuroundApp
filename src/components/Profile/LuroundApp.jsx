@@ -123,8 +123,6 @@ export default function LuroundApp() {
       setIsOccupation(response.data.occupation);
       setIsEmail(response.data.email);
       setPhotoUrl(response.data.photoUrl);
-
-      console.log("API photoUrl:", response.data.photoUrl);
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response.data);

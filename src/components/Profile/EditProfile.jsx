@@ -155,8 +155,10 @@ export default function EditProfile({
           name: "youTube",
           icon: "assets/svg/youtube_icon.svg",
         },
-      ],
+      ].filter((item) => item.link),
     };
+
+    console.log(detailsArray);
 
     const request = await axios.put(
       "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/media-links/update",
