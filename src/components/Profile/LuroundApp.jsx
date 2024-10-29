@@ -61,6 +61,7 @@ export default function LuroundApp() {
   //login submit button
   function Submit(e) {
     e.preventDefault();
+    // setLogin(false);
 
     // // Login function
     axios
@@ -83,7 +84,32 @@ export default function LuroundApp() {
         console.log("Logged in token:", token);
         alert("Login");
         setLogin(true);
-        fetchData();
+
+        axios
+          .get(
+            "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              params: {
+                email: data.email, // Pass email as a query parameter
+              },
+            }
+          )
+          .then((response) => {
+            console.log("Full API Response:", response.data);
+
+            setName(response.data.displayName);
+            seturl(response.data.luround_url);
+            setComapny(response.data.company);
+            setlogo(response.data.logo_url);
+            setAbout(response.data.about);
+            setsocialLink(response.data.media_links);
+            setIsOccupation(response.data.occupation);
+            setIsEmail(response.data.email);
+            setPhotoUrl(response.data.photoUrl);
+          });
       })
       .catch((err) => {
         console.log("Error", err.status);
