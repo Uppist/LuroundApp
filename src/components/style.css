@@ -406,6 +406,8 @@ textarea {
 .smallerimage {
   width: 24px;
   height: 24px;
+  border-radius: 20px;
+  margin-left: 5px;
 }
 
 .profiledropdown {
@@ -495,6 +497,12 @@ textarea {
   display: grid;
   place-items: center;
   gap: 24px;
+}
+
+.imagename img {
+  width: 64px;
+  height: 64px;
+  border-radius: 60px;
 }
 
 .namebutton {
@@ -616,7 +624,7 @@ textarea {
   width: 270px;
 }
 .scan {
-  display: none;
+  /* display: none; */
   width: 270px;
 }
 

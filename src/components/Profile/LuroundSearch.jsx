@@ -7,7 +7,7 @@ import Notification from "./Notification";
 import ShareProfile from "./ShareProfile";
 import axios from "axios";
 
-export default function Search({ onComponentSwitch, Name, Email }) {
+export default function Search({ onComponentSwitch, Name, Email, photoUrl }) {
   const [value, setValue] = useState("");
   const [isdropDown, setIsdropdown] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
@@ -32,16 +32,8 @@ export default function Search({ onComponentSwitch, Name, Email }) {
     setisShareProfile(false);
   }
 
-    function Share() {
+  function Share() {
     // setisShareProfile(true);
-    axios
-      .get("https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   return (
@@ -135,7 +127,7 @@ export default function Search({ onComponentSwitch, Name, Email }) {
         <div>
           <li className='icons active' onClick={profileDown}>
             <div className='imagearrow'>
-              <img className='smallerimage' src={image2} alt='Profile' />
+              <img className='smallerimage' src={photoUrl} alt={photoUrl} />
               <svg
                 className={`arrow ${isdropDown ? "open" : ""}`}
                 width='16'
@@ -160,6 +152,7 @@ export default function Search({ onComponentSwitch, Name, Email }) {
             <Dropdown
               Name={Name}
               Email={Email}
+              photoUrl={photoUrl}
               onComponentSwitch={handleItemClick}
               onClose={closeModal}
             />

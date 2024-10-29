@@ -1,7 +1,13 @@
 /** @format */
 import image3 from "../elements/image2.png";
 
-export default function Dropdown({ onClose, onComponentSwitch, Email, Name }) {
+export default function Dropdown({
+  onClose,
+  onComponentSwitch,
+  Email,
+  Name,
+  photoUrl,
+}) {
   function Editprofile(item) {
     onComponentSwitch(item);
     onClose();
@@ -12,7 +18,7 @@ export default function Dropdown({ onClose, onComponentSwitch, Email, Name }) {
         <div className='overlaydropdown' onClick={onClose}></div>
         <div className='profileedit'>
           <div className='imagename'>
-            <img src={image3} />
+            <img src={photoUrl} alt={photoUrl} />
             <div className='namebutton'>
               <div className='spanname'>
                 <span className='ronaldname'>{Name}</span>

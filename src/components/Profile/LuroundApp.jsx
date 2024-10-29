@@ -20,9 +20,11 @@ export default function LuroundApp() {
   const [visible, setVisible] = useState("fade-in");
   const [Name, setName] = useState("");
   const [Company, setComapny] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
   const [url, seturl] = useState("");
   const [logo, setlogo] = useState("");
-  const [photo, setphotourl] = useState("");
+  // const [photo, setphotourl] = useState("");
+
   const [About, setAbout] = useState("");
   const [socialLink, setsocialLink] = useState([]);
   const [isOccupation, setIsOccupation] = useState("");
@@ -81,40 +83,6 @@ export default function LuroundApp() {
         console.log("Logged in token:", token);
         alert("Login");
         setLogin(true);
-
-        async function fetchData() {
-          try {
-            const response = await axios.get(
-              "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-                params: {
-                  email: data.email, // Pass email as a query parameter
-                },
-              }
-            );
-            console.log("Full API Response:", response.data);
-
-            setName(response.data.displayName);
-            seturl(response.data.luround_url);
-            setComapny(response.data.company);
-            setlogo(response.data.logo_url);
-            setphotourl(response.data.photourl);
-            setAbout(response.data.about);
-            setsocialLink(response.data.media_links);
-            setIsOccupation(response.data.occupation);
-            setIsEmail(response.data.email);
-          } catch (error) {
-            if (error.response) {
-              console.error("Error response:", error.response.data);
-            } else {
-              console.error("Error:", error);
-            }
-          }
-        }
-
         fetchData();
       })
       .catch((err) => {
@@ -126,47 +94,49 @@ export default function LuroundApp() {
 
     // alert("Wrong details");
     setLogin(false);
+    //photo update
   }
 
-  //get profile details
-  // useEffect(() => {
-  //   const local = localStorage.getItem("Token");
+  const token = localStorage.getItem("Token");
 
-  //   // async function fetchData() {
-  //   //   try {
-  //   //     const response = await axios.get(
-  //   //       "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
-  //   //       {
-  //   //         headers: {
-  //   //           Authorization: `Bearer ${token}`,
-  //   //         },
-  //   //         params: {
-  //   //           email: data.email, // Pass email as a query parameter
-  //   //         },
-  //   //       }
-  //   //     );
-  //   //     console.log("Full API Response:", response.data);
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            email: data.email, // Pass email as a query parameter
+          },
+        }
+      );
+      console.log("Full API Response:", response.data);
 
-  //   //     setName(response.data.displayName);
-  //   //     seturl(response.data.luround_url);
-  //   //     setComapny(response.data.company);
-  //   //     setlogo(response.data.logo_url);
-  //   //     setphotourl(response.data.photourl);
-  //   //     setAbout(response.data.about);
-  //   //     setsocialLink(response.data.media_links);
-  //   //     setIsOccupation(response.data.occupation);
-  //   //     setIsEmail(response.data.email);
-  //   //   } catch (error) {
-  //   //     if (error.response) {
-  //   //       console.error("Error response:", error.response.data);
-  //   //     } else {
-  //   //       console.error("Error:", error);
-  //   //     }
-  //   //   }
-  //   // }
+      setName(response.data.displayName);
+      seturl(response.data.luround_url);
+      setComapny(response.data.company);
+      setlogo(response.data.logo_url);
+      setAbout(response.data.about);
+      setsocialLink(response.data.media_links);
+      setIsOccupation(response.data.occupation);
+      setIsEmail(response.data.email);
+      setPhotoUrl(response.data.photoUrl);
 
-  //   // fetchData(); // Call the fetch function
-  // }, [data.email]);
+      console.log("API photoUrl:", response.data.photoUrl);
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response:", error.response.data);
+      } else {
+        console.error("Error:", error);
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [refreshKey]);
 
   //filter social media links
   useEffect(() => {
@@ -227,8 +197,61 @@ export default function LuroundApp() {
       logo_url: "",
     });
 
+    setPhotoUrl("");
+
     setRefreshKey((prevKey) => prevKey + 1);
   }
+
+  //image change
+
+  const [image, setImage] = useState("");
+
+  async function handleChange(e) {
+    const files = e.target.files[0];
+    // console.log(e.target.files);
+    console.log(files);
+    setImage(files);
+
+    const formData = new FormData();
+    formData.append("file", files);
+    formData.append("upload_preset", "TestApi");
+    formData.append("cloud_name", "dgwp5nnxb");
+    console.log("formdata", formData);
+
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dgwp5nnxb/image/upload", formData)
+      .then((res) => {
+        const ImageMedium = res.data.url.replace(
+          "/upload/",
+          "/upload/w_380,h_232,c_fill/"
+        );
+
+        console.log("Image URL to update:", ImageMedium);
+
+        setPhotoUrl(ImageMedium);
+
+        const local = localStorage.getItem("Token");
+        axios
+          .put(
+            "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/photo/update",
+            { photoUrl: ImageMedium },
+            {
+              headers: {
+                Authorization: `Bearer ${local}`,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log("put response", res.data);
+            setRefreshKey((prevKey) => prevKey + 1);
+          });
+      });
+  }
+
+  useEffect(() => {
+    console.log("photoUrl state updated:", photoUrl);
+  }, [photoUrl, refreshKey]);
 
   return (
     <div>
@@ -248,6 +271,8 @@ export default function LuroundApp() {
               onComponentSwitch={handleOneOffClick}
               Name={Name}
               Email={isEmail}
+              photoUrl={photoUrl}
+              // photoUrlSmaller={photoUrlSmaller}
             />
             <div className={`profile-details ${visible}`}>
               {activeComponent === "editprofile" && (
@@ -257,6 +282,8 @@ export default function LuroundApp() {
                   isValue={isValue}
                   setIsValue={setIsValue}
                   setRefreshKey={setRefreshKey}
+                  handleChange={handleChange}
+                  image={image}
                 />
               )}
               {activeComponent === "oneoff" && <One />}
@@ -270,14 +297,15 @@ export default function LuroundApp() {
               {activeComponent === "profile" && (
                 <>
                   <Profile
+                    refreshKey={refreshKey}
                     Name={Name}
                     company={Company}
                     url={url}
                     logo={logo}
-                    photo={photo}
                     Occupation={isOccupation}
                     handleEditProfile={handleEditProfile}
                     handleSubmit={handleSubmit}
+                    photoUrl={photoUrl}
                   />
                   <AboutDetails about={About} socialLink={socialLink} />
                 </>

@@ -3,28 +3,35 @@
 import image2 from "../elements/Profile.jpg";
 import scan from "../elements/scan.jpg";
 import { useEffect } from "react";
-export default function Profile({ Name, company, url, logo, Occupation }) {
-  function handleSvg() {
-    var image = document.querySelector(".img");
-    var review = document.querySelector(".reviews");
-    var scan = document.querySelector(".scan");
-    if (image.style.display === "block") {
-      image.style.display = "none";
-      scan.style.display = "block";
-      review.style.visibility = "hidden";
-    } else {
-      image.style.display = "block";
-      scan.style.display = "none";
-      review.style.visibility = "visible";
-    }
-  }
+export default function Profile({
+  Name,
+  company,
+  url,
+  logo,
+  Occupation,
+  photoUrl,
+}) {
+  // function handleSvg() {
+  //   var image = document.querySelector(".img");
+  //   var review = document.querySelector(".reviews");
+  //   var scan = document.querySelector(".scan");
+  //   if (image.style.display === "block") {
+  //     image.style.display = "none";
+  //     scan.style.display = "block";
+  //     review.style.visibility = "hidden";
+  //   } else {
+  //     image.style.display = "block";
+  //     scan.style.display = "none";
+  //     review.style.visibility = "visible";
+  //   }
+  // }
 
   return (
     <div className='reviewprofile'>
       <div className='svg-review'>
         <div className='svg'>
           <svg
-            onClick={handleSvg}
+            // onClick={handleSvg}
             width='7'
             height='12'
             viewBox='0 0 7 12'
@@ -42,7 +49,7 @@ export default function Profile({ Name, company, url, logo, Occupation }) {
 
           <svg
             className='svg'
-            onClick={handleSvg}
+            // onClick={handleSvg}
             width='7'
             height='12'
             viewBox='0 0 7 12'
@@ -68,8 +75,13 @@ export default function Profile({ Name, company, url, logo, Occupation }) {
 
       <div className='imageprofile'>
         <div className='image'>
-          <img className='img' src={image2} />
-          <img className='scan' src={scan} />
+          {photoUrl ? (
+            <img className='img' src={photoUrl} alt='Profile' />
+          ) : (
+            <img className='scan' src={scan} alt='Default' />
+          )}
+          {/* <img className='img' src={photoUrl} />
+          <img className='scan' src={scan} /> */}
         </div>
         <div className='nameprofile'>
           <label className='name'>{Name}</label>

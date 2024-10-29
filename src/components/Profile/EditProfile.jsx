@@ -11,6 +11,8 @@ export default function EditProfile({
   isValue,
   setIsValue,
   setRefreshKey,
+  handleChange,
+  image,
 }) {
   const [isAbout, setIsAbout] = useState({ about: "" });
 
@@ -76,13 +78,6 @@ export default function EditProfile({
       twitter: "",
       youtube: "",
     });
-  }
-
-  const [image, setImage] = useState("");
-
-  function handleChange(e) {
-    console.log(e.target.files);
-    setImage(e.target.files[0]);
   }
 
   //update about
@@ -211,7 +206,11 @@ export default function EditProfile({
                   <img
                     // name='photoUrl'
                     className='img edit-image'
-                    src={URL.createObjectURL(image)}
+                    src={
+                      typeof image === "string"
+                        ? image
+                        : URL.createObjectURL(image)
+                    }
                   />
                 ) : (
                   <img className='img edit-image' src={profile} />
