@@ -1,7 +1,5 @@
 /** @format */
 
-import { useState } from "react";
-
 export default function Login({ logindetail, Submit, LoginDetail }) {
   return (
     <form onSubmit={Submit}>

@@ -9,6 +9,9 @@ export default function Dropdown({
   email,
   Name,
   photoUrl,
+  logindetail,
+  Submit,
+  LoginDetail,
 }) {
   function Editprofile(item) {
     onComponentSwitch(item);
@@ -22,26 +25,34 @@ export default function Dropdown({
 
   return (
     <div>
-      <div className='profiledropdown'>
-        <div className='overlaydropdown' onClick={onClose}></div>
-        <div className='profileedit'>
-          <div className='imagename'>
-            <img src={photoUrl} alt={photoUrl} />
-            <div className='namebutton'>
-              <div className='spanname'>
-                <span className='ronaldname'>{Name}</span>
-                <span className='email'>{email}</span>
+      {isLogOut ? (
+        <Login
+          logindetail={logindetail}
+          Submit={Submit}
+          LoginDetail={LoginDetail}
+        />
+      ) : (
+        <div className='profiledropdown'>
+          <div className='overlaydropdown' onClick={onClose}></div>
+          <div className='profileedit'>
+            <div className='imagename'>
+              <img src={photoUrl} alt={photoUrl} />
+              <div className='namebutton'>
+                <div className='spanname'>
+                  <span className='ronaldname'>{Name}</span>
+                  <span className='email'>{email}</span>
+                </div>
+                <button onClick={() => Editprofile("editprofile")}>
+                  Edit Profile
+                </button>
               </div>
-              <button onClick={() => Editprofile("editprofile")}>
-                Edit Profile
-              </button>
+              <hr className='linehr' />
             </div>
-            <hr className='linehr' />
-          </div>
 
-          <button onClick={LogOut}>Log out</button>
+            <button onClick={LogOut}>Log out</button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

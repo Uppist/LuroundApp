@@ -439,8 +439,8 @@ textarea {
   flex-direction: column;
   gap: 8px;
   border-radius: 8px;
-  top: 90px;
-  right: 115px;
+  top: 70px;
+  right: 110px;
 }
 
 .notification {
@@ -674,6 +674,10 @@ textarea {
   align-items: center;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
+}
+
+.imagebrit img {
+  height: 24px;
 }
 
 .loremicon {

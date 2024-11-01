@@ -167,9 +167,9 @@ export default function Search({
               Name={Name}
               email={email}
               photoUrl={photoUrl}
-              logindetail={logindetail}
-              Submit={Submit}
-              LoginDetail={LoginDetail}
+              // logindetail={logindetail}
+              // Submit={Submit}
+              // LoginDetail={LoginDetail}
               onComponentSwitch={handleItemClick}
               onClose={closeModal}
             />

@@ -295,10 +295,7 @@ export default function LuroundApp() {
     await axios
       .post("https://api.cloudinary.com/v1_1/dgwp5nnxb/image/upload", logoData)
       .then((res) => {
-        const logoImage = res.data.url.replace(
-          "/upload/",
-          "/upload/w_24,h_24,c_fill/"
-        );
+        const logoImage = res.data.url.replace("/upload/", "/upload/c_fill/");
 
         console.log("logo URL to update:", logoImage);
 
@@ -310,6 +307,7 @@ export default function LuroundApp() {
     console.log("logourl state updated:", logo);
   }, [logo, refreshKey]);
   const fileSizeInMB = (logourl.size / 1048576).toFixed(2);
+
   return (
     <div>
       {!login ? (
