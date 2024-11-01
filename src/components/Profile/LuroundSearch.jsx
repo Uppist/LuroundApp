@@ -7,12 +7,26 @@ import Notification from "./Notification";
 import ShareProfile from "./ShareProfile";
 import axios from "axios";
 
-export default function Search({ onComponentSwitch, Name, Email, photoUrl }) {
+import { BrowserRouter } from "react-router-dom";
+
+export default function Search({
+  onComponentSwitch,
+  Name,
+  email,
+  photoUrl,
+  logindetail,
+  Submit,
+  LoginDetail,
+}) {
   const [value, setValue] = useState("");
   const [isdropDown, setIsdropdown] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
 
   const [isShareProfile, setisShareProfile] = useState(false);
+  const [isLogOut, setIsLogOut] = useState(false);
+  function LogOut() {
+    setIsLogOut(true);
+  }
 
   function profileDown() {
     setIsdropdown(true);
@@ -151,8 +165,11 @@ export default function Search({ onComponentSwitch, Name, Email, photoUrl }) {
           {isdropDown && (
             <Dropdown
               Name={Name}
-              Email={Email}
+              email={email}
               photoUrl={photoUrl}
+              logindetail={logindetail}
+              Submit={Submit}
+              LoginDetail={LoginDetail}
               onComponentSwitch={handleItemClick}
               onClose={closeModal}
             />

@@ -1,8 +1,7 @@
 /** @format */
 
-import image2 from "../elements/Profile.jpg";
 import scan from "../elements/scan.jpg";
-import { useEffect } from "react";
+import { useState } from "react";
 export default function Profile({
   Name,
   company,
@@ -11,27 +10,23 @@ export default function Profile({
   Occupation,
   photoUrl,
 }) {
-  // function handleSvg() {
-  //   var image = document.querySelector(".img");
-  //   var review = document.querySelector(".reviews");
-  //   var scan = document.querySelector(".scan");
-  //   if (image.style.display === "block") {
-  //     image.style.display = "none";
-  //     scan.style.display = "block";
-  //     review.style.visibility = "hidden";
-  //   } else {
-  //     image.style.display = "block";
-  //     scan.style.display = "none";
-  //     review.style.visibility = "visible";
-  //   }
-  // }
+  const [isImageVisible, setIsImageVisible] = useState(true);
+
+  function handleSvg() {
+    setIsImageVisible(true);
+  }
+
+  function secondSvg() {
+    setIsImageVisible(false);
+  }
 
   return (
     <div className='reviewprofile'>
       <div className='svg-review'>
         <div className='svg'>
+          {/* {isImageVisible ? ():()} */}
           <svg
-            // onClick={handleSvg}
+            onClick={handleSvg}
             width='7'
             height='12'
             viewBox='0 0 7 12'
@@ -49,7 +44,7 @@ export default function Profile({
 
           <svg
             className='svg'
-            // onClick={handleSvg}
+            onClick={secondSvg}
             width='7'
             height='12'
             viewBox='0 0 7 12'
@@ -75,11 +70,19 @@ export default function Profile({
 
       <div className='imageprofile'>
         <div className='image'>
-          {photoUrl ? (
-            <img className='img' src={photoUrl} alt='Profile' />
+          {/* {isImageVisible && (
+            <img
+              className='img'
+              src={photoUrl || "../elements/scan.jpg"}
+              alt='Profile'
+            />
+          )} */}
+          {isImageVisible ? (
+            <img className='img' src={photoUrl || scan} alt='Profile' />
           ) : (
             <img className='scan' src={scan} alt='Default' />
           )}
+
           {/* <img className='img' src={photoUrl} />
           <img className='scan' src={scan} /> */}
         </div>

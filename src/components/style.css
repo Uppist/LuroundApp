@@ -640,7 +640,7 @@ textarea {
 .nameprofile {
   display: grid;
   gap: 8px;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 
 .name {

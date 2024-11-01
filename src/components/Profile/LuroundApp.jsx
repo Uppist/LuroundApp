@@ -327,8 +327,11 @@ export default function LuroundApp() {
             <Search
               onComponentSwitch={handleOneOffClick}
               Name={Name}
-              Email={isEmail}
+              email={isEmail}
               photoUrl={photoUrl}
+              logindetail={logindetail}
+              Submit={Submit}
+              LoginDetail={LoginDetail}
               // photoUrlSmaller={photoUrlSmaller}
             />
             <div className={`profile-details ${visible}`}>

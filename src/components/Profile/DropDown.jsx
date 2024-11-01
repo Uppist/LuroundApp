@@ -1,10 +1,12 @@
 /** @format */
-import image3 from "../elements/image2.png";
+import { useState } from "react";
+import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 export default function Dropdown({
   onClose,
   onComponentSwitch,
-  Email,
+  email,
   Name,
   photoUrl,
 }) {
@@ -12,6 +14,12 @@ export default function Dropdown({
     onComponentSwitch(item);
     onClose();
   }
+
+  const [isLogOut, setIsLogOut] = useState(false);
+  function LogOut() {
+    setIsLogOut(true);
+  }
+
   return (
     <div>
       <div className='profiledropdown'>
@@ -22,7 +30,7 @@ export default function Dropdown({
             <div className='namebutton'>
               <div className='spanname'>
                 <span className='ronaldname'>{Name}</span>
-                <span className='email'>{Email}</span>
+                <span className='email'>{email}</span>
               </div>
               <button onClick={() => Editprofile("editprofile")}>
                 Edit Profile
@@ -31,7 +39,7 @@ export default function Dropdown({
             <hr className='linehr' />
           </div>
 
-          <button>Log out</button>
+          <button onClick={LogOut}>Log out</button>
         </div>
       </div>
     </div>
