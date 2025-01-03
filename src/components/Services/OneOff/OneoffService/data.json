@@ -1,6 +1,6 @@
 [
   {
-    "image": "/OneOff/image1.png",
+    "image": "./OneOff/image1.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
     "Title": "Personal Training",
@@ -16,7 +16,7 @@
     "amount": "₦25,000"
   },
   {
-    "image": "/OneOff/image2.png",
+    "image": "./OneOff/image2.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
     "Title": "Content Writing",
@@ -32,7 +32,7 @@
     "amount": "₦170,000"
   },
   {
-    "image": "/OneOff/image3.png",
+    "image": "./OneOff/image3.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
     "Title": "Consulting",
@@ -50,7 +50,7 @@
   },
 
   {
-    "image": "/OneOff/image1.png",
+    "image": "./OneOff/image1.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
     "Title": "Personal Training",
