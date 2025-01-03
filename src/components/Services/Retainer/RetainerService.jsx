@@ -1,9 +1,9 @@
 /** @format */
 import { useState } from "react";
 import Retainer from "./Retainer";
-import DayTime from "../OneOff/DayTime";
+import DayTime from "../OneOff/TimeBased/DayTime";
 import ServiceCreate from "../OneOff/SeviceCreate";
-import PricingTime from "../OneOff/Pricing";
+import PricingTime from "../OneOff/TimeBased/Pricing";
 export default function RetainerService() {
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);

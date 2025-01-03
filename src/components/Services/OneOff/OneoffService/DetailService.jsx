@@ -1,17 +1,11 @@
 /** @format */
 
-// /** @format */
 import { useState } from "react";
-
-// export default function ProgramDetail() {
-//   return <div></div>;
-// }
-// import Timebased from "./TimeBased";
-// import Delete from "./Delete";
-import Delete from "../OneOff/OneoffService/Delete";
-import Program from "./Program";
-import ProgramService from "./ProgramService";
-export default function ProgramDetail({ dataprogram }) {
+import styles from "./DetailService.module.css";
+import One from "./OneOff";
+import Timebased from "../TimeBased/TimeBased";
+import Delete from "./Delete";
+export default function DetailOne({ dataValue }) {
   const [isBack, setIsBack] = useState(false);
   const [isSuspended, setIsSuspended] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -36,9 +30,9 @@ export default function ProgramDetail({ dataprogram }) {
   return (
     <>
       {isEdit ? (
-        <ProgramService />
+        <Timebased />
       ) : isBack ? (
-        <Program />
+        <One />
       ) : (
         <div className='time-based-container'>
           <button className='time-based-back' onClick={Back}>
@@ -61,72 +55,38 @@ export default function ProgramDetail({ dataprogram }) {
             <span>Back</span>
           </button>
 
-          <div className='moredetails'>
-            <div className='moredetails-container'>
-              <div className='content-type'>
-                <div className='personal-service'>
-                  <span className='personal'>{dataprogram.Title}</span>
-                  <div className='service-one'>
-                    <span className='servicetype'>
-                      {dataprogram.servicetype}
-                    </span>
-                    <span className='oneofftext'>{dataprogram.oneoff}</span>
-                  </div>
+          <div className={styles.moredetails}>
+            <div className={styles.morecontainer}>
+              <img src={dataValue.image} alt='' />
+              <div className={styles.contenttype}>
+                <div className={styles.personalservice}>
+                  <span className={styles.personal}>{dataValue.Title}</span>
                 </div>
-              </div>
-              <div className='overallvector'>
-                <div className='service-one'>
-                  <span className='servicetype'>Duration:</span>
-                  <span className='oneofftext'>{dataprogram.Duration}</span>
-                </div>
-                <div className='service-one'>
-                  <span className='servicetype'>Reoccurence:</span>
-                  <span className='oneofftext'>{dataprogram.reoccurence}</span>
-                </div>
-                <div className='service-one'>
-                  <span className='servicetype'>Max no. of participation:</span>
-                  <span className='oneofftext'>
-                    {dataprogram.participation}
+                <div className={styles.description}>
+                  <span>About service</span>
+                  <span className={`${styles.text} ${styles.text2}`}>
+                    {dataValue.text}
+                    {dataValue.text2}
                   </span>
                 </div>
-                <div className='service-one'>
-                  <span className='servicetype'>Start Date:</span>
-                  <span className='oneofftext'>{dataprogram.startdate}</span>
-                </div>
-
-                <div className='service-one'>
-                  <span className='servicetype'>End Date:</span>
-                  <span className='oneofftext'>{dataprogram.enddate}</span>
-                </div>
               </div>
 
-              <div className='availability'>
-                <label>Available on</label>
-                <div className='availability-time'>
-                  <span>{dataprogram.firstday}</span>
-                  <span>{dataprogram.secondday}</span>
+              <div className={styles.availability}>
+                <label>Service schedule</label>
+                <div className={styles.time}>
+                  <span>{dataValue.firstday}</span>
+                  <span>{dataValue.secondday}</span>
                 </div>
-              </div>
-
-              <div className='service-description'>
-                <span>Service Description</span>
-                <span className='text text2'>
-                  {/* {dataprogram.text}
-                  {dataprogram.text2} */}
-                </span>
-              </div>
-              <div className='textvector1'>
-                <span className='text text2'>{dataprogram.text}</span>
               </div>
             </div>
-            <div className='quickaction-container'>
-              <div className='quickaction'>
+            <div className={styles.quickcontainer}>
+              <div className={styles.quickaction}>
                 <label>Quick actions</label>
                 <hr />
               </div>
 
-              <div className='settings-detail'>
-                <div className='settings-container' onClick={EditDetail}>
+              <div className={styles.settingsdetail}>
+                <div className={styles.settingscontainer} onClick={EditDetail}>
                   <svg
                     width='24'
                     height='24'
@@ -147,7 +107,7 @@ export default function ProgramDetail({ dataprogram }) {
                   <span> Edit</span>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -165,8 +125,10 @@ export default function ProgramDetail({ dataprogram }) {
                   <span>Service Insight</span>
                 </div>
 
-                <div className='settings-container suspend'>
-                  <div className='suspend-div'>
+                <div
+                  className={`${styles.settingscontainer} ${styles.suspend}`}
+                >
+                  <div className={styles.suspenddiv}>
                     {isSuspended ? (
                       <svg
                         width='24'
@@ -209,7 +171,7 @@ export default function ProgramDetail({ dataprogram }) {
                       {isSuspended ? "Unsuspend Service" : "Suspend Service"}
                     </span>
                   </div>
-                  <div className='toggle-button'>
+                  <div className={styles.togglebutton}>
                     <input
                       type='checkbox'
                       id='check'
@@ -217,11 +179,11 @@ export default function ProgramDetail({ dataprogram }) {
                       onChange={toggle}
                       checked={isSuspended}
                     />
-                    <label for='check' className='toggle'></label>
+                    <label for='check' className={styles.toggle}></label>
                   </div>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -238,7 +200,7 @@ export default function ProgramDetail({ dataprogram }) {
                   <span> Share Service</span>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -255,7 +217,10 @@ export default function ProgramDetail({ dataprogram }) {
                   <span>Service QR code</span>
                 </div>
 
-                <div className='settings-container' onClick={DeleteOneoff}>
+                <div
+                  className={styles.settingscontainer}
+                  onClick={DeleteOneoff}
+                >
                   <svg
                     width='24'
                     height='24'
@@ -271,7 +236,11 @@ export default function ProgramDetail({ dataprogram }) {
                   </svg>
                   <span>Delete</span>
                   {isDelete && (
-                    <Delete dataprogram={dataprogram} backdelete={Back} />
+                    <Delete
+                      datavalue={dataValue}
+                      backdelete={Back}
+                      showContainer={true}
+                    />
                   )}
                 </div>
               </div>

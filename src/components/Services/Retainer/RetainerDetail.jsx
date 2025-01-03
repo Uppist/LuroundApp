@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
-import Timebased from "../OneOff/TimeBased";
-import Delete from "../OneOff/Delete";
+import Timebased from "../OneOff/TimeBased/TimeBased";
+import Delete from "../OneOff/OneoffService/Delete";
 import Retainer from "./Retainer";
 import RetainerService from "./RetainerService";
 export default function RetainerDetail({ dataretainer }) {

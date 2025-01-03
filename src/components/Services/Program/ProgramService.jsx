@@ -3,7 +3,7 @@ import nigeria from "../../elements/nigeria.png";
 
 import { useState } from "react";
 import Retainer from "../Retainer/Retainer";
-import DayTime from "../OneOff/DayTime";
+import DayTime from "../OneOff/TimeBased/DayTime";
 import ServiceCreate from "../OneOff/SeviceCreate";
 export default function ProgramService() {
   const [isBack, setIsBack] = useState(false);
@@ -66,24 +66,24 @@ export default function ProgramService() {
               </div>
               <ServiceCreate />
 
-              <div className="program-calendar">
-                <div className="start-calendar">
-                  <div className="start-end-date">
+              <div className='program-calendar'>
+                <div className='start-calendar'>
+                  <div className='start-end-date'>
                     <span>Start date</span>
                     <span>End date</span>
                   </div>
-                  <div className="input-calendar">
+                  <div className='input-calendar'>
                     <input type='calendar' />
                     <input type='calendar' />
                   </div>
                 </div>
-                <div className="program-recurrence">
+                <div className='program-recurrence'>
                   <span>Program recurrence</span>
                   <button></button>
                 </div>
-                <div className="no_of_participant">
+                <div className='no_of_participant'>
                   <span>Maximum number of participants</span>
-                  <div className="participant">
+                  <div className='participant'>
                     <span>0</span>
                   </div>
                 </div>

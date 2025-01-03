@@ -1,6 +1,6 @@
 /** @format */
 import React from "react";
-import LuroundApp from "./components/Profile/LuroundApp";
+import LuroundApp from "./components/LuroundApp";
 // import { Cloudinary } from "@cloudinary/url-gen";
 
 export default function App() {

@@ -32,7 +32,7 @@ export default function Create({
         >
           <path
             d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
-            fill='#00CCCC'
+            fill='#FFFFFF'
           />
         </svg>
 

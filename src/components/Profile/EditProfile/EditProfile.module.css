@@ -1,0 +1,292 @@
+/** @format */
+
+.editprofile {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+  grid-template-columns: 1fr 2fr;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+}
+
+.editprofilefirstcontainer {
+  display: grid;
+  gap: 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+  height: 700px;
+}
+
+.editprofilefirstcontainer > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.editprofilesecondcontainer {
+  display: grid;
+  gap: 24px;
+}
+
+.editprofilefirstcontainer span {
+  padding: 16px 24px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.editprofile-firstcontainer span:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+}
+
+.photosintros {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 24px;
+
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.photosintros > span {
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 500;
+}
+
+.photo {
+  display: none;
+}
+.editimage {
+  width: 380px;
+  height: 231.7px;
+}
+
+.edit {
+  background-color: hsla(180, 100%, 40%, 1);
+  width: 32px;
+  height: 32px;
+  border-radius: 20px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -40px;
+  left: 340px;
+}
+
+.editprofileabout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.editprofileabout textarea {
+  height: 172px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  padding: 12px;
+}
+
+.editprofileabout span {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.otherdetailseditprofile {
+  display: grid;
+  gap: 48px;
+  padding: 16px 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 16px;
+}
+
+.otherdetailseditprofile span {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.socialmediadetails {
+  display: grid;
+  gap: 32px;
+}
+
+.socialmedia {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.socialmediasvg {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.socialmediainput {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  align-items: center;
+  justify-items: end;
+}
+
+.socialmediainput > input {
+  width: -webkit-fill-available;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.editprofileintroduce {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.firstname {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.firstname span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.firstname input {
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  padding: 0px 16px;
+}
+
+.uploadlogo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uploadlogo span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.logoimage {
+  width: 24px;
+  height: 24px;
+}
+
+.logodelete {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logodelete button {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(0, 69%, 49%, 1);
+  background-color: white;
+  border: 0;
+  border-bottom: 1px solid hsla(0, 69%, 49%, 1);
+}
+
+.logochange {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.uploadedlogo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.uploadedlogo p {
+  margin: 0;
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.uploadedlogo span {
+  font-size: 12px;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.size span {
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.uploadyourlogo {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  border: 2.5px solid hsla(180, 100%, 40%, 1);
+  border-style: dashed;
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 0px 16px;
+}
+
+.filetype {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.size {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadlogo label {
+  cursor: pointer;
+  height: 36px;
+  padding: 0px 16px;
+  color: white;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.canceltime,
+.donetime {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.donetime {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+
+.canceldone {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+}

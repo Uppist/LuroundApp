@@ -1,9 +1,9 @@
 /** @format */
 import { useState } from "react";
-import Delete from "../OneOff/Delete";
+import Delete from "../OneOff/OneoffService/Delete";
 import EventService from "./EventService";
 import Event from "./Event";
-import ShareProfile from "../../Profile/ShareProfile";
+import ShareProfile from "../../Profile/NavBar/ShareProfile";
 export default function EventDetail({ dataevent }) {
   const [isBack, setIsBack] = useState(false);
   const [isSuspended, setIsSuspended] = useState(false);

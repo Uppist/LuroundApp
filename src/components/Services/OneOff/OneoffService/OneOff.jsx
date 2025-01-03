@@ -1,33 +1,34 @@
 /** @format */
 
-/** @format */
-import { useState } from "react";
-import Timebased from "../OneOff/TimeBased/TimeBased";
-import Projectbased from "../OneOff/ProjectBased/ProjectBased";
-import RetainerService from "./RetainerService";
+// /** @format */
 
-import RetainerDetail from "./RetainerDetail";
-import retainer from "../../retainer.json";
-import Create from "../CreateService";
-import ProgramService from "../Program/ProgramService";
-import EventService from "../Event/EventService";
-export default function Retainer() {
+import styles from "./OneOff.module.css";
+import Data from "./data.json";
+import React, { useState } from "react";
+
+import DetailOne from "./DetailService";
+import Timebased from "../TimeBased/TimeBased";
+import Projectbased from "../ProjectBased/ProjectBased";
+import RetainerService from "../../Retainer/RetainerService";
+import Create from "../../CreateService";
+
+export default function One({ backone }) {
+  const [isDetail, setisDetail] = useState(null);
+  const [selectRadio, setSelectRadio] = useState({});
   const [isTimeBased, setIsTimeBased] = useState(false);
   const [isProjectBased, setIsProjectBased] = useState(false);
   const [isRetainer, setIsRetainer] = useState(false);
-  const [isProgram, setIsProgram] = useState(false);
-  const [selectRadio, setSelectRadio] = useState({});
-  const [isDetail, setisDetail] = useState(null);
+  const [isVisible, setVisible] = useState("fade-in");
 
-  const [isEvent, setIsEvent] = useState(false);
   const [isOpen, setIsOpen] = useState({});
-
   const [selectedOption, setSelectedOption] = useState({});
   const [options] = useState([
-    "3 months",
-    "6 months",
-    "12 months",
-    "24 months",
+    "15 mins",
+    "30 mins",
+    "45 mins",
+    "60 mins",
+    "90 mins",
+    "120 mins",
   ]);
 
   function radioChange(index, type) {
@@ -63,99 +64,87 @@ export default function Retainer() {
     setIsProjectBased(true);
   }
 
+  function openDetail(index) {
+    setVisible("fade-out");
+    setTimeout(() => {
+      setisDetail(index);
+      setVisible("fade-in");
+    }, 200);
+  }
+
   function RetainerContainer() {
     setIsRetainer(true);
   }
 
-  function ProgramContainer() {
-    setIsProgram(true);
-  }
-
-  function EventContainer() {
-    setIsEvent(true);
-  }
-
-  function openDetail(index) {
-    setisDetail(index);
-  }
-
   return (
     <>
-      {isEvent ? (
-        <EventService />
-      ) : isProgram ? (
-        <ProgramService />
-      ) : isRetainer ? (
+      {isRetainer ? (
         <RetainerService />
       ) : isProjectBased ? (
-        <Projectbased />
+        <Projectbased backone={backone} />
       ) : isTimeBased ? (
         <Timebased />
       ) : isDetail === null ? (
-        <>
-          <div className='retainer'>
-            <div className='retainerservice'>
-              <div className='numberofservice'>
-                <span className='one-offservice'>Retainers</span>
-                <span className='number'>{retainer.length}</span>
-              </div>
-              <div className='add-service'>
-                <Create
-                  onTime={TimeBased}
-                  onProject={ProjectBased}
-                  onRetainer={RetainerContainer}
-                  onProgram={ProgramContainer}
-                  onEvent={EventContainer}
-                />
-              </div>
+        <div className={styles.oneoff}>
+          <div className={styles.oneoffservice}>
+            <div className={styles.numberofservice}>
+              <span className={styles.oneoffservice}>One-off</span>
+              <span className={styles.number}>4</span>
             </div>
-            <div className='dataretainer'>
-              {retainer.map((data, index) => (
-                <div className='eachretainercontainer'>
-                  <div className='retainercontainer' key={data.Title}>
-                    <div className='days-time-line'>
-                      <div className='days-time'>
-                        <span>{data.firstday}</span>
-                        <hr className='linedays' />
-                        <span>{data.secondday}</span>
-                        <hr className='linedays' />
-                        <span>{data.thirdday}</span>
+            <div>
+              <Create
+                onTime={TimeBased}
+                onProject={ProjectBased}
+                onRetainer={RetainerContainer}
+              />
+            </div>
+          </div>
+          <div className={styles.dataoneoff}>
+            {Data.map((data, index) => (
+              <div className={styles.eachoneoffcontainer}>
+                <div className={styles.OneOffcontainer} key={data.title}>
+                  <div className={styles.titlecontainer}>
+                    <div className={styles.daystimeline}>
+                      <div className={styles.daystime}>
+                        <img src={data.image} alt='' />
                       </div>
-                      <hr className='containerline' />
                     </div>
-                    <div className='personal-training-details'>
-                      <div className='personal-training'>
-                        <div className='content-type'>
-                          <div className='personal-service'>
-                            <span className='personal'>{data.Title}</span>
-                            <div className='service-one'>
-                              <span className='servicetype'>
-                                {data.servicetype}
-                              </span>
-                              <span className='oneofftext'>{data.oneoff}</span>
-                            </div>
+                    <div className={styles.personaltrainingdetails}>
+                      <div className={styles.personaltraining}>
+                        <div className={styles.contenttype}>
+                          <div className={styles.personalservice}>
+                            <span className={styles.personal}>
+                              {data.Title}
+                            </span>
                           </div>
-                          <div className='textvector'>
-                            <span className='text'>{data.text}</span>
-                          </div>
-                        </div>
+                          <span className={styles.text}>
+                            {data.text}
+                            {data.dots}
+                          </span>
+                        </div>{" "}
                       </div>
                       <div
-                        className='oneoff-details'
+                        className={`${styles.oneoffdetails} ${isVisible}`}
                         onClick={() => openDetail(index)}
                       >
-                        <span>Details</span>
+                        <span>More details</span>
                         <svg
-                          width='7'
-                          height='12'
-                          viewBox='0 0 7 12'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
                           fill='none'
                           xmlns='http://www.w3.org/2000/svg'
                         >
                           <path
-                            d='M1 11L6 6L1 1'
-                            stroke='currentColor'
-                            strokeOpacity='0.8'
+                            d='M13.1666 7.81706L3.16663 7.81706'
+                            stroke='#00CCCC'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                          <path
+                            d='M9.13342 3.80083L13.1668 7.81683L9.13342 11.8335'
+                            stroke='#00CCCC'
                             strokeWidth='1.5'
                             strokeLinecap='round'
                             strokeLinejoin='round'
@@ -164,18 +153,20 @@ export default function Retainer() {
                       </div>
                     </div>
                   </div>
-                  <div className='virtual-inperson '>
+                  <div className={styles.virtualinperson}>
+                    <hr />
+
                     <div
-                      className={`price-session  ${
+                      className={`${styles.pricesession}  ${
                         selectRadio[index] === "virtual"
-                          ? "virtual-bg"
+                          ? "virtualbg"
                           : selectRadio[index] === "in-person"
-                          ? "in-person-bg"
+                          ? "inpersonbg"
                           : ""
                       }`}
                     >
-                      <div className='radio-virtual'>
-                        <div className='virtual'>
+                      <div className={styles.radiovirtual}>
+                        <div className={styles.virtual}>
                           <input
                             type='radio'
                             name='radio'
@@ -183,7 +174,7 @@ export default function Retainer() {
                           />
                           <span>Virtual</span>
                         </div>
-                        <div className='in-person'>
+                        <div className={styles.inperson}>
                           <input
                             type='radio'
                             name='radio'
@@ -192,19 +183,19 @@ export default function Retainer() {
                           <span>In-person</span>
                         </div>
                       </div>
-                      <div className='pricing-amount'>
-                        <div className='pricing'>
+                      <div className={styles.pricingamount}>
+                        <div className={styles.pricing}>
                           <span>{data.pricing}</span>
-                          <div className='mins-arrow'>
-                            <div className='dropdown'>
+                          <div className={styles.minsarrow}>
+                            <div className={styles.dropdown}>
                               <div
-                                className={`select-list ${
+                                className={`${styles.selectlist} ${
                                   isOpen[index] ? "select-clicked" : ""
                                 }`}
                                 onClick={() => dropDown(index)}
                               >
                                 <span className='selected-list'>
-                                  {selectedOption[index] || "3 months"}{" "}
+                                  {selectedOption[index] || "15 mins"}{" "}
                                 </span>
                                 <svg
                                   width='16'
@@ -224,7 +215,7 @@ export default function Retainer() {
                                 </svg>
                               </div>
                               {isOpen[index] && (
-                                <ul className='menu'>
+                                <ul className={styles.menu}>
                                   {options.map((option) => (
                                     <li
                                       key={option}
@@ -245,20 +236,20 @@ export default function Retainer() {
                             </div>
                           </div>
                         </div>
-                        <div className='naira-session'>
-                          <span className='naira'>{data.amount}</span>
-                          <span className='session'>{data.session}</span>
+                        <div className={styles.nairasession}>
+                          <span className={styles.naira}>{data.amount}</span>
+                          <span className={styles.session}>{data.session}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </>
+        </div>
       ) : (
-        <RetainerDetail dataretainer={retainer[isDetail]} />
+        <DetailOne backonedetail={backone} dataValue={Data[isDetail]} />
       )}
     </>
   );

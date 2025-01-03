@@ -1,0 +1,79 @@
+/** @format */
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  flex-direction: column;
+  height: 100vh;
+  gap: 24px;
+  /* margin: 0 auto; */
+}
+
+.login > label {
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.logindetail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logindetail input {
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(225, 231, 231, 1);
+}
+
+.passwordcheck {
+  display: flex;
+  font-size: 10px;
+  gap: 80px;
+  align-items: center;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.passwordcheck > label {
+  color: hsla(180, 100%, 40%, 1);
+}
+
+.checkpass {
+  display: flex;
+  align-items: center;
+}
+
+.loginbutton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.loginbutton button {
+  padding: 8px;
+  border-radius: 8px;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  width: 245px;
+}
+
+.loginbutton button:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.loginbutton label {
+  font-size: 10px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.loginbutton label span {
+  color: hsla(180, 100%, 40%, 1);
+}

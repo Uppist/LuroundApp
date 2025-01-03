@@ -1,0 +1,296 @@
+/** @format */
+
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 16px 24px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  position: fixed;
+  z-index: 1000;
+  width: -webkit-fill-available;
+}
+
+.searchinput {
+  display: flex;
+  align-items: baseline;
+  width: 360px;
+  border: 1px solid rgba(225, 231, 231, 1);
+  border-radius: 8px;
+}
+
+.search {
+  position: absolute;
+  margin-top: 7px;
+  width: 17px;
+  margin-left: 20px;
+}
+
+.input {
+  padding: 8px;
+  border: 0;
+  margin-left: 40px;
+  font-family: "Inter";
+}
+
+.input:focus {
+  outline: none;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.icons {
+  list-style: none;
+  float: left;
+  cursor: pointer;
+}
+
+.icons .active {
+  filter: blur(10px);
+}
+
+.imagearrow {
+  background-color: hsla(180, 17%, 98%, 1);
+  width: 57px;
+  height: 32px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(217, 217, 217, 1);
+  border-radius: 50px;
+}
+
+.smallerimage {
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+
+.profiledropdown {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1000;
+}
+
+.overlaydropdown {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
+}
+
+.notification {
+  width: 24px;
+}
+
+.notificationdropdown {
+  background-color: white;
+  position: absolute;
+  display: flex;
+  z-index: 1000;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 16px;
+  top: 70px;
+  right: 40px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.notificationdropdown::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  background-color: white;
+  position: relative;
+  top: -8px;
+  left: 210px;
+}
+
+.profileedit {
+  background-color: white;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  top: 70px;
+  right: 20px;
+}
+
+.profileedit > button {
+  padding: 24px 16px;
+  background-color: white;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 16px;
+  border: 0;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.profileedit::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  background-color: white;
+  position: relative;
+  top: -8px;
+  left: 153px;
+}
+
+.imagename {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+}
+
+.imagename img {
+  width: 64px;
+  height: 64px;
+  border-radius: 60px;
+}
+
+.namebutton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.namebutton > button {
+  padding: 8px 64px;
+  border-radius: 32px;
+  border: 1.2px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.spanname {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ronaldname {
+  font-size: 80%;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.email {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.linehr {
+  border: 4px solid hsla(180, 17%, 98%, 1);
+  margin: 0;
+  width: 350px;
+}
+
+.linehr1 {
+  border: 4px solid hsla(180, 17%, 98%, 1);
+  margin: 0;
+}
+
+.arrow {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.arrow.open {
+  transition: 0.4s;
+}
+
+.share {
+  background-color: rgba(198, 36, 36, 1);
+  color: white;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  border: 0;
+}
+
+/*Notification*/
+
+.scrollablenotification {
+  height: 320px;
+  overflow: scroll;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.scrollablenotification::-webkit-scrollbar {
+  display: none;
+}
+
+.notificationbooked {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: hsla(180, 100%, 96%, 1);
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.notificationbooked > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notificationdropdown > label {
+  text-align: center;
+  padding: 0px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.notificationname {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.notificationservice {
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.notificationperiod {
+  font-size: 12px;
+  color: hsla(180, 23%, 15%, 0.65);
+  font-weight: 400;
+}

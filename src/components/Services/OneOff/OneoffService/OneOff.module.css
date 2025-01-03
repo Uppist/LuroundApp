@@ -1,0 +1,364 @@
+/** @format */
+
+.oneoff {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+}
+
+.oneoffservice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.numberofservice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.oneoffservice {
+  font-size: 20px;
+  color: hsla(180, 23%, 15%, 1);
+  font-weight: 600;
+}
+
+.number {
+  font-size: 12px;
+  padding: 2px 6px;
+  color: hsla(180, 23%, 15%, 0.65);
+  border: 1px solid hsla(180, 23%, 15%, 0.65);
+  border-radius: 10px;
+}
+
+.dataoneoff {
+  display: grid;
+  gap: 24px;
+}
+
+.OneOffcontainer {
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+}
+.OneOffcontainer:hover {
+  background-color: hsla(180, 12%, 95%, 1);
+  cursor: pointer;
+}
+
+.titlecontainer {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.days-time {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  justify-content: center;
+  color: hsla(180, 9%, 32%, 1);
+  width: max-content;
+}
+
+.days-time-line {
+  display: flex;
+  gap: 24px;
+}
+
+.linedays {
+  width: 190px;
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.containerline {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+.personaltrainingdetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.personaltraining {
+  display: flex;
+}
+
+.servicetype {
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.oneofftext {
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.gap-program {
+  display: flex;
+  gap: 60px;
+}
+.text {
+  width: 450px;
+  font-weight: 400;
+  font-size: 12px;
+  color: hsla(180, 5%, 43%, 1);
+}
+
+.oneoffdetails {
+  display: flex;
+  transition: 0.4s ease-in-out;
+  position: relative;
+  height: fit-content;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 100%, 40%, 1);
+  border: 0;
+  font-family: "Inter";
+}
+
+hr {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.virtualinperson {
+  display: flex;
+  gap: 20px;
+}
+
+.radiovirtual {
+  display: flex;
+  gap: 24px;
+}
+
+.pricingamount {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.virtual,
+.inperson {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+input[type="radio"]:checked {
+  background-color: hsla(180, 23%, 15%, 1);
+  cursor: pointer;
+  accent-color: white;
+}
+
+.pricesession {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 24px;
+  background-color: hsla(180, 17%, 98%, 1);
+  border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+}
+
+.virtualbg {
+  background-color: hsla(180, 17%, 98%, 1);
+  cursor: pointer;
+  color: white;
+  transition: 0.4s;
+}
+
+.inpersonbg {
+  background-color: hsla(197, 100%, 11%, 1);
+  cursor: pointer;
+  color: white;
+  transition: 0.4s;
+}
+
+.mins-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.virtual-bg .radio-virtual > div,
+.virtual-bg .pricing-amount .pricing,
+.virtual-bg .pricing-amount .pricing .mins-arrow,
+.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
+.virtual-bg .pricing-amount .pricing .naira-session,
+.virtual-bg .pricing-amount .naira-session > span {
+  color: white;
+}
+
+.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
+.in-person-bg .pricing-amount .pricing .mins-arrow > svg {
+  background-color: white;
+}
+
+.in-person-bg .pricing-amount .pricing .mins-arrow,
+.virtual-bg .pricing-amount .pricing .mins-arrow {
+  border-bottom: 1px solid white;
+}
+
+.in-person-bg .radio-virtual > div,
+.in-person-bg .pricing-amount .pricing,
+.in-person-bg .pricing-amount .pricing .mins-arrow,
+.in-person-bg .pricing-amount .pricing .naira-session,
+.in-person-bg .pricing-amount .naira-session > span {
+  color: white;
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 4px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.minsarrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-bottom: 1px solid hsla(180, 23%, 15%, 0.8);
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+}
+.dropdown {
+  position: relative;
+}
+
+.selectlist {
+  transition: 0.4s;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.menu {
+  list-style: none;
+  background-color: white;
+  border-radius: 0px 0px 4px 4px;
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  gap: 4px;
+  position: absolute;
+  transition: 0.4s;
+  z-index: 1;
+  color: hsla(180, 23%, 15%, 0.8);
+  margin: 0;
+}
+
+.menu li {
+  padding: 8px 8px 8px 4px;
+  cursor: pointer;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.menu li:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+}
+
+.nairasession {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.naira {
+  font-size: 18px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
+}
+
+.session {
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.mins {
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.virtual-arrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: underline;
+  text-decoration-color: hsla(180, 23%, 15%, 1);
+}
+
+.virtualtext {
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.all-time-container {
+  background-color: white;
+  padding: 24px 16px 12px 16px;
+  position: absolute;
+
+  z-index: 1000;
+  width: 269px;
+  padding: 12px 0px 12px 0px;
+  border-radius: 8px;
+  top: 150px;
+  right: 20px;
+}
+
+.choose-service {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.choose-service > hr {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  margin: 0;
+}
+
+.oneoff-dropdown {
+  display: grid;
+  gap: 8px;
+}
+
+.filter-by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.eachoneoffcontainer {
+  display: grid;
+  /* grid-template-columns: 2fr 1fr; */
+  gap: 24px;
+}
