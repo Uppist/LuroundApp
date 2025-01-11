@@ -1,0 +1,27 @@
+/** @format */
+
+.receipts {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.createreceipt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.receiptsvg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.receiptsvg > label {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}

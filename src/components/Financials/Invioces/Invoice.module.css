@@ -1,0 +1,27 @@
+/** @format */
+
+.invoices {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.createinvoice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoicesvg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.invoicesvg > label {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}

@@ -1,6 +1,7 @@
 /** @format */
 import { useState } from "react";
 import AddService from "./AddService";
+import styles from "../Services/OneOff/OneoffService/OneOff.module.css";
 
 export default function Create({
   onTime,
@@ -21,7 +22,7 @@ export default function Create({
 
   return (
     <>
-      <button className='add-service'>
+      <button className={styles.addservice}>
         <svg
           className={`arrow ${isService ? "open" : ""}`}
           width='24'
@@ -36,9 +37,7 @@ export default function Create({
           />
         </svg>
 
-        <span className='addservice' onClick={openModal}>
-          Create service
-        </span>
+        <span onClick={openModal}>Create service</span>
         {isService && (
           <AddService
             onClose={closeModal}

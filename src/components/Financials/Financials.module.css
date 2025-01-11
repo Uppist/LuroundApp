@@ -1,0 +1,61 @@
+/** @format */
+
+.financial {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.financials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.financials > label {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.createnew {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.createnew > label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: white;
+  cursor: pointer;
+}
+
+.financialcontainer {
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.financialcontainer div {
+  padding: 32px 182px;
+  background-color: white;
+  font-weight: 500;
+  cursor: pointer;
+  color: hsla(180, 23%, 15%, 1);
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+}

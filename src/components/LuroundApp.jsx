@@ -15,6 +15,12 @@ import Transaction from "./Transactions/TransactionPage";
 import axios from "axios";
 import React, { useEffect } from "react";
 import Login from "./Login/Login";
+import Support from "./Support/Support";
+import Contact from "./Contact/Contact";
+import Financials from "./Financials/Financials";
+import Quotes from "./Financials/Quotes/Quotes";
+import Invoice from "./Financials/Invioces/Invoice";
+import Receipt from "./Financials/Receipts/Receipt";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -348,12 +354,25 @@ export default function LuroundApp() {
                 />
               )}
               {activeComponent === "oneoff" && <One />}
-
               {activeComponent === "retainer" && <Retainer />}
               {activeComponent === "program" && <Program />}
               {activeComponent === "event" && <Event />}
               {activeComponent === "bookings" && <Bookings />}
               {activeComponent === "transaction" && <Transaction />}
+              {activeComponent === "support" && <Support />}
+              {activeComponent === "contact" && <Contact />}
+              {activeComponent === "financial" && (
+                <Financials onComponentSwitch={handleOneOffClick} />
+              )}
+              {activeComponent === "quotes" && (
+                <Quotes onComponentSwitch={handleOneOffClick} />
+              )}
+              {activeComponent === "invoices" && (
+                <Invoice onComponentSwitch={handleOneOffClick} />
+              )}
+              {activeComponent === "receipts" && (
+                <Receipt onComponentSwitch={handleOneOffClick} />
+              )}
 
               {activeComponent === "profile" && (
                 <>

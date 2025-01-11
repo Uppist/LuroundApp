@@ -1,0 +1,71 @@
+/** @format */
+
+.support {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.contact {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.supportcontainer {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.subject,
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.subject label,
+.description label {
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.subject input,
+.description textarea {
+  padding: 16px 24px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+.description textarea {
+  height: 104px;
+}
+
+.canceltime,
+.donetime {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 600;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.donetime {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+.cancelsubmit {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+}

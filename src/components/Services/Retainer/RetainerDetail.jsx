@@ -3,6 +3,7 @@ import { useState } from "react";
 import Timebased from "../OneOff/TimeBased/TimeBased";
 import Delete from "../OneOff/OneoffService/Delete";
 import Retainer from "./Retainer";
+import styles from "./Details.module.css";
 import RetainerService from "./RetainerService";
 export default function RetainerDetail({ dataretainer }) {
   const [isBack, setIsBack] = useState(false);
@@ -54,64 +55,57 @@ export default function RetainerDetail({ dataretainer }) {
             <span>Back</span>
           </button>
 
-          <div className='moredetails'>
-            <div className='moredetails-container'>
-              <div className='content-type'>
-                <div className='personal-service'>
-                  <span className='personal'>{dataretainer.Title}</span>
-                  <div className='service-one'>
-                    <span className='servicetype'>
-                      {dataretainer.servicetype}
-                    </span>
-                    <span className='oneofftext'>{dataretainer.oneoff}</span>
+          <div className={styles.moredetails}>
+            <div className={styles.morecontainer}>
+              <img src={dataretainer.image} alt='' />
+              <div className={styles.contenttype}>
+                <div className={styles.personalservice}>
+                  <span className={styles.personal}>{dataretainer.Title}</span>
+                </div>
+                <div className={styles.description}>
+                  <span>About service</span>
+                  <span className={`${styles.text} ${styles.text2}`}>
+                    {dataretainer.text}
+                    {dataretainer.text2}
+                    {dataretainer.text3}
+                  </span>
+                </div>
+                <div className={styles.overallvector}>
+                  <div className={styles.vectordata}>
+                    <div className={styles.vectorretainer}></div>
+                    <span>{dataretainer.services1}</span>
+                  </div>
+                  <div className={styles.vectordata}>
+                    <div className={styles.vectorretainer}></div>
+                    <span>{dataretainer.services2}</span>
+                  </div>
+                  <div className={styles.vectordata}>
+                    <div className={styles.vectorretainer}></div>
+                    <span>{dataretainer.services3}</span>
+                  </div>
+                  <div className={styles.vectordata}>
+                    <div className={styles.vectorretainer}></div>
+                    <span>{dataretainer.services4}</span>
                   </div>
                 </div>
               </div>
 
-              <div className='availability'>
-                <label>Available on</label>
-                <div className='availability-time'>
+              <div className={styles.availability}>
+                <label>Service schedule</label>
+                <div className={styles.time}>
                   <span>{dataretainer.firstday}</span>
                   <span>{dataretainer.secondday}</span>
-                  <span>{dataretainer.thirdday}</span>
-                </div>
-              </div>
-
-              <div className='service-description'>
-                <span>Service Description</span>
-                <span className='text text2'>
-                  {dataretainer.text}
-                  {dataretainer.text2}
-                  {dataretainer.text3}
-                </span>
-              </div>
-              <div className='overallvector'>
-                <div className='vectordata'>
-                  <div className='vectorretainer'></div>
-                  <span>{dataretainer.services1}</span>
-                </div>
-                <div className='vectordata'>
-                  <div className='vectorretainer'></div>
-                  <span>{dataretainer.services2}</span>
-                </div>
-                <div className='vectordata'>
-                  <div className='vectorretainer'></div>
-                  <span>{dataretainer.services3}</span>
-                </div>
-                <div className='vectordata'>
-                  <div className='vectorretainer'></div>
-                  <span>{dataretainer.services4}</span>
                 </div>
               </div>
             </div>
-            <div className='quickaction-container'>
-              <div className='quickaction'>
+            <div className={styles.quickcontainer}>
+              <div className={styles.quickaction}>
                 <label>Quick actions</label>
                 <hr />
               </div>
 
-              <div className='settings-detail'>
-                <div className='settings-container' onClick={EditDetail}>
+              <div className={styles.settingsdetail}>
+                <div className={styles.settingscontainer} onClick={EditDetail}>
                   <svg
                     width='24'
                     height='24'
@@ -132,7 +126,7 @@ export default function RetainerDetail({ dataretainer }) {
                   <span> Edit</span>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -150,8 +144,10 @@ export default function RetainerDetail({ dataretainer }) {
                   <span>Service Insight</span>
                 </div>
 
-                <div className='settings-container suspend'>
-                  <div className='suspend-div'>
+                <div
+                  className={`${styles.settingscontainer} ${styles.suspend}`}
+                >
+                  <div className={styles.suspenddiv}>
                     {isSuspended ? (
                       <svg
                         width='24'
@@ -194,7 +190,7 @@ export default function RetainerDetail({ dataretainer }) {
                       {isSuspended ? "Unsuspend Service" : "Suspend Service"}
                     </span>
                   </div>
-                  <div className='toggle-button'>
+                  <div className={styles.togglebutton}>
                     <input
                       type='checkbox'
                       id='check'
@@ -202,11 +198,11 @@ export default function RetainerDetail({ dataretainer }) {
                       onChange={toggle}
                       checked={isSuspended}
                     />
-                    <label for='check' className='toggle'></label>
+                    <label for='check' className={styles.toggle}></label>
                   </div>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -223,7 +219,7 @@ export default function RetainerDetail({ dataretainer }) {
                   <span> Share Service</span>
                 </div>
 
-                <div className='settings-container'>
+                <div className={styles.settingscontainer}>
                   <svg
                     width='24'
                     height='24'
@@ -240,7 +236,10 @@ export default function RetainerDetail({ dataretainer }) {
                   <span>Service QR code</span>
                 </div>
 
-                <div className='settings-container' onClick={DeleteOneoff}>
+                <div
+                  className={styles.settingscontainer}
+                  onClick={DeleteOneoff}
+                >
                   <svg
                     width='24'
                     height='24'

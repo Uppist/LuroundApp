@@ -1,0 +1,63 @@
+/** @format */
+
+.quotes {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.createquote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quotesvg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quotesvg > label {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.quotecontainer {
+  background-color: white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.float {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: end;
+}
+
+.quotestatus {
+  display: flex;
+  border: 1px solid red;
+  padding: 4px 24px;
+  gap: 20px;
+}
+
+.cardline hr {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.statuscontainer {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 115px;
+  color: hsla(180, 23%, 15%, 0.65);
+}

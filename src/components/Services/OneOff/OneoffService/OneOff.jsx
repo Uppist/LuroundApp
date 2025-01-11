@@ -159,9 +159,9 @@ export default function One({ backone }) {
                     <div
                       className={`${styles.pricesession}  ${
                         selectRadio[index] === "virtual"
-                          ? "virtualbg"
+                          ? `${styles.virtualbg}`
                           : selectRadio[index] === "in-person"
-                          ? "inpersonbg"
+                          ? `${styles.inpersonbg}`
                           : ""
                       }`}
                     >

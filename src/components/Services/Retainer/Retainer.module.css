@@ -1,6 +1,42 @@
 /** @format */
 
-.addservice {
+.retainer {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+}
+
+.retainerservice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.oneoffservice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  color: hsla(180, 23%, 15%, 1);
+  font-weight: 600;
+}
+.numberofservice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.number {
+  font-size: 12px;
+  padding: 2px 6px;
+  color: hsla(180, 23%, 15%, 0.65);
+  border: 1px solid hsla(180, 23%, 15%, 0.65);
+  border-radius: 10px;
+}
+
+/* .addservice {
   display: flex;
   align-items: center;
   border: 0;
@@ -12,59 +48,23 @@
   padding: 12px 16px;
   border-radius: 8px;
   color: hsla(180, 100%, 96%, 1);
-}
-
-/* .addservice {
 } */
 
-.oneoff {
+.eachretainercontainer {
   display: grid;
-  gap: 24px;
-  margin: 25px;
-  position: relative;
-  top: 60px;
 }
 
-.oneoffservice {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.numberofservice {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.oneoffservice {
-  font-size: 20px;
-  color: hsla(180, 23%, 15%, 1);
-  font-weight: 600;
-}
-
-.number {
-  font-size: 12px;
-  padding: 2px 6px;
-  color: hsla(180, 23%, 15%, 0.65);
-  border: 1px solid hsla(180, 23%, 15%, 0.65);
-  border-radius: 10px;
-}
-
-.dataoneoff {
-  display: grid;
-  gap: 24px;
-}
-
-.OneOffcontainer {
+.retainercontainer {
   display: flex;
   width: -webkit-fill-available;
-  justify-content: space-between;
+  gap: 24px;
   padding: 16px 24px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
 }
-.OneOffcontainer:hover {
+
+.retainercontainer:hover {
   background-color: hsla(180, 12%, 95%, 1);
   cursor: pointer;
 }
@@ -75,7 +75,7 @@
   align-items: center;
 }
 
-.days-time {
+.daystime {
   display: flex;
   gap: 16px;
   flex-direction: column;
@@ -84,7 +84,7 @@
   width: max-content;
 }
 
-.days-time-line {
+.daystimeline {
   display: flex;
   gap: 24px;
 }
@@ -108,10 +108,8 @@
   display: flex;
 }
 
-.contenttype {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.servicetype {
+  color: hsla(180, 23%, 15%, 0.8);
 }
 .personal {
   font-size: 16px;
@@ -119,19 +117,11 @@
   color: hsla(180, 23%, 15%, 1);
 }
 
-.servicetype {
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
 .oneofftext {
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
 }
 
-.gap-program {
-  display: flex;
-  gap: 60px;
-}
 .text {
   width: 450px;
   font-weight: 400;
@@ -152,10 +142,6 @@
   color: hsla(180, 100%, 40%, 1);
   border: 0;
   font-family: "Inter";
-}
-
-hr {
-  border: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .virtualinperson {
@@ -221,35 +207,35 @@ input[type="radio"]:checked {
   transition: 0.4s;
 }
 
-.mins-arrow svg {
+.minsarrow svg {
   width: 24px;
   height: 24px;
 }
 
-.virtual-bg .radio-virtual > div,
-.virtual-bg .pricing-amount .pricing,
-.virtual-bg .pricing-amount .pricing .mins-arrow,
-.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
-.virtual-bg .pricing-amount .pricing .naira-session,
-.virtual-bg .pricing-amount .naira-session > span {
+/* .virtualbg .radiovirtual > div,
+.virtualbg .pricingamount .pricing,
+.virtualbg .pricingamount .pricing .minsarrow,
+.virtualbg .pricingamount .pricing .minsarrow > svg,
+.virtualbg .pricingamount .pricing .nairasession,
+.virtualbg .pricingamount .nairasession > span {
   color: white;
-}
+} */
 
-.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
-.in-person-bg .pricing-amount .pricing .mins-arrow > svg {
+/* .virtualbg .pricingamount .pricing .minsarrow > svg,
+.in-personbg .pricingamount .pricing .minsarrow > svg {
   background-color: white;
-}
+} */
 
-.in-person-bg .pricing-amount .pricing .mins-arrow,
-.virtual-bg .pricing-amount .pricing .mins-arrow {
+/* .in-personbg .pricingamount .pricing .minsarrow,
+.virtualbg .pricingamount .pricing .minsarrow {
   border-bottom: 1px solid white;
-}
+} */
 
-.in-person-bg .radio-virtual > div,
-.in-person-bg .pricing-amount .pricing,
-.in-person-bg .pricing-amount .pricing .mins-arrow,
-.in-person-bg .pricing-amount .pricing .naira-session,
-.in-person-bg .pricing-amount .naira-session > span {
+.inpersonbg .radiovirtual > div,
+.inpersonbg .pricingamount .pricing,
+.inpersonbg .pricingamount .pricing .minsarrow,
+.inpersonbg .pricingamount .pricing .nairasession,
+.inpersonbg .pricingamount .nairasession > span {
   color: white;
 }
 
@@ -343,50 +329,4 @@ input[type="radio"]:checked {
 .virtualtext {
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
-}
-
-.all-time-container {
-  background-color: white;
-  padding: 24px 16px 12px 16px;
-  position: absolute;
-
-  z-index: 1000;
-  width: 269px;
-  padding: 12px 0px 12px 0px;
-  border-radius: 8px;
-  top: 150px;
-  right: 20px;
-}
-
-.choose-service {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.choose-service > hr {
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  margin: 0;
-}
-
-.oneoff-dropdown {
-  display: grid;
-  gap: 8px;
-}
-
-.filter-by {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.eachoneoffcontainer {
-  display: grid;
-  /* grid-template-columns: 2fr 1fr; */
-  gap: 24px;
 }
