@@ -21,6 +21,9 @@ import Financials from "./Financials/Financials";
 import Quotes from "./Financials/Quotes/Quotes";
 import Invoice from "./Financials/Invioces/Invoice";
 import Receipt from "./Financials/Receipts/Receipt";
+import View from "./Financials/Quotes/View/View";
+import Edit from "./Financials/Quotes/Edit/Edit";
+import Convert from "./Financials/Quotes/Convert/Convert";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -367,6 +370,10 @@ export default function LuroundApp() {
               {activeComponent === "quotes" && (
                 <Quotes onComponentSwitch={handleOneOffClick} />
               )}
+              {activeComponent === "view" && <View />}
+              {activeComponent === "edit" && <Edit />}
+              {activeComponent === "convert" && <Convert />}
+
               {activeComponent === "invoices" && (
                 <Invoice onComponentSwitch={handleOneOffClick} />
               )}
