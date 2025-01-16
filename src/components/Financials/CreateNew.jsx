@@ -1,11 +1,20 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Financials.module.css";
 
-export default function CreateNew() {
+export default function CreateNew({ onComponentSwitch }) {
+  const [isDropdown, setisDropdown] = useState(false);
+  function Create() {
+    setisDropdown((prev) => !prev);
+  }
+
+  function Next(item) {
+    onComponentSwitch(item);
+  }
+
   return (
-    <div className={styles.createnew}>
+    <div className={styles.createnew} onClick={Create}>
       <svg
         width='24'
         height='24'
@@ -37,6 +46,32 @@ export default function CreateNew() {
           />
         </svg>
       </label>
+
+      {isDropdown && (
+        <ul className={styles.lists}>
+          <li
+            onClick={() => {
+              Next("edit");
+            }}
+          >
+            Quotes
+          </li>
+          <li
+            onClick={() => {
+              Next("invoices");
+            }}
+          >
+            Invoices
+          </li>
+          <li
+            onClick={() => {
+              Next("receipts");
+            }}
+          >
+            Receipts
+          </li>
+        </ul>
+      )}
     </div>
   );
 }

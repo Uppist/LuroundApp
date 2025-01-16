@@ -13,7 +13,7 @@ export default function Financials({ onComponentSwitch }) {
     <section className={styles.financial}>
       <div className={styles.financials}>
         <label>Financials</label>
-        <CreateNew />
+        <CreateNew onComponentSwitch={onComponentSwitch} />
       </div>
 
       <div className={styles.financialcontainer}>

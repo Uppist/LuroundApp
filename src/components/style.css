@@ -71,7 +71,6 @@ textarea {
 .event,
 .bookings,
 .transaction,
-.time-based-container,
 .project-based-container {
   display: grid;
   gap: 24px;
@@ -206,7 +205,6 @@ textarea {
   gap: 16px;
 }
 
-.time-based,
 .project-based {
   border: 1px solid hsla(180, 11%, 89%, 1);
   background-color: white;
@@ -218,7 +216,6 @@ textarea {
   color: hsla(180, 23%, 15%, 1);
 }
 
-.time-based:hover,
 .project-based:hover {
   background-color: hsla(180, 17%, 98%, 1);
 }
@@ -960,14 +957,12 @@ textarea {
   border-radius: 16px;
 }
 
-.time-based-grid-container,
 .project-based-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
 }
 
-.create-time-based,
 .create-project-based {
   padding: 24px 24px 38px 24px;
   border-radius: 16px;
@@ -1033,13 +1028,11 @@ textarea {
   border: 1px solid hsla(180, 23%, 15%, 0.65);
 }
 
-.time-choose-daytime,
 .project-choose-daytime {
   border-radius: 16px;
   background-color: white;
 }
 
-.time-based-back,
 .project-based-back {
   display: flex;
   align-items: center;
@@ -1051,7 +1044,6 @@ textarea {
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.create-time-service,
 .create-project-service {
   display: flex;
   align-items: center;
@@ -1103,25 +1095,6 @@ textarea {
   border: 1.5px solid hsla(180, 11%, 89%, 1);
 }
 
-.pricing-time-based {
-  padding: 24px;
-  font-size: 18px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.time-choose-daytime > hr {
-  margin: 0;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.input-time {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
 .warning-container {
   display: grid;
   gap: 12px;
@@ -1138,12 +1111,6 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.input-time-container {
-  display: flex;
-  align-items: end;
-  gap: 16px;
 }
 
 .input-time-container2 {

@@ -1,5 +1,6 @@
 /** @format */
 import { useState } from "react";
+import styles from "./Time.module.css";
 export default function PricingTime({ next }) {
   const [IsAddTime, setIsAddTime] = useState([]);
 
@@ -16,14 +17,14 @@ export default function PricingTime({ next }) {
 
   return (
     <>
-      <div className='pricing-time-based'>
+      <div className={styles.pricingtimebased}>
         <span>Pricing</span>
       </div>
       <hr />
 
-      <div className='input-time'>
-        <div className='warning-container'>
-          <div className='first-warning'>
+      <div className={styles.inputtime}>
+        <div className={styles.warning}>
+          <div className={styles.firstwarning}>
             <svg
               width='14'
               height='15'
@@ -56,7 +57,7 @@ export default function PricingTime({ next }) {
             <span>Input ‘0’ in both input boxes for free services</span>
           </div>
 
-          <div className='second-warning'>
+          <div className={styles.secondwarning}>
             <svg
               width='14'
               height='15'
@@ -91,14 +92,14 @@ export default function PricingTime({ next }) {
             </span>
           </div>
         </div>
-        <div className='time-container'>
-          <div className='inperson-virtual'>
+        <div className={styles.timecontainer}>
+          <div className={styles.inpersonvirtual}>
             <span>Virtual</span>
             <span>In-person</span>
           </div>
-          <div className='input-time-container'>
-            <div className='button-mins'>
-              <button className='button-timer'>
+          <div className={styles.inputtimecontainer}>
+            <div className={styles.buttonmins}>
+              <button className={styles.buttontimer}>
                 <div>
                   <svg
                     width='20'
@@ -120,12 +121,12 @@ export default function PricingTime({ next }) {
               <span>Min</span>
             </div>
 
-            <div className='naira-virtual-inperson'>
-              <div className='naira-virtual'>
+            <div className={styles.nairavirtualinperson}>
+              <div className={styles.nairavirtual}>
                 <input />
               </div>
 
-              <div className='naira-inperson'>
+              <div className={styles.nairainperson}>
                 <input />
               </div>
               <svg
@@ -148,12 +149,12 @@ export default function PricingTime({ next }) {
             </div>
           </div>
 
-          <div className='add-time-slot'>
+          <div className={styles.addtimeslot}>
             {IsAddTime.map((slot) => (
               <div key={slot.id} className='time-slot'>
-                <div className='input-time-container'>
-                  <div className='button-mins'>
-                    <button className='button-timer'>
+                <div className={styles.inputtimecontainer}>
+                  <div className={styles.buttonmins}>
+                    <button className={styles.buttontimer}>
                       <div>
                         <svg
                           width='20'
@@ -175,12 +176,12 @@ export default function PricingTime({ next }) {
                     <span>Min</span>
                   </div>
 
-                  <div className='naira-virtual-inperson'>
-                    <div className='naira-virtual'>
+                  <div className={styles.nairavirtualinperson}>
+                    <div className={styles.nairavirtual}>
                       <input />
                     </div>
 
-                    <div className='naira-inperson'>
+                    <div className={styles.nairainperson}>
                       <input />
                     </div>
                     <svg
@@ -207,7 +208,7 @@ export default function PricingTime({ next }) {
           </div>
         </div>
         <div>
-          <button className='add-time-button' onClick={AddTime}>
+          <button className={styles.addtimebutton} onClick={AddTime}>
             <svg
               width='20'
               height='20'
@@ -230,7 +231,7 @@ export default function PricingTime({ next }) {
         </div>
 
         <div>
-          <button className='next' onClick={next}>
+          <button className={styles.next} onClick={next}>
             Next
           </button>
         </div>

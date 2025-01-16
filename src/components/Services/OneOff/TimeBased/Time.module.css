@@ -1,0 +1,261 @@
+/** @format */
+.timebasedcontainer {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+}
+
+.time-based {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter";
+  padding: 12px;
+  color: hsla(180, 23%, 15%, 1);
+}
+.time-based:hover {
+  background-color: hsla(180, 17%, 98%, 1);
+}
+
+.timebasedgridcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.timebasedback {
+  display: flex;
+  align-items: center;
+  background-color: rgba(248, 250, 250, 1);
+  border: 0;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.createtimebased {
+  padding: 24px 24px 38px 24px;
+  border-radius: 16px;
+  background-color: white;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.createtimeservice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
+}
+.choose {
+  position: absolute;
+  margin-top: -75px;
+  margin-left: 265px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: end;
+}
+
+.gallery {
+  background-color: hsla(0, 0%, 27%, 0.74);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.timechoosedaytime {
+  border-radius: 16px;
+  background-color: white;
+}
+.timechoosedaytime > hr {
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+/*Pricing styling*/
+
+.pricingtimebased {
+  padding: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.inputtime {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.warning {
+  display: grid;
+  gap: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 12px;
+  font-weight: 500;
+  background-color: hsla(197, 100%, 11%, 1);
+  color: hsla(198, 100%, 96%, 1);
+}
+
+.firstwarning,
+.secondwarning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.timecontainer {
+  display: grid;
+  gap: 24px;
+}
+.inpersonvirtual {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-left: 110px;
+  width: 300px;
+  justify-content: space-around;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.inpersonvirtual > svg {
+  margin-top: 40px;
+}
+
+.inputtimecontainer {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+}
+.buttonmins {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.buttontimer {
+  padding: 14px 58px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+  background-color: white;
+}
+
+.buttontimer > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.nairavirtualinperson {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nairavirtual > input,
+.nairainperson > input {
+  background-color: white;
+  width: 100px;
+  padding: 14px 14px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+}
+
+.inpersonvirtual > svg {
+  margin-top: 40px;
+}
+
+.addtimeslot {
+  display: grid;
+  gap: 24px;
+}
+.addtimebutton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  background-color: white;
+  border: 0;
+}
+.next {
+  float: right;
+  border: 0;
+  padding: 12px 51px;
+  border-radius: 16px;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.next:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+/*Day Time styling*/
+
+.reschedulebook {
+  border: 0;
+  background-color: white;
+  font-size: 16px;
+  font-family: "Inter";
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+  padding: 24px 12px;
+}
+
+.timebookingperiod {
+  display: grid;
+  gap: 32px;
+}
+
+.done {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+}
+
+.canceltime,
+.donetime {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.donetime {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}

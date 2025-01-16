@@ -1,6 +1,7 @@
 /** @format */
 import { useState } from "react";
 import Time from "./Time";
+import styles from "./Time.module.css";
 import BookingPeriod from "./BookingPeriod";
 export default function DayTime({ backprice, backone, showPart, showSvg }) {
   const [period] = useState(["1", "2", "3", "4", "5"]);
@@ -13,7 +14,7 @@ export default function DayTime({ backprice, backone, showPart, showSvg }) {
 
   return (
     <>
-      <button className='reschedulebook' onClick={backprice}>
+      <button className={styles.reschedulebook} onClick={backprice}>
         {showSvg && (
           <svg
             width='7'
@@ -36,8 +37,8 @@ export default function DayTime({ backprice, backone, showPart, showSvg }) {
       </button>
       <hr />
 
-      <div className='input-time'>
-        <div className='warning-container first-warning'>
+      <div className={styles.inputtime}>
+        <div className={`${styles.warning} ${styles.firstwarning}`}>
           <svg
             width='14'
             height='15'
@@ -68,15 +69,15 @@ export default function DayTime({ backprice, backone, showPart, showSvg }) {
           </svg>
           <span>Make sure to input time in every selected day</span>
         </div>
-        <div className='time-booking-period'>
+        <div className={styles.time}>
           <Time />
           {showPart && <BookingPeriod />}
         </div>
-        <div className='cancel-done'>
-          <button className='cancel-time' onClick={backone}>
+        <div className={styles.done}>
+          <button className={styles.canceltime} onClick={backone}>
             Cancel
           </button>
-          <button className='done-time' onClick={backone}>
+          <button className={styles.donetime} onClick={backone}>
             Done
           </button>
         </div>

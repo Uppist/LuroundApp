@@ -1,5 +1,7 @@
 /** @format */
 import { useState } from "react";
+import styles from "./Time.module.css";
+
 export default function BookingPeriod() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("3 months");

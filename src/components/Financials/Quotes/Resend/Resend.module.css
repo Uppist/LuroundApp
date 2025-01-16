@@ -1,0 +1,95 @@
+/** @format */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
+}
+.resend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  z-index: 1001;
+  width: 500px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.resend label {
+  cursor: pointer;
+}
+
+.email {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  z-index: 1001;
+  width: 500px;
+  font-weight: 500;
+}
+
+.quotesvg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.receiver {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+  margin-bottom: 30px;
+}
+
+.canceltime,
+.donetime {
+  padding: 8px 34px;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 23%, 15%, 0.8);
+  font-weight: 600;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.donetime {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+  border: 0;
+}
+.cancelsubmit {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}

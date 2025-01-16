@@ -1,5 +1,7 @@
 /** @format */
 import { useState } from "react";
+import styles from "./Time.module.css";
+
 export default function Time() {
   const [isOpen, setIsOpen] = useState({});
   const [selectedOption, setSelectedOption] = useState({});

@@ -4,9 +4,22 @@ import React, { useState } from "react";
 import styles from "./Quotes.module.css";
 import CreateNew from "../CreateNew";
 import quote from "./Quotes.json";
+import View from "./View/View";
+import Resend from "./Resend/Resend";
+import Delete from "./Delete";
+import Convert from "./Convert/Convert";
 
 export default function Quotes({ onComponentSwitch }) {
+  const [isActive, setIsActive] = useState(null);
   const [isOption, setIsOption] = useState(null);
+
+  function OpenModal(Active) {
+    setIsActive(Active);
+  }
+
+  function CloseView() {
+    setIsActive(null);
+  }
 
   function handleBack(item) {
     onComponentSwitch(item);
@@ -45,7 +58,7 @@ export default function Quotes({ onComponentSwitch }) {
           </svg>
           <label>Quotes</label>
         </div>
-        <CreateNew />
+        <CreateNew onComponentSwitch={onComponentSwitch} />
       </div>
 
       <div className={styles.quotecontainer}>
@@ -131,15 +144,15 @@ export default function Quotes({ onComponentSwitch }) {
                   //   <div className={styles.popup}>
                   //     <div className={styles.overlay} onClick={closeOption}>
                   //   <div className={styles.listoption}>
-                  <ul>
-                    <li onClick={() => handleBack("view")}>View</li>
+                  <ul className={styles.lists}>
+                    <li onClick={() => OpenModal("view")}>View</li>
                     <li onClick={() => handleBack("edit")}>Edit</li>
-                    <li>Resend</li>
+                    <li onClick={() => OpenModal("resend")}>Resend</li>
                     <li>Download</li>
-                    <li onClick={() => handleBack("convert")}>
+                    <li onClick={() => OpenModal("convert")}>
                       Convert to Invoice
                     </li>
-                    <li>Delete</li>
+                    <li onClick={() => OpenModal("delete")}>Delete</li>
                   </ul>
                   //   </div>
                   // </div>
@@ -150,6 +163,11 @@ export default function Quotes({ onComponentSwitch }) {
               <hr />
             </div>
           ))}
+
+          {isActive === "view" && <View CloseView={CloseView} />}
+          {isActive === "resend" && <Resend CloseView={CloseView} />}
+          {isActive === "convert" && <Convert CloseView={CloseView} />}
+          {isActive === "delete" && <Delete CloseView={CloseView} />}
         </div>
       </div>
     </section>
