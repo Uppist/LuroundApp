@@ -34,11 +34,11 @@ export default function Time() {
 
   return (
     <>
-      <div className='inperson-virtual to-fro'>
+      <div className={`${styles.inpersonvirtual} ${styles.tofro}`}>
         <span>From</span>
         <span>To</span>
       </div>
-      <div className='day-checked-container'>
+      <div className={styles.daycheckedcontainer}>
         {[
           "Monday",
           "Tuesday",
@@ -48,7 +48,10 @@ export default function Time() {
           "Saturday",
           "Sunday",
         ].map((option, index) => (
-          <div key={index} className='input-time-container days-selection'>
+          <div
+            key={index}
+            className={`${styles.inputtimecontainer} ${styles.daysselection}`}
+          >
             <div>
               <div>
                 <input
@@ -59,11 +62,13 @@ export default function Time() {
                 <label htmlFor={`check-${index}`}>{option}</label>
               </div>
             </div>
-            <div className='naira-virtual-inperson time-selection'>
-              <div className='naira-virtual'>
+            <div
+              className={`${styles.nairavirtualinperson} ${styles.timeselection}`}
+            >
+              <div className={styles.nairavirtual}>
                 <div className='dropdown'>
                   <div
-                    className={`select-time-container ${
+                    className={`${styles.selecttimecontainer} ${
                       isOpen[index] ? "select-clicked" : ""
                     }`}
                     onClick={() => dropDown(index)}
@@ -73,7 +78,7 @@ export default function Time() {
                     </span>
                   </div>
                   {isOpen[index] && (
-                    <ul className='menu'>
+                    <ul className={styles.menu}>
                       {time.map((option) => (
                         <li
                           key={option}
@@ -89,10 +94,10 @@ export default function Time() {
                   )}
                 </div>
               </div>
-              <div className='naira-inperson'>
+              <div className={styles.nairainperson}>
                 <div className='dropdown'>
                   <div
-                    className={`select-time-container ${
+                    className={`${styles.selecttimecontainer} ${
                       isOpen[index] ? "select-clicked" : ""
                     }`}
                     onClick={() => dropDown(index)}
@@ -102,7 +107,7 @@ export default function Time() {
                     </span>
                   </div>
                   {isOpen[index] && (
-                    <ul className='menu'>
+                    <ul className={styles.menu}>
                       {time.map((option) => (
                         <li
                           key={option}

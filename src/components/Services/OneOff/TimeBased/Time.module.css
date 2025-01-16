@@ -7,20 +7,6 @@
   top: 60px;
 }
 
-.time-based {
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  background-color: white;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  font-family: "Inter";
-  padding: 12px;
-  color: hsla(180, 23%, 15%, 1);
-}
-.time-based:hover {
-  background-color: hsla(180, 17%, 98%, 1);
-}
-
 .timebasedgridcontainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -56,14 +42,21 @@
   font-weight: 600;
   color: hsla(197, 100%, 11%, 1);
 }
+
+.createtimeservice img {
+  width: 415px;
+}
 .choose {
   position: absolute;
   margin-top: -75px;
-  margin-left: 265px;
+  margin-left: 220px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: end;
+}
+.photo {
+  display: none;
 }
 
 .gallery {
@@ -121,7 +114,7 @@
   align-items: center;
   gap: 8px;
 }
-.timecontainer {
+.time {
   display: grid;
   gap: 24px;
 }
@@ -258,4 +251,115 @@
 .donetime {
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
+}
+
+/*Time styling*/
+.tofro {
+  margin-left: 150px;
+  width: 280px;
+}
+
+.menu {
+  list-style: none;
+  background-color: white;
+  border-radius: 0px 0px 4px 4px;
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  gap: 4px;
+  position: absolute;
+  transition: 0.4s;
+  z-index: 1;
+  color: hsla(180, 23%, 15%, 0.8);
+  margin: 0;
+}
+
+.daysselection {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.daycheckedcontainer {
+  display: grid;
+  gap: 24px;
+}
+
+.daysselection > div > div {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.selecttimecontainer {
+  transition: 0.4s;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  border: 1px solid hsla(180, 5%, 26%, 1);
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 14px 44px 14px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+/*Booking Peroid styling*/
+
+.bookingnotice {
+  display: grid;
+  gap: 24px;
+}
+
+.bookingperiod {
+  display: grid;
+  gap: 16px;
+}
+
+.pbooking {
+  display: grid;
+  gap: 4px;
+}
+
+.pbooking span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+.pbooking p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.bookingperiod button {
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.bookingmonth {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.buttons button {
+  width: 240px;
+  border-radius: 16px;
+  padding: 16px 24px;
+  background-color: white;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
 }

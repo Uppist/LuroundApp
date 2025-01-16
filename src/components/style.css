@@ -70,8 +70,7 @@ textarea {
 .program,
 .event,
 .bookings,
-.transaction,
-.project-based-container {
+.transaction {
   display: grid;
   gap: 24px;
   margin: 25px;
@@ -957,22 +956,6 @@ textarea {
   border-radius: 16px;
 }
 
-.project-based-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-}
-
-.create-project-based {
-  padding: 24px 24px 38px 24px;
-  border-radius: 16px;
-  background-color: white;
-  display: flex;
-  height: fit-content;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .program-calendar {
   display: grid;
   gap: 24px;
@@ -1028,39 +1011,12 @@ textarea {
   border: 1px solid hsla(180, 23%, 15%, 0.65);
 }
 
-.project-choose-daytime {
-  border-radius: 16px;
-  background-color: white;
-}
-
-.project-based-back {
-  display: flex;
-  align-items: center;
-  background-color: rgba(248, 250, 250, 1);
-  border: 0;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.create-project-service {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 600;
-  color: hsla(197, 100%, 11%, 1);
-}
-
-.time-service-description,
-.project-service-description {
+.time-service-description {
   display: grid;
   gap: 32px;
 }
 
-.time-service,
-.project-service {
+.time-service {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1069,15 +1025,13 @@ textarea {
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.time-service > input,
-.project-service > input {
+.time-service > input {
   padding: 16px 24px;
   border-radius: 16px;
   border: 1.5px solid hsla(180, 11%, 89%, 1);
 }
 
-.time-description,
-.project-description {
+.time-description {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1086,8 +1040,7 @@ textarea {
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.time-description > textarea,
-.project-description > textarea {
+.time-description > textarea {
   height: 196px !important;
   width: -webkit-fill-available !important;
   border-radius: 16px;
@@ -1242,6 +1195,7 @@ textarea {
 }
 
 .checkbox {
+  padding: 0;
   position: relative;
   appearance: none;
   -webkit-appearance: none;
@@ -1317,78 +1271,24 @@ input:checked + .toggle::before {
   opacity: 1;
 }
 
-.booking-notice-appoint {
-  display: grid;
-  gap: 24px;
-}
-
-.booking-period,
-.notice-period,
-.appointment-buffer {
-  display: grid;
-  gap: 16px;
-}
-
-.p-booking,
-.p-notice,
-.p-appoint {
-  display: grid;
-  gap: 4px;
-}
-.p-booking span,
-.p-notice span,
-.p-appoint span {
+.time-based {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.p-booking p,
-.p-notice p,
-.p-appoint p {
-  margin: 0;
-  font-size: 12px;
   font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.65);
+  font-family: "Inter";
+  padding: 12px;
+  color: hsla(180, 23%, 15%, 1);
 }
-
-.booking-period button {
-  padding: 16px 24px;
-  background-color: white;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-
-.booking-month {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.65);
-}
-
-.buttons {
-  display: flex;
-  gap: 24px;
-}
-
-.buttons button {
-  width: 240px;
-  border-radius: 16px;
-  padding: 16px 24px;
-  background-color: white;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
+.time-based:hover {
+  background-color: hsla(180, 17%, 98%, 1);
 }
 
 .cancel-done {
   display: flex;
   justify-content: end;
   gap: 24px;
-}
-
-.time-booking-period {
-  display: grid;
-  gap: 32px;
 }
 
 .cancel-time,
@@ -1499,45 +1399,6 @@ input:checked + .toggle::before {
 
 .circle-offer span {
   text-transform: capitalize;
-}
-
-.pricing-project {
-  display: grid;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.nigeria-price {
-  display: flex;
-  gap: 24px;
-}
-
-.nigeria-price button {
-  width: 136px;
-  height: 56px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  background-color: white;
-  padding: 16px;
-}
-
-.nigeria-down {
-  display: flex;
-  gap: 4px;
-}
-
-.ngn-down {
-  display: flex;
-  gap: 24px;
-}
-
-.nigeria-price input {
-  padding: 16px 24px;
-  width: 150px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .title-service {

@@ -30,15 +30,15 @@ export default function BookingPeriod() {
     "12 months",
   ]);
   return (
-    <div className='booking-notice-appoint'>
-      <div className='booking-period'>
-        <div className='p-booking'>
+    <div className={styles.bookingnotice}>
+      <div className={styles.bookingperiod}>
+        <div className={styles.pbooking}>
           <span>Booking period</span>
           <p>how far in advance can attendees book?</p>
         </div>
 
         <button>
-          <div className='booking-month' onClick={dropDownMonth}>
+          <div className={styles.bookingmonth} onClick={dropDownMonth}>
             <span>{selectedOption}</span>
 
             <svg
@@ -59,7 +59,7 @@ export default function BookingPeriod() {
             </svg>
 
             {isOpen && (
-              <ul className='menu'>
+              <ul className={styles.menu}>
                 {months.map((monthOption, monthIndex) => (
                   <li
                     key={monthIndex}
@@ -77,14 +77,14 @@ export default function BookingPeriod() {
         </button>
       </div>
 
-      <div className='notice-period'>
-        <div className='p-notice'>
+      <div className={styles.bookingperiod}>
+        <div className={styles.pbooking}>
           <span>Notice period</span>
           <p>how far in advance can attendees book?</p>
         </div>
-        <div className='buttons'>
+        <div className={styles.buttons}>
           <button>
-            <div className='booking-month'>
+            <div className={styles.bookingmonth}>
               <span>2</span>
               <svg
                 width='16'
@@ -105,7 +105,7 @@ export default function BookingPeriod() {
             </div>
           </button>
           <button>
-            <div className='booking-month'>
+            <div className={styles.bookingmonth}>
               <span>days</span>
 
               <svg
@@ -129,14 +129,14 @@ export default function BookingPeriod() {
         </div>
       </div>
 
-      <div className='appointment-buffer'>
-        <div className='p-appoint'>
+      <div className={styles.bookingperiod}>
+        <div className={styles.pbooking}>
           <span>Appointment buffer</span>
           <p>how far in advance can attendees book?</p>
         </div>
-        <div className='buttons'>
+        <div className={styles.buttons}>
           <button>
-            <div className='booking-month'>
+            <div className={styles.bookingmonth}>
               <span>30</span>
               <svg
                 width='16'
@@ -157,7 +157,7 @@ export default function BookingPeriod() {
             </div>
           </button>
           <button>
-            <div className='booking-month'>
+            <div className={styles.bookingmonth}>
               <span>minutes</span>
               <svg
                 width='16'

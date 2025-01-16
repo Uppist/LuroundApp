@@ -79,7 +79,7 @@ export default function Timebased() {
                 <img src={image} alt='' />
                 <div className={styles.choose}>
                   <div className={styles.gallery}>
-                    <label>Choose from Gallery</label>
+                    <label htmlFor='photo-edit'>Choose from Gallery</label>
                     <svg
                       width='20'
                       height='20'
@@ -92,6 +92,15 @@ export default function Timebased() {
                         fill='white'
                       />
                     </svg>
+                    <input
+                      type='file'
+                      // ref={inputRef}
+                      name='upload2'
+                      // onChange={handleChange}
+                      className={styles.photo}
+                      id='photo-edit'
+                      accept='image/png, image/jpeg, image/img'
+                    />
                   </div>
                   <div className={styles.gallery}>
                     <label>Upload</label>
