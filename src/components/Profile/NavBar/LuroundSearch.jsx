@@ -18,7 +18,6 @@ export default function Search({
   const [value, setValue] = useState("");
   const [isdropDown, setIsdropdown] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
-
   const [isShareProfile, setisShareProfile] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
   function LogOut() {
@@ -117,6 +116,7 @@ export default function Search({
         </div>
         <li className={styles.icons}>
           <svg
+            onClick={() => handleItemClick("settings")}
             className={styles.notification}
             width='32'
             height='32'

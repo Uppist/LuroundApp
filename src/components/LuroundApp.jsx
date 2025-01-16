@@ -25,6 +25,7 @@ import View from "./Financials/Quotes/View/View";
 import Edit from "./Financials/Quotes/Edit/Edit";
 import Convert from "./Financials/Quotes/Convert/Convert";
 import Resend from "./Financials/Quotes/Resend/Resend";
+import Settings from "./Profile/Settings/Settings";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -357,6 +358,7 @@ export default function LuroundApp() {
                   fileSizeInMB={fileSizeInMB}
                 />
               )}
+              {activeComponent === "settings" && <Settings />}
               {activeComponent === "oneoff" && <One />}
               {activeComponent === "retainer" && <Retainer />}
               {activeComponent === "program" && <Program />}
