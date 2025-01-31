@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import TransactionTime from "./TransactionAllTime";
-import SavedAccount from "./SavedAccount";
 import Withdraw from "./Withdraw";
+import Account from "./SavedAccount/Account";
 export default function Transaction() {
   const [isAlltime, setIsAlltime] = useState(false);
   const [selectedTime, setSelectedTime] = useState("All time");
@@ -45,7 +45,7 @@ export default function Transaction() {
     <>
       {isConfirm ? (
         <>
-          <SavedAccount confirm={Confirm} onClose={closeModal} />
+          <Account confirm={Confirm} onClose={closeModal} />
         </>
       ) : (
         <div className='transaction'>

@@ -109,9 +109,8 @@
 }
 
 .contenttype {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  gap: 48px;
 }
 .personal {
   font-size: 16px;
@@ -135,7 +134,7 @@
 .text {
   width: 450px;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 16px;
   color: hsla(180, 5%, 43%, 1);
 }
 
@@ -221,37 +220,45 @@ input[type="radio"]:checked {
   transition: 0.4s;
 }
 
-.mins-arrow svg {
+.minsarrow svg {
   width: 24px;
   height: 24px;
 }
 
-.virtual-bg .radio-virtual > div,
-.virtual-bg .pricing-amount .pricing,
-.virtual-bg .pricing-amount .pricing .mins-arrow,
-.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
-.virtual-bg .pricing-amount .pricing .naira-session,
-.virtual-bg .pricing-amount .naira-session > span {
+/* .virtualbg .radiovirtual > div,
+.virtualbg .pricingamount .pricing,
+.virtualbg .pricingamount .pricing .minsarrow,
+.virtualbg .pricingamount .pricing .minsarrow > svg,
+.virtualbg .pricingamount .pricing .nairasession,
+.virtualbg .pricingamount .nairasession > span {
   color: white;
-}
+} */
 
-.virtual-bg .pricing-amount .pricing .mins-arrow > svg,
-.in-person-bg .pricing-amount .pricing .mins-arrow > svg {
+/* .virtualbg .pricingamount .pricing .minsarrow > svg,
+.inpersonbg .pricingamount .pricing .minsarrow > svg {
   background-color: white;
 }
 
-.in-person-bg .pricing-amount .pricing .mins-arrow,
-.virtual-bg .pricing-amount .pricing .mins-arrow {
+.inpersonbg .pricingamount .pricing .minsarrow,
+.virtualbg .pricingamount .pricing .minsarrow {
+  border-bottom: 1px solid white;
+} */
+
+.inpersonbg .radiovirtual > div,
+.inpersonbg .pricingamount .pricing,
+.inpersonbg .pricingamount .pricing .minsarrow,
+.inpersonbg .pricingamount .pricing .nairasession,
+.inpersonbg .pricingamount .nairasession > span {
+  color: white;
+}
+.inpersonbg .pricingamount .pricing .minsarrow {
   border-bottom: 1px solid white;
 }
 
-.in-person-bg .radio-virtual > div,
-.in-person-bg .pricing-amount .pricing,
-.in-person-bg .pricing-amount .pricing .mins-arrow,
-.in-person-bg .pricing-amount .pricing .naira-session,
-.in-person-bg .pricing-amount .naira-session > span {
+/* .inperson span,
+.virtual span {
   color: white;
-}
+} */
 
 .pricing {
   display: flex;

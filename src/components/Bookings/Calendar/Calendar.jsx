@@ -3,6 +3,7 @@
 /** @format */
 import React, { useState, useEffect } from "react";
 import SelectTime from "./Time";
+import styles from "./Calendar.module.css";
 
 export default function Calendar({ booking, ChangeBack, onSeeLess }) {
   const [currentDate, setcurrentDate] = useState(new Date());
@@ -43,10 +44,10 @@ export default function Calendar({ booking, ChangeBack, onSeeLess }) {
   return (
     <>
       {!selectedTime ? (
-        <div className='fullcalendar'>
-          <span className='select'>Select Date</span>
-          <div className='calendar'>
-            <div className='header'>
+        <div className={styles.fullcalendar}>
+          <span className={styles.select}>Select Date</span>
+          <div className={styles.calendar}>
+            <div className={styles.header}>
               <svg
                 onClick={prevMonth}
                 width='7'
@@ -87,23 +88,23 @@ export default function Calendar({ booking, ChangeBack, onSeeLess }) {
               </svg>
             </div>
             <div>
-              <div className='day-names'>
+              <div className={styles.daynames}>
                 {dayNames.map((day) => (
-                  <div key={day} className='day-name'>
+                  <div key={day} className={styles.dayname}>
                     {day}
                   </div>
                 ))}
               </div>
 
-              <div className='days'>
+              <div className={styles.days}>
                 {Array.from({ length: startDay }).map((_, index) => (
-                  <div key={index} className='empty-day'></div>
+                  <div key={index} className={styles.emptyday}></div>
                 ))}
 
                 {daysInMonth.map((day) => (
                   <div
                     key={day}
-                    className={`day ${
+                    className={`${styles.day} ${
                       day.getDate() === new Date().getDate() &&
                       day.getMonth() === new Date().getMonth()
                         ? "today"
@@ -111,7 +112,7 @@ export default function Calendar({ booking, ChangeBack, onSeeLess }) {
                     }${
                       selectedDate &&
                       day.toDateString() === selectedDate.toDateString()
-                        ? "selected"
+                        ? `${styles.selected}`
                         : ""
                     }`}
                     onClick={() => handleDateClick(day)}

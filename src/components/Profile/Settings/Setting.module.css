@@ -5,7 +5,7 @@
   margin: 25px;
   gap: 24px;
   position: relative;
-  top: 60px;
+  top: 80px;
 }
 
 .settings > label {
@@ -35,11 +35,15 @@
 }
 .settingsfirst span {
   padding: 16px 24px;
-  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  /* border-bottom: 1px solid hsla(180, 11%, 89%, 1); */
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
+}
+
+.settingsfirst span:hover {
+  background-color: hsla(180, 11%, 89%, 1);
 }
 
 .withdraw {
@@ -47,11 +51,27 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
+}
+
+.withdrawul {
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.withdrawul > ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+  padding: 0px 24px;
 }
 
 .settingssecond {
@@ -209,4 +229,153 @@ input:checked + .toggle::before {
   font-weight: 400;
   color: hsla(180, 23%, 15%, 0.8);
   margin: 0;
+}
+
+/*Bank Details*/
+
+.account {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  z-index: 1001;
+  display: grid;
+  gap: 32px;
+  width: 548px;
+}
+
+.bankcontainer {
+  display: grid;
+  gap: 32px;
+}
+
+.accountcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accountcontainer span {
+  font-size: 18px;
+  font-weight: 500;
+
+  color: hsla(197, 100%, 11%, 1);
+}
+
+.accountcontainer label {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.inputbank {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputbank span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.inputbank input {
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.selectbank {
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+.banktext {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*Delete Account*/
+.whydelete {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.whydelete textarea {
+  width: 478px !important;
+  height: 56px !important;
+}
+
+.checkdelete {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkdelete label {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.checkbox {
+  padding: 0;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1.5px solid hsla(180, 23%, 15%, 1);
+  width: 20px;
+  border-radius: 4px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  background-color: hsla(180, 100%, 40%, 1);
+  border: 0;
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: 2px solid transparent;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox:checked::before {
+  border-color: white;
+}
+
+input:checked + .toggle {
+  background-color: hsla(180, 100%, 40%, 1);
+}
+input:checked + .toggle::before {
+  transform: translateX(13px);
+}
+
+.delete {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 8px;
+  border: 0;
+  font-weight: 400;
+  font-size: 16px;
+  background-color: hsla(0, 69%, 49%, 1);
+  color: white;
+}
+
+.package {
+  font-size: 12px;
 }

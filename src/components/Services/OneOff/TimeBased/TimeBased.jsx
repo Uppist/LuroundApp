@@ -75,7 +75,7 @@ export default function Timebased() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className={styles.imgchoose}>
                 <img src={image} alt='' />
                 <div className={styles.choose}>
                   <div className={styles.gallery}>

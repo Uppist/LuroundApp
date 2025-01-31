@@ -1,9 +1,24 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Contact.module.css";
 
-export default function Addcontact({ CancelAddContact }) {
+export default function Addcontact({
+  CancelAddContact,
+  handleOneOffClick,
+  isValue,
+  Values,
+  contacts,
+  setContacts,
+  setIsValue,
+}) {
+  function Submit() {
+    console.log("Names: ", isValue);
+    setContacts([...contacts, isValue]);
+    setIsValue({ name: "", email: "", phone: "" });
+    handleOneOffClick("contactsaved");
+    CancelAddContact();
+  }
   return (
     <div className='popupcancel popupwithdrawpin'>
       <div className='overlay' onClick={CancelAddContact}></div>
@@ -35,15 +50,31 @@ export default function Addcontact({ CancelAddContact }) {
         <div className={styles.contactinfo}>
           <div className={styles.contactdetails}>
             <label>Name</label>
-            <input placeholder='Name' />
+            <input
+              placeholder='Name'
+              name='name'
+              value={isValue.name}
+              onChange={Values}
+            />
           </div>
           <div className={styles.contactdetails}>
             <label>Email address</label>
-            <input placeholder='Email address' type='email' />
+            <input
+              placeholder='Email address'
+              type='email'
+              name='email'
+              value={isValue.email}
+              onChange={Values}
+            />
           </div>
           <div className={styles.contactdetails}>
             <label>Phone number</label>
-            <input placeholder='Phone number' />
+            <input
+              placeholder='Phone number'
+              name='phone'
+              value={isValue.phone}
+              onChange={Values}
+            />
           </div>
         </div>
 
@@ -51,7 +82,9 @@ export default function Addcontact({ CancelAddContact }) {
           <button className={styles.cancel} onClick={CancelAddContact}>
             Cancel
           </button>
-          <button className={styles.next}>Save</button>
+          <button className={styles.next} onClick={Submit}>
+            Save
+          </button>
         </div>
       </div>
     </div>

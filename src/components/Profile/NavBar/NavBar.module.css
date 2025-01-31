@@ -262,12 +262,18 @@
   border: 1px solid hsla(180, 11%, 89%, 1);
   border-right: 0px;
   border-left: 0px;
+  cursor: pointer;
+}
+
+.notificationbooked:hover {
+  background-color: white;
 }
 
 .notificationbooked > div {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: pointer;
 }
 
 .notificationdropdown > label {
@@ -276,6 +282,7 @@
   font-size: 16px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
+  cursor: pointer;
 }
 
 .notificationname {

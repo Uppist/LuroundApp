@@ -1,21 +1,26 @@
 /** @format */
+import styles from "./style.module.css";
 
-export default function AddBank({ onExit }) {
+export default function AddBank({ CancelAddAccount, handleOneOffClick }) {
+  function Next() {
+    handleOneOffClick("accountsaved");
+    CancelAddAccount();
+  }
   return (
     <div>
       <div className='popupcancel popupwithdrawpin'>
-        <div className='overlay' onClick={onExit}></div>
+        <div className='overlay' onClick={CancelAddAccount}></div>
         <div className='withdrawpin'>
-          <div className='select-bank-container'>
-            <div className='set-pin'>
+          <div className={styles.container}>
+            <div className={styles.setpin}>
               <span>Add an account</span>
             </div>
 
-            <div className='account-container'>
-              <div className='input-bank'>
+            <div className={styles.container}>
+              <div className={styles.input}>
                 <span>input or select bank</span>
-                <button className='select-bank'>
-                  <div className='booking-month'>
+                <button className={styles.select}>
+                  <div className={styles.booking}>
                     <span>Bank</span>
 
                     <svg
@@ -38,23 +43,25 @@ export default function AddBank({ onExit }) {
                 </button>
               </div>
 
-              <div className='input-bank'>
+              <div className={styles.input}>
                 <span>Account Number</span>
                 <input type='number' />
               </div>
 
-              <div className='input-bank'>
+              <div className={styles.input}>
                 <span>Account Name</span>
                 <input type='text' />
               </div>
             </div>
           </div>
 
-          <div className='cancel-done'>
-            <button className='cancel-time' onClick={onExit}>
+          <div className={styles.done}>
+            <button className={styles.cancel} onClick={CancelAddAccount}>
               Cancel
             </button>
-            <button className='done-time'>Save</button>
+            <button className={styles.time} onClick={Next}>
+              Save
+            </button>
           </div>
         </div>
       </div>

@@ -5,6 +5,23 @@
   grid-template-columns: 2fr 1fr;
   gap: 24px;
 }
+.timebasedcontainer {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+}
+.timebasedback {
+  display: flex;
+  align-items: center;
+  background-color: rgba(248, 250, 250, 1);
+  border: 0;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
 
 .morecontainer,
 .quickcontainer {
@@ -19,6 +36,7 @@
 
 .quickcontainer {
   padding: 0;
+  height: fit-content;
 }
 
 .morecontainer img {

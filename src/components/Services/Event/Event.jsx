@@ -1,13 +1,16 @@
 /** @format */
 import Create from "../CreateService";
 import { useState } from "react";
-import event from "../../event.json";
+import event from "./event.json";
 import Timebased from "../OneOff/TimeBased/TimeBased";
 import Projectbased from "../OneOff/ProjectBased/ProjectBased";
 import RetainerService from "../Retainer/RetainerService";
 import ProgramService from "../Program/ProgramService";
 import EventService from "./EventService";
 import EventDetail from "./EventDetail";
+import styles from "./Event.module.css";
+import styles2 from "../Retainer/Retainer.module.css";
+import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
 export default function Event() {
   const [isDetail, setisDetail] = useState(null);
 
@@ -60,11 +63,11 @@ export default function Event() {
       ) : isTimeBased ? (
         <Timebased />
       ) : isDetail === null ? (
-        <div className='event'>
-          <div className='retainerservice'>
-            <div className='numberofservice'>
-              <span className='one-offservice'>Event</span>
-              <span className='number'>{event.length}</span>
+        <div className={styles.event}>
+          <div className={styles2.retainerservice}>
+            <div className={styles2.numberofservice}>
+              <span className={styles2.oneoffservice}>Event</span>
+              <span className={styles2.number}>{event.length}</span>
             </div>
             <div className='add-service'>
               <Create
@@ -76,97 +79,73 @@ export default function Event() {
               />
             </div>
           </div>
-          <div className='dataretainer'>
+          <div className={styles2.dataretainer}>
             {event.map((data, index) => (
-              <div className='eacheventcontainer'>
-                <div className='retainercontainer' key={data.Title}>
-                  <div className='days-time-line'>
-                    <div className='days-time'>
-                      <span>{data.firstday}</span>
-                      <hr className='linedays' />
-                      <span>{data.secondday}</span>
+              <div className={styles2.eacheventcontainer}>
+                <div className={styles2.retainercontainer} key={data.Title}>
+                  <div className={styles2.titlecontainer}>
+                    <div className={styles2.daystimeline}>
+                      <div className={styles2.daystime}>
+                        {/* <span>{data.firstday}</span>
+                        <hr className='linedays' />
+                        <span>{data.secondday}</span> */}
+                        <img src={data.image} alt='' />
+                      </div>
+                      {/* <hr className='containerline' /> */}
                     </div>
-                    <hr className='containerline' />
-                  </div>
-                  <div className='personal-training-details'>
-                    <div className='personal-training gap-program'>
-                      <div className='content-type'>
-                        <div className='personal-service'>
-                          <span className='personal1'>{data.Title}</span>
-                          <div className='service-one'>
-                            <span className='servicetype'>
-                              {data.servicetype}
+                    <div className={styles2.personaltrainingdetails}>
+                      <div className={styles2.personaltraining}>
+                        <div className={styles2.contenttype}>
+                          <div>
+                            <span className={styles2.personal}>
+                              {data.Title}
                             </span>
-                            <span className='oneofftext'>{data.oneoff}</span>
+                            {/* <div className='service-one'>
+                              <span className='servicetype'>
+                                {data.servicetype}
+                              </span>
+                              <span className='oneofftext'>{data.oneoff}</span>
+                            </div> */}
+                          </div>
+                          <div className={styles2.textvector}>
+                            <span className={styles2.text}>{data.text}</span>
                           </div>
                         </div>
-                        <div className='textvector'>
-                          <span className='text'>{data.text}</span>
-                        </div>
                       </div>
-                    </div>
-                    <div
-                      className='oneoff-details'
-                      onClick={() => openDetail(index)}
-                    >
-                      <span>Details</span>
-                      <svg
-                        width='7'
-                        height='12'
-                        viewBox='0 0 7 12'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
+                      <div
+                        className={styles2.oneoffdetails}
+                        onClick={() => openDetail(index)}
                       >
-                        <path
-                          d='M1 11L6 6L1 1'
-                          stroke='currentColor'
-                          strokeOpacity='0.8'
-                          strokeWidth='1.5'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className='virtual-inperson '>
-                  <div
-                    className={`price-session  ${
-                      selectRadio[index] === "virtual"
-                        ? "virtual-bg"
-                        : selectRadio[index] === "in-person"
-                        ? "in-person-bg"
-                        : ""
-                    }`}
-                  >
-                    <div className='radio-virtual'>
-                      <div className='virtual'>
-                        <input
-                          type='radio'
-                          name='radio'
-                          onChange={() => radioChange(index, "virtual")}
-                        />
-                        <span>Virtual</span>
-                      </div>
-                      <div className='in-person'>
-                        <input
-                          type='radio'
-                          name='radio'
-                          onChange={() => radioChange(index, "in-person")}
-                        />
-                        <span>In-person</span>
-                      </div>
-                    </div>
-                    <div className='pricing-amount'>
-                      <div className='pricing'>
-                        <span>{data.pricing}</span>
-                      </div>
-                      <div className='naira-session'>
-                        <span className='naira'>{data.amount}</span>
-                        <span className='session'>{data.session}</span>
+                        <span>More details</span>
+                        <svg
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M13.1666 7.81706L3.16663 7.81706'
+                            stroke='#00CCCC'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                          <path
+                            d='M9.13342 3.80083L13.1668 7.81683L9.13342 11.8335'
+                            stroke='#00CCCC'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
                       </div>
                     </div>
                   </div>
+                  <div className={styles2.virtualinperson}>
+                    <hr />
+                    <VirtualContainer data={data} />
+                  </div>{" "}
                 </div>
               </div>
             ))}

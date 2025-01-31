@@ -1,0 +1,208 @@
+/** @format */
+
+.see {
+  display: grid;
+  gap: 24px;
+}
+
+.seedetails {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 24px;
+}
+.seemorecontainer,
+.reschedule {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: white;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  border-radius: 8px;
+  padding: 24px 24px 38px 24px;
+}
+
+.reschedule {
+  padding: 0;
+}
+
+.reschedulebooking {
+  display: grid;
+  gap: 48px;
+}
+.detailscontainer {
+  display: grid;
+  gap: 48px;
+}
+.dateseeless {
+  display: grid;
+  gap: 24px;
+}
+
+.appointmentcon {
+  display: grid;
+  gap: 32px;
+}
+
+.appointmentdate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.appointmentdetails {
+  display: grid;
+  gap: 32px;
+}
+
+.appointment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.bookingtitle {
+  display: grid;
+  gap: 48px;
+}
+.bookingdetails {
+  color: hsla(180, 23%, 15%, 0.8);
+  width: 286px;
+}
+.p {
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.label > span {
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+/*Reschedule component*/
+
+.quickaction {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.quickaction > label {
+  padding: 12px;
+}
+
+.reschedulecontent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reschedulecancel {
+  display: grid;
+  gap: 24px;
+  padding: 0px 12px;
+}
+.rescheduletext,
+.cancel,
+.rescheduletext2,
+.cancel2 {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  background-color: white;
+  border: 0;
+  font-size: 16px;
+  font-family: "Inter";
+}
+
+.rescheduletext > svg:hover,
+.cancel > .svg:hover {
+  color: hsla(180, 100%, 40%, 1);
+}
+
+.rescheduletext:hover,
+.cancel:hover {
+  border: 1.5px solid hsla(180, 100%, 40%, 1);
+  color: hsla(180, 100%, 40%, 1);
+  padding: 16px 24px 16px 0px;
+  border-radius: 16px;
+  width: -webkit-fill-available;
+  cursor: pointer;
+}
+
+.rescheduletext2:hover,
+.cancel2:hover {
+  color: hsla(180, 100%, 40%, 1);
+}
+
+.former {
+  display: grid;
+  gap: 24px;
+}
+
+.linereschedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.linereschedule > hr {
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.reschedulebook {
+  border: 0;
+  background-color: white;
+  font-size: 16px;
+  font-family: "Inter";
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+  padding: 24px 12px;
+}
+
+.formerschedule {
+  display: grid;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.formerschedule > label {
+  padding: 0px 12px;
+}
+
+.formerschedule > hr {
+  width: -webkit-fill-available;
+  margin: 0;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.datetime {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 12px;
+}
+
+.svgdate,
+.svgtime {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  /* width: 150px; */
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 400;
+}

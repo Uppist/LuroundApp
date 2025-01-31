@@ -1,9 +1,19 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Setting.module.css";
+import DeleteAccount from "./DeleteAccount";
 
 export default function Delete() {
+  const [isDelete, setIsDelete] = useState(false);
+
+  function DeleteAcc() {
+    setIsDelete(true);
+  }
+
+  function CloseDelete() {
+    setIsDelete(false);
+  }
   return (
     <>
       <div className={styles.editprofileabout}>
@@ -14,9 +24,11 @@ export default function Delete() {
         </p>
         <div className={styles.canceldone}>
           <button className={styles.canceltime}>Cancel</button>
-          <button type='submit' className={styles.donetime}>
+          <button type='submit' onClick={DeleteAcc} className={styles.donetime}>
             Continue
           </button>
+
+          {isDelete && <DeleteAccount CloseDelete={CloseDelete} />}
         </div>
       </div>
     </>

@@ -1,8 +1,12 @@
 /** @format */
 
 import styles from "./NavBar.module.css";
+import notify from "./Notification.json";
 import jenny from "../../../../public/jennifer.png";
-export default function Notification({ onClose }) {
+export default function Notification({ onClose, onComponentSwitch }) {
+  function Notify(item) {
+    onComponentSwitch(item);
+  }
   return (
     <div>
       <div className={styles.profiledropdown}>
@@ -10,57 +14,26 @@ export default function Notification({ onClose }) {
         <div className={styles.notificationdropdown}>
           <label>Your Notifications</label>
           <div className={styles.scrollablenotification}>
-            <div className={styles.notificationbooked}>
-              <img src={jenny} />
-              <div>
-                <label className={styles.notificationname}>
-                  Jennifer Merit{" "}
-                  <span className={styles.notificationservice}>
-                    booked your service{" "}
-                  </span>
-                </label>
-                <label className={styles.notificationperiod}>1 hour ago</label>
-              </div>
-            </div>
+            {notify.map((data, index) => (
+              <div
+                className={styles.notificationbooked}
+                onClick={() => Notify("bookings")}
+              >
+                <img src={jenny} />
 
-            <div className={styles.notificationbooked}>
-              <img src={jenny} />
-              <div>
-                <label className={styles.notificationname}>
-                  Jennifer Merit{" "}
-                  <span className={styles.notificationservice}>
-                    booked your service{" "}
-                  </span>
-                </label>
-                <label className={styles.notificationperiod}>1 hour ago</label>
+                <div key={index}>
+                  <label className={styles.notificationname}>
+                    {data.Name}{" "}
+                    <span className={styles.notificationservice}>
+                      {data.service}{" "}
+                    </span>
+                  </label>
+                  <label className={styles.notificationperiod}>
+                    {data.time}{" "}
+                  </label>
+                </div>
               </div>
-            </div>
-
-            <div className={styles.notificationbooked}>
-              <img src={jenny} />
-              <div>
-                <label className={styles.notificationname}>
-                  Jennifer Merit{" "}
-                  <span className={styles.notificationservice}>
-                    booked your service{" "}
-                  </span>
-                </label>
-                <label className='notification-period'>1 hour ago</label>
-              </div>
-            </div>
-
-            <div className={styles.notificationbooked}>
-              <img src={jenny} />
-              <div>
-                <label className={styles.notificationname}>
-                  Jennifer Merit{" "}
-                  <span className={styles.notificationservice}>
-                    booked your service{" "}
-                  </span>
-                </label>
-                <label className='notification-period'>1 hour ago</label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

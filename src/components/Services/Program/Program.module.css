@@ -1,0 +1,189 @@
+/** @format */
+
+.program {
+  display: grid;
+  gap: 24px;
+  margin: 25px;
+  position: relative;
+  top: 60px;
+}
+.retainerservice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.oneoffservice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  color: hsla(180, 23%, 15%, 1);
+  font-weight: 600;
+}
+.numberofservice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.number {
+  font-size: 12px;
+  padding: 2px 6px;
+  color: hsla(180, 23%, 15%, 0.65);
+  border: 1px solid hsla(180, 23%, 15%, 0.65);
+  border-radius: 10px;
+}
+
+.eachprogramcontainer {
+  display: grid;
+  gap: 24px;
+}
+
+.retainercontainer {
+  display: flex;
+  width: -webkit-fill-available;
+  gap: 24px;
+  padding: 16px 24px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+  justify-content: space-between;
+}
+
+.retainercontainer:hover {
+  background-color: hsla(180, 12%, 95%, 1);
+  cursor: pointer;
+}
+
+.contenttype {
+  display: grid;
+  gap: 48px;
+}
+
+/*Program Details*/
+
+.detailsvg {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.svg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*Program Service*/
+
+.programcalendar {
+  display: grid;
+  gap: 24px;
+}
+.startcalendar {
+  display: grid;
+  gap: 16px;
+}
+
+.startenddate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.inputcalendar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.inputcalendar input {
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.programrecurrence,
+.noofparticipant {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.programrecurrence button {
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 170px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 23%, 15%, 0.65);
+}
+
+.nigeriaprice {
+  display: flex;
+  gap: 24px;
+}
+
+.nigeriaprice button {
+  width: 136px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: white;
+  padding: 16px;
+}
+
+.nigeriadown {
+  display: flex;
+  gap: 4px;
+}
+
+.ngndown {
+  display: flex;
+  gap: 24px;
+}
+
+.nigeriaprice input {
+  padding: 16px 24px;
+  width: 150px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.programfee {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.programservice {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inperson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

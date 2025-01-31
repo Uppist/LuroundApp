@@ -5,9 +5,9 @@
   gap: 24px;
   margin: 25px;
   position: relative;
-  top: 60px;
+  top: 80px;
   grid-template-columns: 1fr 2fr;
-  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  /* box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04); */
 }
 
 .editprofilefirstcontainer {
@@ -16,7 +16,7 @@
   background-color: white;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
   border-radius: 16px;
-  height: 700px;
+  height: fit-content;
 }
 
 .editprofilefirstcontainer > div {
@@ -31,7 +31,7 @@
 
 .editprofilefirstcontainer span {
   padding: 16px 24px;
-  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  /* border-bottom: 1px solid hsla(180, 11%, 89%, 1); */
   color: hsla(180, 23%, 15%, 0.8);
   font-weight: 500;
   font-size: 14px;

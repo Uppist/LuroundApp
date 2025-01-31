@@ -13,7 +13,8 @@
     "pricing": "Pricing:",
     "minutes": "15 mins",
     "virtual": "Virtual",
-    "amount": "₦25,000"
+    "amount": "₦25,000",
+    "inperson": "N/A"
   },
   {
     "image": "./OneOff/image2.png",
@@ -29,7 +30,8 @@
     "pricing": "Pricing:",
     "minutes": "15 mins",
     "virtual": "in-person",
-    "amount": "₦170,000"
+    "amount": "₦170,000",
+    "inperson": "N/A"
   },
   {
     "image": "./OneOff/image3.png",
@@ -46,7 +48,8 @@
     "pricing": "Pricing:",
     "minutes": "15 mins",
     "virtual": "in-person",
-    "amount": "₦50,000"
+    "amount": "₦50,000",
+    "inperson": "N/A"
   },
 
   {
@@ -64,6 +67,7 @@
     "pricing": "Pricing:",
     "minutes": "15 mins",
     "virtual": "Virtual",
-    "amount": "₦25,000"
+    "amount": "₦25,000",
+    "inperson": "N/A"
   }
 ]

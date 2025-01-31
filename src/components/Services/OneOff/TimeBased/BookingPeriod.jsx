@@ -3,19 +3,32 @@ import { useState } from "react";
 import styles from "./Time.module.css";
 
 export default function BookingPeriod() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("3 months");
+  const [state, setState] = useState({
+    Period: "3 months",
+    Days: "1",
+    Buffer: "15",
+  });
+  const [isOpen, setIsOpen] = useState({
+    Period: false,
+    Days: false,
+    Buffer: false,
+  });
 
-  function handleDropdown(option) {
-    setSelectedOption(option);
-    setIsOpen(false);
+  function handleDropdown(key) {
+    setIsOpen((prev) => ({
+      Period: false,
+      Days: false,
+      Buffer: false,
+      [key]: !prev[key], // Toggle the specific dropdown
+    }));
   }
 
-  function dropDownMonth() {
-    setIsOpen((prev) => !prev);
+  function dropDownMonth(key, value) {
+    setState((prev) => ({ ...prev, [key]: value }));
+    setIsOpen({ Period: false, Days: false, Buffer: false });
   }
 
-  const [months] = useState([
+  const months = [
     "1 month",
     "2 months",
     "3 months",
@@ -28,7 +41,11 @@ export default function BookingPeriod() {
     "10 months",
     "11 months",
     "12 months",
-  ]);
+  ];
+
+  const days = ["1", "2", "3", "4", "5"];
+  const buffer = ["15", "30", "45", "50"];
+
   return (
     <div className={styles.bookingnotice}>
       <div className={styles.bookingperiod}>
@@ -37,55 +54,11 @@ export default function BookingPeriod() {
           <p>how far in advance can attendees book?</p>
         </div>
 
-        <button>
-          <div className={styles.bookingmonth} onClick={dropDownMonth}>
-            <span>{selectedOption}</span>
-
-            <svg
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                stroke='#1D2E2E'
-                strokeOpacity='0.8'
-                strokeMiterlimit='10'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-
-            {isOpen && (
-              <ul className={styles.menu}>
-                {months.map((monthOption, monthIndex) => (
-                  <li
-                    key={monthIndex}
-                    className={`menu-item ${
-                      selectedOption === monthOption ? "active" : ""
-                    }`}
-                    onClick={() => handleDropdown(monthOption)}
-                  >
-                    {monthOption}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </button>
-      </div>
-
-      <div className={styles.bookingperiod}>
-        <div className={styles.pbooking}>
-          <span>Notice period</span>
-          <p>how far in advance can attendees book?</p>
-        </div>
-        <div className={styles.buttons}>
-          <button>
+        <button onClick={() => handleDropdown("Period")}>
+          <div>
             <div className={styles.bookingmonth}>
-              <span>2</span>
+              <span>{state.Period}</span>
+
               <svg
                 width='16'
                 height='16'
@@ -102,6 +75,67 @@ export default function BookingPeriod() {
                   strokeLinejoin='round'
                 />
               </svg>
+            </div>
+
+            {isOpen.Period && (
+              <div className={styles.menubooking}>
+                {months.map((monthOption, monthIndex) => (
+                  <span
+                    key={monthIndex}
+                    className={`${styles.menuitem} ${
+                      state.Period === monthOption ? "active" : ""
+                    }`}
+                    onClick={() => dropDownMonth("Period", monthOption)}
+                  >
+                    {monthOption}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </button>
+      </div>
+
+      <div className={styles.bookingperiod}>
+        <div className={styles.pbooking}>
+          <span>Notice period</span>
+          <p>how far in advance can attendees book?</p>
+        </div>
+        <div className={styles.buttons}>
+          <button onClick={() => handleDropdown("Days")}>
+            <div className={styles.bookingmonth}>
+              <span>{state.Days}</span>
+              <svg
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                  stroke='#1D2E2E'
+                  strokeOpacity='0.8'
+                  strokeMiterlimit='10'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+              {isOpen.Days && (
+                <div className={styles.menubooking}>
+                  {days.map((dayOption, dayIndex) => (
+                    <span
+                      key={dayIndex}
+                      className={`${styles.menuitem} ${
+                        state.Days === dayOption ? "active" : ""
+                      }`}
+                      onClick={() => dropDownMonth("Days", dayOption)}
+                    >
+                      {dayOption}
+                    </span>
+                  ))}
+                </div>
+              )}{" "}
             </div>
           </button>
           <button>
@@ -135,9 +169,9 @@ export default function BookingPeriod() {
           <p>how far in advance can attendees book?</p>
         </div>
         <div className={styles.buttons}>
-          <button>
+          <button onClick={() => handleDropdown("Buffer")}>
             <div className={styles.bookingmonth}>
-              <span>30</span>
+              <span>{state.Buffer}</span>
               <svg
                 width='16'
                 height='16'
@@ -154,6 +188,22 @@ export default function BookingPeriod() {
                   strokeLinejoin='round'
                 />
               </svg>
+
+              {isOpen.Buffer && (
+                <div className={styles.menubooking}>
+                  {buffer.map((bufferOption, bufferIndex) => (
+                    <span
+                      key={bufferIndex}
+                      className={`${styles.menuitem} ${
+                        state.Buffer === bufferOption ? "active" : ""
+                      }`}
+                      onClick={() => dropDownMonth("Buffer", bufferOption)}
+                    >
+                      {bufferOption}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </button>
           <button>

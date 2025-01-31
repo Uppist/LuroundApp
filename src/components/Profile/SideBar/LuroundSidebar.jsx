@@ -252,7 +252,12 @@ export default function Sidebar({ onComponentSwitch }) {
       {isArrowDownVisible && (
         <ul className={styles.moreDown}>
           <hr />
-          <li className={styles.downlist}>Storefront</li>
+          <li
+            className={styles.downlist}
+            onClick={() => handleItemClick("storefront")}
+          >
+            Storefront
+          </li>
           <li className={styles.downlist}>Calendar</li>
           <li
             className={styles.downlist}

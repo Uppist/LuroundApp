@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import SelectTime from "./Time";
-import Bookings from "./Bookings";
+import styles from "./Calendar.module.css";
+import Bookings from "../Bookings";
+import styles2 from "../Details/See.module.css";
 
 export default function Next({
   formattedDate,
@@ -38,16 +40,21 @@ export default function Next({
   return (
     <>
       {selectedTime ? (
-        <div className='update-schedule-container'>
-          <div className='update-schedule'>
-            <label className='formatted-date updated'>Updated schedule</label>
+        <div className={styles.updateschedulecontainer}>
+          <div className={styles.updateschedule}>
+            <label className={`${styles.formatteddate} ${styles.updated}`}>
+              Updated schedule
+            </label>
 
-            <button className='change cg' onClick={ChangeBack}>
+            <button
+              className={`${styles.change} ${styles.cg}`}
+              onClick={ChangeBack}
+            >
               Change
             </button>
           </div>
-          <div className='date-time'>
-            <div className='svg-date'>
+          <div className={styles2.datetime}>
+            <div className={styles2.svgdate}>
               <svg
                 width='20'
                 height='20'
@@ -70,7 +77,7 @@ export default function Next({
               </svg>
               <label>{formattedDate}</label>
             </div>
-            <div className='svg-time'>
+            <div className={styles2.svgtime}>
               <svg
                 width='20'
                 height='20'
@@ -96,11 +103,11 @@ export default function Next({
             </div>
           </div>
 
-          <div className='reason-for-change'>
+          <div className={styles.reasonforchange}>
             <label>Reason for change</label>
             <textarea></textarea>
           </div>
-          <div className='updatebutton'>
+          <div className={styles.updatebutton}>
             <button onClick={onSeeLess}>Update Booking</button>
           </div>
         </div>

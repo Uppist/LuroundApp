@@ -1,0 +1,311 @@
+/** @format */
+
+/*Insight*/
+
+.share1 {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  z-index: 1001;
+  display: grid;
+  gap: 32px;
+  width: 720px;
+  height: 500px;
+  overflow: scroll;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 25px;
+  gap: 8px;
+}
+
+.filter > label {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.alltime {
+  width: 125px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsla(180, 23%, 15%, 0.8);
+  padding: 8px 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.dropdown {
+  position: relative;
+}
+
+.time {
+  position: absolute;
+  border-radius: 8px;
+  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.time li {
+  cursor: pointer;
+  padding: 8px 24px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.button1 {
+  width: 300px;
+  border: 0;
+  height: 140px;
+  background: linear-gradient(hsla(0, 56%, 96%, 1), hsla(245, 92%, 91%, 1));
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 32px;
+  font-weight: 700;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.button2 {
+  width: 300px;
+  border: 0;
+  height: 140px;
+  background: linear-gradient(hsla(30, 89%, 96%, 1), hsla(282, 70%, 94%, 1));
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: hsla(180, 23%, 15%, 1);
+  gap: 4px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px;
+}
+
+.history > label {
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+  padding: 0 0px 16px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.booking {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.book {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  padding: 0 0 16px;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.date {
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.name2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.share::-webkit-scrollbar {
+  display: none;
+}
+
+/*Share Component*/
+
+.share {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  z-index: 1001;
+  display: grid;
+  gap: 32px;
+  width: 720px;
+  overflow: scroll;
+}
+
+.cancelshare {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.sharecontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  width: 150px;
+  height: 120px;
+  border-radius: 24px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  cursor: pointer;
+}
+
+.sharecontainer:hover {
+  background-color: hsla(180, 12%, 95%, 1);
+}
+
+.titleshare {
+  font-size: 20px;
+  font-weight: 700;
+  color: hsla(180, 100%, 36%, 1);
+}
+
+/*QR Code*/
+
+.p {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+.svg {
+  margin: 0 auto;
+}
+
+/*Delete Component*/
+.body {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  z-index: 1001;
+  display: grid;
+  gap: 32px;
+  width: 445px;
+}
+
+.cancelbooking {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(197, 100%, 11%, 1);
+  padding: 24px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.titleservice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.shareservice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: baseline;
+  margin-left: 20px;
+}
+
+.type {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.cancel-title {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: grid;
+  gap: 48px;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  text-align: center;
+  margin: 0;
+}
+
+.docancel {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+}
+.cancel {
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+  background-color: hsla(0, 0%, 98%, 1);
+}
+
+.delete {
+  background-color: hsla(0, 69%, 49%, 1);
+  padding: 12px 43px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}

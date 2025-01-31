@@ -26,6 +26,9 @@ import Edit from "./Financials/Quotes/Edit/Edit";
 import Convert from "./Financials/Quotes/Convert/Convert";
 import Resend from "./Financials/Quotes/Resend/Resend";
 import Settings from "./Profile/Settings/Settings";
+import FirstPage from "./StoreFront/FirstPage";
+import SecondPage from "./StoreFront/SecondPage";
+import DetailPopup from "./StoreFront/DetailPopup";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -364,6 +367,14 @@ export default function LuroundApp() {
               {activeComponent === "program" && <Program />}
               {activeComponent === "event" && <Event />}
               {activeComponent === "bookings" && <Bookings />}
+              {activeComponent === "storefront" && (
+                <FirstPage onComponentSwitch={handleOneOffClick} />
+              )}
+              {activeComponent === "secondpage" && (
+                <SecondPage onComponentSwitch={handleOneOffClick} />
+              )}
+
+              {activeComponent === "detail" && <DetailPopup />}
               {activeComponent === "transaction" && <Transaction />}
               {activeComponent === "support" && <Support />}
               {activeComponent === "contact" && <Contact />}

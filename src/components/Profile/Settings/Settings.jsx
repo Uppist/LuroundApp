@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Setting.module.css";
 import PasswordChange from "./PasswordChange";
 import ChangeWithdrawalPin from "./ChangeWithdrawalPin";
@@ -8,50 +8,125 @@ import ForgotWithdrawalPin from "./ForgotWithdrawalPin";
 import CustomizeURL from "./CustomizeURL";
 import Notifications from "./Notifications";
 import Delete from "./Delete";
+import BankDetails from "./BankDetails";
+import AddBank from "../../Transactions/SavedAccount/Addbank";
 
 export default function Settings() {
+  const [isBank, setIsBank] = useState(false);
+  const [isPinVisible, setIsPinVisible] = useState(false);
+  const scrollpassword = useRef(null);
+  const scrollwithdraw = useRef(null);
+  const scrollforgot = useRef(null);
+  const scrollaccount = useRef(null);
+  const scrollurl = useRef(null);
+  const scrollnotification = useRef(null);
+  const scrolldelete = useRef(null);
+  const scrollTo = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
+  function Bank() {
+    setIsBank(true);
+  }
+
+  function CloseBank() {
+    setIsBank(false);
+  }
+
+  function Pin() {
+    setIsPinVisible((prev) => !prev);
+  }
   return (
     <section className={styles.settings}>
       <label>Settings</label>
       <div className={styles.settingscontainer}>
         <div className={styles.settingsfirst}>
           <div>
-            <span>Change Login password</span>
-            <div className={styles.withdraw}>
+            <span onClick={() => scrollTo(scrollpassword)}>
+              Change Login password
+            </span>
+            <div className={styles.withdraw} onClick={Pin}>
               <label>Withdrawal Pin management</label>
-              <svg
-                width='20'
-                height='20'
-                viewBox='0 0 20 20'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M7.93066 5.86086L12.0686 9.99879L7.93066 14.1367'
-                  stroke='#1D2E2E'
-                  stroke-opacity='0.8'
-                  stroke-width='2'
-                  stroke-miterlimit='10'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-              </svg>
+              {isPinVisible ? (
+                <svg
+                  onClick={Pin}
+                  width='25'
+                  height='25'
+                  viewBox='0 0 16 16'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                    stroke='#1D2E2E'
+                    strokeOpacity='0.8'
+                    strokeMiterlimit='10'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              ) : (
+                <svg
+                  onClick={Pin}
+                  width='7'
+                  height='12'
+                  viewBox='0 0 7 12'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M1 11L6 6L1 1'
+                    stroke='#1D2E2E'
+                    strokeOpacity='0.8'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              )}
             </div>
-            <span>Bank account details</span>
-            <span>Customize your URL</span>
-            <span>Notifications</span>
-            <span>Delete account</span>
+            {isPinVisible && (
+              <div className={styles.withdrawul}>
+                <ul>
+                  <li onClick={() => scrollTo(scrollwithdraw)}>
+                    Change Withdrawal Pin
+                  </li>
+                  <li onClick={() => scrollTo(scrollforgot)}>
+                    {" "}
+                    Forgot Withdrawal Pin
+                  </li>
+                </ul>
+              </div>
+            )}
+            <span onClick={() => scrollTo(scrollaccount)}>
+              Bank account details
+            </span>
+            <span onClick={() => scrollTo(scrollurl)}>Customize your URL</span>
+            <span onClick={() => scrollTo(scrollnotification)}>
+              Notifications
+            </span>
+            <span onClick={() => scrollTo(scrolldelete)}>Delete account</span>
           </div>
         </div>
 
         <div className={styles.settingssecond}>
-          <PasswordChange />
-          <ChangeWithdrawalPin />
-          <ForgotWithdrawalPin />
+          <div ref={scrollpassword}>
+            <PasswordChange />
+          </div>
+          <div ref={scrollwithdraw}>
+            <ChangeWithdrawalPin />
+          </div>
+          <div ref={scrollforgot}>
+            <ForgotWithdrawalPin />
+          </div>
 
-          <div className={styles.bank}>
+          <div className={styles.bank} ref={scrollaccount}>
             <label>Bank account details</label>
             <svg
+              onClick={Bank}
               width='48'
               height='40'
               viewBox='0 0 48 40'
@@ -68,9 +143,18 @@ export default function Settings() {
               />
             </svg>
           </div>
-          <CustomizeURL />
-          <Notifications />
-          <Delete />
+          {isBank && <AddBank onExit={CloseBank} />}
+
+          <div ref={scrollurl}>
+            <CustomizeURL />
+          </div>
+          <div ref={scrollnotification}>
+            <Notifications />
+          </div>
+
+          <div ref={scrolldelete}>
+            <Delete />
+          </div>
         </div>
       </div>
     </section>

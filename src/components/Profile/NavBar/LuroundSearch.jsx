@@ -112,7 +112,12 @@ export default function Search({
             </svg>
           </li>
 
-          {isNotification && <Notification onClose={closeModal} />}
+          {isNotification && (
+            <Notification
+              onClose={closeModal}
+              onComponentSwitch={onComponentSwitch}
+            />
+          )}
         </div>
         <li className={styles.icons}>
           <svg

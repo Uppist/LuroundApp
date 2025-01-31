@@ -1,5 +1,6 @@
 /** @format */
 
+import styles from "./Cancel.module.css";
 /** @format */
 export default function CancelN({ booking, onClose }) {
   return (

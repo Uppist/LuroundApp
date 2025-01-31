@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Calendar from "./Calendar";
 import Next from "./Next";
+import styles from "./Calendar.module.css";
 
 export default function SelectTime({
   booking,
@@ -46,32 +47,34 @@ export default function SelectTime({
           />
         ) : (
           <>
-            <div className='selected-date-container'>
-              <div className='change-date'>
-                <label className='formatted-date'>{formattedDate}</label>
+            <div className={styles.selecteddatecontainer}>
+              <div className={styles.changedate}>
+                <label className={styles.formatteddate}>{formattedDate}</label>
 
-                <button onClick={changeDate} className='change'>
+                <button onClick={changeDate} className={styles.change}>
                   Change
                 </button>
               </div>
-              <span className='select-time'>Select Time</span>
+              <span className={styles.selecttime}>Select Time</span>
 
-              <label className='duration'>Duration: {booking.hour}</label>
-              <div className='time-selection-container'>
+              <label className={styles.duration}>
+                Duration: {booking.hour}
+              </label>
+              <div className={styles.timeselectioncontainer}>
                 {times.map((time, index) => (
-                  <div key={index} className='button-container'>
+                  <div key={index} className={styles.buttoncontainer}>
                     <button
                       onClick={() => handleClick(index)}
-                      className={`button-time ${
-                        activeButtonIndex === index ? "active" : ""
+                      className={`${styles.buttontime} ${
+                        activeButtonIndex === index ? styles.active : ""
                       }`}
                     >
                       {time}
                     </button>
                     <button
                       onClick={NextPage}
-                      className={`button-next ${
-                        activeButtonIndex === index ? "show" : ""
+                      className={`${styles.buttonnext} ${
+                        activeButtonIndex === index ? styles.show : ""
                       }`}
                     >
                       Next

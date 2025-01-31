@@ -4,7 +4,10 @@
 import React, { useState } from "react";
 
 import book from "../../booking.json";
-import See from "./SeeMore";
+
+import styles from "./Booking.module.css";
+import styles2 from "../Services/Retainer/Retainer.module.css";
+import See from "./Details/SeeMore";
 import Open from "./BookingsOpen";
 export default function Bookings(ChangeBack) {
   const [visibleBooking, setVisibleBooking] = useState(null);
@@ -61,22 +64,22 @@ export default function Bookings(ChangeBack) {
   }
 
   return (
-    <div className='bookings'>
+    <div className={styles.bookings}>
       {visibleBooking === null ? (
         <>
-          <div className='retainerservice'>
-            <div className='numberofservice'>
-              <span className='one-offservice'>Bookings</span>
-              <span className='number'>{book.length}</span>
+          <div className={styles2.retainerservice}>
+            <div className={styles2.numberofservice}>
+              <span className={styles2.oneoffservice}>Bookings</span>
+              <span className={styles2.number}>{book.length}</span>
             </div>
-            <div className='filter-by'>
+            <div className={styles.filterby}>
               <span>Filter by:</span>
 
               {/* <div className='popupcancel'> */}
               {/* <div className='overlayshare'></div> */}
               <div className='dropdown'>
                 <div
-                  className={`select-list alltime ${
+                  className={`select-list ${styles.alltime} ${
                     isAlltime ? "select-clicked" : ""
                   }`}
                   onClick={Alltime}
@@ -100,7 +103,7 @@ export default function Bookings(ChangeBack) {
                   </svg>
                 </div>
                 {isAlltime && (
-                  <ul className='menu transaction-time'>
+                  <ul className={styles.dropdown}>
                     {time.map((option) => (
                       <li
                         key={option}
@@ -119,20 +122,20 @@ export default function Bookings(ChangeBack) {
           </div>
           {/* </div> */}
 
-          <div className='bookingcontainer'>
+          <div className={styles.bookingcontainer}>
             {book.map((data, index) => (
-              <div className='bookcontainer' key={data.Name}>
-                <div className='imagesvg'>
-                  <div className='imagecontainer'>
-                    <div className='circlename'>
+              <div className={styles.bookcontainer} key={data.Name}>
+                <div className={styles.imagesvg}>
+                  <div className={styles.imagecontainer}>
+                    <div className={styles.circlename}>
                       <img src={data.image} />
                     </div>
-                    <div className='namebook'>
-                      <span className='bookingname'>{data.Name}</span>
-                      <div className='imagebookedyou'>
-                        <span className='bookedyou'>{data.Booked}</span>
+                    <div className={styles.namebook}>
+                      <span className={styles.bookingname}>{data.Name}</span>
+                      {/* <div className={styles.imagebookedyou}>
+                        <span className={styles.bookedyou}>{data.Booked}</span>
                         <img src={data.bookedyou} />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -169,18 +172,20 @@ export default function Bookings(ChangeBack) {
                     )}
                   </div>
                 </div>
-                <div className='datetitle'>
-                  <span className='date'>{data.Date}</span>
-                  <div className='titleservice'>
-                    <span className='title'>{data.title}</span>
-                    <div className='service-one'>
-                      <span className='servicetype'>{data.service}</span>
-                      <span className='oneofftext'>{data.type}</span>
-                    </div>
+                <div className={styles.datetitle}>
+                  <div className={styles.titleservice}>
+                    {/* <div className='service-one'>
+                      <span className={styles2.servicetype}>
+                        {data.service}
+                      </span>
+                      <span className={styles2.oneofftext}>{data.type}</span>
+                    </div> */}
+                    <span className={styles.date}>{data.Date}</span>
+                    <span className={styles.title}>{data.title}</span>
                   </div>
-                  <div className='timehour'>
-                    <span className='dateam'>{data.time}</span>
-                    <div className='timer'>
+                  <div className={styles.timehour}>
+                    <span className={styles.dateam}>{data.time}</span>
+                    <div className={styles.timer}>
                       <svg
                         width='20'
                         height='20'
@@ -195,15 +200,15 @@ export default function Bookings(ChangeBack) {
                         />
                       </svg>
 
-                      <span className='hour'>{data.hour}</span>
+                      <span className={styles.hour}>{data.hour}</span>
                     </div>
                   </div>
                 </div>
-                <div className='seemoreline'>
+                <div className={styles.seemoreline}>
                   <button
                     key={data.Name}
                     onClick={() => SeeMore(index)}
-                    className='seemore'
+                    className={styles.seemore}
                   >
                     See More
                   </button>

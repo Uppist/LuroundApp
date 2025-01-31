@@ -67,17 +67,6 @@ textarea {
   margin-bottom: 20px;
 }
 
-.program,
-.event,
-.bookings,
-.transaction {
-  display: grid;
-  gap: 24px;
-  margin: 25px;
-  position: relative;
-  top: 60px;
-}
-
 /*Sidebar and Profile styling*/
 .grid-container {
   display: grid;
@@ -162,20 +151,6 @@ textarea {
   list-style: none;
 }
 
-.alltime {
-  width: 125px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: hsla(180, 23%, 15%, 0.8);
-  padding: 8px 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
 .oneoff-service {
   padding: 12px 120px;
   font-weight: 400;
@@ -219,16 +194,10 @@ textarea {
   background-color: hsla(180, 17%, 98%, 1);
 }
 
-.eachprogramcontainer,
 .eacheventcontainer {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
-}
-
-.content-type1 {
-  display: grid;
-  gap: 48px;
 }
 
 .personal1 {
@@ -247,67 +216,6 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 48px;
-}
-
-.bookingcontainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 24px;
-}
-
-.bookcontainer {
-  display: grid;
-  padding: 24px;
-  gap: 48px;
-  background-color: white;
-  width: -webkit-fill-available;
-  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
-  border-radius: 8px;
-}
-
-.detailscontainer {
-  display: grid;
-  gap: 48px;
-}
-.imagesvg {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.imagecontainer {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.circlename {
-  width: 64px;
-  height: 64px;
-  border-radius: 64px;
-  background-color: hsla(180, 100%, 40%, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.namebook {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.datetitle {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.titleservice {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .cancel-title {
@@ -344,27 +252,6 @@ textarea {
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.cancel-share {
-  display: flex;
-  gap: 24px;
-}
-
-.cancel-share-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  flex-direction: column;
-  width: 150px;
-  height: 120px;
-  border-radius: 24px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  font-size: 14px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
-  cursor: pointer;
-}
-
 .cancel-container > p {
   width: 461px;
   font-weight: 400;
@@ -386,11 +273,6 @@ textarea {
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   height: 88px;
-}
-
-.do-cancel-container {
-  display: flex;
-  justify-content: space-between;
 }
 
 .do-not-cancel {
@@ -415,341 +297,11 @@ textarea {
   font-family: "Inter";
 }
 
-.timehour {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bookingname {
-  font-size: 14px;
-  font-weight: 600;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.imagebookedyou {
-  display: flex;
-  gap: 12px;
-}
-
-.bookedyou {
-  font-size: 12px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.45);
-}
-
 .status {
   font-size: 12px;
   font-weight: 500;
   font-style: italic;
   color: hsla(37, 96%, 61%, 1);
-}
-
-.date {
-  font-weight: 500;
-  font-size: 14px;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.title {
-  font-size: 16px;
-  font-weight: 600;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.dateam {
-  font-size: 14px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.bookingdetails {
-  color: hsla(180, 23%, 15%, 0.8);
-  width: 286px;
-}
-.timer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hour {
-  font-size: 14px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.65);
-}
-
-.seemoreline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.seemore {
-  padding: 16px;
-  background-color: white;
-  border: 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: hsla(180, 100%, 40%, 1);
-  font-family: "Inter";
-  border-top: 1px solid hsla(180, 11%, 89%, 1);
-  width: -webkit-fill-available;
-}
-
-.seemore:hover {
-  border: 1.5px solid;
-  border-radius: 16px;
-  width: -webkit-fill-available;
-  cursor: pointer;
-}
-
-.see {
-  display: grid;
-  gap: 24px;
-}
-
-.seedetails {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 24px;
-}
-
-.seemorecontainer,
-.reschedule {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  background-color: white;
-  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
-  border-radius: 8px;
-  padding: 24px 24px 38px 24px;
-}
-
-.reschedule {
-  padding: 0;
-}
-
-.reschedulebooking {
-  display: grid;
-  gap: 48px;
-}
-
-.former-reschedule {
-  display: grid;
-  gap: 24px;
-}
-
-.linereschedule {
-  display: flex;
-  flex-direction: column;
-}
-
-.linereschedule > hr {
-  margin: 0;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.reschedulebook {
-  border: 0;
-  background-color: white;
-  font-size: 16px;
-  font-family: "Inter";
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-  padding: 24px 12px;
-}
-
-.formerschedule {
-  display: grid;
-  gap: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.formerschedule > label {
-  padding: 0px 12px;
-}
-
-.formerschedule > hr {
-  width: -webkit-fill-available;
-  margin: 0;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.date-time {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 12px;
-}
-
-.svg-date,
-.svg-time {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  /* width: 150px; */
-  color: hsla(180, 23%, 15%, 0.8);
-  font-weight: 400;
-}
-
-.appointmentcon {
-  display: grid;
-  gap: 32px;
-}
-
-.appointmentdetails {
-  display: grid;
-  gap: 32px;
-}
-
-.appointment {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.bookingtitle {
-  display: grid;
-  gap: 48px;
-}
-
-.dateseeless {
-  display: grid;
-  gap: 24px;
-}
-
-.p {
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.8);
-  margin-bottom: 0px;
-  font-size: 14px;
-}
-
-.label > span {
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.appointmentdate {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.reschedulecontent {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.reschedule-cancel {
-  display: grid;
-  gap: 24px;
-  padding: 0px 12px;
-}
-
-.rescheduletext,
-.cancel,
-.rescheduletext2,
-.cancel2 {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-  background-color: white;
-  border: 0;
-  font-size: 16px;
-  font-family: "Inter";
-}
-
-.rescheduletext > svg:hover,
-.cancel > .svg:hover {
-  color: hsla(180, 100%, 40%, 1);
-}
-
-.rescheduletext:hover,
-.cancel:hover {
-  border: 1.5px solid hsla(180, 100%, 40%, 1);
-  color: hsla(180, 100%, 40%, 1);
-  padding: 16px 24px 16px 0px;
-  border-radius: 16px;
-  width: -webkit-fill-available;
-  cursor: pointer;
-}
-
-.rescheduletext2:hover,
-.cancel2:hover {
-  color: hsla(180, 100%, 40%, 1);
-}
-
-.fullcalendar {
-  display: grid;
-  gap: 24px;
-  padding: 0px 24px;
-}
-
-.select {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.calendar {
-  margin: 20px auto;
-  overflow: hidden;
-  display: grid;
-  gap: 16px;
-  font-family: "Inter";
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.header > svg {
-  cursor: pointer;
-}
-
-.day-names,
-.days {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.day-name,
-.day,
-.empty-day {
-  width: 14.28%;
-  padding: 10px;
-  text-align: center;
-  box-sizing: border-box;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.day {
-  border: 2px solid white;
-  border-radius: 8px;
-  cursor: pointer;
-  transform: background-color 0.3s;
-}
-
-.day:hover {
-  background-color: hsla(180, 100%, 40%, 1);
-  color: white;
-}
-
-.selected {
-  background-color: hsla(180, 100%, 40%, 1);
-  color: white;
 }
 
 .popupcancel {
@@ -762,6 +314,7 @@ textarea {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.1);
 }
 .overlay,
 .overlayshare {
@@ -797,257 +350,6 @@ textarea {
   width: 720px;
 }
 
-.cancel-booking-line {
-  display: grid;
-  gap: 24px;
-}
-
-.cancel-booking-line > hr {
-  width: -webkit-fill-available;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.cancel-booking {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 600;
-  color: hsla(197, 100%, 11%, 1);
-}
-
-.time-selection-container {
-  display: grid;
-  place-items: center;
-}
-
-/* TimeButtons.css */
-
-.button-container {
-  margin: 10px 0;
-}
-
-.button-time {
-  width: 280px;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 23%, 15%, 0.65);
-  font-family: "Inter";
-  background-color: white;
-}
-
-.button-time.active {
-  width: 170px;
-  border: 1px solid hsla(180, 100%, 36%, 1);
-  color: hsla(180, 100%, 36%, 1);
-}
-
-.button-next {
-  margin-left: 10px;
-  display: none;
-}
-
-.button-next.show {
-  display: inline-block;
-  margin-left: 5px;
-  padding: 16px;
-  border-radius: 16px;
-  font-size: 16px;
-  font-weight: 600;
-  border: 0;
-  width: 105px;
-  background-color: hsla(197, 100%, 11%, 1);
-  color: white;
-  font-family: "Inter";
-}
-
-.selected-date-container {
-  display: grid;
-  place-items: center;
-  gap: 24px;
-}
-
-.change-date {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.formatted-date {
-  font-size: 16px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.updated {
-  color: hsla(180, 23%, 15%, 1);
-  /* width: 122px; */
-}
-
-.change {
-  font-size: 16px;
-  font-family: "Inter";
-  font-weight: 400;
-  color: hsla(180, 100%, 36%, 1);
-  border: 0;
-  background-color: white;
-  padding: 0;
-}
-
-.cg {
-  font-size: 14px;
-}
-
-.select-time {
-  font-size: 18px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.duration {
-  font-size: 16px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.update-schedule-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-top: -24px;
-  padding: 0px 12px;
-}
-
-.update-schedule {
-  display: flex;
-  gap: 16px;
-}
-
-.reason-for-change {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.reason-for-change > textarea {
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  height: 88px;
-}
-
-.updatebutton {
-  display: grid;
-  place-items: center;
-}
-
-.updatebutton > button {
-  background-color: hsla(197, 100%, 11%, 1);
-  color: hsla(198, 100%, 96%, 1);
-  font-family: "Inter";
-  font-size: 16px;
-  font-weight: 600;
-  border: 0;
-  padding: 12px 72px;
-  border-radius: 16px;
-}
-
-.program-calendar {
-  display: grid;
-  gap: 24px;
-}
-.start-calendar {
-  display: grid;
-  gap: 16px;
-}
-
-.start-end-date {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.input-calendar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.input-calendar input {
-  padding: 8px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.program-recurrence,
-.no_of_participant {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.program-recurrence button {
-  height: 56px;
-  padding: 16px 24px;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-  background-color: white;
-}
-
-.participant {
-  width: 170px;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid hsla(180, 23%, 15%, 0.65);
-}
-
-.time-service-description {
-  display: grid;
-  gap: 32px;
-}
-
-.time-service {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.time-service > input {
-  padding: 16px 24px;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-
-.time-description {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.time-description > textarea {
-  height: 196px !important;
-  width: -webkit-fill-available !important;
-  border-radius: 16px;
-  padding: 12px 24px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-
 .warning-container {
   display: grid;
   gap: 12px;
@@ -1064,12 +366,6 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.input-time-container2 {
-  display: flex;
-  gap: 16px;
-  align-items: center;
 }
 
 .button-mins {
@@ -1109,39 +405,9 @@ textarea {
   color: hsla(180, 23%, 15%, 1);
 }
 
-.naira-virtual > input,
-.naira-inperson > input {
-  background-color: white;
-  width: 100px;
-  padding: 14px 14px 14px 8px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 5%, 26%, 1);
-}
-
-.inperson-virtual > svg {
-  margin-top: 40px;
-}
-
-.add-time-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
-  background-color: white;
-  border: 0;
-}
-
 .time-container {
   display: grid;
   gap: 24px;
-}
-
-.naira-virtual-inperson {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 .add-time-slot {
@@ -1307,100 +573,6 @@ input:checked + .toggle::before {
   color: white;
 }
 
-.create-event-service {
-  padding: 24px;
-  background-color: white;
-  margin-left: 80px;
-  margin-right: 80px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-}
-
-.event-type {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.event-checkbox {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.check-virtual,
-.check-inperson {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.backEvent {
-  background-color: #fff;
-  border: 0;
-  font-size: 20px;
-}
-
-.start-end-time {
-  display: flex;
-  justify-content: center;
-  gap: 90x;
-  margin-left: 20px;
-}
-
-.done-delete {
-  background-color: hsla(0, 69%, 49%, 1);
-}
-
-.list-offers {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.list-offers > input {
-  padding: 16px 24px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.list-number-of-offers {
-  display: grid;
-  gap: 24px;
-}
-
-.offers {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.circle-offer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.circle {
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
-  background-color: hsla(180, 100%, 36%, 1);
-}
-
-.circle-offer span {
-  text-transform: capitalize;
-}
-
 .title-service {
   color: hsla(180, 23%, 15%, 1);
 }
@@ -1457,23 +629,6 @@ input:checked + .toggle::before {
   color: white;
   font-weight: 500;
   cursor: pointer;
-}
-
-.filter-transaction {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.filter-transaction-status {
-  display: grid;
-  gap: 24px;
-}
-
-.transaction-text {
-  font-size: 18px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 1);
 }
 
 .transaction-container {
@@ -1551,73 +706,8 @@ input:checked + .toggle::before {
   border: 1px solid hsla(180, 23%, 15%, 0.8);
 }
 
-.set-pin {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.set-pin span {
-  font-size: 20px;
-  font-weight: 600;
-
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.set-pin label {
-  font-size: 16px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 0.65);
-}
-
-.set-password {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 32px;
-}
-
 .Next {
   height: 56px;
-}
-
-.saved-account {
-  display: grid;
-  place-items: center;
-  background-color: white;
-  border-radius: 8px;
-  padding: 160px 24px;
-  gap: 32px;
-}
-
-.bank {
-  display: grid;
-  place-items: center;
-  gap: 8px;
-}
-
-.saved-add-account {
-  display: grid;
-  place-items: center;
-  gap: 16px;
-}
-
-.saved-add-account > span {
-  font-size: 20px;
-  font-weight: 600;
-  color: hsla(180, 23%, 15%, 1);
-}
-
-.saved-add-account label {
-  font-size: 18px;
-  text-align: center;
-  font-weight: 500;
-  color: rgba(29, 46, 46, 0.8);
-}
-
-.saved-add-account label span {
-  font-weight: 700;
 }
 
 .add-an-account {
@@ -1630,36 +720,9 @@ input:checked + .toggle::before {
   font-weight: 600;
 }
 
-.select-bank-container,
 .account-container {
   display: grid;
   gap: 32px;
-}
-
-.select-bank {
-  padding: 16px 24px;
-  background-color: white;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-
-.input-bank {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.input-bank span {
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.input-bank input {
-  padding: 16px 24px;
-  background-color: white;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
 }
 
 .bookingsopen {
