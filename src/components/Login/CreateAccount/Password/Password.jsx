@@ -23,7 +23,7 @@ export default function Password() {
             <div className={styles.container}>
               <InputPassword />
 
-              <Link to='/Profile-page'>
+              <Link to='/Login'>
                 <button type='submit'>Create account</button>
               </Link>
             </div>
