@@ -18,7 +18,8 @@
   display: none;
 }
 
-.withdrawpin button {
+.withdrawpin button,
+.receipt button {
   margin-top: 50px;
   float: right;
   border: 0;
@@ -291,21 +292,24 @@
   font-size: 36px;
   color: hsla(180, 100%, 32%, 1);
   font-weight: 700;
+  margin-top: 30px;
 }
 
 .detailtext {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .detail {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .detail > label {
+  padding: 0 0 14px 0;
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.65);
@@ -315,4 +319,21 @@
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
+}
+
+.receipt button {
+  margin-top: 0;
+  background-color: hsla(197, 100%, 11%, 1);
+  font-weight: 500;
+}
+
+.exit {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  /* border-bottom: 1px solid white; */
+  text-decoration: underline;
+  margin-top: 20px;
+  cursor: pointer;
 }

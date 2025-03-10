@@ -18,30 +18,30 @@ export default function Receipt({ Cancel }) {
             <div className={styles.detailtext}>
               <div className={styles.detail}>
                 <label htmlFor=''>Account name:</label>
-                <span>Jane</span>
+                <span>Jane Cooper</span>
               </div>
               <div className={styles.detail}>
                 <label htmlFor=''>Account number:</label>
-                <span>Jane</span>
+                <span>0123456789</span>
               </div>
               <div className={styles.detail}>
                 <label htmlFor=''>Date:</label>
-                <span>Jane</span>
+                <span>Sunday, 28th Dec. 2023</span>
               </div>
               <div className={styles.detail}>
                 <label htmlFor=''>Time:</label>
-                <span>Jane</span>
+                <span>06:29AM</span>
               </div>
               <div className={styles.detail}>
                 <label htmlFor=''>Reference code:</label>
-                <span>Jane</span>
+                <span>Wth0123456789</span>
               </div>
             </div>
             <span>5,000</span>
           </div>
         </div>
         <button>Download Receipt</button>
-        <span>Exit</span>
+        <span className={styles.exit}>Exit</span>
       </div>
     </section>
   );

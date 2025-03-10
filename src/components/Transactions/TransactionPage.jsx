@@ -102,12 +102,12 @@ export default function Transaction() {
 
           <div className={styles.status}>
             <div className={styles.filter}>
-              <span className='transaction-text'>Transactions</span>
-              <div className='filter-by'>
+              <span>Transactions</span>
+              <div className={styles.by}>
                 <span>Filter by:</span>
                 <div className='dropdown'>
                   <div
-                    className={`select-list alltime ${
+                    className={`select-list ${styles.alltime} ${
                       isAlltime ? "select-clicked" : ""
                     }`}
                     onClick={dropDown}
@@ -131,11 +131,11 @@ export default function Transaction() {
                     </svg>
                   </div>
                   {isAlltime && (
-                    <ul className='menu transaction-time'>
+                    <ul className={`${styles.menu} ${styles.time}`}>
                       {time.map((option) => (
                         <li
                           key={option}
-                          className={`menu-item ${
+                          className={`${styles.item} ${
                             selectedTime === option ? "active" : ""
                           }`}
                           onClick={() => handleDropdown(option)}
