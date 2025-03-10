@@ -1,0 +1,318 @@
+/** @format */
+.withdrawpin {
+  display: flex;
+  flex-direction: column;
+  width: 548px;
+  overflow: scroll;
+  height: 524px;
+  position: relative;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  z-index: 1001;
+  /* display: grid; */
+  gap: 16px;
+}
+
+.withdrawpin::-webkit-scrollbar {
+  display: none;
+}
+
+.withdrawpin button {
+  margin-top: 50px;
+  float: right;
+  border: 0;
+  padding: 12px 51px;
+  border-radius: 8px;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  height: 56px;
+}
+
+.setpin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transferto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transferto > label,
+.amount2 > label,
+.amount2 > span {
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 1);
+  font-weight: 600;
+}
+
+.container {
+  background-color: hsla(180, 23%, 15%, 1);
+  padding: 24px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bank {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: end;
+  color: white;
+}
+
+.bank label,
+.number label,
+.balance label {
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.bank span,
+.balance span {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+}
+
+.number {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.container2 {
+  background: linear-gradient(hsla(180, 100%, 40%, 1), hsla(180, 100%, 32%, 1));
+  padding: 24px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.container2 > span {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+}
+
+.amount {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.amount2 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.amount input {
+  padding: 16px 72px;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.balance {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 4px;
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+}
+
+.button button {
+  margin-top: 40px;
+  padding: 12px 42px;
+  border-radius: 8px;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  width: min-content;
+}
+
+/*Confirm Styling*/
+
+.confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.confirm hr {
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pattern {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pattern > p {
+  font-size: 14px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.pattern > p span {
+  color: hsla(180, 100%, 32%, 1);
+  text-transform: uppercase;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.label label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.pin {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.pin input {
+  text-align: center;
+  width: 34px;
+  height: 56px;
+  border-radius: 4px;
+  border: 1px solid hsla(180, 23%, 15%, 0.8);
+}
+
+.numberpin {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 88px;
+  width: 150px;
+  height: 150px;
+  row-gap: 32px;
+  cursor: pointer;
+}
+
+/*Success styling*/
+
+.check {
+  display: flex;
+  flex-direction: column;
+  gap: 121px;
+  align-items: center;
+}
+
+.check span {
+  color: hsla(180, 100%, 32%, 1);
+}
+
+/*Receipt Styling*/
+.receipt {
+  display: flex;
+  flex-direction: column;
+  width: 470px;
+  overflow: scroll;
+  height: 524px;
+  position: relative;
+  background: linear-gradient(hsla(180, 100%, 36%, 1), hsla(180, 100%, 32%, 1));
+  padding: 32px;
+  border-radius: 16px;
+  z-index: 1001;
+  /* display: grid; */
+  gap: 16px;
+}
+
+.receipt::-webkit-scrollbar {
+  display: none;
+}
+
+.withdraw {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.details {
+  background-color: white;
+  padding: 24px 24px 48px 24px;
+  border-radius: 8px;
+}
+
+.detailcon {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
+}
+
+.detailcon > label {
+  font-size: 16px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.detailcon > span {
+  font-size: 36px;
+  color: hsla(180, 100%, 32%, 1);
+  font-weight: 700;
+}
+
+.detailtext {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail > label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.detail > span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}

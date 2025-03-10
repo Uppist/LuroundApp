@@ -17,12 +17,12 @@ export default function FirstPage({ onComponentSwitch }) {
   }
   return (
     <section className={styles.contact}>
-      <Storefont
+      {/* <Storefont
         isStorefont={isStorefont}
         AddProduct={AddProduct}
         CancelAddProduct={CancelAddProduct}
         onComponentSwitch={onComponentSwitch}
-      />
+      /> */}
 
       <div className={styles.savedaccount}>
         <div className={styles.bank}>

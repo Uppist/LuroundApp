@@ -43,7 +43,7 @@ export default function Account({ onClose }) {
                   fill='#FFFFFF'
                 />
               </svg>
-              <label>Add product</label>
+              <label>New account</label>
             </div>
             {isAddAccount && (
               <AddBank

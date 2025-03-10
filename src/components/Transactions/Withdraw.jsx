@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ConfirmWithdraw from "./ConfirmWithdraw";
+import styles from "./style.module.css";
 
 export default function Withdraw({ onClose, confirm }) {
   const [isNextWithdraw, setIsNextWithdraw] = useState(false);
@@ -23,7 +24,7 @@ export default function Withdraw({ onClose, confirm }) {
         <div className='popupcancel popupwithdrawpin'>
           <div className='overlay' onClick={onClose}></div>
           <div className={`withdrawpin ${isFadeOut}`}>
-            <div className='withdraw-svg'>
+            <div className={styles.closesvg}>
               {" "}
               <svg
                 onClick={onClose}
@@ -44,12 +45,12 @@ export default function Withdraw({ onClose, confirm }) {
               </svg>
             </div>
 
-            <div className='set-password'>
-              <div className='set-pin'>
+            <div className={styles.password}>
+              <div className={styles.pin}>
                 <span>Set Withdrawal Pin</span>
                 <label>Set a 4 digit pin for withdrawal</label>
               </div>
-              <div className='withdrawal-password'>
+              <div className={styles.withdrawal}>
                 <input type='password' />
                 <input type='password' />
                 <input type='password' />

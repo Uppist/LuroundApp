@@ -4,6 +4,7 @@ import { useState } from "react";
 import TransactionTime from "./TransactionAllTime";
 import Withdraw from "./Withdraw";
 import Account from "./SavedAccount/Account";
+import styles from "./style.module.css";
 export default function Transaction() {
   const [isAlltime, setIsAlltime] = useState(false);
   const [selectedTime, setSelectedTime] = useState("All time");
@@ -48,10 +49,10 @@ export default function Transaction() {
           <Account confirm={Confirm} onClose={closeModal} />
         </>
       ) : (
-        <div className='transaction'>
-          <div className='card'>
+        <div className={styles.transaction}>
+          <div className={styles.card}>
             <svg
-              className='card-svg'
+              className={styles.svg}
               width='729'
               height='271'
               viewBox='0 0 729 271'
@@ -80,7 +81,7 @@ export default function Transaction() {
               />
             </svg>
 
-            <div className='balance'>
+            <div className={styles.balance}>
               <label>Current Balance</label>
               <span>
                 ₦<span>150,500.00</span>
@@ -88,7 +89,7 @@ export default function Transaction() {
             </div>
             <div>
               <span
-                className={`withdraw ${isWithdrawPin ? "open" : ""}`}
+                className={`${styles.withdraw} ${isWithdrawPin ? "open" : ""}`}
                 onClick={WithdrawPin}
               >
                 withdraw
@@ -99,8 +100,8 @@ export default function Transaction() {
             </div>
           </div>
 
-          <div className='filter-transaction-status'>
-            <div className='filter-transaction'>
+          <div className={styles.status}>
+            <div className={styles.filter}>
               <span className='transaction-text'>Transactions</span>
               <div className='filter-by'>
                 <span>Filter by:</span>
@@ -148,7 +149,7 @@ export default function Transaction() {
               </div>
             </div>
 
-            <div className='transaction-container'>
+            <div className={styles.container}>
               <TransactionTime />
             </div>
           </div>

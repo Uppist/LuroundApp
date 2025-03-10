@@ -1,0 +1,167 @@
+/** @format */
+
+.account {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.imgdiv {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.imgdiv > img {
+  width: 120px;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label label {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Inter";
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.label span {
+  font-size: 14px;
+  font-weight: 450;
+  font-family: "Inter";
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: 24px;
+}
+
+.line hr {
+  transform: rotate(0deg);
+  width: -webkit-fill-available;
+}
+
+.line span {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form div label {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter";
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.form input {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.form span {
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.container button {
+  background-color: hsla(180, 100%, 40%, 1);
+  border-radius: 8px;
+  padding: 12px 56px;
+  border: 0;
+  color: hsla(0, 0%, 100%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  width: 100%;
+}
+
+.google {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.googlebutton {
+  display: flex;
+  gap: 16px;
+  padding: 12px 140px;
+  border: 1px solid hsla(180, 23%, 15%, 0.8);
+  border-radius: 32px;
+}
+
+.googlebutton button {
+  border: 0;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+}
+
+.login {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.login label {
+  color: hsla(180, 23%, 15%, 0.65);
+  font-size: 14px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.login span {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(180, 100%, 40%, 1);
+  cursor: pointer;
+}

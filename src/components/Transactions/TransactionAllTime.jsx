@@ -1,10 +1,11 @@
 /** @format */
 
 import transactiondata from "../transaction.json";
+import styles from "./style.module.css";
 export default function TransactionTime() {
   return (
     <div className='card-line'>
-      <div className='transaction-status'>
+      <div className={styles.transact}>
         <span>Transaction ID</span>
         <span>Date</span>
         <span>Amount</span>
@@ -14,8 +15,8 @@ export default function TransactionTime() {
 
       {transactiondata.map((transfer) => (
         <div className='transaction-line'>
-          <div className='transaction-status'>
-            <div className='transaction-id'>
+          <div className={styles.transact}>
+            <div className={styles.id}>
               <span>{transfer.ID}</span>
               <span>{transfer.Idnumber}</span>
             </div>
@@ -23,7 +24,7 @@ export default function TransactionTime() {
               <span>{transfer.Date}</span>
               <label>{transfer.Time}</label>
             </div>
-            <div className='transaction-amount'>
+            <div className={styles.amount}>
               <span className={transfer.type === "credit" ? "credit" : "debit"}>
                 {transfer.Amount}
               </span>
@@ -31,7 +32,7 @@ export default function TransactionTime() {
                 dangerouslySetInnerHTML={{ __html: transfer.Amountimg }}
               ></label>
             </div>
-            <span className='status-transaction'>{transfer.Status}</span>
+            <span className={styles.transactstatus}>{transfer.Status}</span>
           </div>
           <hr />
         </div>

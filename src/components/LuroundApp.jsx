@@ -1,34 +1,12 @@
 /* @format */
 import "./style.css";
 import { useState } from "react";
-import Sidebar from "./Profile/SideBar/LuroundSidebar";
-import Bookings from "./Bookings/Bookings";
-import Event from "./Services/Event/Event";
-import One from "./Services/OneOff/OneoffService/OneOff";
-import Program from "./Services/Program/Program";
-import Retainer from "./Services/Retainer/Retainer";
-import AboutDetails from "./Profile/ClientProfile/Profile/AboutDetails";
-import Search from "./Profile/NavBar/LuroundSearch";
-import Profile from "./Profile/ClientProfile/Profile/Profile";
-import EditProfile from "./Profile/EditProfile/EditProfile";
-import Transaction from "./Transactions/TransactionPage";
+
 import axios from "axios";
 import React, { useEffect } from "react";
-import Login from "./Login/Login";
-import Support from "./Support/Support";
-import Contact from "./Contact/Contact";
-import Financials from "./Financials/Financials";
-import Quotes from "./Financials/Quotes/Quotes";
-import Invoice from "./Financials/Invioces/Invoice";
-import Receipt from "./Financials/Receipts/Receipt";
-import View from "./Financials/Quotes/View/View";
-import Edit from "./Financials/Quotes/Edit/Edit";
-import Convert from "./Financials/Quotes/Convert/Convert";
-import Resend from "./Financials/Quotes/Resend/Resend";
-import Settings from "./Profile/Settings/Settings";
-import FirstPage from "./StoreFront/FirstPage";
-import SecondPage from "./StoreFront/SecondPage";
-import DetailPopup from "./StoreFront/DetailPopup";
+import Login from "./Login/Login/Login";
+
+import MainProfile from "../MainProfile";
 export default function LuroundApp() {
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
@@ -62,114 +40,6 @@ export default function LuroundApp() {
       setVisible("fade-in");
     }, 200);
   };
-
-  //login details
-  function LoginDetail(e) {
-    setLogindetail({ ...logindetail, [e.target.name]: e.target.value });
-  }
-
-  //login email and password
-  const data = { email: logindetail.email, password: logindetail.password };
-
-  //login submit button
-  function Submit(e) {
-    e.preventDefault();
-    // setLogin(false);
-
-    // // Login function
-    axios
-      .post(
-        "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/auth/login",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // body: JSON.stringify(data),
-        }
-      )
-      .then((res) => {
-        console.log("response:", res);
-
-        const token = res.data.accessToken;
-
-        localStorage.setItem("Token", token);
-        console.log("Logged in token:", token);
-        alert("Login");
-        setLogin(true);
-
-        axios
-          .get(
-            "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-              params: {
-                email: data.email, // Pass email as a query parameter
-              },
-            }
-          )
-          .then((response) => {
-            console.log("Full API Response:", response.data);
-
-            setName(response.data.displayName);
-            seturl(response.data.luround_url);
-            setComapny(response.data.company);
-            setlogo(response.data.logo_url);
-            setAbout(response.data.about);
-            setsocialLink(response.data.media_links);
-            setIsOccupation(response.data.occupation);
-            setIsEmail(response.data.email);
-            setPhotoUrl(response.data.photoUrl);
-          });
-      })
-      .catch((err) => {
-        console.log("Error", err.status);
-        console.log("StatusText", err.statusText);
-        alert("Unauthorized");
-        setLogin(false);
-      });
-
-    // alert("Wrong details");
-    setLogin(false);
-    //photo update
-  }
-
-  const token = localStorage.getItem("Token");
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(
-        "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            email: data.email, // Pass email as a query parameter
-          },
-        }
-      );
-      console.log("Full API Response:", response.data);
-
-      setName(response.data.displayName);
-      seturl(response.data.luround_url);
-      setComapny(response.data.company);
-      setlogo(response.data.logo_url);
-      setAbout(response.data.about);
-      setsocialLink(response.data.media_links);
-      setIsOccupation(response.data.occupation);
-      setIsEmail(response.data.email);
-      setPhotoUrl(response.data.photoUrl);
-    } catch (error) {
-      if (error.response) {
-        console.error("Error response:", error.response.data);
-      } else {
-        console.error("Error:", error);
-      }
-    }
-  }
 
   useEffect(() => {
     fetchData();
@@ -329,92 +199,47 @@ export default function LuroundApp() {
           logindetail={logindetail}
           Submit={Submit}
           LoginDetail={LoginDetail}
+          setName={setName}
+          setIsEmail={setIsEmail}
+          setImage={setImage}
+          setComapny={setComapny}
+          seturl={seturl}
+          setAbout={setAbout}
+          setLogoUrl={setLogoUrl}
+          setIsOccupation={setIsOccupation}
+          setPhotoUrl={setPhotoUrl}
+          setsocialLink={setsocialLink}
+          setLogin={setLogin}
         />
       ) : (
-        <div className='grid-container'>
-          {/*Sidebar container */}
-          <Sidebar onComponentSwitch={handleOneOffClick} />
-          {/*Profile container */}
-          <div className='profiledashboard'>
-            <Search
-              onComponentSwitch={handleOneOffClick}
-              Name={Name}
-              email={isEmail}
-              photoUrl={photoUrl}
-              logindetail={logindetail}
-              Submit={Submit}
-              LoginDetail={LoginDetail}
-              // photoUrlSmaller={photoUrlSmaller}
-            />
-            <div className={`profile-details ${visible}`}>
-              {activeComponent === "editprofile" && (
-                <EditProfile
-                  handleEditProfile={handleEditProfile}
-                  handleSubmit={handleSubmit}
-                  isValue={isValue}
-                  setIsValue={setIsValue}
-                  setRefreshKey={setRefreshKey}
-                  handleChange={handleChange}
-                  image={image}
-                  logourl={logourl}
-                  LogoUpload={LogoUpload}
-                  fileSizeInMB={fileSizeInMB}
-                />
-              )}
-              {activeComponent === "settings" && <Settings />}
-              {activeComponent === "oneoff" && <One />}
-              {activeComponent === "retainer" && <Retainer />}
-              {activeComponent === "program" && <Program />}
-              {activeComponent === "event" && <Event />}
-              {activeComponent === "bookings" && <Bookings />}
-              {activeComponent === "storefront" && (
-                <FirstPage onComponentSwitch={handleOneOffClick} />
-              )}
-              {activeComponent === "secondpage" && (
-                <SecondPage onComponentSwitch={handleOneOffClick} />
-              )}
-
-              {activeComponent === "detail" && <DetailPopup />}
-              {activeComponent === "transaction" && <Transaction />}
-              {activeComponent === "support" && <Support />}
-              {activeComponent === "contact" && <Contact />}
-              {activeComponent === "financial" && (
-                <Financials onComponentSwitch={handleOneOffClick} />
-              )}
-              {activeComponent === "quotes" && (
-                <Quotes onComponentSwitch={handleOneOffClick} />
-              )}
-              {/* {activeComponent === "view" && <View />} */}
-              {activeComponent === "edit" && (
-                <Edit onComponentSwitch={handleOneOffClick} />
-              )}
-
-              {activeComponent === "invoices" && (
-                <Invoice onComponentSwitch={handleOneOffClick} />
-              )}
-              {activeComponent === "receipts" && (
-                <Receipt onComponentSwitch={handleOneOffClick} />
-              )}
-
-              {activeComponent === "profile" && (
-                <>
-                  <Profile
-                    refreshKey={refreshKey}
-                    Name={Name}
-                    company={Company}
-                    url={url}
-                    logo={logo}
-                    Occupation={isOccupation}
-                    handleEditProfile={handleEditProfile}
-                    handleSubmit={handleSubmit}
-                    photoUrl={photoUrl}
-                  />
-                  <AboutDetails about={About} socialLink={socialLink} />
-                </>
-              )}
-            </div>
-          </div>
-        </div>
+        <MainProfile
+          handleChange={handleChange}
+          handleEditProfile={handleEditProfile}
+          handleOneOffClick={handleOneOffClick}
+          handleSubmit={handleSubmit}
+          Submit={Submit}
+          Name={Name}
+          isEmail={isEmail}
+          photoUrl={photoUrl}
+          logindetail={logindetail}
+          LoginDetail={LoginDetail}
+          isValue={isValue}
+          setIsValue={setIsValue}
+          image={image}
+          refreshKey={refreshKey}
+          logourl={logourl}
+          LogoUpload={LogoUpload}
+          fileSizeInMB={fileSizeInMB}
+          socialLink={socialLink}
+          About={About}
+          Company={Company}
+          isOccupation={isOccupation}
+          visible={visible}
+          activeComponent={activeComponent}
+          setRefreshKey={setRefreshKey}
+          url={url}
+          logo={logo}
+        />
       )}
     </div>
   );

@@ -1,12 +1,12 @@
 /** @format */
-
+import styles from "./style.module.css";
 export default function ConfirmWithdraw({ onClose, confirm }) {
   return (
     <div>
       <div className='popupcancel popupwithdrawpin'>
         <div className='overlay' onClick={onClose}></div>
         <div className='withdrawpin'>
-          <div className='withdraw-svg'>
+          <div className={styles.closesvg}>
             {" "}
             <svg
               onClick={onClose}
@@ -27,12 +27,12 @@ export default function ConfirmWithdraw({ onClose, confirm }) {
             </svg>
           </div>
 
-          <div className='set-password'>
-            <div className='set-pin'>
+          <div className={styles.password}>
+            <div className={styles.pin}>
               <span>Set Withdrawal Pin</span>
               <label>Confirm your 4-digit pin</label>
             </div>
-            <div className='withdrawal-password'>
+            <div className={styles.withdrawal}>
               <input type='password' />
               <input type='password' />
               <input type='password' />
