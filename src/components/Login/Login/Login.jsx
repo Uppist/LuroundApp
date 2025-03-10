@@ -46,7 +46,7 @@ export default function Login() {
       );
 
       localStorage.setItem("Token", data.accessToken);
-      alert("Login successful!");
+      alert("Login!");
 
       const profileResponse = await axios.get(
         "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",

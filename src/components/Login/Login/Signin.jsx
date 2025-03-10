@@ -35,7 +35,7 @@ export default function Signin({ Submit, logindetail, LoginDetail }) {
         </Link>
       </div>{" "}
       {/* <Link to='/Profile-page'> */}
-      <button type='submit'>login</button>
+      <button type='submit'>Login</button>
       {/* </Link> */}
     </form>
   );

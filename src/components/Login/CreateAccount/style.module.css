@@ -14,6 +14,11 @@
   display: flex;
   flex-direction: column;
   gap: 64px;
+  overflow: scroll;
+}
+
+.imgdiv::-webkit-scrollbar {
+  display: none;
 }
 
 .imgdiv > img {
