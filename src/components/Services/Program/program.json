@@ -1,6 +1,7 @@
 [
   {
     "image": "./OneOff/image2.png",
+    "sessionType": "program",
 
     "firstday": "Mon: 9:00am - 12:00pm",
     "secondday": "Thurs: 11:00am - 5:00pm",

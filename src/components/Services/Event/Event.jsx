@@ -1,5 +1,5 @@
 /** @format */
-import Create from "../CreateService";
+import Create from "../OneOff/OneoffService/CreateService";
 import { useState } from "react";
 import event from "./event.json";
 import Timebased from "../OneOff/TimeBased/TimeBased";
@@ -13,55 +13,23 @@ import styles2 from "../Retainer/Retainer.module.css";
 import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
 export default function Event() {
   const [isDetail, setisDetail] = useState(null);
-
-  const [isTimeBased, setIsTimeBased] = useState(false);
-  const [isProjectBased, setIsProjectBased] = useState(false);
-  const [isRetainer, setIsRetainer] = useState(false);
-  const [isProgram, setIsProgram] = useState(false);
-  const [isEvent, setIsEvent] = useState(false);
-  const [selectRadio, setSelectRadio] = useState({});
-  function radioChange(index, type) {
-    setSelectRadio((prevState) => ({
-      ...prevState,
-      [index]: type,
-    }));
-  }
-
-  function TimeBased() {
-    setIsTimeBased(true);
-  }
-
-  function ProjectBased() {
-    setIsProjectBased(true);
-  }
-
-  function RetainerContainer() {
-    setIsRetainer(true);
-  }
-
-  function ProgramContainer() {
-    setIsProgram(true);
-  }
+  const [isService, setIsService] = useState(false);
 
   function openDetail(index) {
     setisDetail(index);
   }
 
-  function EventContainer() {
-    setIsEvent(true);
+  function openService() {
+    setIsService(true);
+  }
+
+  function closeService() {
+    setIsService(false);
   }
   return (
     <>
-      {isEvent ? (
-        <EventService />
-      ) : isProgram ? (
-        <ProgramService />
-      ) : isRetainer ? (
-        <RetainerService />
-      ) : isProjectBased ? (
-        <Projectbased />
-      ) : isTimeBased ? (
-        <Timebased />
+      {isService ? (
+        <EventService closeService={closeService} />
       ) : isDetail === null ? (
         <div className={styles.event}>
           <div className={styles2.retainerservice}>
@@ -69,14 +37,22 @@ export default function Event() {
               <span className={styles2.oneoffservice}>Event</span>
               <span className={styles2.number}>{event.length}</span>
             </div>
-            <div className='add-service'>
-              <Create
-                onTime={TimeBased}
-                onProject={ProjectBased}
-                onRetainer={RetainerContainer}
-                onProgram={ProgramContainer}
-                onEvent={EventContainer}
-              />
+            <div>
+              <button onClick={openService} className={styles2.addservice}>
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
+                    fill='#FFFFFF'
+                  />
+                </svg>
+                <span>Create</span>
+              </button>
             </div>
           </div>
           <div className={styles2.dataretainer}>

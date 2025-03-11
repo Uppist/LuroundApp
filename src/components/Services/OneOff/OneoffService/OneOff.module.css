@@ -17,6 +17,18 @@
 /* .addservice {
 } */
 
+/*Add Service styling*/
+
+.service {
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.service > span {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+}
+
 .oneoff {
   display: grid;
   gap: 24px;
@@ -132,7 +144,7 @@
   gap: 60px;
 }
 .text {
-  width: 450px;
+  width: 420px;
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 5%, 43%, 1);
@@ -186,16 +198,17 @@ input[type="radio"] {
   font-size: 12px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+  width: max-content;
 }
 
 input[type="radio"]:checked {
   background-color: hsla(180, 23%, 15%, 1);
   cursor: pointer;
-  accent-color: white;
+  /* accent-color: white; */
 }
 
 .pricesession {
-  width: -webkit-fill-available;
+  width: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -270,6 +283,7 @@ input[type="radio"]:checked {
 }
 
 .minsarrow {
+  width: max-content;
   display: flex;
   align-items: center;
   gap: 8px;

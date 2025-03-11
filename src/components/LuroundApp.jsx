@@ -23,14 +23,6 @@ export default function LuroundApp() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [logindetail, setLogindetail] = useState({ email: "", password: "" });
   const [login, setLogin] = useState(false);
-  const [isValue, setIsValue] = useState({
-    // upload2: "",
-    firstName: "",
-    lastName: "",
-    occupation: "",
-    company: "",
-    logo_url: "",
-  });
 
   //change clicks
   const handleOneOffClick = (container) => {

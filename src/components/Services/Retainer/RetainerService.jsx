@@ -5,7 +5,7 @@ import styles from "./Details.module.css";
 import image from "../../elements/gallery.png";
 
 import DayTime from "../OneOff/TimeBased/DayTime";
-import ServiceCreate from "../OneOff/SeviceCreate";
+import ServiceCreate from "../OneOff/TimeBased/Create/SeviceCreate";
 import PricingTime from "../OneOff/TimeBased/Pricing";
 export default function RetainerService() {
   const [isBack, setIsBack] = useState(false);

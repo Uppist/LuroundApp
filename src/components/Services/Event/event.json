@@ -1,6 +1,7 @@
 [
   {
     "image": "./OneOff/image3.png",
+    "sessionType": "event",
 
     "firstday": " 9:00am - 4:00pm",
     "Title": "Grow your Business Masterclass",
@@ -18,6 +19,7 @@
   },
   {
     "image": "./OneOff/image3.png",
+    "sessionType": "event",
 
     "firstday": " 9:00am - 12:00pm",
     "Title": "Tech Innovators Submit",
@@ -40,6 +42,7 @@
     "servicetype": "Service type:",
     "location": "The Nest Hub, Yaba, Lagos",
     "startdate": "Sat, 24 Aug, 2024",
+    "sessionType": "event",
 
     "oneoff": "Event",
     "text": "Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusmod tempor incididunt labore consectetaur seiod.",

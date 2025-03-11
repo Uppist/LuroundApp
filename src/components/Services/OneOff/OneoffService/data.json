@@ -14,9 +14,12 @@
     "minutes": "15 mins",
     "virtual": "Virtual",
     "amount": "₦25,000",
-    "inperson": "N/A"
+    "inperson": "N/A",
+    "sessionType": "oneoff"
   },
   {
+    "sessionType": "oneoff",
+
     "image": "./OneOff/image2.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
@@ -34,6 +37,8 @@
     "inperson": "N/A"
   },
   {
+    "sessionType": "oneoff",
+
     "image": "./OneOff/image3.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",
@@ -53,6 +58,8 @@
   },
 
   {
+    "sessionType": "oneoff",
+
     "image": "./OneOff/image1.png",
     "firstday": "Monday: 9:00am -12:00pm",
     "secondday": "Thursday: 9:00am -12:00pm",

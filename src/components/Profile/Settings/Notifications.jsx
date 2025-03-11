@@ -4,9 +4,19 @@ import React, { useState } from "react";
 import styles from "./Setting.module.css";
 
 export default function Notifications() {
-  const [isSuspended, setIsSuspended] = useState(false);
-  function toggle() {
-    setIsSuspended((prevState) => !prevState);
+  const [notifications, setNotifications] = useState({
+    push: false,
+    new: false,
+    confirmations: false,
+    rescheduled: false,
+    cancelled: false,
+  });
+
+  function toggle(type) {
+    setNotifications((prevState) => ({
+      ...prevState,
+      [type]: !prevState[type],
+    }));
   }
   return (
     <>
@@ -21,8 +31,8 @@ export default function Notifications() {
               type='checkbox'
               id='check1'
               className='check'
-              onChange={toggle}
-              checked={isSuspended}
+              onChange={() => toggle("push")}
+              checked={notifications.push}
             />
             <label for='check1' className={styles.toggle}></label>
           </div>
@@ -37,8 +47,8 @@ export default function Notifications() {
               type='checkbox'
               id='check2'
               className='check'
-              onChange={toggle}
-              checked={isSuspended}
+              onChange={() => toggle("new")}
+              checked={notifications.new}
             />
             <label for='check2' className={styles.toggle}></label>
           </div>
@@ -52,8 +62,8 @@ export default function Notifications() {
               type='checkbox'
               id='check3'
               className='check'
-              onChange={toggle}
-              checked={isSuspended}
+              onChange={() => toggle("confirmations")}
+              checked={notifications.confirmations}
             />
             <label for='check3' className={styles.toggle}></label>
           </div>
@@ -67,8 +77,8 @@ export default function Notifications() {
               type='checkbox'
               id='check4'
               className='check'
-              onChange={toggle}
-              checked={isSuspended}
+              onChange={() => toggle("rescheduled")}
+              checked={notifications.rescheduled}
             />
             <label for='check4' className={styles.toggle}></label>
           </div>
@@ -82,8 +92,8 @@ export default function Notifications() {
               type='checkbox'
               id='check5'
               className='check'
-              onChange={toggle}
-              checked={isSuspended}
+              onChange={() => toggle("cancelled")}
+              checked={notifications.cancelled}
             />
             <label for='check5' className={styles.toggle}></label>
           </div>

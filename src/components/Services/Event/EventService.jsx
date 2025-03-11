@@ -1,31 +1,14 @@
 /** @format */
-import { useState } from "react";
-import Event from "../Event/Event";
+
 import styles from "./Event.module.css";
 import styles2 from "../Retainer/Details.module.css";
 import CreateEvent from "./CreateEvent";
 import image from "../../elements/gallery.png";
-export default function EventService() {
-  const [isBack, setIsBack] = useState(false);
-  const [isNext, setIsNext] = useState(false);
-
-  const [IsAddTime, setIsAddTime] = useState([]);
-
-  function BackOneOff() {
-    setIsBack(true);
-  }
-
-  function Next() {
-    setIsNext(true);
-  }
-
-  function backEvent() {
-    setIsNext(false);
-  }
+export default function EventService({ closeService }) {
   return (
     <>
       <div className={styles2.timebased}>
-        <button className={styles2.timeback} onClick={BackOneOff}>
+        <button className={styles2.timeback} onClick={closeService}>
           <svg
             width='7'
             height='12'

@@ -36,7 +36,7 @@
   border-radius: 10px;
 }
 
-/* .addservice {
+.addservice {
   display: flex;
   align-items: center;
   border: 0;
@@ -48,7 +48,7 @@
   padding: 12px 16px;
   border-radius: 8px;
   color: hsla(180, 100%, 96%, 1);
-} */
+}
 
 .eachretainercontainer {
   display: grid;

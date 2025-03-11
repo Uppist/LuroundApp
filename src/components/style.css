@@ -83,7 +83,9 @@ textarea {
   left: 0px;
   right: 0;
   bottom: 0;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
@@ -124,8 +126,6 @@ textarea {
   flex-direction: column;
   gap: 12px;
   border-radius: 8px;
-  top: 145px;
-  right: 20px;
 }
 
 .type-of-service > ul {
@@ -179,6 +179,7 @@ textarea {
 
 .time-project-service {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 16px;
 }

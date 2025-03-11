@@ -9,15 +9,13 @@ import React, { useState } from "react";
 import DetailOne from "./DetailService";
 import Timebased from "../TimeBased/TimeBased";
 import Projectbased from "../ProjectBased/ProjectBased";
-import RetainerService from "../../Retainer/RetainerService";
-import Create from "../../CreateService";
+import Create from "./CreateService";
 import VirtualContainer from "./VirtualContainer";
 
 export default function One({ backone }) {
   const [isDetail, setisDetail] = useState(null);
   const [isTimeBased, setIsTimeBased] = useState(false);
   const [isProjectBased, setIsProjectBased] = useState(false);
-  const [isRetainer, setIsRetainer] = useState(false);
   const [isVisible, setVisible] = useState("fade-in");
 
   function TimeBased() {
@@ -36,15 +34,9 @@ export default function One({ backone }) {
     }, 200);
   }
 
-  function RetainerContainer() {
-    setIsRetainer(true);
-  }
-
   return (
     <>
-      {isRetainer ? (
-        <RetainerService />
-      ) : isProjectBased ? (
+      {isProjectBased ? (
         <Projectbased backone={backone} />
       ) : isTimeBased ? (
         <Timebased />
@@ -56,11 +48,7 @@ export default function One({ backone }) {
               <span className={styles.number}>4</span>
             </div>
             <div>
-              <Create
-                onTime={TimeBased}
-                onProject={ProjectBased}
-                onRetainer={RetainerContainer}
-              />
+              <Create onTime={TimeBased} onProject={ProjectBased} />
             </div>
           </div>
           <div className={styles.dataoneoff}>

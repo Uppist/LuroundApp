@@ -7,10 +7,13 @@
   top: 60px;
 }
 
-.timebasedgridcontainer {
+.timebased {
+  padding: 24px;
+  background-color: white;
+  border-radius: 16px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
 }
 
 .timebasedback {
@@ -24,16 +27,6 @@
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.createtimebased {
-  padding: 24px 24px 38px 24px;
-  border-radius: 16px;
-  background-color: white;
-  display: flex;
-  height: fit-content;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .createtimeservice {
   display: flex;
   align-items: center;
@@ -44,7 +37,9 @@
 }
 
 .imgchoose img {
-  width: 415px;
+  width: 494px;
+  height: 390px;
+  border-radius: 8px;
 }
 
 .imgchoose {

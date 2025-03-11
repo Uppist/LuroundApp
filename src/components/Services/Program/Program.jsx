@@ -4,7 +4,7 @@ import program from "./program.json";
 import Timebased from "../OneOff/TimeBased/TimeBased";
 import Projectbased from "../OneOff/ProjectBased/ProjectBased";
 import RetainerService from "../Retainer/RetainerService";
-import Create from "../CreateService";
+// import Create from "../CreateService";
 import ProgramService from "../Program/ProgramService";
 import EventService from "../Event/EventService";
 import ProgramDetail from "./ProgramDetail";
@@ -12,54 +12,31 @@ import styles from "./Program.module.css";
 import styles2 from "../Retainer/Retainer.module.css";
 import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
 export default function Program() {
-  const [isTimeBased, setIsTimeBased] = useState(false);
   const [isDetail, setisDetail] = useState(null);
+  const [isVisible, setVisible] = useState("fade-in");
 
-  const [isProjectBased, setIsProjectBased] = useState(false);
-  const [isRetainer, setIsRetainer] = useState(false);
-  const [isProgram, setIsProgram] = useState(false);
-  const [isEvent, setIsEvent] = useState(false);
-  const [selectRadio, setSelectRadio] = useState({});
-  function radioChange(index, type) {
-    setSelectRadio((prevState) => ({
-      ...prevState,
-      [index]: type,
-    }));
-  }
+  const [isService, setIsService] = useState(false);
+
   function openDetail(index) {
-    setisDetail(index);
-  }
-  function TimeBased() {
-    setIsTimeBased(true);
-  }
-
-  function ProjectBased() {
-    setIsProjectBased(true);
+    setVisible("fade-out");
+    setTimeout(() => {
+      setisDetail(index);
+      setVisible("fade-in");
+    }, 200);
   }
 
-  function RetainerContainer() {
-    setIsRetainer(true);
+  function openService() {
+    setVisible("fade-out");
+    setTimeout(() => {
+      setIsService(true);
+      setVisible("fade-in");
+    }, 200);
   }
 
-  function ProgramContainer() {
-    setIsProgram(true);
-  }
-
-  function EventContainer() {
-    setIsEvent(true);
-  }
   return (
     <>
-      {isEvent ? (
-        <EventService />
-      ) : isProgram ? (
+      {isService ? (
         <ProgramService />
-      ) : isRetainer ? (
-        <RetainerService />
-      ) : isProjectBased ? (
-        <Projectbased />
-      ) : isTimeBased ? (
-        <Timebased />
       ) : isDetail === null ? (
         <div className={styles.program}>
           <div className={styles.retainerservice}>
@@ -67,15 +44,23 @@ export default function Program() {
               <span className={styles.oneoffservice}>Program</span>
               <span className={styles.number}>{program.length}</span>
             </div>
-            <div className='add-service'>
-              <Create
-                onTime={TimeBased}
-                onProject={ProjectBased}
-                onRetainer={RetainerContainer}
-                onProgram={ProgramContainer}
-                onEvent={EventContainer}
-              />
-            </div>
+            <div>
+              <button onClick={openService} className={styles2.addservice}>
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
+                    fill='#FFFFFF'
+                  />
+                </svg>
+                <span>Create</span>
+              </button>
+            </div>{" "}
           </div>
           <div>
             {program.map((data, index) => (
@@ -116,7 +101,7 @@ export default function Program() {
                         </div>
                       </div>
                       <div
-                        className={styles2.oneoffdetails}
+                        className={`${styles2.oneoffdetails} ${isVisible}`}
                         onClick={() => openDetail(index)}
                       >
                         <span> More details</span>
