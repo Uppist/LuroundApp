@@ -8,21 +8,13 @@ import image from "../../elements/gallery.png";
 
 import Retainer from "../Retainer/Retainer";
 import DayTime from "../OneOff/TimeBased/DayTime";
-import ServiceCreate from "../OneOff/SeviceCreate";
+import ServiceCreate from "../OneOff/TimeBased/Create/SeviceCreate";
+// import ServiceCreate from "../OneOff/SeviceCreate";
 export default function ProgramService() {
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);
 
   const [IsAddTime, setIsAddTime] = useState([]);
-
-  const [dropdown, setDropdown] = useState(false);
-  const option = [
-    "Once a week",
-    "Twice a week",
-    "Once every 2 weeks",
-    "Once every month",
-    "Custom",
-  ];
 
   function BackOneOff() {
     setIsBack(true);
