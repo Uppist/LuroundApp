@@ -230,8 +230,11 @@ input:checked + .toggle::before {
 /*Retainer Service*/
 .timebasedgridcontainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
 }
 .createtimebased {
   padding: 24px 24px 38px 24px;

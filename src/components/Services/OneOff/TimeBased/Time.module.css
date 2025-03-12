@@ -37,8 +37,8 @@
 }
 
 .imgchoose img {
-  width: 494px;
-  height: 390px;
+  width: 400px;
+  height: 340px;
   border-radius: 8px;
 }
 
@@ -83,15 +83,49 @@
 
 /*Pricing styling*/
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.create > div span {
+  color: hsla(180, 23%, 15%, 1);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.create > span {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: hsla(180, 23%, 15%, 0.65);
+  font-family: "Inter";
+}
+
 .pricingtimebased {
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  /* padding: 24px; */
   font-size: 18px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
 }
 
 .inputtime {
-  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -224,7 +258,6 @@
   gap: 8px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
-  padding: 24px 12px;
 }
 
 .timebookingperiod {

@@ -96,8 +96,8 @@ export default function Timebased() {
               </div>
             </div>
             <>
-              <ServiceCreate />
-              {/* {isNext ? (
+              {/* {isNext ? <PricingTime /> : <ServiceCreate Next={Next}:<DayTime/> />} */}
+              {isNext ? (
                 <>
                   <DayTime
                     backprice={backPricing}
@@ -108,7 +108,7 @@ export default function Timebased() {
                 </>
               ) : (
                 <PricingTime setnext={setIsNext} next={Next} />
-              )} */}
+              )}
             </>
           </div>
         </div>

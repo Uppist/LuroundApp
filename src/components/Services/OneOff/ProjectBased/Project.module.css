@@ -20,8 +20,11 @@
 }
 .projectbasedgrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  grid-template-columns: 1fr 2fr;
+  background-color: white;
+  padding: 24px;
+  gap: 32px;
+  border-radius: 16px;
 }
 
 .createproject {
@@ -44,11 +47,13 @@
 }
 
 .img {
-  width: 415px;
+  width: 445px;
+  border-radius: 8px;
+  height: 340px;
 }
 
 .choose {
-  position: absolute;
+  /* position: absolute; */
   margin-top: -75px;
   margin-left: 220px;
   display: flex;
@@ -71,6 +76,12 @@
   font-size: 14px;
   font-weight: 500;
   width: fit-content;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .project {
@@ -140,11 +151,14 @@
 .ngndown {
   display: flex;
   gap: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
 }
 
 .nigeriaprice input {
   padding: 16px 24px;
-  width: 150px;
+  width: -webkit-fill-available;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
 }
@@ -194,6 +208,7 @@
   display: flex;
   justify-content: end;
   gap: 24px;
+  margin-top: 20px;
 }
 
 .canceltime,
@@ -214,4 +229,39 @@
 .time {
   display: grid;
   gap: 32px;
+}
+
+.deliverytime {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.delivery label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.delivery span {
+  font-size: 12px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.date textarea {
+  padding: 16px 24px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.65);
+  width: -webkit-fill-available;
 }
