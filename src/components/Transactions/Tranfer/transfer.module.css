@@ -2,7 +2,7 @@
 .withdrawpin {
   display: flex;
   flex-direction: column;
-  width: 548px;
+  width: 450px;
   overflow: scroll;
   height: 524px;
   position: relative;
@@ -335,6 +335,6 @@
   color: white;
   /* border-bottom: 1px solid white; */
   text-decoration: underline;
-  margin-top: 20px;
+  margin-top: 5px;
   cursor: pointer;
 }
