@@ -18,15 +18,15 @@ export default function Financials({ onComponentSwitch }) {
 
       <div className={styles.financialcontainer}>
         <div onClick={() => handleChange("quotes")}>
-          <label>Quotes</label>
+          <label className={styles.quote}>Quotes</label>
         </div>
         <div onClick={() => handleChange("invoices")}>
           {" "}
-          <label>Invoices</label>
+          <label className={styles.invoice}>Invoices</label>
         </div>
         <div onClick={() => handleChange("receipts")}>
           {" "}
-          <label>Receipts</label>
+          <label className={styles.receipt}>Receipts</label>
         </div>
       </div>
     </section>

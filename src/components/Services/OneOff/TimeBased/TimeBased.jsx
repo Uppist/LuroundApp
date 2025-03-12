@@ -8,6 +8,16 @@ import PricingTime from "./Pricing";
 
 import styles from "./Time.module.css";
 export default function Timebased() {
+  const [step, setStep] = useState(1); // Step 1: ServiceCreate, Step 2: PricingTime, Step 3: DayTime
+
+  function nextStep() {
+    setStep((prev) => Math.min(prev + 1, 3)); // Ensure it doesn't go past step 3
+  }
+
+  function prevStep() {
+    setStep((prev) => Math.max(prev - 1, 1)); // Ensure it doesn't go below step 1
+  }
+
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);
 
@@ -95,9 +105,16 @@ export default function Timebased() {
                 </div>
               </div>
             </div>
-            <>
-              {/* {isNext ? <PricingTime /> : <ServiceCreate Next={Next}:<DayTime/> />} */}
-              {isNext ? (
+
+            {step === 1 && <ServiceCreate nextStep={nextStep} />}
+            {step === 2 && (
+              <PricingTime nextStep={nextStep} prevStep={prevStep} />
+            )}
+            {step === 3 && <DayTime prevStep={prevStep} showPart={true} />}
+
+            {/* <> */}
+            {/* {isNext ? <PricingTime /> : <ServiceCreate Next={Next}:<DayTime/> />} */}
+            {/* {isNext ? (
                 <>
                   <DayTime
                     backprice={backPricing}
@@ -109,7 +126,7 @@ export default function Timebased() {
               ) : (
                 <PricingTime setnext={setIsNext} next={Next} />
               )}
-            </>
+            </> */}
           </div>
         </div>
       )}

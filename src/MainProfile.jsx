@@ -16,7 +16,7 @@ import Support from "./components/Support/Support";
 import Contact from "./components/Contact/Contact";
 import Financials from "./components/Financials/Financials";
 import Quotes from "./components/Financials/Quotes/Quotes";
-import Edit from "./components/StoreFront/Edit";
+// import Edit from "./components/StoreFront/Edit";
 import Invoice from "./components/Financials/Invioces/Invoice";
 import Receipt from "./components/Financials/Receipts/Receipt";
 import Profile from "./components/Profile/ClientProfile/Profile/Profile";
@@ -25,6 +25,7 @@ import Sidebar from "./components/Profile/SideBar/LuroundSidebar";
 import Search from "./components/Profile/NavBar/LuroundSearch";
 import Event from "./components/Services/Event/Event";
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
+import Edit from "./components/Financials/Quotes/Edit/Edit";
 
 export default function MainProfile() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -228,7 +229,7 @@ export default function MainProfile() {
             <Quotes onComponentSwitch={handleOneOffClick} />
           )}
           {/* {activeComponent === "view" && <View />} */}
-          {activeComponent === "edit" && (
+          {activeComponent === "edits" && (
             <Edit onComponentSwitch={handleOneOffClick} />
           )}
 

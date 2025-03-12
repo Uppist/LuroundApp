@@ -51,7 +51,7 @@ export default function CreateNew({ onComponentSwitch }) {
         <ul className={styles.lists}>
           <li
             onClick={() => {
-              Next("edit");
+              Next("edits");
             }}
           >
             Quotes

@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
 import styles from "./Time.module.css";
-export default function PricingTime({ next }) {
+export default function PricingTime({ nextStep }) {
   const [IsAddTime, setIsAddTime] = useState([]);
 
   function AddTime() {
@@ -250,7 +250,7 @@ export default function PricingTime({ next }) {
           </div>
         </div>
         <div>
-          <button className={styles.next} onClick={next}>
+          <button className={styles.next} onClick={nextStep}>
             Next
           </button>
         </div>

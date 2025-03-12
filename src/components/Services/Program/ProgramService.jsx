@@ -111,7 +111,13 @@ export default function ProgramService() {
               </div>
             </div>
             {isNext ? (
-              <DayTime />
+              <div className={styles2.step}>
+                <div>
+                  <label htmlFor=''>Create a program</label>
+                  <span>2 of 2 steps</span>
+                </div>
+                <DayTime />
+              </div>
             ) : (
               <div>
                 <CreateService />

@@ -339,3 +339,29 @@ input:checked + .toggle::before {
 .circleoffer span {
   text-transform: capitalize;
 }
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step > div label {
+  color: hsla(180, 23%, 15%, 1);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.step > div span {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: hsla(180, 23%, 15%, 0.65);
+  font-family: "Inter";
+}

@@ -143,7 +143,7 @@ export default function Sidebar({ onComponentSwitch }) {
               className={styles.downlist}
               onClick={() => handleItemClick("event")}
             >
-              Events
+              Event
             </li>
           </ul>
         )}

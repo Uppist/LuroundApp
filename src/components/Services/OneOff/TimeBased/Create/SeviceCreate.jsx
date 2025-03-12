@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./create.module.css";
 
-export default function ServiceCreate({ Next }) {
+export default function ServiceCreate({ nextStep }) {
   // const[isNext, setIsNext] = useState(false)
 
   // function Next(){
@@ -51,7 +51,7 @@ export default function ServiceCreate({ Next }) {
       </div>
       <div>
         {" "}
-        <button onClick={Next} className={styles.button}>
+        <button onClick={nextStep} className={styles.button}>
           Next
         </button>
       </div>

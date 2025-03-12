@@ -46,18 +46,59 @@
   height: 65vh;
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
   gap: 24px;
 }
 
 .financialcontainer div {
-  padding: 32px 182px;
-  background-color: white;
   font-weight: 500;
   cursor: pointer;
   color: hsla(180, 23%, 15%, 1);
-  box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.04);
+  background: url("../elements/bg.png") no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+}
+
+.quote {
+  background: linear-gradient(
+    180deg,
+    hsla(0, 56%, 96%, 1),
+    hsla(245, 92%, 91%, 1)
+  );
+  width: 260px;
+  height: 220px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invoice {
+  background: linear-gradient(
+    180deg,
+    hsla(30, 89%, 96%, 1),
+    hsla(282, 70%, 94%, 1)
+  );
+  width: 260px;
+  height: 220px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.receipt {
+  background: linear-gradient(
+    180deg,
+    hsla(245, 92%, 91%, 1),
+    hsla(0, 56%, 96%, 1)
+  );
+  width: 260px;
+  height: 220px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lists {

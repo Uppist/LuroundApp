@@ -209,6 +209,7 @@
 }
 
 .pin input {
+  padding: 0;
   text-align: center;
   width: 34px;
   height: 56px;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "../OneOff/TimeBased/Create/create.module.css";
 import styles2 from "./Details.module.css";
 
-export default function CreateService() {
+export default function CreateService({ nextStep }) {
   const [tasks, setTask] = useState(false);
   const [todos, setTodos] = useState([]);
 
@@ -101,7 +101,9 @@ export default function CreateService() {
       </div>
       <div>
         {" "}
-        <button className={styles.button}>Next</button>
+        <button onClick={nextStep} className={styles.button}>
+          Next
+        </button>
       </div>
     </div>
   );

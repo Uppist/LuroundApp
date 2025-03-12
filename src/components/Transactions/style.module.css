@@ -228,6 +228,8 @@
 }
 
 .withdrawal input {
+  padding: 0;
+  text-align: center;
   width: 48px;
   height: 56px;
   border-radius: 4px;

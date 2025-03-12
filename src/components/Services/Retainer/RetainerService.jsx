@@ -10,10 +10,16 @@ import DayTime from "../OneOff/TimeBased/DayTime";
 export default function RetainerService() {
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);
-  const [tasks, setTask] = useState(false);
-  const [todos, setTodos] = useState([]);
 
-  const [IsAddTime, setIsAddTime] = useState([]);
+  const [step, setStep] = useState(1); // Step 1: ServiceCreate, Step 2: PricingTime, Step 3: DayTime
+
+  function nextStep() {
+    setStep((prev) => Math.min(prev + 1, 3)); // Ensure it doesn't go past step 3
+  }
+
+  function prevStep() {
+    setStep((prev) => Math.max(prev - 1, 1)); // Ensure it doesn't go below step 1
+  }
 
   function BackOneOff() {
     setIsBack(true);
@@ -105,16 +111,18 @@ export default function RetainerService() {
               </div>
             </div>
             <div className='time-service-description'>
-              {/* <CreateService /> */}
-              {isNext ? (
-                <DayTime
-                  backprice={backPricing}
-                  backone={BackOneOff}
-                  showPart={true}
-                  showSvg={true}
-                />
-              ) : (
-                <PricingTime next={Next} />
+              {step === 1 && <CreateService nextStep={nextStep} />}
+              {step === 2 && (
+                <PricingTime nextStep={nextStep} prevStep={prevStep} />
+              )}
+              {step === 3 && (
+                <div className={styles.step}>
+                  <div>
+                    <label>Create a retainer service</label>
+                    <span>3 of 3 steps</span>
+                  </div>
+                  <DayTime prevStep={prevStep} />
+                </div>
               )}
             </div>
           </div>
