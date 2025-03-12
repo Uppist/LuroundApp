@@ -85,13 +85,6 @@ export default function Storefont({
             >
               Add product
             </label>
-
-            {isStorefont && (
-              <PopUp
-                CancelAddProduct={CancelAddProduct}
-                onComponentSwitch={onComponentSwitch}
-              />
-            )}
           </div>
         </div>
       </div>

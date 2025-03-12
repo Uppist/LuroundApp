@@ -126,7 +126,7 @@ export default function SecondPage({ onComponentSwitch }) {
                   />
                 </svg>
                 {isDetail === index && data && (
-                  <DetailPopup isDetail={true} Close={Close} data={data} />
+                  <DetailPopup isDetail={true} Close={Close} data={Data} />
                 )}
               </div>
             </div>

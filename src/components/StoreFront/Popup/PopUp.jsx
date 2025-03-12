@@ -187,14 +187,15 @@ export default function PopUp({ CancelAddProduct, onComponentSwitch }) {
         </div>
 
         <Upload />
-      </div>
-      <div className={styles.buttons}>
-        <button className={styles.cancel} onClick={CancelAddProduct}>
-          Cancel
-        </button>
-        <button className={styles.next} onClick={() => Next("secondpage")}>
-          Done
-        </button>
+
+        <div className={styles.buttons}>
+          <button className={styles.cancel} onClick={CancelAddProduct}>
+            Cancel
+          </button>
+          <button className={styles.next} onClick={() => Next("secondpage")}>
+            Done
+          </button>
+        </div>
       </div>
     </div>
   );
