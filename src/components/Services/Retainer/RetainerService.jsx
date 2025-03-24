@@ -113,7 +113,13 @@ export default function RetainerService() {
             <div className='time-service-description'>
               {step === 1 && <CreateService nextStep={nextStep} />}
               {step === 2 && (
-                <PricingTime nextStep={nextStep} prevStep={prevStep} />
+                <div className={styles.step}>
+                  <div>
+                    <label>Create a retainer service</label>
+                    <span>2 of 3 steps</span>
+                  </div>
+                  <PricingTime nextStep={nextStep} prevStep={prevStep} />
+                </div>
               )}
               {step === 3 && (
                 <div className={styles.step}>

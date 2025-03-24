@@ -7,7 +7,7 @@ import Insight from "../../QuickAction/Insight";
 import Share from "../../QuickAction/Share";
 import QrCode from "../../QuickAction/QrCode";
 
-export default function QuickAction({ setIsEdit, dataValue, Back }) {
+export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
   // const [Quick, setQuick] = useState({});
 
   const [isInsight, setIsInsight] = useState(false);
@@ -48,10 +48,12 @@ export default function QuickAction({ setIsEdit, dataValue, Back }) {
 
   return (
     <div className={styles.quickcontainer}>
-      <div className={styles.quickaction}>
-        <label>Quick actions</label>
-        <hr />
-      </div>
+      {showPart && (
+        <div className={styles.quickaction}>
+          <label>Quick actions</label>
+          <hr />
+        </div>
+      )}
 
       <div className={styles.settingsdetail}>
         <div className={styles.settingscontainer} onClick={EditDetail}>

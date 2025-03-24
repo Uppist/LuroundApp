@@ -35,14 +35,7 @@ export default function SecondPage({ onComponentSwitch }) {
     setisStorefont(false);
   }
   return (
-    <section className={styles.contact}>
-      <Storefont
-        CancelAddProduct={CancelAddProduct}
-        isStorefont={isStorefont}
-        AddProduct={AddProduct}
-        onComponentSwitch={onComponentSwitch}
-      />
-
+    <section className={styles.secondpage}>
       <div className={styles.products}>
         <div className={styles.all}>
           <label htmlFor=''>All</label>

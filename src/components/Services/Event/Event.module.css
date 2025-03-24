@@ -25,9 +25,14 @@
   gap: 32px;
 }
 
-.createeventservice img {
+.createservice {
+  display: flex;
+  flex-direction: column;
+}
+
+.createeventservice > img {
   border-radius: 16px;
-  width: 494px;
+  width: 440px;
   height: 390px;
 }
 
@@ -189,9 +194,63 @@
   border-color: white;
 }
 
-input:checked + .toggle {
+.checkinperson input:checked + .toggle {
   background-color: hsla(180, 100%, 40%, 1);
 }
 input:checked + .toggle::before {
   transform: translateX(13px);
+}
+input[type="radio"]:checked {
+  background-color: hsla(180, 100%, 40%, 1);
+}
+
+/*Ticket section*/
+
+.ticket {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  padding: 16px;
+}
+
+.ticketname {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tickettype,
+.ticketevent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ticketevent div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+}
+
+.button button {
+  padding: 8px 24px;
+  border-radius: 8px;
+  border: 0;
+  background-color: hsla(0, 69%, 49%, 1);
+  color: white;
+  font-size: 16px;
+}
+
+/*Virtual styling*/
+.virtual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px !important;
+  align-items: baseline !important;
 }

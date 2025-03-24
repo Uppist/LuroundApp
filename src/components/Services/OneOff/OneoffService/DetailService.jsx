@@ -70,6 +70,7 @@ export default function DetailOne({ dataValue }) {
             </div>
 
             <QuickAction
+              showPart={true}
               isEdit={isEdit}
               setIsEdit={setIsEdit}
               dataValue={dataValue}

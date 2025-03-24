@@ -236,3 +236,49 @@
   list-style: none;
   margin-top: 160px;
 }
+
+.sendlist li {
+  cursor: pointer;
+}
+
+/*Transactions*/
+
+.details {
+  display: flex;
+  flex-direction: column;
+  /* gap: 32px; */
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background-color: hsla(180, 12%, 95%, 1);
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.amount2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.date2 {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}

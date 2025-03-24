@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./Contact.module.css";
 import Transaction from "./Transaction";
 
-export default function ContactSaved({ contacts }) {
+export default function ContactSaved({ contacts, handleClick }) {
   const [transaction, setTransaction] = useState(false);
   const [isSend, setIsSend] = useState(false);
 
@@ -14,11 +14,17 @@ export default function ContactSaved({ contacts }) {
 
   function Send() {
     setIsSend((prev) => !prev);
+    // handleClick(item);
   }
 
   function Cancel() {
     setTransaction(false);
     setIsSend(false);
+  }
+
+  function Click(item) {
+    handleClick(item);
+    console.log("clicked", item);
   }
   return (
     <div className={styles.account}>
@@ -61,9 +67,9 @@ export default function ContactSaved({ contacts }) {
               </svg>
               {isSend && (
                 <ul className={styles.sendlist}>
-                  <li>Quote</li>
-                  <li>Invoice</li>
-                  <li>Receipt</li>
+                  <li onClick={() => Click("quotes")}>Quote</li>
+                  <li onClick={() => Click("invoices")}>Invoice</li>
+                  <li onClick={() => Click("receipts")}>Receipt</li>
                 </ul>
               )}
             </div>

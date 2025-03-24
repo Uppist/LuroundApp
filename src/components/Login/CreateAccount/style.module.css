@@ -16,6 +16,9 @@
   gap: 64px;
   overflow: scroll;
 }
+a {
+  text-decoration: none;
+}
 
 .imgdiv::-webkit-scrollbar {
   display: none;
@@ -99,12 +102,14 @@
   padding: 16px 24px;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
+  font-family: "Inter";
 }
 
 .form span {
   font-size: 12px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
 }
 
 .container {

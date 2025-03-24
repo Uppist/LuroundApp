@@ -465,3 +465,8 @@
   font-weight: 700;
   justify-content: space-between;
 }
+
+.secondpage {
+  display: grid;
+  gap: 40px;
+}

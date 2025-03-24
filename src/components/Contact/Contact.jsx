@@ -6,7 +6,7 @@ import Addcontact from "./Addcontact";
 import NoContact from "./NoContact";
 import ContactSaved from "./ContactSaved";
 
-export default function Contact() {
+export default function Contact({ onComponentSwitch }) {
   const [isAddContact, setIsAddContact] = useState(false);
   const [visible, setVisible] = useState("");
   const [activeComponent, setActiveComponent] = useState("nocontact");
@@ -54,7 +54,7 @@ export default function Contact() {
             className={` ${isAddContact ? "open" : ""}`}
             onClick={AddContact}
           >
-            Add contact
+            New contact
           </label>
 
           {isAddContact && (
@@ -72,7 +72,7 @@ export default function Contact() {
       </div>
 
       {activeComponent === "contactsaved" && (
-        <ContactSaved contacts={contacts} />
+        <ContactSaved contacts={contacts} handleClick={onComponentSwitch} />
       )}
 
       {!isAddContact && activeComponent === "nocontact" && (

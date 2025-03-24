@@ -9,6 +9,7 @@ export default function DetailPopup({ Close, data }) {
       {/* <div className='overlay' onClick={Close}></div> */}
       <div>
         <label htmlFor=''>{data.money}</label>
+        <p>Hello</p>
       </div>
       {/* </div> */}
     </>

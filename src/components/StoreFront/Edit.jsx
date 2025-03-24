@@ -1,14 +1,15 @@
 /** @format */
 
 import React from "react";
+import QuickAction from "../Services/OneOff/OneoffService/QuickAction";
 
 export default function Edit({ Close, data }) {
   return (
     <>
-      <div className='popupcancel popupwithdrawpin'>
-        <div className='overlay' onClick={Close}></div>
+      <div className='popupcancel popupwithdrawpin' onClick={Close}>
+        {/* <div className='overlay' onClick={Close}></div> */}
         <div>
-          <label htmlFor=''>{data.Name}</label>
+          <QuickAction />
         </div>
       </div>
     </>

@@ -20,12 +20,18 @@ export default function TransactionTime() {
               <span>{transfer.ID}</span>
               <span>{transfer.Idnumber}</span>
             </div>
-            <div className='transaction-date'>
+            <div className={styles.date}>
               <span>{transfer.Date}</span>
               <label>{transfer.Time}</label>
             </div>
             <div className={styles.amount}>
-              <span className={transfer.type === "credit" ? "credit" : "debit"}>
+              <span
+                className={
+                  transfer.type === "credit"
+                    ? `${styles.credit}`
+                    : `${styles.debit}`
+                }
+              >
                 {transfer.Amount}
               </span>
               <label

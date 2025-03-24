@@ -130,14 +130,14 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   font-size: 12px;
   font-weight: 500;
-  gap: 105px;
+  /* gap: 105px; */
   color: hsla(180, 23%, 15%, 0.65);
 }
 
-.transactionstatus {
+/* .transactionstatus {
   gap: 90px;
   padding: 16px 24px;
-}
+} */
 
 .transactionstatus svg {
   margin-left: 80px;

@@ -6,7 +6,7 @@ import image from "../../elements/gallery.png";
 import nigeria from "../../elements/nigeria.png";
 import Upload from "./Upload";
 
-export default function PopUp({ CancelAddProduct, onComponentSwitch }) {
+export default function PopUp({ CancelAddProduct, handleClick }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [options] = useState([
@@ -26,7 +26,8 @@ export default function PopUp({ CancelAddProduct, onComponentSwitch }) {
 
   function Next(item) {
     // setIsNext(true);
-    onComponentSwitch(item);
+    handleClick(item);
+    CancelAddProduct();
   }
   const [isExternal, setIsExternal] = useState(false);
 

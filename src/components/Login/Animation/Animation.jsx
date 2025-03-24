@@ -23,12 +23,6 @@ export default function Animation() {
     swipeToSlide: false,
     autoplay: true,
     autoplaySpeed: 5000,
-    beforeChange: function (currentSlide, nextSlide) {
-      console.log("before change", currentSlide, nextSlide);
-    },
-    afterChange: function (currentSlide) {
-      console.log("after change", currentSlide);
-    },
   };
   return (
     <section className='animation'>

@@ -108,7 +108,11 @@ export default function Timebased() {
 
             {step === 1 && <ServiceCreate nextStep={nextStep} />}
             {step === 2 && (
-              <PricingTime nextStep={nextStep} prevStep={prevStep} />
+              <PricingTime
+                nextStep={nextStep}
+                prevStep={prevStep}
+                showPart={true}
+              />
             )}
             {step === 3 && <DayTime prevStep={prevStep} showPart={true} />}
 

@@ -6,10 +6,9 @@ import styles from "./Program.module.css";
 import styles2 from "../Retainer/Details.module.css";
 import image from "../../elements/gallery.png";
 
-import Retainer from "../Retainer/Retainer";
 import DayTime from "../OneOff/TimeBased/DayTime";
-import ServiceCreate from "../OneOff/TimeBased/Create/SeviceCreate";
 import CreateService from "./CreateService";
+import Program from "./Program";
 // import ServiceCreate from "../OneOff/SeviceCreate";
 export default function ProgramService() {
   const [isBack, setIsBack] = useState(false);
@@ -42,7 +41,7 @@ export default function ProgramService() {
   return (
     <>
       {isBack ? (
-        <Retainer />
+        <Program />
       ) : (
         <div className={styles2.timebased}>
           <button className={styles2.timeback} onClick={BackOneOff}>

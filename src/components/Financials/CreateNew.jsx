@@ -58,14 +58,14 @@ export default function CreateNew({ onComponentSwitch }) {
           </li>
           <li
             onClick={() => {
-              Next("invoices");
+              Next("edits");
             }}
           >
             Invoices
           </li>
           <li
             onClick={() => {
-              Next("receipts");
+              Next("edits");
             }}
           >
             Receipts

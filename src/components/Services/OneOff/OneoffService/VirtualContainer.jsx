@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./OneOff.module.css";
 
-export default function VirtualContainer({ data, index }) {
+export default function VirtualContainer({ data, index, showPart }) {
   // console.log(`Data at index ${index}:`, data.minutes);
 
   const [selectRadio, setSelectRadio] = useState({});
@@ -22,22 +22,21 @@ export default function VirtualContainer({ data, index }) {
 
   // console.log(`Session Type at index ${index}:`, data.minutes);
 
-  useEffect(() => {
-    if (data?.sessionType) {
-      let defaultOption;
-      if (data.sessionType === "oneoff") {
-        setSelectedOption(OneOffoptions);
-      } else if (data.sessionType === "retainer") {
-        setSelectedOption(retainerOption);
-      } else if (data.sessionType === "event") {
-        defaultOption = "";
-      } else {
-        // console.warn(`Invalid sessionType at index ${index}:`, data);
-      }
-    } else {
-      // console.warn(`sessionType is missing in data at index ${index}:`, data);
-    }
-  }, [data.sessionType]);
+  // useEffect(() => {
+  //   if (data?.sessionType) {
+  //     if (data.sessionType === "oneoff") {
+  //       setSelectedOption(OneOffoptions);
+  //     } else if (data.sessionType === "retainer") {
+  //       setSelectedOption(retainerOption);
+  //     } else if (data.sessionType === "event") {
+  //       defaultOption = "";
+  //     } else {
+  //       // console.warn(`Invalid sessionType at index ${index}:`, data);
+  //     }
+  //   } else {
+  //     // console.warn(`sessionType is missing in data at index ${index}:`, data);
+  //   }
+  // }, [data.sessionType]);
 
   function radioChange(index, type) {
     setSelectRadio((prevState) => ({

@@ -1,31 +1,29 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
+import Sidebar from "./components/Profile/SideBar/LuroundSidebar";
+import Search from "./components/Profile/NavBar/LuroundSearch";
+import Navbar from "./components/Profile/NavBar/LuroundSearch";
+
+import "./style.css";
+import Layout from "./Layout";
 import Settings from "./components/Profile/Settings/Settings";
+import Notification from "./components/Profile/NavBar/Notification";
+import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import One from "./components/Services/OneOff/OneoffService/OneOff";
 import Retainer from "./components/Services/Retainer/Retainer";
 import Program from "./components/Services/Program/Program";
 import Bookings from "./components/Bookings/Bookings";
 import FirstPage from "./components/StoreFront/FirstPage";
 import SecondPage from "./components/StoreFront/SecondPage";
-import DetailPopup from "./components/StoreFront/DetailPopup";
-import Transaction from "./components/Transactions/TransactionPage";
 import Support from "./components/Support/Support";
 import Contact from "./components/Contact/Contact";
 import Financials from "./components/Financials/Financials";
 import Quotes from "./components/Financials/Quotes/Quotes";
-// import Edit from "./components/StoreFront/Edit";
-import Invoice from "./components/Financials/Invioces/Invoice";
-import Receipt from "./components/Financials/Receipts/Receipt";
 import Profile from "./components/Profile/ClientProfile/Profile/Profile";
-import AboutDetails from "./components/Profile/ClientProfile/Profile/AboutDetails";
-import Sidebar from "./components/Profile/SideBar/LuroundSidebar";
-import Search from "./components/Profile/NavBar/LuroundSearch";
-import Event from "./components/Services/Event/Event";
-import EditProfile from "./components/Profile/EditProfile/EditProfile";
-import Edit from "./components/Financials/Quotes/Edit/Edit";
 
 export default function MainProfile() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -36,6 +34,7 @@ export default function MainProfile() {
 
   const [activeComponent, setActiveComponent] = useState("profile");
   const [visible, setVisible] = useState("fade-in");
+  const navigate = useNavigate();
 
   const [isValue, setIsValue] = useState({
     // upload2: "",
@@ -51,6 +50,7 @@ export default function MainProfile() {
     setTimeout(() => {
       setActiveComponent(container);
       setVisible("fade-in");
+      navigate(`/Profile-page/${container}`);
     }, 200);
   };
 
@@ -58,8 +58,16 @@ export default function MainProfile() {
     setIsValue({ ...isValue, [e.target.name]: e.target.value });
   }
   const location = useLocation();
-  const userData = location.state || {};
-  console.log("User Data:", userData);
+  const [userData, setUserData] = useState(
+    location.state || JSON.parse(localStorage.getItem("userData")) || {}
+  );
+
+  useEffect(() => {
+    if (location.state) {
+      setUserData(location.state);
+      localStorage.setItem("userData", JSON.stringify(location.state));
+    }
+  }, [location.state]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -175,92 +183,63 @@ export default function MainProfile() {
   const fileSizeInMB = (logourl.size / 1048576).toFixed(2);
 
   return (
-    <div className='grid-container'>
-      {/*Sidebar container */}
-      <Sidebar onComponentSwitch={handleOneOffClick} />
-      {/*Profile container */}
-      <div className='profiledashboard'>
-        <Search
-          onComponentSwitch={handleOneOffClick}
-          Name={userData.displayName}
-          email={userData.email}
-          photoUrl={userData.photoUrl}
-          // logindetail={logindetail}
-          // Submit={Submit}
-          // LoginDetail={LoginDetail}
-          // photoUrlSmaller={photoUrlSmaller}
-        />
-        <div className={`profile-details ${visible}`}>
-          {activeComponent === "editprofile" && (
-            <EditProfile
-              handleEditProfile={handleEditProfile}
-              handleSubmit={handleSubmit}
-              isValue={isValue}
-              setIsValue={setIsValue}
-              setRefreshKey={setRefreshKey}
-              handleChange={handleChange}
-              image={image}
-              logourl={logourl}
-              LogoUpload={LogoUpload}
-              fileSizeInMB={fileSizeInMB}
-            />
-          )}
-          {activeComponent === "settings" && <Settings />}
-          {activeComponent === "oneoff" && <One />}
-          {activeComponent === "retainer" && <Retainer />}
-          {activeComponent === "program" && <Program />}
-          {activeComponent === "event" && <Event />}
-          {activeComponent === "bookings" && <Bookings />}
-          {activeComponent === "storefront" && (
-            <FirstPage onComponentSwitch={handleOneOffClick} />
-          )}
-          {activeComponent === "secondpage" && (
-            <SecondPage onComponentSwitch={handleOneOffClick} />
-          )}
+    <>
+      <div className='grid-container'>
+        {/* Sidebar should always be present */}
+        <Sidebar onComponentSwitch={handleOneOffClick} />
 
-          {activeComponent === "detail" && <DetailPopup />}
-          {activeComponent === "transaction" && <Transaction />}
-          {activeComponent === "support" && <Support />}
-          {activeComponent === "contact" && <Contact />}
-          {activeComponent === "financial" && (
-            <Financials onComponentSwitch={handleOneOffClick} />
-          )}
-          {activeComponent === "quotes" && (
-            <Quotes onComponentSwitch={handleOneOffClick} />
-          )}
-          {/* {activeComponent === "view" && <View />} */}
-          {activeComponent === "edits" && (
-            <Edit onComponentSwitch={handleOneOffClick} />
-          )}
+        <div className='profiledashboard'>
+          {/* Navbar should always be present */}
+          <Search
+            onComponentSwitch={handleOneOffClick}
+            Name={userData.displayName}
+            email={userData.email}
+            photoUrl={userData.photoUrl}
+          />
 
-          {activeComponent === "invoices" && (
-            <Invoice onComponentSwitch={handleOneOffClick} />
-          )}
-          {activeComponent === "receipts" && (
-            <Receipt onComponentSwitch={handleOneOffClick} />
-          )}
-
-          {activeComponent === "profile" && (
-            <>
-              <Profile
-                refreshKey={refreshKey}
-                Name={userData.name}
-                company={userData.company}
-                url={userData.luround_url}
-                logo={userData.logo_url}
-                Occupation={userData.occupation}
-                // handleEditProfile={handleEditProfile}
-                // handleSubmit={handleSubmit}
-                photoUrl={userData.photoUrl}
-              />
-              <AboutDetails
-                about={userData.about}
-                socialLink={userData.media_links}
-              />
-            </>
-          )}
+          <Routes>
+            {/* Remove this line if settings is rendered via activeComponent */}
+            {/* <Route path='settings' element={<Settings />} /> */}
+            {/* <Route path='/notifications' element={<Notification />} /> */}
+            {/* <Route path='/editprofile' element={<EditProfile />} /> */}
+            {/* <Route path='/oneoff' element={<One />} /> */}
+            {/* <Route path='/retainer' element={<Retainer />} /> */}
+            {/* <Route path='/program' element={<Program />} /> */}
+            {/* <Route path='/bookings' element={<Bookings />} /> */}
+            {/* <Route path='/storefront' element={<FirstPage />} /> */}
+            {/* <Route path='/secondpage' element={<SecondPage />} /> */}
+            {/* <Route path='/support' element={<Support />} /> */}
+            {/* <Route path='/contact' element={<Contact />} /> */}
+            {/* <Route path='/financial' element={<Financials />} /> */}
+            {/* <Route path='/quotes' element={<Quotes />} /> */}
+          </Routes>
+          {/* Render dynamic content inside Layout */}
+          <Layout
+            visible={visible}
+            activeComponent={activeComponent}
+            refreshKey={refreshKey}
+            setRefreshKey={setRefreshKey} // Ensure this is passed
+            handleEditProfile={handleEditProfile}
+            handleSubmit={handleSubmit}
+            isValue={isValue}
+            setIsValue={setIsValue}
+            handleChange={handleChange}
+            image={image}
+            logourl={logourl}
+            LogoUpload={LogoUpload}
+            fileSizeInMB={fileSizeInMB}
+            Name={userData.name}
+            email={userData.email}
+            photoUrl={userData.photoUrl}
+            logo={userData.logo}
+            url={userData.url}
+            occupation={userData.occupation}
+            company={userData.company}
+            about={userData.about}
+            handleOneOffClick={handleOneOffClick}
+          />
         </div>
       </div>
-    </div>
+    </>
   );
 }

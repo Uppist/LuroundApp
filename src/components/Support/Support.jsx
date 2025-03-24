@@ -15,9 +15,13 @@ export default function Support() {
           <input placeholder='Enter here' />
         </div>
 
-        <div className={styles.description}>
-          <label>Description</label>
-          <textarea placeholder='Enter the details of your request. Our team will respond as soon as possible.' />
+        <div>
+          {" "}
+          <div className={styles.description}>
+            <label>Description</label>
+            <textarea placeholder='Enter the details of your request. Our team will respond as soon as possible.' />
+          </div>
+          <span>0/100</span>
         </div>
 
         <div className={styles.cancelsubmit}>

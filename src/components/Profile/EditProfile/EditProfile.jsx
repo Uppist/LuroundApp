@@ -9,7 +9,13 @@ import styles from "./EditProfile.module.css";
 export default function EditProfile({
   handleEditProfile,
   handleSubmit,
-  isValue,
+  isValue = {
+    firstName: "",
+    lastName: "",
+    company: "",
+    occupation: "",
+    logo_url: "",
+  }, // Default values
   setIsValue,
   setRefreshKey,
   handleChange,
@@ -65,7 +71,11 @@ export default function EditProfile({
   }
 
   useEffect(() => {
-    setRefreshKey((prevKey) => prevKey + 1);
+    if (typeof setRefreshKey === "function") {
+      setRefreshKey((prevKey) => prevKey + 1); // Ensure setRefreshKey is a function
+    } else {
+      console.error("setRefreshKey is not a function");
+    }
   }, [isAbout, isDetails]);
 
   function handleAboutCancel() {

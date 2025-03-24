@@ -32,16 +32,23 @@ export default function Transaction({ Cancel }) {
           <hr />
         </div>
 
-        <div>
-          <div>
-            <span>Date</span>
-            <span>Name</span>
+        <div className={styles.details}>
+          <div className={styles.amount}>
+            <div className={styles.date}>
+              {" "}
+              <span>Date</span>
+              <span>Name</span>
+            </div>
+
             <span>Amount</span>
           </div>
           <div>
-            <div>
-              <span>22/04/24</span>
-              <span>Kafayah</span>
+            <div className={styles.amount2}>
+              <div className={styles.date2}>
+                <span>22/04/24</span>
+                <span>Kafayah</span>
+              </div>
+
               <span>₦82,000</span>
             </div>
           </div>
