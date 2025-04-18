@@ -40,7 +40,7 @@ export default function Login() {
 
     try {
       const { data } = await axios.post(
-        "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/auth/login",
+        "https://api.luround.com/v1/auth/login",
         logindetail,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -49,7 +49,7 @@ export default function Login() {
       alert("Login!");
 
       const profileResponse = await axios.get(
-        "https://luround-api-7ad1326c3c1f.herokuapp.com/api/v1/profile/get",
+        "https://api.luround.com/v1/profile/get",
         {
           headers: { Authorization: `Bearer ${data.accessToken}` },
           params: { email: logindetail.email },

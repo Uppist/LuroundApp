@@ -3,6 +3,7 @@
 import styles from "./Profile.module.css";
 import scan from "../../../elements/scan.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function Profile({
   Name,
   company,
@@ -97,7 +98,22 @@ export default function Profile({
 
           <div>
             <div className={styles.loremicon}>
-              <a className={styles.lorem}>{url}</a>
+              <Link
+                to='/viewowner'
+                state={{
+                  name: Name,
+                  company: company,
+                  url: url,
+                  logo: logo,
+                  occupation: Occupation,
+                  photoUrl: photoUrl,
+                }}
+                className={styles.lorem}
+                target='blank'
+                rel='noopener noreferrer'
+              >
+                {url}
+              </Link>
               <svg
                 onClick={() => {
                   navigator.clipboard.writeText(url);

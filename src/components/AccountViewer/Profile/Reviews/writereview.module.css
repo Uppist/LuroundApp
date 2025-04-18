@@ -1,0 +1,121 @@
+/** @format */
+
+.writeReview {
+  background-color: white;
+}
+
+.container {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review {
+  background-color: hsla(180, 17%, 98%, 1);
+  padding: 24px 80px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.rate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.container2 {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px 80px;
+}
+
+.reviewtext {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reviewname {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name span {
+  font-size: 14px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.name label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.65);
+}
+
+.textarea {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.textarea textarea {
+  height: 136px;
+  padding: 12px 24px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+}
+
+.textarea span {
+  display: flex;
+  justify-content: end;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.canceltime,
+.donetime {
+  padding: 12px 40px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  font-weight: 400;
+  font-size: 16px;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.donetime {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+
+.canceldone {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+}

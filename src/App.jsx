@@ -1,6 +1,5 @@
 /** @format */
 import React from "react";
-// import LuroundApp from "./components/LuroundApp";
 import CreateAccount from "./components/Login/CreateAccount/CreateAccount";
 // import { Cloudinary } from "@cloudinary/url-gen";
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
@@ -27,6 +26,7 @@ import Contact from "./components/Contact/Contact";
 import Financials from "./components/Financials/Financials";
 import Quotes from "./components/Financials/Quotes/Quotes";
 import Layout from "./Layout";
+import WriteReview from "./components/AccountViewer/Profile/Reviews/WriteReview";
 
 export default function App() {
   // return <LuroundApp />;
@@ -42,9 +42,12 @@ export default function App() {
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/password-updated' element={<PasswordUpdated />} />
         <Route path='/Profile-page/*' element={<MainProfile />} />
+
         <Route path='/layout' element={<Layout />} />
 
         {/* <Route path='/viewowner' element={<Viewer />} /> */}
+        <Route path='/viewowner' element={<Viewer />} />
+        <Route path='/writeareview' element={<WriteReview />} />
       </Routes>
     </HashRouter>
 

@@ -1,7 +1,6 @@
 /** @format */
 
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { createContext, useState } from "react";
 import Settings from "./components/Profile/Settings/Settings";
 import Profile from "./components/Profile/ClientProfile/Profile/Profile";
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
@@ -18,15 +17,12 @@ import Quotes from "./components/Financials/Quotes/Quotes";
 import Invoice from "./components/Financials/Invioces/Invoice";
 import Receipt from "./components/Financials/Receipts/Receipt";
 import AboutDetails from "./components/Profile/ClientProfile/Profile/AboutDetails";
-import { Route, Routes } from "react-router-dom";
 import Event from "./components/Services/Event/Event";
 import DetailPopup from "./components/StoreFront/DetailPopup";
 import Transaction from "./components/Transactions/TransactionPage";
 import MainProfile from "./MainProfile";
-import Sidebar from "./components/Profile/SideBar/LuroundSidebar";
-import Search from "./components/Profile/NavBar/LuroundSearch";
-// import Sidebar from "./components/Sidebar/Sidebar"; // Import Sidebar
-// import Navbar from "./components/Navbar/Navbar"; // Import Navbar
+
+export const DataContext = createContext();
 
 export default function Layout({
   visible,
