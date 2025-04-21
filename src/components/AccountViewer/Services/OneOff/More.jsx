@@ -1,7 +1,8 @@
 /** @format */
 
 import { useState } from "react";
-import styles from "../../../Services/OneOff/OneOffService/DetailService.module.css";
+// import styles from "../../../Services/OneOff/OneOffService/DetailService.module.css";
+import styles from "../../../Services/OneOff/OneoffService/DetailService.module.css";
 import VirtualContainer from "../../../Services/OneOff/OneoffService/VirtualContainer";
 import { Link, useLocation } from "react-router-dom";
 import Layout from "../../Layout";
@@ -16,7 +17,7 @@ export default function More() {
     <>
       <Layout>
         <div className={styles.more}>
-          <Link to='/services' state={{ data, sessionType: backRoute }}>
+          <Link to='/services' state={{ sessionType: backRoute }}>
             <button className={styles.timebasedback}>
               <svg
                 width='7'
