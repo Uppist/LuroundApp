@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import NavBar from "../../NavBar/NavBar";
-import styles from "./writeReview.module.css";
+import styles from "./writereview.module.css";
 import { Link, useSearchParams } from "react-router-dom";
 
 export default function WriteReview() {
