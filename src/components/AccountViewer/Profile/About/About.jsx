@@ -8,11 +8,11 @@ import Contact from "../../../Profile/ClientProfile/Contact/Contact";
 import SocialMedia from "../../../Profile/ClientProfile/SocialMedia/SocialMedia";
 import Review from "../Reviews/Review";
 
-export default function About() {
+export default function About({ about }) {
   return (
-    <section className={styles.about}>
+    <section className={styles.about2}>
       <label className={styles.aboutlabel}> About</label>
-      <p className={styles.paragraph}>about</p>
+      <p className={styles.paragraph}>{about}</p>
       <hr />
       <Brands />
       <hr />

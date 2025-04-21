@@ -11,6 +11,7 @@ export default function Profile({
   logo,
   Occupation,
   photoUrl,
+  about,
 }) {
   const [isImageVisible, setIsImageVisible] = useState(true);
 
@@ -100,14 +101,6 @@ export default function Profile({
             <div className={styles.loremicon}>
               <Link
                 to='/viewowner'
-                state={{
-                  name: Name,
-                  company: company,
-                  url: url,
-                  logo: logo,
-                  occupation: Occupation,
-                  photoUrl: photoUrl,
-                }}
                 className={styles.lorem}
                 target='blank'
                 rel='noopener noreferrer'

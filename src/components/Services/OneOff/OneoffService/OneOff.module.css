@@ -37,6 +37,13 @@
   top: 60px;
 }
 
+.oneoff2 {
+  display: grid;
+  gap: 24px;
+  position: relative;
+  background-color: white;
+}
+
 .oneoffservice {
   display: flex;
   justify-content: space-between;
@@ -65,6 +72,12 @@
 .dataoneoff {
   display: grid;
   gap: 24px;
+}
+
+.dataoneoff2 {
+  display: grid;
+  gap: 24px;
+  padding: 0 60px;
 }
 
 .OneOffcontainer {
@@ -113,7 +126,7 @@
 .personaltrainingdetails {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 24px;
 }
 
 .personaltraining {
@@ -144,7 +157,9 @@
   gap: 60px;
 }
 .text {
-  width: 420px;
+  display: flex;
+  align-items: end;
+  width: -webkit-fill-available;
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 5%, 43%, 1);
@@ -156,7 +171,7 @@
   position: relative;
   height: fit-content;
   gap: 8px;
-  align-items: center;
+  /* align-items: cernter; */
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
@@ -165,8 +180,17 @@
   font-family: "Inter";
 }
 
+.book {
+  padding: 12px 48px;
+  background-color: hsla(180, 100%, 40%, 1);
+  width: fit-content;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+}
+
 hr {
-  border: 1px solid hsla(180, 11%, 89%, 1);
+  border: 1px solid hsla(180, 11%, 89%, 1) !important;
 }
 
 .virtualinperson {
@@ -181,12 +205,13 @@ hr {
 
 .pricingamount {
   display: flex;
+  gap: 72px;
   justify-content: space-between;
 }
 
 input[type="radio"] {
-  width: 24px;
-  height: 24px;
+  width: 16px !important;
+  height: 16px !important;
   cursor: pointer;
 }
 
@@ -194,10 +219,10 @@ input[type="radio"] {
 .inperson {
   display: flex;
   gap: 8px;
-  align-items: center;
-  font-size: 12px;
+  align-items: end;
+  font-size: 14px;
   font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
+  color: hsla(180, 23%, 15%, 1);
   width: max-content;
 }
 
@@ -212,7 +237,7 @@ input[type="radio"]:checked {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 48px;
   padding: 24px;
   background-color: hsla(180, 17%, 98%, 1);
   border-radius: 8px;

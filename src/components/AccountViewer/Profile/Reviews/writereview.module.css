@@ -1,11 +1,12 @@
 /** @format */
 
 .writeReview {
+  margin-top: 3px;
   background-color: white;
 }
 
 .container {
-  padding: 80px;
+  padding: 30px 80px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -13,7 +14,8 @@
 
 .text {
   display: flex;
-  align-items: center;
+  color: hsla(180, 23%, 15%, 0.8);
+  /* align-items: center; */
   gap: 4px;
 }
 
@@ -118,4 +120,12 @@
   display: flex;
   justify-content: end;
   gap: 24px;
+}
+
+.donetime:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.canceltime:hover {
+  background-color: hsla(180, 11%, 89%, 1);
 }

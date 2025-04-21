@@ -7,6 +7,12 @@
   position: relative;
   top: 60px;
 }
+.retainer2 {
+  display: grid;
+  gap: 24px;
+  position: relative;
+  background-color: white;
+}
 
 .retainerservice {
   display: flex;
@@ -89,6 +95,21 @@
   gap: 24px;
 }
 
+.dataretainer2 {
+  display: grid;
+  gap: 24px;
+  padding: 0 60px;
+}
+
+.book {
+  padding: 12px 48px;
+  background-color: hsla(180, 100%, 40%, 1);
+  width: fit-content;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+}
+
 .daystimeline {
   display: flex;
   gap: 24px;
@@ -106,7 +127,7 @@
 .personaltrainingdetails {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 24px;
 }
 
 .personaltraining {
@@ -128,7 +149,10 @@
 }
 
 .text {
-  width: 450px;
+  display: flex;
+  align-items: end;
+  width: -webkit-fill-available;
+  /* width: 450px; */
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 5%, 43%, 1);
@@ -140,7 +164,7 @@
   position: relative;
   height: fit-content;
   gap: 8px;
-  align-items: center;
+  /* align-items: center; */
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;

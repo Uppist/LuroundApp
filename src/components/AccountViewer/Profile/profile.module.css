@@ -13,6 +13,14 @@
   height: 185px;
 }
 
+.review {
+  display: grid;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  position: relative;
+}
+
 .image {
   position: relative;
   display: inline-block;
@@ -21,10 +29,6 @@
 .img {
   display: block;
   width: 270px;
-}
-
-.image:hover .img {
-  display: none;
 }
 
 .nameprofile {

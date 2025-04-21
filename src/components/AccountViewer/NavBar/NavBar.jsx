@@ -2,14 +2,22 @@
 
 import React from "react";
 import styles from "./NavBar.module.css";
-export default function NavBar() {
+import { Link } from "react-router-dom";
+export default function NavBar({ logo, company }) {
   return (
     <nav className={styles.navbar}>
-      <label htmlFor=''>Logo</label>
+      <div className={styles.logo}>
+        <img src={logo} alt='' />
+        <span>{company}</span>
+      </div>
 
       <ul className={styles.list}>
-        <li>Profile</li>
-        <li>Service</li>
+        <Link to='/viewowner'>
+          <li>Profile</li>
+        </Link>
+        <Link to='/services'>
+          <li>Service</li>
+        </Link>
         <li>Storefront</li>
       </ul>
     </nav>

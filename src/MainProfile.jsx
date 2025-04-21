@@ -197,23 +197,6 @@ export default function MainProfile() {
             photoUrl={userData.photoUrl}
           />
 
-          <Routes>
-            {/* Remove this line if settings is rendered via activeComponent */}
-            {/* <Route path='settings' element={<Settings />} /> */}
-            {/* <Route path='/notifications' element={<Notification />} /> */}
-            {/* <Route path='/editprofile' element={<EditProfile />} /> */}
-            {/* <Route path='/oneoff' element={<One />} /> */}
-            {/* <Route path='/retainer' element={<Retainer />} /> */}
-            {/* <Route path='/program' element={<Program />} /> */}
-            {/* <Route path='/bookings' element={<Bookings />} /> */}
-            {/* <Route path='/storefront' element={<FirstPage />} /> */}
-            {/* <Route path='/secondpage' element={<SecondPage />} /> */}
-            {/* <Route path='/support' element={<Support />} /> */}
-            {/* <Route path='/contact' element={<Contact />} /> */}
-            {/* <Route path='/financial' element={<Financials />} /> */}
-            {/* <Route path='/quotes' element={<Quotes />} /> */}
-          </Routes>
-          {/* Render dynamic content inside Layout */}
           <Layout
             visible={visible}
             activeComponent={activeComponent}

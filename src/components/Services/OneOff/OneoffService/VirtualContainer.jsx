@@ -63,8 +63,10 @@ export default function VirtualContainer({ data, index, showPart }) {
     }));
   }
 
-  const sessionType = data.minutes; // Example: "oneoff" or "retainer"
-  const options = sessionType === "oneoff" ? OneOffoptions : retainerOption;
+  // const sessionType = data.sessionType;
+  // const sessionType = data.minutes; // Example: "oneoff" or "retainer"
+  const options =
+    data.sessionType === "oneoff" ? OneOffoptions : retainerOption;
 
   return (
     <div

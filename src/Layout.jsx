@@ -79,6 +79,7 @@ export default function Layout({
               logo={logo}
               Occupation={occupation}
               photoUrl={photoUrl}
+              about={about}
             />
             <AboutDetails about={about} />
           </>

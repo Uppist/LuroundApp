@@ -29,3 +29,20 @@
 .list li:hover {
   background-color: hsla(180, 17%, 98%, 1);
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+}
+
+.logo span {
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}

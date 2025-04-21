@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../../../apis/LoginAPI/LoginAPI";
 import axios from "axios";
 import styles from "./Login.module.css";
 import styles2 from "../CreateAccount/style.module.css";
@@ -30,50 +31,10 @@ export default function Login() {
   const handleLoginDetailChange = (e) => {
     setLogindetail((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  async function handleLogin(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!logindetail.email || !logindetail.password) {
-      alert("Please enter your email and password.");
-      return;
-    }
-
-    try {
-      const { data } = await axios.post(
-        "https://api.luround.com/v1/auth/login",
-        logindetail,
-        { headers: { "Content-Type": "application/json" } }
-      );
-
-      localStorage.setItem("Token", data.accessToken);
-      alert("Login!");
-
-      const profileResponse = await axios.get(
-        "https://api.luround.com/v1/profile/get",
-        {
-          headers: { Authorization: `Bearer ${data.accessToken}` },
-          params: { email: logindetail.email },
-        }
-      );
-
-      console.log("Full API Response:", profileResponse.data);
-
-      setUserData({
-        name: profileResponse.data.displayName || "",
-        company: profileResponse.data.company || "",
-        photoUrl: profileResponse.data.photoUrl || "",
-        url: profileResponse.data.luround_url || "",
-        logo: profileResponse.data.logo_url || "",
-        about: profileResponse.data.about || "",
-        socialLinks: profileResponse.data.media_links || [],
-        occupation: profileResponse.data.occupation || "",
-        email: profileResponse.data.email || "",
-      });
-    } catch (error) {
-      console.error("Error:", error.response?.data || error.message);
-      alert("Unauthorized");
-    }
-  }
+    await handleLogin(logindetail, setUserData); // Call the API function
+  };
 
   useEffect(() => {
     if (userData.email) {
@@ -93,7 +54,7 @@ export default function Login() {
           <div className={styles2.signup}>
             <div className={styles2.container}>
               <Signin
-                Submit={handleLogin}
+                Submit={handleSubmit}
                 logindetail={logindetail}
                 LoginDetail={handleLoginDetailChange}
               />

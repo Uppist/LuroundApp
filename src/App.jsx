@@ -27,6 +27,10 @@ import Financials from "./components/Financials/Financials";
 import Quotes from "./components/Financials/Quotes/Quotes";
 import Layout from "./Layout";
 import WriteReview from "./components/AccountViewer/Profile/Reviews/WriteReview";
+import Service from "./components/AccountViewer/Services/Service";
+import More from "./components/AccountViewer/Services/OneOff/More";
+import BookNow from "./components/AccountViewer/Services/OneOff/BookNow";
+import RetainerView from "./components/AccountViewer/Services/Retainer/RetainerView";
 
 export default function App() {
   // return <LuroundApp />;
@@ -48,6 +52,10 @@ export default function App() {
         {/* <Route path='/viewowner' element={<Viewer />} /> */}
         <Route path='/viewowner' element={<Viewer />} />
         <Route path='/writeareview' element={<WriteReview />} />
+        <Route path='/services' element={<Service />} />
+        <Route path='/details' element={<More />} />
+        <Route path='/booknow' element={<BookNow />} />
+        {/* <Route path='/retainer' element={<RetainerView />} /> */}
       </Routes>
     </HashRouter>
 
