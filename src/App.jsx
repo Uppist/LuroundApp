@@ -91,7 +91,7 @@ export default function App() {
 
       {/* Login & Auth Routes */}
       <Routes>
-        <Route path='/' element={<CreateAccount />} />
+        <Route path='/LuroundApp' element={<CreateAccount />} />
         <Route path='/confirm-password' element={<Password />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Forgot-password' element={<ForgotPassword />} />
