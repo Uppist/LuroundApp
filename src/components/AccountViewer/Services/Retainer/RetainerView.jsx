@@ -7,7 +7,6 @@ import styles from "../../../Services/Retainer/Retainer.module.css";
 import retainer from "../../../Services/Retainer/retainer.json";
 
 import VirtualContainer from "../../../Services/OneOff/OneoffService/VirtualContainer";
-import Layout from "../../Layout";
 import { Link } from "react-router-dom";
 export default function RetainerView() {
   //   function openDetail(index) {

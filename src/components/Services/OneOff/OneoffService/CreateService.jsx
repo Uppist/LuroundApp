@@ -6,20 +6,10 @@ import styles from "./OneOff.module.css";
 export default function Create({
   onTime,
   onProject,
-  onRetainer,
-  onProgram,
-  onEvent,
+  isService,
+  openModal,
+  closeModal,
 }) {
-  const [isService, setisService] = useState(false);
-
-  const openModal = () => {
-    setisService(true);
-  };
-
-  const closeModal = () => {
-    setisService(false);
-  };
-
   return (
     <>
       <button className={styles.addservice}>

@@ -23,7 +23,7 @@
 .timebasedback {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: transparent;
   border: 0;
   gap: 16px;
   font-size: 14px;

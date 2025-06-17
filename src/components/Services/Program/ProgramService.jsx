@@ -10,7 +10,7 @@ import DayTime from "../OneOff/TimeBased/DayTime";
 import CreateService from "./CreateService";
 import Program from "./Program";
 // import ServiceCreate from "../OneOff/SeviceCreate";
-export default function ProgramService() {
+export default function ProgramService({ handleClick }) {
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);
 
@@ -115,7 +115,7 @@ export default function ProgramService() {
                   <label htmlFor=''>Create a program</label>
                   <span>2 of 2 steps</span>
                 </div>
-                <DayTime />
+                <DayTime handleClick={handleClick} serviceType='program' />
               </div>
             ) : (
               <div>

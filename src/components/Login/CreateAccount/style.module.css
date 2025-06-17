@@ -85,20 +85,23 @@ a {
   gap: 32px;
 }
 
-.form div {
+.form div,
+.form2 {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.form div label {
+.form div label,
+.form2 label {
   font-size: 14px;
   font-weight: 500;
   font-family: "Inter";
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.form input {
+.form input,
+.form2 input {
   padding: 16px 24px;
   border-radius: 16px;
   border: 1px solid hsla(180, 11%, 89%, 1);
@@ -116,6 +119,23 @@ a {
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+
+.container p {
+  margin: 0;
+  margin-top: -25px;
+  font-size: 14px;
+  color: hsla(180, 23%, 15%, 0.65);
+  font-weight: 400;
+}
+.container p label {
+  font-weight: 600;
+}
+
+.container p span {
+  color: hsla(180, 100%, 40%, 1);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .container button {

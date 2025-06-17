@@ -4,17 +4,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./service.module.css";
 import OneOff from "./OneOff/OneOff";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Layout from "../Layout";
 import RetainerView from "./Retainer/RetainerView";
+import ProgramView from "./Program/ProgramView";
 
 export default function Service() {
   const location = useLocation();
   const [activeComponent, setActiveComponent] = useState("oneoff2");
-  // const navigate = useNavigate();
-
-  const storedData = JSON.parse(localStorage.getItem("viewerData"));
-  const logo = storedData?.logo;
-  const company = storedData?.company;
+  const [isActive, setIsActive] = useState(null);
 
   useEffect(() => {
     if (location.state?.sessionType) {
@@ -24,27 +20,42 @@ export default function Service() {
 
   function handleChange(container) {
     setActiveComponent(container);
-    // if (container === "oneoff2") {
-    //   navigate("/services/oneoff");
-    // } else if (container === "retainer") {
-    //   navigate("/retainer");
-    // }
+    setIsActive(container);
   }
   return (
-    <Layout logo={logo} company={company}>
+    <>
       <section className={styles.service}>
         <div className={styles.services}>
           {" "}
           <label>Services</label>
           <ul>
-            <li onClick={() => handleChange("oneoff2")}>One-Off</li>
+            <li
+              className={`${
+                isActive === "oneoff2" ? styles.active : styles.list
+              }`}
+              onClick={() => handleChange("oneoff2")}
+            >
+              One-Off
+            </li>
 
-            <li onClick={() => handleChange("retainer")}>Retainer</li>
+            <li
+              className={`${
+                isActive === "retainer" ? styles.active : styles.list
+              }`}
+              onClick={() => handleChange("retainer")}
+            >
+              Retainer
+            </li>
 
-            <Link>
-              {" "}
-              <li>Program</li>
-            </Link>
+            <li
+              className={`${
+                isActive === "program" ? styles.active : styles.list
+              }`}
+              onClick={() => handleChange("program")}
+            >
+              Program
+            </li>
+
             <Link>
               <li>Event</li>
             </Link>
@@ -54,6 +65,7 @@ export default function Service() {
       </section>
       {activeComponent === "oneoff2" && <OneOff />}
       {activeComponent === "retainer" && <RetainerView />}
-    </Layout>
+      {activeComponent === "program" && <ProgramView />}
+    </>
   );
 }

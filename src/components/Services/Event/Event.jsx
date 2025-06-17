@@ -1,19 +1,16 @@
 /** @format */
-import Create from "../OneOff/OneoffService/CreateService";
 import { useState } from "react";
 import event from "./event.json";
-import Timebased from "../OneOff/TimeBased/TimeBased";
-import Projectbased from "../OneOff/ProjectBased/ProjectBased";
-import RetainerService from "../Retainer/RetainerService";
-import ProgramService from "../Program/ProgramService";
 import EventService from "./EventService";
 import EventDetail from "./EventDetail";
 import styles from "./Event.module.css";
 import styles2 from "../Retainer/Retainer.module.css";
-import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
+import Update from "./Update";
+import EmptyState from "./EmptyState";
 export default function Event() {
   const [isDetail, setisDetail] = useState(null);
   const [isService, setIsService] = useState(false);
+  const [activeComponent, setActiveComponent] = useState("emptystate");
 
   function openDetail(index) {
     setisDetail(index);
@@ -26,10 +23,20 @@ export default function Event() {
   function closeService() {
     setIsService(false);
   }
+  const handleClick = (container) => {
+    // setVisible("fade-out");
+    if (isService) setIsService(false);
+
+    setTimeout(() => {
+      setActiveComponent(container);
+      // setVisible("fade-in");
+    }, 200);
+  };
+
   return (
     <>
       {isService ? (
-        <EventService closeService={closeService} />
+        <EventService closeService={closeService} handleClick={handleClick} />
       ) : isDetail === null ? (
         <div className={styles.event}>
           <div className={styles2.retainerservice}>
@@ -55,77 +62,17 @@ export default function Event() {
               </button>
             </div>
           </div>
-          <div className={styles2.dataretainer}>
-            {event.map((data, index) => (
-              <div className={styles2.eacheventcontainer}>
-                <div className={styles2.retainercontainer} key={data.Title}>
-                  <div className={styles2.titlecontainer}>
-                    <div className={styles2.daystimeline}>
-                      <div className={styles2.daystime}>
-                        {/* <span>{data.firstday}</span>
-                        <hr className='linedays' />
-                        <span>{data.secondday}</span> */}
-                        <img src={data.image} alt='' />
-                      </div>
-                      {/* <hr className='containerline' /> */}
-                    </div>
-                    <div className={styles2.personaltrainingdetails}>
-                      <div className={styles2.personaltraining}>
-                        <div className={styles2.contenttype}>
-                          <div>
-                            <span className={styles2.personal}>
-                              {data.Title}
-                            </span>
-                            {/* <div className='service-one'>
-                              <span className='servicetype'>
-                                {data.servicetype}
-                              </span>
-                              <span className='oneofftext'>{data.oneoff}</span>
-                            </div> */}
-                          </div>
-                          <div className={styles2.textvector}>
-                            <span className={styles2.text}>{data.text}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className={styles2.oneoffdetails}
-                        onClick={() => openDetail(index)}
-                      >
-                        <span>More details</span>
-                        <svg
-                          width='16'
-                          height='16'
-                          viewBox='0 0 16 16'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            d='M13.1666 7.81706L3.16663 7.81706'
-                            stroke='#00CCCC'
-                            strokeWidth='1.5'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                          />
-                          <path
-                            d='M9.13342 3.80083L13.1668 7.81683L9.13342 11.8335'
-                            stroke='#00CCCC'
-                            strokeWidth='1.5'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles2.virtualinperson}>
-                    <hr />
-                    <VirtualContainer data={data} />
-                  </div>{" "}
-                </div>
-              </div>
-            ))}
-          </div>
+          {activeComponent === "eventService" && (
+            <Update
+              handleClick={handleClick}
+              // isVisible={isVisible}
+              openDetail={openDetail}
+            />
+          )}
+
+          {!isService && activeComponent === "emptystate" && (
+            <EmptyState isService={isService} openService={openService} />
+          )}
         </div>
       ) : (
         <EventDetail dataevent={event[isDetail]} />

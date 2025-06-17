@@ -7,7 +7,7 @@ import image from "../../elements/gallery.png";
 import CreateService from "./CreateService";
 import PricingTime from "../OneOff/TimeBased/Pricing";
 import DayTime from "../OneOff/TimeBased/DayTime";
-export default function RetainerService() {
+export default function RetainerService({ handleClick }) {
   const [isBack, setIsBack] = useState(false);
   const [isNext, setIsNext] = useState(false);
 
@@ -127,7 +127,11 @@ export default function RetainerService() {
                     <label>Create a retainer service</label>
                     <span>3 of 3 steps</span>
                   </div>
-                  <DayTime prevStep={prevStep} />
+                  <DayTime
+                    prevStep={prevStep}
+                    handleClick={handleClick}
+                    serviceType='retainer'
+                  />
                 </div>
               )}
             </div>

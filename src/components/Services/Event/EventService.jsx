@@ -4,7 +4,7 @@ import styles from "./Event.module.css";
 import styles2 from "../Retainer/Details.module.css";
 import CreateEvent from "./CreateEvent";
 import image from "../../elements/gallery.png";
-export default function EventService({ closeService }) {
+export default function EventService({ closeService, handleClick }) {
   return (
     <>
       <div className={styles2.timebased}>
@@ -72,7 +72,7 @@ export default function EventService({ closeService }) {
               </div>
             </div>
           </div>{" "}
-          <CreateEvent />
+          <CreateEvent handleClick={handleClick} />
         </div>
       </div>
     </>

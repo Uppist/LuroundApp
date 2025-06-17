@@ -17,7 +17,7 @@ export default function ForgotPassword() {
             <span>Welcome Back!</span>
           </div>
 
-          <div>
+          <div className={styles2.form2}>
             <label htmlFor=''>Email address</label>
             <input
               type='email'

@@ -2,10 +2,9 @@
 
 import React, { useState } from "react";
 import styles from "./Event.module.css";
-import styles2 from "../Retainer/Details.module.css";
 import SecondEvent from "./SecondEvent";
 
-export default function CreateEvent() {
+export default function CreateEvent({ handleClick }) {
   const [isNext, setIsNext] = useState(false);
 
   function Next() {
@@ -15,7 +14,7 @@ export default function CreateEvent() {
   return (
     <>
       {isNext ? (
-        <SecondEvent />
+        <SecondEvent handleClick={handleClick} />
       ) : (
         <div className={styles.createtimebased}>
           <div className={styles.createtimeservice}>

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import styles from "../../../Profile/ClientProfile/Review/Review.module.css";
+import styles from "../../../AccountOwner/Review/Review.module.css";
 import { Link } from "react-router-dom";
 
 export default function Review() {

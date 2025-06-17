@@ -2,27 +2,19 @@
 
 import { useState } from "react";
 import styles from "./DetailService.module.css";
-import One from "./OneOff";
 import Timebased from "../TimeBased/TimeBased";
 import VirtualContainer from "./VirtualContainer";
 import QuickAction from "./QuickAction";
-export default function DetailOne({ dataValue }) {
-  const [isBack, setIsBack] = useState(false);
+export default function DetailOne({ dataValue, handleClick }) {
   const [isEdit, setIsEdit] = useState(false);
-
-  function Back() {
-    setIsBack(true);
-  }
 
   return (
     <>
       {isEdit ? (
         <Timebased />
-      ) : isBack ? (
-        <One />
       ) : (
         <div className={styles.timebasedcontainer}>
-          <button className={styles.timebasedback} onClick={Back}>
+          <button className={styles.timebasedback} onClick={handleClick}>
             <svg
               width='7'
               height='12'
@@ -74,7 +66,7 @@ export default function DetailOne({ dataValue }) {
               isEdit={isEdit}
               setIsEdit={setIsEdit}
               dataValue={dataValue}
-              Back={Back}
+              // Back={Back}
             />
           </div>
         </div>

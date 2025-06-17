@@ -38,7 +38,9 @@ export default function Login() {
 
   useEffect(() => {
     if (userData.email) {
-      navigate("/Profile-page", { state: userData });
+      localStorage.setItem("userData", JSON.stringify(userData));
+
+      navigate("/profile-page", { state: userData });
     }
   }, [userData, navigate]);
 

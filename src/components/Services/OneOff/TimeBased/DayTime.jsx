@@ -3,14 +3,27 @@ import { useState } from "react";
 import Time from "./Time";
 import styles from "./Time.module.css";
 import BookingPeriod from "./BookingPeriod";
-export default function DayTime({ backprice, backone, showPart }) {
-  const [period] = useState(["1", "2", "3", "4", "5"]);
+export default function DayTime({
+  backprice,
+  backone,
+  showPart,
+  handleClick,
+  serviceType,
+}) {
+  function Next() {
+    let target;
 
-  const [days] = useState(["days", "months"]);
+    if (serviceType === "retainer") {
+      target = "retainerService";
+    } else if (serviceType === "oneoff") {
+      target = "oneoffService";
+    } else if (serviceType === "program") {
+      target = "programService";
+    }
 
-  const [date] = useState(["15 mins", "30 mins", "45 mins", "60 mins"]);
-
-  const [minute] = useState(["minute"]);
+    handleClick(target);
+    // closeTime();
+  }
 
   return (
     <section className={styles.section}>
@@ -83,7 +96,7 @@ export default function DayTime({ backprice, backone, showPart }) {
             <button className={styles.canceltime} onClick={backone}>
               Cancel
             </button>
-            <button className={styles.donetime} onClick={backone}>
+            <button className={styles.donetime} onClick={Next}>
               Done
             </button>
           </div>

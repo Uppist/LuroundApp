@@ -7,7 +7,7 @@ import ServiceCreate from "./Create/SeviceCreate";
 import PricingTime from "./Pricing";
 
 import styles from "./Time.module.css";
-export default function Timebased() {
+export default function Timebased({ handleClick, closeTime }) {
   const [step, setStep] = useState(1); // Step 1: ServiceCreate, Step 2: PricingTime, Step 3: DayTime
 
   function nextStep() {
@@ -114,7 +114,15 @@ export default function Timebased() {
                 showPart={true}
               />
             )}
-            {step === 3 && <DayTime prevStep={prevStep} showPart={true} />}
+            {step === 3 && (
+              <DayTime
+                prevStep={prevStep}
+                showPart={true}
+                handleClick={handleClick}
+                closeTime={closeTime}
+                serviceType='oneoff'
+              />
+            )}
 
             {/* <> */}
             {/* {isNext ? <PricingTime /> : <ServiceCreate Next={Next}:<DayTime/> />} */}

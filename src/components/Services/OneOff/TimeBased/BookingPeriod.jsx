@@ -23,7 +23,7 @@ export default function BookingPeriod() {
     }));
   }
 
-  function dropDownMonth(key, value) {
+  function handleSelect(key, value) {
     setState((prev) => ({ ...prev, [key]: value }));
     setIsOpen({ Period: false, Days: false, Buffer: false });
   }
@@ -85,7 +85,11 @@ export default function BookingPeriod() {
                     className={`${styles.menuitem} ${
                       state.Period === monthOption ? "active" : ""
                     }`}
-                    onClick={() => dropDownMonth("Period", monthOption)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+
+                      handleSelect("Period", monthOption);
+                    }}
                   >
                     {monthOption}
                   </span>
@@ -129,7 +133,10 @@ export default function BookingPeriod() {
                       className={`${styles.menuitem} ${
                         state.Days === dayOption ? "active" : ""
                       }`}
-                      onClick={() => dropDownMonth("Days", dayOption)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelect("Days", dayOption);
+                      }}
                     >
                       {dayOption}
                     </span>
@@ -197,7 +204,10 @@ export default function BookingPeriod() {
                       className={`${styles.menuitem} ${
                         state.Buffer === bufferOption ? "active" : ""
                       }`}
-                      onClick={() => dropDownMonth("Buffer", bufferOption)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelect("Buffer", bufferOption);
+                      }}
                     >
                       {bufferOption}
                     </span>

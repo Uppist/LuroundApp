@@ -1,9 +1,8 @@
 /** @format */
 
 import React, { useState } from "react";
-import NavBar from "../../NavBar/NavBar";
 import styles from "./writereview.module.css";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function WriteReview() {
   const [selectStar, setSelectStar] = useState(0);
@@ -17,8 +16,6 @@ export default function WriteReview() {
   }
   return (
     <>
-      <NavBar />
-
       <section className={styles.writeReview}>
         <div className={styles.container}>
           <span className={styles.text}>

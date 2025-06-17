@@ -16,12 +16,17 @@ export default function Password() {
         <div className={styles.create}>
           <div className={styles.label}>
             <label htmlFor=''>Create your account</label>
-            <span>Let's get started</span>
+            <span>Almost there!</span>
           </div>
 
           <div className={styles.signup}>
             <div className={styles.container}>
               <InputPassword />
+              <p>
+                By clicking <label>Create account</label>, you agree to
+                Luround’s <span>Terms of Service</span>, and{" "}
+                <span>Privacy Policy</span>.
+              </p>
 
               <Link to='/Login'>
                 <button type='submit'>Create account</button>

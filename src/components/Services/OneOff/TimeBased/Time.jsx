@@ -194,8 +194,9 @@ export default function Time() {
                     </span>
                   </div>
                   {isOpenFrom[index] && (
-                    <div className='popup'>
-                      <div className='overlay' onClick={setIsOpenFrom}></div>
+                    <>
+                      {/* <div className='popup'> */}
+                      <div onClick={setIsOpenFrom}></div>
                       <ul className={styles.menu}>
                         {time.map((option) => (
                           <li
@@ -211,7 +212,8 @@ export default function Time() {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </>
+                    // </div>
                   )}
                 </div>
               </div>
@@ -228,8 +230,9 @@ export default function Time() {
                     </span>
                   </div>
                   {isOpenTo[index] && (
-                    <div className='popupdropdown'>
-                      <div className='overlay' onClick={setIsOpenTo}></div>
+                    <>
+                      {/* // <div className='popupdropdown'> */}
+                      <div onClick={setIsOpenTo}></div>
                       <ul className={styles.menu}>
                         {time.map((option) => (
                           <li
@@ -243,7 +246,7 @@ export default function Time() {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </>
                   )}
                 </div>{" "}
               </div>

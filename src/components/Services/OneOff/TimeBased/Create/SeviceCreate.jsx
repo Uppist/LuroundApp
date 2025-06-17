@@ -4,11 +4,32 @@ import { useState } from "react";
 import styles from "./create.module.css";
 
 export default function ServiceCreate({ nextStep }) {
-  // const[isNext, setIsNext] = useState(false)
+  const [createService, setCreateService] = useState({
+    name: "",
+    description: "",
+  });
 
-  // function Next(){
-  //   setIsNext(true)
-  // }
+  const [isErrors, setIsError] = useState(false);
+
+  function Details(e) {
+    setCreateService((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function Submit() {
+    const newErrors = {};
+
+    if (!createService.name) {
+      newErrors.name = "Service name is required.";
+    }
+    if (!createService.description) {
+      newErrors.description = "Description is required.";
+    }
+
+    setIsError(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      nextStep();
+    }
+  }
 
   return (
     <div className={styles.createtime}>
@@ -35,23 +56,36 @@ export default function ServiceCreate({ nextStep }) {
       </div>
       <div className={styles.description}>
         <div className={styles.service}>
-          <span>Service Name</span>
-          <input type='text' placeholder='e.g Personal Training' />
+          <span>Service name</span>
+          <input
+            type='text'
+            placeholder='e.g Personal Training'
+            name='name'
+            value={createService.name}
+            onChange={Details}
+          />
+          {isErrors.name && <p>{isErrors.name}</p>}
         </div>
         <div className={styles.number}>
           <div className={styles.time}>
             <span>Description</span>
-            <textarea placeholder='Write a brief descriptive summary of the service you provide'></textarea>
+            <textarea
+              placeholder='Write a brief descriptive summary of the service you provide'
+              name='description'
+              value={createService.description}
+              onChange={Details}
+            ></textarea>
           </div>
           <div className={styles.span}>
             {" "}
             <span>0/500</span>
           </div>
+          {isErrors.description && <p>{isErrors.description}</p>}
         </div>
       </div>
       <div>
         {" "}
-        <button onClick={nextStep} className={styles.button}>
+        <button onClick={Submit} className={styles.button}>
           Next
         </button>
       </div>

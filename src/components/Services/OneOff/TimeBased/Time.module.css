@@ -213,6 +213,13 @@
   border: 1px solid hsla(180, 5%, 26%, 1);
 }
 
+.timecontainer p {
+  margin: 0;
+  font-size: 12px;
+  color: hsla(0, 69%, 49%, 1);
+  margin-top: -10px;
+}
+
 .inpersonvirtual > svg {
   margin-top: 40px;
 }
@@ -220,6 +227,7 @@
 .addtimeslot {
   display: grid;
   gap: 24px;
+  margin-top: 24px;
 }
 .addtimebutton {
   display: flex;
@@ -313,6 +321,10 @@
   align-items: center;
 }
 
+.menu li {
+  cursor: pointer;
+}
+
 .menu::-webkit-scrollbar {
   display: none;
 }
@@ -349,6 +361,7 @@
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+  cursor: pointer;
 }
 
 /*Booking Peroid styling*/

@@ -15,6 +15,30 @@ export default function PricingTime({ nextStep, showPart }) {
     setIsAddTime(IsAddTime.filter((time) => time.id !== item.id));
   }
 
+  const [amount, setAmount] = useState({
+    virtual: "",
+    inperson: "",
+  });
+
+  const [isErrors, setIsError] = useState(false);
+
+  function Details(e) {
+    setAmount((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function Submit() {
+    const newErrors = {};
+
+    if (!amount.virtual && !amount.inperson) {
+      newErrors.amount = "An amount is required.";
+    }
+
+    setIsError(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      nextStep();
+    }
+  }
+
   return (
     <section className={styles.section}>
       {showPart && (
@@ -145,11 +169,23 @@ export default function PricingTime({ nextStep, showPart }) {
 
               <div className={styles.nairavirtualinperson}>
                 <div className={styles.nairavirtual}>
-                  <input />
+                  <input
+                    type='number'
+                    name='virtual'
+                    placeholder='₦20,000'
+                    value={amount.virtual}
+                    onChange={Details}
+                  />
                 </div>
 
                 <div className={styles.nairainperson}>
-                  <input />
+                  <input
+                    type='number'
+                    name='inperson'
+                    placeholder='₦120,000'
+                    value={amount.inperson}
+                    onChange={Details}
+                  />
                 </div>
                 <svg
                   onClick={() => handleTimeDelete(item)}
@@ -200,11 +236,23 @@ export default function PricingTime({ nextStep, showPart }) {
 
                     <div className={styles.nairavirtualinperson}>
                       <div className={styles.nairavirtual}>
-                        <input />
+                        <input
+                          type='number'
+                          name='virtual'
+                          placeholder='₦20,000'
+                          value={amount.virtual}
+                          onChange={Details}
+                        />
                       </div>
 
                       <div className={styles.nairainperson}>
-                        <input />
+                        <input
+                          type='number'
+                          name='inperson'
+                          placeholder='₦20,000'
+                          value={amount.inperson}
+                          onChange={Details}
+                        />
                       </div>
                       <svg
                         onClick={() => handleTimeDelete(slot)}
@@ -228,6 +276,7 @@ export default function PricingTime({ nextStep, showPart }) {
                 </div>
               ))}
             </div>
+            {isErrors && <p>{isErrors.amount}</p>}
           </div>
           <div>
             <button className={styles.addtimebutton} onClick={AddTime}>
@@ -253,7 +302,7 @@ export default function PricingTime({ nextStep, showPart }) {
           </div>
         </div>
         <div>
-          <button className={styles.next} onClick={nextStep}>
+          <button className={styles.next} onClick={Submit}>
             Next
           </button>
         </div>

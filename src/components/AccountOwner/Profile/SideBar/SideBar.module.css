@@ -1,0 +1,168 @@
+/** @format */
+
+.sidebar {
+  width: 240px;
+  padding: 25px;
+  height: 982px;
+  background-color: white;
+  position: fixed;
+}
+
+.luround {
+  display: grid;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  width: 138px;
+  height: 40px;
+}
+
+.list {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(29, 46, 46, 0.8);
+}
+
+.profilelist {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  font-size: 14px;
+}
+
+.profile {
+  cursor: pointer;
+  color: rgba(29, 46, 46, 0.8);
+}
+
+.active {
+  background-color: rgba(235, 255, 255, 1);
+  border-left: 2px solid hsla(180, 100%, 40%, 1);
+  color: hsla(180, 100%, 32%, 1);
+  padding: 0px 8px;
+  border-radius: 2px;
+}
+
+.activeprofile {
+  background-color: white;
+  color: rgba(29, 46, 46, 0.8);
+  border-left: none;
+}
+
+.book > svg:hover {
+  color: hsla(180, 100%, 36%, 1);
+}
+
+.moreservice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.iconservice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.vectorservice:hover {
+  cursor: pointer;
+}
+
+.vector2service:hover {
+  cursor: pointer;
+}
+
+.moreDownservice {
+  display: grid;
+  margin-left: 10px;
+  list-style: none;
+  gap: 8px;
+  padding: 0;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(29, 46, 46, 0.8);
+}
+
+.moreDownservice > hr {
+  position: absolute;
+  width: 240px;
+  margin-left: -121px;
+  transform: rotate(90deg);
+  margin-top: 126px;
+  border: 1px solid hsla(180, 17%, 98%, 1);
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+}
+
+.moreicon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+}
+
+.vector:hover {
+  cursor: pointer;
+}
+
+.vector2:hover {
+  cursor: pointer;
+}
+
+.moreDown {
+  display: grid;
+  margin-left: 10px;
+  list-style: none;
+  gap: 8px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(29, 46, 46, 0.8);
+}
+
+.moreDown > hr {
+  position: absolute;
+  width: 240px;
+  margin-left: -121px;
+  transform: rotate(90deg);
+  margin-top: 126px;
+  border: 1px solid hsla(180, 17%, 98%, 1);
+}
+
+.downlist {
+  padding: 10px;
+  padding-inline: 20px;
+}
+
+.downlist:hover {
+  background-color: rgba(235, 255, 255, 1);
+  border-left: 2px solid rgba(0, 204, 204, 1);
+  cursor: pointer;
+}
+
+.book:hover {
+  background-color: rgba(235, 255, 255, 1);
+  color: hsla(180, 100%, 32%, 1);
+  cursor: pointer;
+  border-left: 2px solid hsla(180, 100%, 40%, 1);
+  border-radius: 2px;
+  padding: 0px 73px 0px 8px;
+}

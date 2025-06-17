@@ -33,11 +33,13 @@
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.services ul li {
+.list {
   padding: 8px 5px;
   cursor: pointer;
 }
 
-.services ul li:hover {
+.active {
   border-bottom: 1px solid hsla(180, 23%, 15%, 0.8);
+  cursor: pointer;
+  padding: 8px 5px;
 }
