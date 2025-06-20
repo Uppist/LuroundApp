@@ -7,6 +7,8 @@
   padding: 24px 80px;
   background-color: white;
   box-shadow: 0px 4px 7px 0px hsla(180, 20%, 1%, 0.03);
+  border-bottom: 2px solid hsla(180, 11%, 89%, 1); /* Matches your design's border color */
+  padding: 16px 24px; /* Adjust padding as needed */
 }
 
 .list {
