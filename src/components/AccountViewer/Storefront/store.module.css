@@ -1,0 +1,211 @@
+/* store.module.css */
+
+.storeContainer {
+  padding-top: 30px;
+  padding-left: 140px;
+  padding-right: 120px;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 150px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1D2E2E;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  width: 300px;
+  /* margin-left: 320px; */
+  position: relative;
+}
+
+.clearIcon {
+  position: relative;
+  left: 10px;
+  color: #999;
+  cursor: pointer;
+  z-index: 2;
+  padding-right: 30px;
+}
+
+.searchIcon {
+  color: #999;
+  margin-left: 10px; /* Moved right to allow space for clearIcon */
+  z-index: 1;
+  font-size: 20px;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  padding-right: 10px; /* Account for both icons */
+  padding-left: 12px;
+}
+
+.cartWrapper {
+  position: relative;
+  margin-right: 30px;
+}
+
+.cartIcon {
+  font-size: 20px;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.tabs {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tabButton {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 1px solid #d1d1d1;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.activeTab {
+  background-color: #002B2B;
+  color: white;
+  border: none;
+}
+
+/* Books section */
+.booksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Fixed to 4 columns */
+  gap: 32px;
+  margin-top: 30px;
+  border-radius: 8px;
+  padding: 0;
+  padding-right: 120px;
+  cursor: pointer;
+}
+
+.bookItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 260px;
+  height: 318px;
+  position: relative; /* Added to position the arrow */
+}
+
+.bookItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bookImage {
+  width: 255px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.bookDetails {
+  margin-top: 10px;
+  padding: 0 10px; /* Added padding to ensure content fits well */
+  position: relative; /* Ensure proper positioning context for arrow */
+}
+
+.bookTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1D2E2E;
+  margin: 5px 0;
+  text-align: left;
+}
+
+.bookPrice {
+  font-size: 16px;
+  color: #00A3A3;
+  font-weight: 700;
+  text-align: left;
+  padding-right: 185px;
+}
+
+.arrowIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  font-size: 20px;
+  color: #1D2E2E;
+  cursor: pointer;
+}
+
+/* Responsive adjustments
+@media (max-width: 1024px) {
+  .storeContainer {
+    padding: 20px 30px;
+  }
+
+  .searchWrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .booksGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens
+  }
+
+  .bookImage {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tabs {
+    justify-content: center;
+  }
+
+  .booksGrid {
+    grid-template-columns: 1fr; /* Stack to 1 column on small screens 
+  }
+
+  .bookImage {
+    height: 180px;
+  }
+} */

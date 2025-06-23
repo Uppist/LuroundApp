@@ -29,6 +29,10 @@ import NavBar from "./components/AccountViewer/NavBar/NavBar";
 import ClientProfile from "./components/AccountOwner/Profile/ClientProfile/ClientProfile";
 import Event from "./components/Services/Event/Event";
 import Transaction from "./components/AccountOwner/Transactions/TransactionPage";
+import Details from "./components/AccountViewer/Services/OneOff/Book/Details"; // Adjust path
+import Success from "./components/AccountViewer/Services/OneOff/Book/Success"; // Adjust path
+import Store from "./components/AccountViewer/Storefront/Store"; // Adjust path
+// import BookInfo from "./components/AccountViewer/Storefront/BookInfo"; // Adjust path
 
 import "./style.css";
 
@@ -50,6 +54,7 @@ export default function App() {
   // Load userData from localStorage if available
   useEffect(() => {
     const data = localStorage.getItem("userData");
+    console.log("LocalStorage data:", data); // Debug log
     if (data) {
       try {
         const user = JSON.parse(data);
@@ -68,13 +73,19 @@ export default function App() {
   const isLoginRoute = loginRoutes.includes(location.pathname);
   const isAccountOwnerRoute =
     !isLoginRoute && !location.pathname.startsWith("/profile/");
-
   const isViewerRoute =
     location.pathname.startsWith("/profile/") ||
     location.pathname.startsWith("/writeareview") ||
     location.pathname.startsWith("/services") ||
     location.pathname.startsWith("/details") ||
-    location.pathname.startsWith("/booknow");
+    location.pathname.startsWith("/booknow") ||
+    location.pathname.startsWith("/Success") ||
+    location.pathname.startsWith("/store");
+    // location.pathname.startsWith("/BookInfo");
+
+  const handleCloseDetails = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
 
   return (
     <div>
@@ -82,52 +93,52 @@ export default function App() {
       {isViewerRoute && <NavBar />}
       {isAccountOwnerRoute && !isViewerRoute && (
         <>
-          <div className='profiledashboard'>
+          <div className="profiledashboard">
             <Search />
           </div>
           <Sidebar />
         </>
       )}
 
-      {/* Login & Auth Routes */}
+      {/* All Routes */}
       <Routes>
-        <Route path='/' element={<CreateAccount />} />
-        <Route path='/confirm-password' element={<Password />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/Forgot-password' element={<ForgotPassword />} />
-        <Route path='/resend-email' element={<EmailLink />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/password-updated' element={<PasswordUpdated />} />
-      </Routes>
+        {/* Login & Auth Routes */}
+        <Route path="/" element={<CreateAccount />} />
+        <Route path="/confirm-password" element={<Password />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Forgot-password" element={<ForgotPassword />} />
+        <Route path="/resend-email" element={<EmailLink />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/password-updated" element={<PasswordUpdated />} />
 
-      {/* Account Owner Routes */}
-      {viewerData && (
-        <div className='profiledashboard'>
-          <Routes>
-            <Route path='/profile-page' element={<ClientProfile />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='/editprofile' element={<EditProfile />} />
-            <Route path='/oneoff' element={<One />} />
-            <Route path='/retainer' element={<Retainer />} />
-            <Route path='/program' element={<Program />} />
-            <Route path='/event' element={<Event />} />
-            <Route path='/bookings' element={<Bookings />} />
-            <Route path='/storefront' element={<FirstPage />} />
-            <Route path='/transactions' element={<Transaction />} />
-            <Route path='/financials' element={<Financials />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/support' element={<Support />} />
-          </Routes>
-        </div>
-      )}
+        {/* Account Owner Routes */}
+        {viewerData && (
+          <>
+            <Route path="/profile-page" element={<ClientProfile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/editprofile" element={<EditProfile />} />
+            <Route path="/oneoff" element={<One />} />
+            <Route path="/retainer" element={<Retainer />} />
+            <Route path="/program" element={<Program />} />
+            <Route path="/event" element={<Event />} />
+            <Route path="/bookings" element={<Bookings />} />
+            <Route path="/storefront" element={<FirstPage />} />
+            <Route path="/transactions" element={<Transaction />} />
+            <Route path="/financials" element={<Financials />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/support" element={<Support />} />
+          </>
+        )}
 
-      {/* Account Viewer Routes */}
-      <Routes>
-        <Route path='/profile/:username' element={<Viewer />} />
-        <Route path='/writeareview' element={<WriteReview />} />
-        <Route path='/services' element={<Service />} />
-        <Route path='/details' element={<More />} />
-        <Route path='/booknow' element={<BookNow />} />
+        {/* Account Viewer Routes */}
+        <Route path="/profile/:username" element={<Viewer />} />
+        <Route path="/writeareview" element={<WriteReview />} />
+        <Route path="/services" element={<Service />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/booknow" element={<BookNow />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/store" element={<Store />} />
+        {/* <Route path="/BookInfo" element={<BookInfo />} /> */}
       </Routes>
     </div>
   );

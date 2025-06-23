@@ -41,7 +41,9 @@ export default function NavBar() {
         <Link to='/services'>
           <li>Service</li>
         </Link>
-        <li>Storefront</li>
+        <Link to='/store'>
+          <li>Storefront</li>
+        </Link>
       </ul>
     </nav>
   );

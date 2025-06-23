@@ -20,6 +20,7 @@
 
 .backz {
   padding-left: 20px;
+  cursor: pointer;
 }
 
 .container {
@@ -176,6 +177,10 @@
   border: 0;
 }
 
+.next:hover {
+  background-color: #009999; /* Darker shade on hover */
+}
+
 .selectTime {
   display: flex;
   flex-direction: column;
@@ -236,4 +241,65 @@
   color: hsla(180, 23%, 15%, 0.8);
   font-size: 14px;
   font-weight: 500;
+}
+
+/* Success Page Styles */
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+  padding: 50px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.successContainer h1{
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  -moz-stack-sizing: 16px;
+  color: #1D2E2ECC;
+}
+
+.successContainer h3{
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight:500;
+  line-height: 24px;
+  -moz-stack-sizing: 16px;
+  color: #1D2E2ECC;
+}
+
+.successIcon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.successTitle {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.successButton {
+  padding: 12px 34px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 380px;
+  height: 48px;
+  font-family: "Inter", sans-serif;
+  background-color: #00CCCC;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.successButton:hover {
+  background-color: #009999; /* Darker shade on hover */
 }

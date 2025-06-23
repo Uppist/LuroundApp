@@ -24,10 +24,14 @@ export default function FirstStep() {
   function handleDetails() {
     setDetails(true);
   }
+
+  function handleCloseDetails() {
+    setDetails(false);
+  }
   return (
     <>
       {details ? (
-        <Details data={data} />
+        <Details data={data} handleCloseDetails={handleCloseDetails} />
       ) : (
         <div className={styles.booknow}>
           <Link to='/services' state={{ data }}>
