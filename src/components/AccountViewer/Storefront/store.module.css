@@ -2,8 +2,8 @@
 
 .storeContainer {
   padding-top: 30px;
-  padding-left: 140px;
-  padding-right: 120px;
+  padding-left: 120px;
+  padding-right: 100px;
   font-family: 'Inter', sans-serif;
   padding-bottom: 150px;
 }
@@ -141,16 +141,14 @@
 }
 
 .bookDetails {
-  margin-top: 10px;
   padding: 0 10px; /* Added padding to ensure content fits well */
   position: relative; /* Ensure proper positioning context for arrow */
 }
 
 .bookTitle {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 400;
   color: #1D2E2E;
-  margin: 5px 0;
   text-align: left;
 }
 
@@ -169,6 +167,523 @@
   font-size: 20px;
   color: #1D2E2E;
   cursor: pointer;
+}
+
+/* BookInfo specific styles */
+.bookInfoWrapper {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bookInfoImageWrapper {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 375px;
+}
+
+.bookInfoImage {
+  width: 100%;
+  height: 50px;
+  display: block;
+  height: 375px;
+}
+
+.bookInfoDetails {
+  flex: 1;
+  padding: 0 20px;
+  width: 594px;
+}
+
+.bookInfoPrice {
+  font-size: 20px;
+  color: #00A3A3;
+  font-weight: 700;
+  padding-left: 115px;
+}
+
+.bookInfo {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.eBook {
+  color: #999;
+}
+
+.bookCategory {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.addToCartButton {
+  background-color: #00C4B4; /* Teal color from UI */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.addToCartButton:hover {
+  background-color: #009e8e; /* Darker shade on hover */
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.backButton:hover {
+  color: #1D2E2E;
+}
+
+.by {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #A2B5BB; /* Matches the UI design's text color for author */
+  margin: 0px;
+}
+
+.author {
+  font-family: 'Inter', sans-serif;
+  font-weight: 350;
+  font-size: 12px;
+  color: #333; /* Matches the UI design's text color for author */
+  margin-top: 0px;
+}
+
+.authorName {
+  color: #1D2E2EA6;
+  padding-left: 10px;
+  margin-top: 0px;
+}
+
+.bookInfoTitle {
+  font-weight: 600;
+  color: #1D2E2E;
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1D2E2E !important;
+  margin-top: 0px;
+}
+
+.bookDescription {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Cart Items */
+
+.cartTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.cartContent {
+  display: flex;
+  gap: 20px;
+}
+
+.cartItems {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.deleteAllButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 20px;
+  padding-left: 300px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-bottom: 2px solid hsla(180, 11%, 89%, 1);
+}
+
+.cartItemCheckbox {
+  margin-right: 10px;
+}
+.cartItemCheckbox:checked {
+  accent-color: #00CCCC;
+  background-color: #00CCCC;
+}
+.cartItemCheckbox:checked::after {
+  color: #FFFFFF;
+}
+
+.cartItemImage {
+  width: 100px;
+  height: 94px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 8px;
+}
+
+.cartItemDetails {
+  flex-grow: 1;
+}
+
+.cartItemTitle {
+  font-size: 14px;
+  font-weight: 500;
+  /* margin: 0 0 5px 0; */
+}
+
+.cartItemAuthor {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  /* margin: 0 0 5px 0; */
+}
+
+.cartItemPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #00CCCC;
+}
+
+.cartItemQuantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 95px;
+  font-size: 20px;
+}
+
+.quantityButton {
+  /* background: white; */
+  opacity: 1;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.quantityValue {
+  font-size: 16px;
+}
+
+.contactInformation {
+  flex: 1;
+  /* background: #f1f1f1; */
+  padding: 20px;
+  border-radius: 24px;
+  height: 600px;
+  outline: 2px solid #f1f1f1;
+  width: 600px;
+  font-weight: 550;
+}
+
+.formInfo {
+  font-family: 'Inter';
+  font-size: 14px;
+  font-weight: 500;
+  color: #1D2E2ECC;
+}
+
+.contactInformation h3 {
+  margin-bottom: 15px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-family: 'Inter';
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+.contactInput {
+  display: block;
+  width: 560px;
+  height: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+}
+
+.countryCode {
+  display: block;
+  width: 100px;
+  margin-right: 10px;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+}
+
+.phoneInputGroup {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  font-family: 'Inter';
+  font-weight: 500;
+}
+
+.country {
+  padding-left: 20px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+  background: #EDEFEF;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.totalLabel{
+ font-size: 14px;
+ font-family: 'Inter';
+ font-weight: 500; 
+ line-height: 20px;
+}
+
+.totalValue {
+  color: #000;
+  font-size: 17px;
+ font-family: 'Inter';
+ font-weight: 700; 
+}
+
+.termsText {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.termsButton {
+  color: #00CCCC;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 24px;
+  padding-top: 40px;
+  width: 322px;
+  padding-left: 250px;
+}
+
+.cancelButton {
+  flex-grow: 1;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Inter';
+}
+
+.checkoutButton {
+  flex-grow: 2;
+  padding: 10px;
+  background: #00CCCC;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Inter';
+}
+
+.cancelButton:hover {
+  background-color: #EDEFEF; /* slightly darker shade */
+}
+
+.checkoutButton:hover {
+  background-color: #009e8e; /* Darker shade on hover */
+}
+
+/* Delete modal  */
+
+.deleteModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.deleteModalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 24px;
+  text-align: center;
+  width: 520px;
+  outline: 2px solid #f1f1f1;
+  font-family: 'Inter';
+  font-size: 16px;
+  color: #1D2E2ECC;
+}
+
+.buttonGroupss {
+  padding-bottom: 3px;
+  padding-right: 100px;
+  display: flex;
+  gap: 309px;
+  padding-top: 40px;
+  width: 322px;
+  padding-left: 31px;
+}
+
+.deleteConfirmButtonModal {
+  padding: 16px;
+  background: #D12727;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter';
+  font-weight: 600;
+  height: 48px;
+  max-width: 100px;
+}
+
+.deleteCancelButtonModal {
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter';
+  font-weight: 400;
+  height: 53px;
+}
+
+/* Success Page Styles */
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+  padding: 50px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.successContainer h1{
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  -moz-stack-sizing: 16px;
+  color: #1D2E2ECC;
+}
+
+.successContainer h3{
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight:500;
+  line-height: 24px;
+  -moz-stack-sizing: 16px;
+  color: #1D2E2ECC;
+}
+
+.successIcon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.successTitle {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.successButton {
+  padding: 12px 34px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 380px;
+  height: 48px;
+  font-family: "Inter", sans-serif;
+  background-color: #00CCCC;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.successButton:hover {
+  background-color: #009999; /* Darker shade on hover */
+}
+
+/* Responsive adjustments for BookInfo */
+@media (max-width: 768px) {
+  .bookInfoWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bookInfoImageWrapper {
+    width: 100%;
+  }
+
+  .bookInfoDetails {
+    padding: 0;
+  }
 }
 
 /* Responsive adjustments
