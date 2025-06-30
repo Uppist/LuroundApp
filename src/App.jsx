@@ -42,7 +42,7 @@ export default function App() {
   const [viewerData, setViewerData] = useState(null);
 
   const loginRoutes = [
-    "/LuroundApp",
+    "/",
     "/confirm-password",
     "/Login",
     "/Forgot-password",
@@ -103,7 +103,7 @@ export default function App() {
       {/* All Routes */}
       <Routes>
         {/* Login & Auth Routes */}
-        <Route path="/LuroundApp" element={<CreateAccount />} />
+        <Route path="/" element={<CreateAccount />} />
         <Route path="/confirm-password" element={<Password />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Forgot-password" element={<ForgotPassword />} />
