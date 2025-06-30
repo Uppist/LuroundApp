@@ -42,7 +42,7 @@ export default function App() {
   const [viewerData, setViewerData] = useState(null);
 
   const loginRoutes = [
-    "/",
+    "/LuroundApp",
     "/confirm-password",
     "/Login",
     "/Forgot-password",
@@ -79,8 +79,8 @@ export default function App() {
     location.pathname.startsWith("/services") ||
     location.pathname.startsWith("/details") ||
     location.pathname.startsWith("/booknow") ||
-    location.pathname.startsWith("/Success") ||
-    location.pathname.startsWith("/store");
+    location.pathname.startsWith("/Success")  ||
+    location.pathname.startsWith("/stores");
     // location.pathname.startsWith("/BookInfo");
 
   const handleCloseDetails = () => {
@@ -103,17 +103,19 @@ export default function App() {
       {/* All Routes */}
       <Routes>
         {/* Login & Auth Routes */}
-        <Route path="/" element={<CreateAccount />} />
+        <Route path="/LuroundApp" element={<CreateAccount />} />
         <Route path="/confirm-password" element={<Password />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Forgot-password" element={<ForgotPassword />} />
         <Route path="/resend-email" element={<EmailLink />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/password-updated" element={<PasswordUpdated />} />
+      </Routes>
 
         {/* Account Owner Routes */}
         {viewerData && (
-          <>
+          <div className="profiledashboard">
+          <Routes>
             <Route path="/profile-page" element={<ClientProfile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/editprofile" element={<EditProfile />} />
@@ -127,19 +129,21 @@ export default function App() {
             <Route path="/financials" element={<Financials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/support" element={<Support />} />
-          </>
+          </Routes>
+          </div>
         )}
 
         {/* Account Viewer Routes */}
-        <Route path="/profile/:username" element={<Viewer />} />
-        <Route path="/writeareview" element={<WriteReview />} />
-        <Route path="/services" element={<Service />} />
-        <Route path="/details" element={<Details />} />
-        <Route path="/booknow" element={<BookNow />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/store" element={<Store />} />
-        {/* <Route path="/BookInfo" element={<BookInfo />} /> */}
-      </Routes>
+        <Routes>
+          <Route path="/profile/:username" element={<Viewer />} />
+          <Route path="/writeareview" element={<WriteReview />} />
+          <Route path="/services" element={<Service />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/booknow" element={<BookNow />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/stores" element={<Store />} />
+          {/* <Route path="/BookInfo" element={<BookInfo />} /> */}
+        </Routes>
     </div>
   );
 }
