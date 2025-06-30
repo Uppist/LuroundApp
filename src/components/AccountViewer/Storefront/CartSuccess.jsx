@@ -10,7 +10,7 @@ export default function CartSuccess({ onBack }) {
 
   return (
     <div className={styles.successContainer}>
-      <img src="./public/assets/png/check.png" alt="Success Icon" className={styles.successIcon} />
+      <img src="./public/check.png" alt="Success Icon" className={styles.successIcon} />
       <h1 className={styles.successTitle}>Transaction Successful</h1>
       <button className={styles.successButton} onClick={handleOkayClick}>
         Okay
