@@ -10,7 +10,7 @@ import FinancialRouting from "./Routings/AccountOwner/Financials/FinancialRoutin
 import ProfileRouting from "./Routings/AccountOwner/Profile/ProfileRouting";
 import ServiceRouting from "./Routings/AccountOwner/Services/ServiceRouting";
 import ContactRouting from "./Routings/AccountOwner/Contact/ContactRouting";
-import TransactionRouting from "./Routings/AccountOwner/Transactions/TransactionROuting";
+import TransactionRouting from "./Routings/AccountOwner/Transactions/TransactionRouting";
 import LoginRouting from "./Routings/Login/LoginRouting";
 import ViewerProfileRouting from "./Routings/AccountViewer/Profile/ProfileRouting";
 import ViewerServiceRouting from "./Routings/AccountViewer/Services/ViewerServiceRouting";
