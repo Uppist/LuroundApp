@@ -86,6 +86,11 @@
   justify-content: center;
 }
 
+.circlename span {
+  color: white;
+  font-weight: 500;
+}
+
 .namebook {
   display: flex;
   flex-direction: column;

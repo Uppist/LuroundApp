@@ -11,6 +11,7 @@ export default function CreateNew({ onComponentSwitch }) {
 
   function Next(item) {
     onComponentSwitch(item);
+    console.log("Switching to:", item);
   }
 
   return (
@@ -51,21 +52,21 @@ export default function CreateNew({ onComponentSwitch }) {
         <ul className={styles.lists}>
           <li
             onClick={() => {
-              Next("edits");
+              Next("edit");
             }}
           >
             Quotes
           </li>
           <li
             onClick={() => {
-              Next("edits");
+              Next("edit");
             }}
           >
             Invoices
           </li>
           <li
             onClick={() => {
-              Next("edits");
+              Next("edit");
             }}
           >
             Receipts

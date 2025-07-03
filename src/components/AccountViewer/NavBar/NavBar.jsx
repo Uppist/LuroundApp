@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./NavBar.module.css";
+import scan from "../../elements/scan.jpg";
+
 import { Link, useNavigate } from "react-router-dom";
 export default function NavBar() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ export default function NavBar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={logo} alt='' />
+        <img src={logo || scan} alt='' />
         <span>{company}</span>
       </div>
 

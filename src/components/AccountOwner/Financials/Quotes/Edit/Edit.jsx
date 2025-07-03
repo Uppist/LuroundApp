@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./Edit.module.css";
-import image from "../../../elements/image.png";
+import image from "../../../../elements/image.png";
 import AddService from "./AddService";
 import BankSvg from "./BankSvg";
 

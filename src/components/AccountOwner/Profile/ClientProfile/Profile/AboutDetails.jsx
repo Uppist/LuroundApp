@@ -4,11 +4,10 @@ import styles from "./Profile.module.css";
 
 // import Details from "./Details";
 
-export default function AboutDetails({ about, socialLink }) {
-  const isEmpty = !about || about.trim() === "";
+export default function AboutDetails({}) {
   return (
     <div className={styles.aboutdetails}>
-      {isEmpty ? <p>Empty</p> : <About about={about} />}
+      <About />
     </div>
   );
 }

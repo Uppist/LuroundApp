@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import styles from "../Quotes/Quotes.module.css";
 import CreateNew from "../CreateNew";
-import quote from "../../Quotes/Quotes.json";
-import View from "../../Quotes/View/View";
-import Resend from "../../Quotes/Resend/Resend";
+import quote from "../Quotes/Quotes.json";
+import View from "../Quotes/View/View";
+import Resend from "../Quotes/Resend/Resend";
 // import Delete from "./Delete";
-import Convert from "../Convert/Convert";
+// import Convert from "../Convert/Convert";
 
 export default function Invoice({ onComponentSwitch }) {
   const [isActive, setIsActive] = useState(null);

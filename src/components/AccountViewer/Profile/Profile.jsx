@@ -10,7 +10,7 @@ export default function ViewerProfile({ name, url, photoUrl, Occupation }) {
     <div className={styles.review}>
       {/* <div className={styles.imageprofile}> */}
       <div className={styles.image}>
-        <img className={styles.img} src={photoUrl} alt='Profile' />
+        <img className={styles.img} src={photoUrl || scan} alt='Profile' />
       </div>
       <div className={styles.nameprofile}>
         <label className={styles.name}>{name}</label>

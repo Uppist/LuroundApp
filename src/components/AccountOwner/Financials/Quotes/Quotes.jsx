@@ -5,9 +5,10 @@ import styles from "./Quotes.module.css";
 import CreateNew from "../CreateNew";
 import quote from "./Quotes.json";
 import View from "./View/View";
-import Resend from "../Resend/Resend";
+
 import Delete from "./Delete";
-import Convert from "../Convert/Convert";
+import Convert from "./Convert/Convert";
+import Resend from "./Resend/Resend";
 
 export default function Quotes({ onComponentSwitch }) {
   const [isActive, setIsActive] = useState(null);
@@ -58,7 +59,7 @@ export default function Quotes({ onComponentSwitch }) {
           </svg>
           <label>Quotes</label>
         </div>
-        <CreateNew onComponentSwitch={onComponentSwitch} />
+        <CreateNew />
       </div>
 
       <div className={styles.quotecontainer}>

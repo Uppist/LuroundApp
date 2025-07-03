@@ -148,6 +148,12 @@ a {
   font-weight: 600;
   font-family: "Inter";
   width: 100%;
+  opacity: 1;
+}
+
+.container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .google {

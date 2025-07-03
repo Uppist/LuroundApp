@@ -4,15 +4,7 @@ import styles from "./Profile.module.css";
 import scan from "../../../../elements/scan.jpg";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-export default function Profile({
-  Name,
-  company,
-  url,
-  logo,
-  Occupation,
-  photoUrl,
-  about,
-}) {
+export default function Profile({}) {
   const [isImageVisible, setIsImageVisible] = useState(true);
 
   function handleSvg() {
@@ -28,7 +20,7 @@ export default function Profile({
   const [viewerData, setViewerData] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("userData");
+    const data = localStorage.getItem("profileData");
     if (data) {
       const user = JSON.parse(data);
       setViewerData(user);
@@ -42,9 +34,18 @@ export default function Profile({
     return null;
   }
 
-  const { name } = viewerData;
+  const {
+    name,
+    firstName,
+    lastName,
+    photoUrl,
+    company,
+    logo,
+    url,
+    occupation,
+  } = viewerData;
 
-  const nameFormatted = name.replace(/\s+/g, "_");
+  const nameFormatted = firstName + "_" + lastName;
 
   return (
     <div className={styles.reviewprofile}>
@@ -98,10 +99,10 @@ export default function Profile({
           )}
         </div>
         <div className={styles.nameprofile}>
-          <label className={styles.name}>{Name}</label>
+          <label className={styles.name}>{name}</label>
 
           <div className={styles.professional}>
-            <label className={styles.profspec}>{Occupation}</label>
+            <label className={styles.profspec}>{occupation}</label>
             <div className={styles.britnext}>
               <div className={styles.imagebrit}>
                 <img src={logo} />

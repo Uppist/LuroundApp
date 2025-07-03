@@ -5,6 +5,7 @@ import SelectTime from "./Time";
 import styles from "./Calendar.module.css";
 import Bookings from "../Bookings";
 import styles2 from "../Details/See.module.css";
+import { Link } from "react-router-dom";
 
 export default function Next({
   formattedDate,
@@ -108,7 +109,9 @@ export default function Next({
             <textarea></textarea>
           </div>
           <div className={styles.updatebutton}>
-            <button onClick={onSeeLess}>Update Booking</button>
+            <button onClick={onSeeLess}>
+              <Link to='/bookings'> Update Booking</Link>
+            </button>
           </div>
         </div>
       ) : (

@@ -3,21 +3,42 @@
 import React from "react";
 import styles from "./style.module.css";
 
-export default function Signup() {
+export default function Signup({ logindetail, LoginDetail }) {
   return (
-    <form action='' className={styles.form}>
+    <div action='' className={styles.form}>
       <div>
         <label htmlFor='text'>First name</label>
-        <input type='text' name='text' id='text' placeholder='First name' />
+        <input
+          type='text'
+          name='firstName'
+          value={logindetail.firstName}
+          onChange={LoginDetail}
+          id='text'
+          placeholder='First name'
+        />
       </div>
       <div>
         <label htmlFor=''>Last name</label>
-        <input type='text' name='' id='' placeholder='Last name' />
+        <input
+          type='text'
+          name='lastName'
+          value={logindetail.lastName}
+          onChange={LoginDetail}
+          id=''
+          placeholder='Last name'
+        />
       </div>
       <div>
         <label htmlFor=''>Email address</label>
-        <input type='email' name='' id='' placeholder='youremail@address.com' />
+        <input
+          type='email'
+          name='email'
+          value={logindetail.email}
+          onChange={LoginDetail}
+          id=''
+          placeholder='youremail@address.com'
+        />
       </div>{" "}
-    </form>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import QuickAction from "../../Services/OneOff/OneoffService/QuickAction";
+import QuickAction from "../Services/OneOff/OneoffService/QuickAction";
 
 export default function Edit({ Close, data }) {
   return (

@@ -2,10 +2,10 @@
 
 // /** @format */
 
-import styles from "../../../Services/OneOff/OneoffService/OneOff.module.css";
-import Data from "../../../Services/OneOff/OneoffService/data.json";
+import styles from "../../../AccountOwner/Services/OneOff/OneoffService/OneOff.module.css";
+import Data from "../../../AccountOwner/Services/OneOff/OneoffService/data.json";
 import React, { useState } from "react";
-import VirtualContainer from "../../../Services/OneOff/OneoffService/VirtualContainer";
+import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffService/VirtualContainer";
 import { Link } from "react-router-dom";
 
 export default function OneOff() {

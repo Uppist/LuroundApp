@@ -1,24 +1,39 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Contact.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Addcontact({
   CancelAddContact,
-  handleOneOffClick,
   isValue,
   Values,
   contacts,
   setContacts,
   setIsValue,
 }) {
-  function Submit() {
-    console.log("Names: ", isValue);
+  const contactSaved = Object.values(isValue).every((val) => val.trim() !== "");
+
+  const navigate = useNavigate();
+  const Submit = () => {
+    const exists = contacts.some((c) => c.email === isValue.email);
+    if (exists) {
+      alert("A contact with this email already exists.");
+      return;
+    }
+
     setContacts([...contacts, isValue]);
     setIsValue({ name: "", email: "", phone: "" });
-    handleOneOffClick("contactsaved");
     CancelAddContact();
-  }
+    navigate("/contactsaved", {
+      state: {
+        contacts: [
+          { name: isValue.name, email: isValue.email, phone: isValue.phone },
+        ],
+      },
+    });
+  };
+
   return (
     <div className='popupcancel popupwithdrawpin'>
       <div className='overlay' onClick={CancelAddContact}></div>
@@ -49,8 +64,9 @@ export default function Addcontact({
 
         <div className={styles.contactinfo}>
           <div className={styles.contactdetails}>
-            <label>Name</label>
+            <label htmlFor='name'>Name</label>
             <input
+              id='name'
               placeholder='Name'
               name='name'
               value={isValue.name}
@@ -58,8 +74,9 @@ export default function Addcontact({
             />
           </div>
           <div className={styles.contactdetails}>
-            <label>Email address</label>
+            <label htmlFor='email'>Email address</label>
             <input
+              id='email'
               placeholder='Email address'
               type='email'
               name='email'
@@ -68,8 +85,9 @@ export default function Addcontact({
             />
           </div>
           <div className={styles.contactdetails}>
-            <label>Phone number</label>
+            <label htmlFor='phone'>Phone number</label>
             <input
+              id='phone'
               placeholder='Phone number'
               name='phone'
               value={isValue.phone}
@@ -82,7 +100,11 @@ export default function Addcontact({
           <button className={styles.cancel} onClick={CancelAddContact}>
             Cancel
           </button>
-          <button className={styles.next} onClick={Submit}>
+          <button
+            className={styles.next}
+            disabled={!contactSaved}
+            onClick={Submit}
+          >
             Save
           </button>
         </div>

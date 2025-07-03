@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 // import styles from "../../../Services/OneOff/OneOffService/DetailService.module.css";
-import styles from "../../../Services/OneOff/OneoffService/DetailService.module.css";
-import VirtualContainer from "../../../Services/OneOff/OneoffService/VirtualContainer";
+import styles from "../../../AccountOwner/Services/OneOff/OneoffService/DetailService.module.css";
+import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffService/VirtualContainer";
 import { Link, useLocation } from "react-router-dom";
 export default function More() {
   const location = useLocation();

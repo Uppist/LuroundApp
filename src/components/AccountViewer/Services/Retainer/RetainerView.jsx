@@ -3,10 +3,10 @@
 /** @format */
 import { useState } from "react";
 
-import styles from "../../../Services/Retainer/Retainer.module.css";
-import retainer from "../../../Services/Retainer/retainer.json";
+import styles from "../../../AccountOwner/Services/Retainer/Retainer.module.css";
+import retainer from "../../../AccountOwner/Services/Retainer/retainer.json";
 
-import VirtualContainer from "../../../Services/OneOff/OneoffService/VirtualContainer";
+import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffService/VirtualContainer";
 import { Link } from "react-router-dom";
 export default function RetainerView() {
   //   function openDetail(index) {

@@ -166,6 +166,10 @@
 .next:hover {
   background-color: hsla(180, 100%, 36%, 1);
 }
+.next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /*Contact Saved*/
 
@@ -235,6 +239,7 @@
   background-color: white;
   list-style: none;
   margin-top: 160px;
+  z-index: 1;
 }
 
 .sendlist li {
