@@ -4,10 +4,10 @@ import styles from "./Profile.module.css";
 
 // import Details from "./Details";
 
-export default function AboutDetails({}) {
+export default function AboutDetails({ about }) {
   return (
     <div className={styles.aboutdetails}>
-      <About />
+      <About about={about} />
     </div>
   );
 }

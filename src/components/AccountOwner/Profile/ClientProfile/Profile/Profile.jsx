@@ -4,7 +4,14 @@ import styles from "./Profile.module.css";
 import scan from "../../../../elements/scan.jpg";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-export default function Profile({}) {
+export default function Profile({
+  name,
+  occupation,
+  company,
+  photoUrl,
+  logo,
+  url,
+}) {
   const [isImageVisible, setIsImageVisible] = useState(true);
 
   function handleSvg() {
@@ -14,36 +21,6 @@ export default function Profile({}) {
   function secondSvg() {
     setIsImageVisible(false);
   }
-
-  const navigate = useNavigate();
-
-  const [viewerData, setViewerData] = useState(null);
-
-  useEffect(() => {
-    const data = localStorage.getItem("userData");
-    if (data) {
-      const user = JSON.parse(data);
-      setViewerData(user);
-    } else {
-      console.log("No user data found in localStorage");
-      navigate("/");
-    }
-  }, [navigate]);
-
-  if (!viewerData) {
-    return null;
-  }
-
-  const {
-    name,
-    firstName,
-    lastName,
-    photoUrl,
-    company,
-    logo,
-    url,
-    occupation,
-  } = viewerData;
 
   const nameFormatted = name.replace(/ /g, "_");
 
