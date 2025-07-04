@@ -66,7 +66,7 @@ export default function CreateAccount() {
         }
       );
 
-      const profileData = {
+      const userData = {
         name: profileResponse.data.displayName || "",
         company: profileResponse.data.company || "",
         photoUrl: profileResponse.data.photoUrl || "",
@@ -78,8 +78,8 @@ export default function CreateAccount() {
         email: profileResponse.data.email || "",
       };
 
-      localStorage.setItem("profileData", JSON.stringify(profileData));
-      navigate("/profile-page", { state: profileData });
+      localStorage.setItem("userData", JSON.stringify(userData));
+      navigate("/profile-page", { state: userData });
     } catch (error) {
       console.error("Sign-up or profile fetch failed:", error);
       alert("Something went wrong. Please try again.");

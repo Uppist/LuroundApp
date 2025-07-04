@@ -2,7 +2,7 @@
 
 import React from "react";
 import event from "./event.json";
-import styles2 from "../Services/Retainer/Retainer.module.css";
+import styles2 from "../Retainer/Retainer.module.css";
 import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
 
 export default function Update({ openDetail }) {

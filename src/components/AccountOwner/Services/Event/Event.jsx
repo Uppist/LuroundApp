@@ -4,7 +4,7 @@ import event from "./event.json";
 import EventService from "./EventService";
 import EventDetail from "./EventDetail";
 import styles from "./Event.module.css";
-import styles2 from "../../AccountOwner/Retainer/Retainer.module.css";
+import styles2 from "../Retainer/Retainer.module.css";
 import Update from "./Update";
 import EmptyState from "./EmptyState";
 export default function Event() {

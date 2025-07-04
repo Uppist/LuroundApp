@@ -20,7 +20,7 @@ export default function Profile({}) {
   const [viewerData, setViewerData] = useState(null);
 
   useEffect(() => {
-    const data = localStorage.getItem("profileData");
+    const data = localStorage.getItem("userData");
     if (data) {
       const user = JSON.parse(data);
       setViewerData(user);
@@ -45,7 +45,7 @@ export default function Profile({}) {
     occupation,
   } = viewerData;
 
-  const nameFormatted = firstName + "_" + lastName;
+  const nameFormatted = name.replace(/ /g, "_");
 
   return (
     <div className={styles.reviewprofile}>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./Event.module.css";
-import nigeria from "../../elements/nigeria.png";
+import nigeria from "../../../elements/nigeria.png";
 
 export default function SecondEvent({ handleClick }) {
   const [isTicket, setIsTicket] = useState(false);

@@ -4,7 +4,7 @@
 import { useState } from "react";
 
 import styles from "./Program.module.css";
-import styles2 from "../Services/Retainer/Details.module.css";
+import styles2 from "../Retainer/Details.module.css";
 
 import Delete from "../OneOff/OneoffService/Delete";
 import Program from "./Program";

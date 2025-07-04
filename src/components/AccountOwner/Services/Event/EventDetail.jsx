@@ -3,9 +3,8 @@ import { useState } from "react";
 import Delete from "../OneOff/OneoffService/Delete";
 import EventService from "./EventService";
 import Event from "./Event";
-import ShareProfile from "../../Profile/NavBar/ShareProfile";
 import styles from "./Event.module.css";
-import styles2 from "../../AccountOwner/Retainer/Details.module.css";
+import styles2 from "../Retainer/Details.module.css";
 import QuickAction from "../OneOff/OneoffService/QuickAction";
 import VirtualContainer from "../OneOff/OneoffService/VirtualContainer";
 export default function EventDetail({ dataevent }) {

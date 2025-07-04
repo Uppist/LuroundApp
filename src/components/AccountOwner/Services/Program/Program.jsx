@@ -4,7 +4,7 @@ import program from "./program.json";
 import ProgramService from "../Program/ProgramService";
 import ProgramDetail from "./ProgramDetail";
 import styles from "./Program.module.css";
-import styles2 from "../Services/Retainer/Retainer.module.css";
+import styles2 from "../Retainer/Retainer.module.css";
 import EmptyState from "./EmptyState";
 import Update from "./Update";
 export default function Program() {

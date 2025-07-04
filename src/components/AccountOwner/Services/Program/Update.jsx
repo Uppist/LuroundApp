@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import styles2 from "../Services/Retainer/Retainer.module.css";
+import styles2 from "../Retainer/Retainer.module.css";
 import styles from "./Program.module.css";
 import program from "./program.json";
 

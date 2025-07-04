@@ -1,8 +1,8 @@
 /** @format */
 
 import React from "react";
-import styles2 from "../../AccountOwner/StoreFront/style.module.css";
-import image from "../../elements/services/oneoff.svg";
+import styles2 from "../../StoreFront/style.module.css";
+import image from "../../../elements/services/oneoff.svg";
 
 export default function EmptyState({ isService, openService }) {
   return (

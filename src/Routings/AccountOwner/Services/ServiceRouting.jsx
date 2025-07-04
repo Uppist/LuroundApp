@@ -2,13 +2,17 @@
 
 import React from "react";
 import OneOffRouting from "./OneOff/OneOffRouting";
+import EventRouting from "./Event/EventRouting";
+import ProgramRouting from "./Program/ProgramRouting";
+import RetainerRouting from "./Retainer/RetainerRouting";
 
 export default function ServiceRouting() {
   return (
-    // <Route path='/retainer' element={<Retainer />} />
-    // <Route path='/program' element={<Program />} />
-    // <Route path='/event' element={<Event />} />
-
-    <OneOffRouting />
+    <>
+      <OneOffRouting />
+      <RetainerRouting />
+      <ProgramRouting />
+      <EventRouting />
+    </>
   );
 }

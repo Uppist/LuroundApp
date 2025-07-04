@@ -38,7 +38,7 @@ export async function handleLogin(logindetail, setUserData, e) {
       about: profileResponse.data.about || "",
       socialLinks: profileResponse.data.media_links || [],
       occupation: profileResponse.data.occupation || "",
-      email: profileResponse.data.email || "",
+      email: profileResponse.data.email || logindetail.email,
     });
   } catch (error) {
     console.error("Error:", error.response?.data || error.message);

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Retainer from "./Retainer";
 import styles from "./Details.module.css";
-import image from "../../elements/gallery.png";
+import image from "../../../elements/gallery.png";
 
 import CreateService from "./CreateService";
 import PricingTime from "../OneOff/TimeBased/Pricing";

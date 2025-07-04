@@ -1,10 +1,10 @@
 /** @format */
-import nigeria from "../../elements/nigeria.png";
+import nigeria from "../../../elements/nigeria.png";
 
 import { useState } from "react";
 import styles from "./Program.module.css";
-import styles2 from "../Services/Retainer/Details.module.css";
-import image from "../../elements/gallery.png";
+import styles2 from "../Retainer/Details.module.css";
+import image from "../../../elements/gallery.png";
 
 import DayTime from "../OneOff/TimeBased/DayTime";
 import CreateService from "./CreateService";

@@ -1,9 +1,9 @@
 /** @format */
 
 import styles from "./Event.module.css";
-import styles2 from "../../AccountOwner/Retainer/Details.module.css";
+import styles2 from "../Retainer/Details.module.css";
 import CreateEvent from "./CreateEvent";
-import image from "../../elements/gallery.png";
+import image from "../../../elements/gallery.png";
 export default function EventService({ closeService, handleClick }) {
   return (
     <>
