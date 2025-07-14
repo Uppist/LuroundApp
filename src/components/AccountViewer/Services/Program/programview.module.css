@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/** @format */
+
+/* Program View  */
+
+.programCard {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  max-width: 1000px;
+  max-height: 170px;
+  margin: 16px auto;
+}
+
+.programImage {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.programImage img {
+  width: 180px;
+  height: 155px;
+  border-radius: 8px;
+}
+
+.programInfo {
+  flex: 4;
+  padding-right: 16px;
+}
+
+.programInfo h2 {
+  color: #1D2E2E;
+  padding-top: 15px;
+  margin-top: 0px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.programInfo p {
+  color: #697474;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.seeMore {
+  color: #00c4cc;
+  text-decoration: none;
+}
+
+.registerButton {
+  background-color: #00CCCC;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 190px;
+  height: 42px;
+  opacity: 1;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.backButton {
+  background-color: #E0F7F9; /* Lighter background to distinguish from registerButton */
+  color: #1D2E2E;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 190px;
+  height: 42px;
+  opacity: 1;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  /* vertical-align: middle; */
+  margin-top: 16px;
+  display: block; /* Ensure it behaves as a block element */
+}
+
+.optionSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-left: 16px;
+  border-left: 1px solid #eee;
+}
+
+.optionToggle {
+  background-color: #F8FAFA; /* Default color, overridden by inline style */
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  width: 220px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radioOptions {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.optionToggle label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.optionToggle input[type="radio"] {
+  margin-right: 8px;
+}
+
+.Price {
+  color: #333;
+  font-size: 16px;
+  padding-top: 38px;
+  padding-left: 140px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #002736;
+}
+
+/* Program Register */
+
+.programImage2 {
+  display: flex;
+}
+
+.programRegisterDetails {
+  margin-top: 20px;
+}
+
+.programRegisterDetails p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #4B5555;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+.programRegisterBackBtn {
+  background-color: #E0F7F9;
+  color: #1D2E2E;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.programRegisterPriceBox {
+  background-color: #F6FBFC;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.programRegisterRadio {
+  display: flex;
+}
+
+.programRegisterRadio label {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  font-size: 15px;
+  color: #344B4B;
+  font-family: 'Inter', sans-serif;
+}
+
+.programRegisterRadio input[type="radio"] {
+  margin-right: 8px;
+}
+
+.programRegisterAmount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #002736;
+  font-family: 'Inter', sans-serif;
+}

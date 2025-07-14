@@ -1,88 +1,86 @@
 /** @format */
-import { useState } from "react";
-import program from "../../../AccountOwner/Services/Program/program.json";
-import styles from "../../../AccountOwner/Services/Program/Program.module.css";
-import styles2 from "../../../AccountOwner/Services/Retainer/Retainer.module.css";
-import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffService/VirtualContainer";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../Program/programview.module.css';
+import ProgramRegister from './ProgramRegister'; // Adjust the import path based on your file structure
+
 export default function ProgramView() {
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('virtual'); // Default to 'virtual'
+
+  const handleRegisterClick = () => {
+    setIsRegistered(true);
+  };
+
+  const handleBackClick = () => {
+    setIsRegistered(false);
+  };
+
+  const handleRadioChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const optionToggleStyle = {
+    backgroundColor: selectedOption === 'in-person' ? '#072D3C' : '#F8FAFA',
+    transition: 'background-color 0.3s ease', // Smooth transition for background color
+  };
+
+  const priceText = selectedOption === 'in-person' ? 'N/A' : '₦120,000';
+  const priceColor = selectedOption === 'in-person' ? '#FFFFFF' : undefined;
+
   return (
     <>
-      <div className={styles.program2}>
-        <div>
-          {program.map((data, index) => (
-            <div className={styles.eachprogramcontainer}>
-              <div className={styles.retainercontainer} key={data.title}>
-                <div className={styles2.titlecontainer}>
-                  <div className={styles2.daystimeline}>
-                    <div className={styles2.daystime}>
-                      {/* <span>{data.firstday}</span>
-                        <hr className={styles2.linedays} />
-                        <span>{data.secondday}</span> */}
-                      <img src={data.image} alt='' />
-                    </div>
-                    {/* <hr className={styles2.containerline} /> */}
-                  </div>
-                  <div className={styles2.personaltrainingdetails}>
-                    <div className={styles2.personaltraining}>
-                      <div className={styles.contenttype}>
-                        <div className='personal-service'>
-                          <span className={styles2.personal}>{data.Title}</span>
-                          {/* <div className='service-one'>
-                              <span className={styles2.servicetype}>
-                                {data.servicetype}
-                              </span>
-                              <span className={styles2.oneofftext}>
-                                {data.oneoff}
-                              </span>
-                            </div> */}
-                        </div>
-                        <div className={styles2.textvector}>
-                          <span className={styles2.text}>
-                            {data.text}
-                            {data.dots}
-                            <Link to='/details' state={{ data }}>
-                              <div className={styles2.oneoffdetails}>
-                                <span>see more</span>
-                                <svg
-                                  width='16'
-                                  height='16'
-                                  viewBox='0 0 16 16'
-                                  fill='none'
-                                  xmlns='http://www.w3.org/2000/svg'
-                                >
-                                  <path
-                                    d='M13.1666 7.81706L3.16663 7.81706'
-                                    stroke='#00CCCC'
-                                    strokeWidth='1.5'
-                                    strokeLinecap='round'
-                                    strokeLinejoin='round'
-                                  />
-                                  <path
-                                    d='M9.13342 3.80083L13.1668 7.81683L9.13342 11.8335'
-                                    stroke='#00CCCC'
-                                    strokeWidth='1.5'
-                                    strokeLinecap='round'
-                                    strokeLinejoin='round'
-                                  />
-                                </svg>
-                              </div>
-                            </Link>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles2.virtualinperson}>
-                  <hr />
-                  <VirtualContainer data={data} />
-                </div>{" "}
+      {!isRegistered ? (
+        <div className={styles.programCard}>
+          <div className={styles.programImage}>
+            {/* Placeholder for program image */}
+            <img src="../public/assets/png/boot.png" alt="Graphic Design Bootcamp" />
+          </div>
+          <div className={styles.programInfo}>
+            <h2>Graphic Design Bootcamp</h2>
+            <p>
+              Lorem ipsum dolor sit am, con sectetur adip scing elit, sedoe eiusm od tempor incididunt labore consetectetaur seiod sedio otacum illeconsec...
+              <a href="" className={styles.seeMore}>
+                see more
+              </a>
+            </p>
+            <button className={styles.registerButton} onClick={handleRegisterClick}>
+              Register now
+            </button>
+          </div>
+          <div className={styles.optionSection}>
+            <div className={styles.optionToggle} style={optionToggleStyle}>
+              <div className={styles.radioOptions}>
+                <label>
+                  <input
+                    type="radio"
+                    name="programType"
+                    value="virtual"
+                    defaultChecked={selectedOption === 'virtual'}
+                    onChange={handleRadioChange}
+                  />
+                  Virtual
+                </label>
+                <label>
+                  &emsp;<input
+                    type="radio"
+                    name="programType"
+                    value="in-person"
+                    defaultChecked={selectedOption === 'in-person'}
+                    onChange={handleRadioChange}
+                  />
+                  In-person
+                </label>
               </div>
+              <p className={styles.Price} style={{ color: priceColor }}>
+                <span>{priceText}</span>
+              </p>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <ProgramRegister onBack={handleBackClick} />
+      )}
     </>
   );
 }
