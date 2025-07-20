@@ -43,6 +43,10 @@ export default function Login() {
   //   }
   // }, [userData, navigate, fromSignup]);
 
+  const isFormComplete = Object.values(logindetail).every(
+    (val) => val.trim() !== ""
+  );
+
   return (
     <section className={styles2.account}>
       <div className={styles2.imgdiv}>
@@ -58,6 +62,7 @@ export default function Login() {
                 Submit={handleSubmit}
                 logindetail={logindetail}
                 LoginDetail={handleLoginDetailChange}
+                isFormComplete={isFormComplete}
               />
             </div>
             <div className={styles2.line}>

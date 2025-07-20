@@ -5,7 +5,12 @@ import styles from "./Login.module.css";
 import styles2 from "../CreateAccount/style.module.css";
 import { Link } from "react-router-dom";
 
-export default function Signin({ Submit, logindetail, LoginDetail }) {
+export default function Signin({
+  Submit,
+  logindetail,
+  LoginDetail,
+  isFormComplete,
+}) {
   return (
     <form onSubmit={Submit} action='' className={styles2.form}>
       <div>
@@ -35,7 +40,9 @@ export default function Signin({ Submit, logindetail, LoginDetail }) {
         </Link>
       </div>{" "}
       {/* <Link to='/Profile-page'> */}
-      <button type='submit'>Login</button>
+      <button type='submit' disabled={!isFormComplete}>
+        Login
+      </button>
       {/* </Link> */}
     </form>
   );
