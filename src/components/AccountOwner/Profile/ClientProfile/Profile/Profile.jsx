@@ -2,16 +2,10 @@
 
 import styles from "./Profile.module.css";
 import scan from "../../../../elements/scan.jpg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-export default function Profile({
-  name,
-  occupation,
-  company,
-  photoUrl,
-  logo,
-  url,
-}) {
+import { userContext } from "../../../../Context";
+export default function Profile({}) {
   const [isImageVisible, setIsImageVisible] = useState(true);
 
   function handleSvg() {
@@ -22,7 +16,12 @@ export default function Profile({
     setIsImageVisible(false);
   }
 
-  const nameFormatted = name.replace(/ /g, "_");
+  const [userData] = useContext(userContext);
+
+  console.log(userData);
+  const nameFormatted = userData?.displayName
+    ? userData.displayName.replace(/ /g, "_")
+    : "";
 
   return (
     <div className={styles.reviewprofile}>
@@ -70,20 +69,24 @@ export default function Profile({
       <div className={styles.imageprofile}>
         <div className={styles.image}>
           {isImageVisible ? (
-            <img className={styles.img} src={photoUrl || scan} alt='Profile' />
+            <img
+              className={styles.img}
+              src={userData.photoUrl || scan}
+              alt='Profile'
+            />
           ) : (
             <img className={styles.scan} src={scan} alt='Default' />
           )}
         </div>
         <div className={styles.nameprofile}>
-          <label className={styles.name}>{name}</label>
+          <label className={styles.name}>{userData.displayName}</label>
 
           <div className={styles.professional}>
-            <label className={styles.profspec}>{occupation}</label>
+            <label className={styles.profspec}>{userData.occupation}</label>
             <div className={styles.britnext}>
               <div className={styles.imagebrit}>
-                <img src={logo} />
-                <label>{company}</label>
+                <img src={userData.logo_url} />
+                <label>{userData.company}</label>
               </div>
             </div>
           </div>
@@ -93,14 +96,15 @@ export default function Profile({
               <Link
                 to={`/profile/${nameFormatted}`}
                 className={styles.lorem}
-                target='blank'
+                // target='blank'
                 rel='noopener noreferrer'
+                state={{ userData }}
               >
-                {url}
+                {userData.luround_url}
               </Link>
               <svg
                 onClick={() => {
-                  navigator.clipboard.writeText(url);
+                  navigator.clipboard.writeText(luround_url);
                 }}
                 className={styles.copy}
                 width='18'

@@ -1,11 +1,28 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./EditProfile.module.css";
 
 export default function EditIntro({ scrollPhoto, profile, inputRef }) {
+  const [isValue, setIsValue] = useState({
+    firstName: "",
+    lastName: "",
+    company: "",
+    occupation: "",
+    logo_url: "",
+  });
+
+  function handleEditProfile(e) {
+    setIsValue({ ...isValue, [e.target.name]: e.target.value });
+  }
+
+  function handleProfileAPI(e) {
+    e.preventDefault();
+    console.log(isValue);
+  }
+
   return (
-    <form method='PUT'>
+    <form method='PUT' onSubmit={handleProfileAPI}>
       <div className={styles.photosintros} ref={scrollPhoto}>
         <span>Photo & Intro</span>
 
@@ -13,13 +30,13 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
           <div>
             {/* {image ? ( */}
             {/* <img
-                // name='photoUrl'
-                className={`${styles.img} ${styles.editimage}`}
-                src={
-                  typeof image === "string" ? image : URL.createObjectURL(image)
-                } */}
-            {/* /> */}
-            {/* ) : ( */}
+              name='photoUrl'
+              className={`${styles.img} ${styles.editimage}`}
+              src={
+                typeof image === "string" ? image : URL.createObjectURL(image)
+              }
+            /> */}
+            {/* ) : (  */}
             <img
               className={`${styles.img} ${styles.editimage}`}
               src={profile}
@@ -56,8 +73,8 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                 placeholder='First name'
                 name='firstName'
                 type='text'
-                // value={isValue.firstName}
-                // onChange={(e) => handleEditProfile(e)}
+                value={isValue.firstName}
+                onChange={(e) => handleEditProfile(e)}
               />
             </div>
             <div className={styles.firstname}>
@@ -65,9 +82,9 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
               <input
                 placeholder='Last name'
                 type='text'
-                // value={isValue.lastName}
+                value={isValue.lastName}
                 name='lastName'
-                // onChange={(e) => handleEditProfile(e)}
+                onChange={(e) => handleEditProfile(e)}
               />
             </div>
             <div className={styles.firstname}>
@@ -75,9 +92,9 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
               <input
                 placeholder='Your company name'
                 name='company'
-                // value={isValue.company}
+                value={isValue.company}
                 type='text'
-                // onChange={handleEditProfile}
+                onChange={handleEditProfile}
               />
             </div>
             <div className={styles.firstname}>
@@ -86,8 +103,8 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                 name='occupation'
                 placeholder='Your profession'
                 type='text'
-                // value={isValue.occupation}
-                // onChange={(e) => handleEditProfile(e)}
+                value={isValue.occupation}
+                onChange={(e) => handleEditProfile(e)}
               />
             </div>
 

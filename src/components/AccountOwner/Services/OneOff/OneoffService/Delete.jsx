@@ -2,7 +2,7 @@
 
 /** @format */
 export default function Delete({
-  datavalue,
+  data,
   backdelete,
   showContainer,
   dataretainer,
@@ -39,13 +39,10 @@ export default function Delete({
             <>
               <div className='cancel-container'>
                 <div className='titleservice cancel-title'>
-                  <span className='title'>{datavalue.Title}</span>
+                  <span className='title'>{data.service_name}</span>
                   <div className='service-one'>
-                    <span className='servicetype'>
-                      {" "}
-                      {datavalue.servicetype}{" "}
-                    </span>
-                    <span className='oneofftext'> {datavalue.oneoff} </span>
+                    <span className='servicetype'> service_type: </span>
+                    <span className='oneofftext'> {data.service_type} </span>
                   </div>
                 </div>
                 <p>Are you sure you want to delete this service?</p>
@@ -56,14 +53,14 @@ export default function Delete({
               <div className='cancel-container'>
                 <div className='titleservice cancel-title'>
                   <span className='title title-service'>
-                    {dataretainer.Title}
+                    {/* {dataretainer.Title} */}
                   </span>
                   <div className='service-one'>
                     <span className='servicetype'>
                       {" "}
-                      {dataretainer.servicetype}{" "}
+                      {/* {dataretainer.servicetype}{" "} */}
                     </span>
-                    <span className='oneofftext'> {dataretainer.oneoff} </span>
+                    {/* <span className='oneofftext'> {dataretainer.oneoff} </span> */}
                   </div>
                 </div>
                 <p className='title-p'>

@@ -2,8 +2,16 @@
 
 import React from "react";
 import styles from "./styles.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import timeImage from "../../../elements/services/timebased.svg";
 
-export default function Share({ Close, dataValue }) {
+export default function Share({ Close, data }) {
+  function copyText() {
+    navigator.clipboard.writeText(data.service_link);
+
+    toast.success("copied");
+  }
   return (
     <div className='popupcancel'>
       <div className='overlay' onClick={Close}></div>
@@ -33,14 +41,19 @@ export default function Share({ Close, dataValue }) {
         </div>
         <div className={styles.container}>
           <div className={styles.shareservice}>
-            <span className={styles.titleshare}>{dataValue.Title}</span>
-            <div>
-              <span className={styles.type}> {dataValue.servicetype} </span>
-              <span className={styles.text}> {dataValue.oneoff} </span>
+            <span className={styles.titleshare}>{data.service_name}</span>
+            <div className={styles.serviceType}>
+              <span className={styles.type}> Service type:</span>
+              <span className={styles.text}> {data.service_type} </span>
+              {data?.one_off_type === "time-based" ? (
+                <img src={timeImage} alt='' />
+              ) : (
+                <>{/* <img src={time} alt='' /> */}</>
+              )}
             </div>
           </div>
           <div className={styles.cancelshare}>
-            <div className={styles.sharecontainer}>
+            <div className={styles.sharecontainer} onClick={copyText}>
               <svg
                 width='25'
                 height='24'
@@ -110,6 +123,7 @@ export default function Share({ Close, dataValue }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

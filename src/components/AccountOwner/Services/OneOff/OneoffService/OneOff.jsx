@@ -3,24 +3,27 @@
 // /** @format */
 
 import styles from "./OneOff.module.css";
-import Data from "./data.json";
-import React, { useState } from "react";
+// import Data from "./data.json";
+import React, { useContext, useState } from "react";
 import DetailOne from "./DetailService";
 import Timebased from "../TimeBased/TimeBased";
 import Projectbased from "../ProjectBased/ProjectBased";
 import Create from "./CreateService";
 import Update from "./UpdatedValue/Update";
 import EmptyState from "./EmptyState";
+import { userContext } from "../../../../Context";
 
 export default function One({ backone }) {
   const [isDetail, setisDetail] = useState(null);
-  const [activeComponent, setActiveComponent] = useState("emptystate");
 
-  const [isTimeBased, setIsTimeBased] = useState(false);
   const [isProjectBased, setIsProjectBased] = useState(false);
   const [isVisible, setVisible] = useState("fade-in");
 
   const [isService, setisService] = useState(false);
+
+  const [userData, setUserData, userService, setUserService] =
+    useContext(userContext);
+  // console.log(userService);
 
   const openModal = () => {
     setisService(true);
@@ -74,14 +77,14 @@ export default function One({ backone }) {
           handleClick={handleClick}
           closeProjectBased={closeProjectBased}
         />
-      ) : isTimeBased ? (
-        <Timebased handleClick={handleClick} closeTime={closeTime} />
       ) : isDetail === null ? (
         <div className={styles.oneoff}>
           <div className={styles.oneoffservice}>
             <div className={styles.numberofservice}>
               <span className={styles.oneoffservice}>One-off</span>
-              <span className={styles.number}>{Data.length}</span>
+              {!userService ? null : (
+                <span className={styles.number}>{userService.length}</span>
+              )}
             </div>
             <div>
               <Create
@@ -94,22 +97,19 @@ export default function One({ backone }) {
             </div>
           </div>
 
-          {activeComponent === "oneoffService" && (
+          {!userService ? (
+            <EmptyState isService={isService} openModal={openModal} />
+          ) : (
             <Update
               handleClick={handleClick}
               isVisible={isVisible}
               openDetail={openDetail}
             />
           )}
-
-          {!isService &&
-            activeComponent === "emptystate" &&
-            isVisible !== "fade-out" && (
-              <EmptyState isService={isService} openModal={openModal} />
-            )}
         </div>
       ) : (
-        <DetailOne dataValue={Data[isDetail]} handleClick={goBackFromDetail} />
+        <></>
+        // <DetailOne dataValue={Data[isDetail]} handleClick={goBackFromDetail} />
       )}
     </>
   );

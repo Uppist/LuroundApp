@@ -6,8 +6,8 @@ import styles from "./EditProfile.module.css";
 export default forwardRef(function OtherDetails({
   props,
   ref,
-  handledetails,
-  value,
+  handleDetails,
+  socialLinks,
 }) {
   return (
     <div className={styles.socialmediadetails} ref={ref}>
@@ -49,8 +49,8 @@ export default forwardRef(function OtherDetails({
             type='text'
             placeholder='Location'
             name='location'
-            // onChange={(e) => handledetails(e)}
-            // value={value.location}
+            onChange={(e) => handleDetails(e)}
+            value={socialLinks?.location?.link}
           />
           <svg
             width='24'
@@ -109,8 +109,8 @@ export default forwardRef(function OtherDetails({
             type='text'
             placeholder='Mobile'
             name='mobile'
-            // onChange={(e) => handledetails(e)}
-            // value={value.mobile}
+            onChange={(e) => handleDetails(e)}
+            value={socialLinks?.mobile?.link}
           />
 
           <svg
@@ -170,8 +170,8 @@ export default forwardRef(function OtherDetails({
             type='text'
             placeholder='Email'
             name='email'
-            // value={value.email}
-            // onChange={(e) => handledetails(e)}
+            value={socialLinks?.email.link}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -228,10 +228,10 @@ export default forwardRef(function OtherDetails({
         <div className={styles.socialmediainput}>
           <input
             type='text'
-            // value={value.website}
+            value={socialLinks?.website?.link}
             placeholder='Website'
             name='website'
-            // onChange={(e) => handledetails(e)}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -288,10 +288,10 @@ export default forwardRef(function OtherDetails({
         <div className={styles.socialmediainput}>
           <input
             type='text'
-            // value={value.linkedin}
+            value={socialLinks?.linkedin?.link}
             placeholder='LinkedIn'
             name='linkedin'
-            // onChange={(e) => handledetails(e)}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -349,9 +349,9 @@ export default forwardRef(function OtherDetails({
           <input
             type='text'
             placeholder='Facebook'
-            // value={value.facebook}
+            value={socialLinks?.facebook?.link}
             name='facebook'
-            // onChange={(e) => handledetails(e)}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -409,9 +409,9 @@ export default forwardRef(function OtherDetails({
           <input
             type='text'
             placeholder='Instagram'
-            // value={value.instagram}
+            value={socialLinks?.instagram?.link}
             name='instagram'
-            // onChange={(e) => handledetails(e)}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -472,8 +472,8 @@ export default forwardRef(function OtherDetails({
             type='text'
             placeholder='Twitter'
             name='twitter'
-            // value={value.twitter}
-            // onChange={(e) => handledetails(e)}
+            value={socialLinks?.twitter?.link}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'
@@ -539,9 +539,9 @@ export default forwardRef(function OtherDetails({
           <input
             type='text'
             placeholder='Youtube'
-            // value={value.youtube}
+            value={socialLinks?.youtube?.link}
             name='youtube'
-            // onChange={(e) => handledetails(e)}
+            onChange={(e) => handleDetails(e)}
           />
           <svg
             width='24'

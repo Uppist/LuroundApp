@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./OneOff.module.css";
+import { Link } from "react-router-dom";
 
 export default function AddService({ onClose, onTime, onProject }) {
   const [isClickOne, setIsClickOne] = useState(false);
@@ -9,6 +10,7 @@ export default function AddService({ onClose, onTime, onProject }) {
   function ClickedOne() {
     setIsClickOne(!isClickOne);
   }
+
   return (
     <div>
       <div className='profiledropdown'>
@@ -21,8 +23,8 @@ export default function AddService({ onClose, onTime, onProject }) {
           <ul className='dropdown-service'>
             <li className='oneoff-service' onClick={ClickedOne}>
               <div className='time-project-service'>
-                <button className='time-based' onClick={onTime}>
-                  Time-based
+                <button className='time-based'>
+                  <Link to='/time-based'>Time-based</Link>
                 </button>
 
                 <button className='project-based' onClick={onProject}>

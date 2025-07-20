@@ -1,9 +1,10 @@
 /** @format */
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../../apis/LoginAPI/LoginAPI";
 import axios from "axios";
+import { useContext } from "react";
 import styles from "./Login.module.css";
 import styles2 from "../CreateAccount/style.module.css";
 import image from "../../elements/LuroundApp.png";
@@ -11,38 +12,36 @@ import google from "../../elements/Google.png";
 import Signin from "./Signin";
 import Animation from "../Animation/Animation";
 import { Link } from "react-router-dom";
+import { userContext } from "../../Context";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [logindetail, setLogindetail] = useState({ email: "", password: "" });
-  const [userData, setUserData] = useState({
-    name: "",
-    company: "",
-    photoUrl: "",
-    url: "",
-    logo: "",
-    about: "",
-    socialLinks: [],
-    occupation: "",
-    email: "",
-  });
+  const [userData, setUserData] = useContext(userContext);
+
+  const location = useLocation();
+  const fromSignup = location.state?.fromSignup;
 
   const handleLoginDetailChange = (e) => {
     setLogindetail((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin(logindetail, setUserData); // Call the API function
+
+    const user = await handleLogin(logindetail);
+    if (user) {
+      setUserData(user);
+    }
+    console.log("userData from context:", userData);
+    navigate("/profile-page");
   };
 
-  useEffect(() => {
-    if (userData.email) {
-      localStorage.setItem("userData", JSON.stringify(userData));
-
-      navigate("/profile-page", { state: userData });
-    }
-  }, [userData, navigate]);
+  // useEffect(() => {
+  //   if (userData.email && !fromSignup) {
+  //   }
+  // }, [userData, navigate, fromSignup]);
 
   return (
     <section className={styles2.account}>
@@ -70,7 +69,7 @@ export default function Login() {
           <div className={styles2.google}>
             <div className={styles2.googlebutton}>
               <img src={google} alt='Google logo' />
-              <button type='submit'>Login with Google</button>
+              <button type='button'>Login with Google</button>
             </div>
             <div className={styles2.login}>
               <label>Don't have an account?</label>
@@ -82,6 +81,7 @@ export default function Login() {
         </div>
       </div>
       <Animation />
+      <ToastContainer />
     </section>
   );
 }

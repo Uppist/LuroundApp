@@ -1,13 +1,19 @@
 /** @format */
 import { useState } from "react";
 import styles from "./Time.module.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Time() {
+export default function Time({
+  setCheckedDays,
+  setSelectedFrom,
+  setSelectedTo,
+  checkedDays,
+  selectedFrom,
+  selectedTo,
+}) {
   const [isOpenFrom, setIsOpenFrom] = useState({});
   const [isOpenTo, setIsOpenTo] = useState({});
 
-  const [selectedFrom, setSelectedFrom] = useState({});
-  const [selectedTo, setSelectedTo] = useState({});
   const time = [
     "12:00 AM",
     "12:15 AM",
@@ -106,154 +112,128 @@ export default function Time() {
     "11:30 PM",
     "11:45 PM",
   ];
+  const dayInfo = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
-  function dropDown(index, type) {
+  function toggleDropdown(index, type) {
     if (type === "from") {
-      setIsOpenFrom((prevState) => ({
-        ...prevState,
-        [index]: !prevState[index],
-      }));
+      setIsOpenFrom((prev) => ({ ...prev, [index]: !prev[index] }));
     } else {
-      setIsOpenTo((prevState) => ({
-        ...prevState,
-        [index]: !prevState[index],
-      }));
+      setIsOpenTo((prev) => ({ ...prev, [index]: !prev[index] }));
     }
   }
 
-  function CloseDropdown() {
-    setIsOpenFrom(false);
-    setIsOpenTo(false);
+  function handleDropdownSelect(index, option, type) {
+    if (type === "from") {
+      setSelectedFrom((prev) => ({ ...prev, [index]: option }));
+      setIsOpenFrom((prev) => ({ ...prev, [index]: false }));
+    } else {
+      setSelectedTo((prev) => ({ ...prev, [index]: option }));
+      setIsOpenTo((prev) => ({ ...prev, [index]: false }));
+    }
   }
 
-  function handleDropdown(index, option, type) {
-    if (type === "from") {
-      setSelectedFrom((prevState) => ({
-        ...prevState,
-        [index]: option,
-      }));
-      setIsOpenFrom((prevState) => ({
-        ...prevState,
-        [index]: false,
-      }));
-    } else {
-      setSelectedTo((prevState) => ({
-        ...prevState,
-        [index]: option,
-      }));
-      setIsOpenTo((prevState) => ({
-        ...prevState,
-        [index]: false,
-      }));
-    }
+  function handleCheckboxChange(index, isChecked) {
+    setCheckedDays((prev) => ({ ...prev, [index]: isChecked }));
   }
 
   return (
-    <>
-      <div className={`${styles.inpersonvirtual} ${styles.tofro}`}>
+    <div className={styles.timegrid}>
+      <div className={styles.inpersonvirtual}>
+        <span className={styles.day}>Day</span>
         <span>From</span>
         <span>To</span>
       </div>
+
       <div className={styles.daycheckedcontainer}>
-        {[
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thurday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ].map((option, index) => (
+        {dayInfo.map((day, index) => (
           <div
             key={index}
             className={`${styles.inputtimecontainer} ${styles.daysselection}`}
           >
-            <div>
-              <div>
-                <input
-                  type='checkbox'
-                  className='checkbox'
-                  id={`check-${index}`}
-                />
-                <label htmlFor={`check-${index}`}>{option}</label>
+            <div className={styles.selectday}>
+              <input
+                type='checkbox'
+                id={`check-${index}`}
+                onChange={(e) => handleCheckboxChange(index, e.target.checked)}
+                checked={!!checkedDays[index]}
+              />
+              <label htmlFor={`check-${index}`}>{day}</label>
+            </div>
+
+            <div className={styles.nairavirtual}>
+              <div className='dropdown'>
+                <div
+                  className={`${styles.selecttimecontainer} ${
+                    isOpenFrom[index] ? "select-clicked" : ""
+                  }`}
+                  onClick={() => toggleDropdown(index, "from")}
+                >
+                  <span className='selected-list'>
+                    {selectedFrom[index] || "9:00 AM"}
+                  </span>
+                </div>
+                {isOpenFrom[index] && (
+                  <ul className={styles.menu}>
+                    {time.map((option) => (
+                      <li
+                        key={option}
+                        className={`menu-item ${
+                          selectedFrom[index] === option ? "active" : ""
+                        }`}
+                        onClick={() =>
+                          handleDropdownSelect(index, option, "from")
+                        }
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
-            <div
-              className={`${styles.nairavirtualinperson} ${styles.timeselection}`}
-            >
-              <div className={styles.nairavirtual}>
-                <div className='dropdown'>
-                  <div
-                    className={`${styles.selecttimecontainer} ${
-                      isOpenFrom[index] ? "select-clicked" : ""
-                    }`}
-                    onClick={() => dropDown(index, "from")}
-                  >
-                    <span className='selected-list'>
-                      {selectedFrom[index] || "9:00 AM"}
-                    </span>
-                  </div>
-                  {isOpenFrom[index] && (
-                    <>
-                      {/* <div className='popup'> */}
-                      <div onClick={setIsOpenFrom}></div>
-                      <ul className={styles.menu}>
-                        {time.map((option) => (
-                          <li
-                            key={option}
-                            className={`menu-item ${
-                              selectedFrom[index] === option ? "active" : ""
-                            }`}
-                            onClick={() =>
-                              handleDropdown(index, option, "from")
-                            }
-                          >
-                            {option}
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                    // </div>
-                  )}
+
+            <div className={styles.nairainperson}>
+              <div className='dropdown'>
+                <div
+                  className={`${styles.selecttimecontainer} ${
+                    isOpenTo[index] ? "select-clicked" : ""
+                  }`}
+                  onClick={() => toggleDropdown(index, "to")}
+                >
+                  <span className='selected-list'>
+                    {selectedTo[index] || "9:00 AM"}
+                  </span>
                 </div>
-              </div>
-              <div className={styles.nairainperson}>
-                <div className='dropdown'>
-                  <div
-                    className={`${styles.selecttimecontainer} ${
-                      isOpenTo[index] ? "select-clicked" : ""
-                    }`}
-                    onClick={() => dropDown(index, "to")}
-                  >
-                    <span className='selected-list'>
-                      {selectedTo[index] || "9:00 AM"}
-                    </span>
-                  </div>
-                  {isOpenTo[index] && (
-                    <>
-                      {/* // <div className='popupdropdown'> */}
-                      <div onClick={setIsOpenTo}></div>
-                      <ul className={styles.menu}>
-                        {time.map((option) => (
-                          <li
-                            key={option}
-                            className={`menu-item ${
-                              selectedTo[index] === option ? "active" : ""
-                            }`}
-                            onClick={() => handleDropdown(index, option, "to")}
-                          >
-                            {option}
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>{" "}
+                {isOpenTo[index] && (
+                  <ul className={styles.menu}>
+                    {time.map((option) => (
+                      <li
+                        key={option}
+                        className={`menu-item ${
+                          selectedTo[index] === option ? "active" : ""
+                        }`}
+                        onClick={() =>
+                          handleDropdownSelect(index, option, "to")
+                        }
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

@@ -5,12 +5,14 @@ import { useState } from "react";
 import styles from "../../../AccountOwner/Services/OneOff/OneoffService/DetailService.module.css";
 import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffService/VirtualContainer";
 import { Link, useLocation } from "react-router-dom";
+import image from "../../../elements/gallery.png";
+
 export default function More() {
   const location = useLocation();
   const { data } = location.state || {};
-  console.log("state", data, "from", data.sessionType);
+  console.log("state", data, "from", data.service_type);
 
-  const backRoute = data.sessionType === "retainer" ? "retainer" : "oneoff2";
+  const backRoute = data.service_type === "retainer" ? "retainer" : "oneoff2";
 
   return (
     <>
@@ -39,18 +41,25 @@ export default function More() {
 
         <div className={`${styles.morecontainer}  ${styles.container}`}>
           <div className={styles.oneoff}>
-            <img src={data.image} alt='' />
+            <img src={data.image || image} alt='' />
             <div className={styles.oneoffdetails}>
               <div className={styles.contenttype}>
                 <div className={styles.personalservice}>
-                  <span className={styles.personal}>{data.Title}</span>
+                  <span className={styles.personal}>{data.service_name}</span>
                 </div>
               </div>
               <div className={styles.availability}>
                 <label>Service schedule</label>
                 <div className={styles.time}>
-                  <span>{data.firstday}</span>
-                  <span>{data.secondday}</span>
+                  {data.availability && data.availability.length > 0 ? (
+                    data.availability.map((slot, idx) => (
+                      <span key={idx}>
+                        {slot.day}: {slot.from_time} - {slot.to_time}
+                      </span>
+                    ))
+                  ) : (
+                    <span>No availability set</span>
+                  )}
                 </div>
               </div>
               <VirtualContainer data={data} />
@@ -59,8 +68,7 @@ export default function More() {
           <div className={styles.description}>
             <span>About service</span>
             <span className={`${styles.text} ${styles.text2}`}>
-              {data.text}
-              {data.text2}
+              {data.description}
             </span>
           </div>
           <Link to='/booknow' state={{ data }}>

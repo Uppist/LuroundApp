@@ -9,6 +9,7 @@ export default function ClientProfile() {
   const navigate = useNavigate();
 
   const [viewerData, setViewerData] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     const data = localStorage.getItem("userData");
@@ -19,7 +20,7 @@ export default function ClientProfile() {
       console.log("No user data found in localStorage");
       navigate("/");
     }
-  }, [navigate]);
+  }, [navigate, refreshKey]);
 
   if (!viewerData) {
     return null;
@@ -35,6 +36,8 @@ export default function ClientProfile() {
     url,
     occupation,
     about,
+    socialLinks,
+    brand,
   } = viewerData;
 
   return (
@@ -47,7 +50,7 @@ export default function ClientProfile() {
         logo={logo}
         occupation={occupation}
       />
-      <AboutDetails about={about} />
+      <AboutDetails about={about} socialLinks={socialLinks} brand={brand} />
     </div>
   );
 }

@@ -49,6 +49,8 @@
 
 .container img {
   width: 410px !important;
+  height: 360px;
+  border-radius: 16px;
 }
 
 .oneoff {
@@ -117,6 +119,7 @@
 
 .text2 {
   width: auto;
+  overflow-wrap: anywhere;
 }
 .quickactioncontainer {
   padding: 0;
@@ -152,13 +155,13 @@
 
 .settingsdetail {
   display: grid;
-  padding: 0 24px;
+  padding: 0 16px;
 }
 
 .settingscontainer {
   display: flex;
   align-items: center;
-  padding: 16px 70px 16px 0px;
+  padding: 16px 70px 16px 15px;
   gap: 16px;
   font-size: 14px;
   font-weight: 500;
@@ -171,8 +174,9 @@
 
 .settingscontainer:hover {
   border-radius: 16px;
-  border: 1.5px solid hsla(180, 100%, 36%, 1);
+  border: 1px solid hsla(180, 100%, 36%, 1);
   color: hsla(180, 100%, 36%, 1);
+  cursor: pointer;
 }
 
 .togglebutton {
@@ -206,7 +210,7 @@ input:checked + .toggle::before {
 }
 .suspend {
   display: flex;
-  padding: 14px 14px 14px 0px;
+  padding: 16px;
   justify-content: space-between;
 }
 

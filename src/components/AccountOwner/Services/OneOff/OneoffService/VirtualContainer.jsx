@@ -66,7 +66,7 @@ export default function VirtualContainer({ data, index, showPart }) {
   // const sessionType = data.sessionType;
   // const sessionType = data.minutes; // Example: "oneoff" or "retainer"
   const options =
-    data.sessionType === "oneoff" ? OneOffoptions : retainerOption;
+    data.service_type === "one-off" ? OneOffoptions : retainerOption;
 
   return (
     <div
@@ -98,11 +98,11 @@ export default function VirtualContainer({ data, index, showPart }) {
       </div>
       <div className={styles.pricingamount}>
         <div className={styles.pricing}>
-          <span>{data.pricing}</span>
-          {data.sessionType !== "event" && data.sessionType !== "program" && (
+          {/* <span>{data.pricing?.[0]?.virtual || "N/A"}</span> */}
+          {data.service_type !== "event" && data.service_type !== "program" && (
             <div className={styles.minsarrow}>
               <div className={styles.dropdown}>
-                <div
+                {/* <div
                   className={`${styles.selectlist} ${
                     isOpen[index] ? "select-clicked" : ""
                   }`}
@@ -127,8 +127,9 @@ export default function VirtualContainer({ data, index, showPart }) {
                       strokeLinejoin='round'
                     />
                   </svg>
-                </div>
-                {isOpen[index] && (
+                </div> */}
+                <span>{data.pricing?.[0]?.time_allocation} mins</span>
+                {/* {isOpen[index] && (
                   <ul className={styles.menu}>
                     {options.map((option) => (
                       <li
@@ -142,16 +143,24 @@ export default function VirtualContainer({ data, index, showPart }) {
                       </li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
             </div>
           )}
         </div>
         <div className={styles.nairasession}>
           <span className={styles.naira}>
-            {" "}
-            {selectRadio[index] === "in-person" ? data.inperson : data.amount}
+            {selectRadio[index] === "in-person"
+              ? data?.pricing?.[0]?.in_person != null &&
+                !isNaN(data.pricing[0].in_person)
+                ? `₦${Number(data.pricing[0].in_person).toLocaleString()}`
+                : "N/A"
+              : data?.pricing?.[0]?.virtual != null &&
+                !isNaN(data.pricing[0].virtual)
+              ? `₦${Number(data.pricing[0].virtual).toLocaleString()}`
+              : "N/A"}
           </span>
+
           {/* <span className={styles.session}>{data.session}</span> */}
         </div>
       </div>

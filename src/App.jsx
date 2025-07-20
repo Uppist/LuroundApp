@@ -1,6 +1,6 @@
 /** @format */
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { HashRouter, useLocation, useNavigate } from "react-router-dom";
 import Search from "./components/AccountOwner/Profile/NavBar/LuroundSearch";
 import Sidebar from "./components/AccountOwner/Profile/SideBar/LuroundSidebar";
 import NavBar from "./components/AccountViewer/NavBar/NavBar";
@@ -35,7 +35,6 @@ export default function App() {
   // Load userData from localStorage if available
   useEffect(() => {
     const data = localStorage.getItem("userData");
-    console.log("LocalStorage data:", data); // Debug log
     if (data) {
       try {
         const user = JSON.parse(data);

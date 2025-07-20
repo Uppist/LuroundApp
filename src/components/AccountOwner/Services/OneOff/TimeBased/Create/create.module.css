@@ -95,3 +95,8 @@
   font-weight: 600;
   color: white;
 }
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

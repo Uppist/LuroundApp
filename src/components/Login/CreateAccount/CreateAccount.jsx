@@ -145,7 +145,7 @@ export default function CreateAccount() {
             </div>
             <div className={styles.login}>
               <label htmlFor=''>Already have an account?</label>
-              <Link to='/Login'>
+              <Link to='/Login' state={{ fromSignup: true }}>
                 <span>Login</span>
               </Link>
             </div>

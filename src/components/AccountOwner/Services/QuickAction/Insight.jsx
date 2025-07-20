@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import history from "./History.json";
+import timeImage from "../../../elements/services/timebased.svg";
+
 import image from "../../../elements/history.png";
 
-export default function Insight({ Close, dataValue }) {
+export default function Insight({ Close, data }) {
   const [isAlltime, setIsAlltime] = useState(false);
   const [selectedTime, setSelectedTime] = useState("All time");
 
@@ -18,6 +20,8 @@ export default function Insight({ Close, dataValue }) {
     "Last 30 days",
     "All Time",
   ];
+
+  console.log(data);
 
   function dropDown() {
     setIsAlltime((prev) => !prev);
@@ -58,10 +62,15 @@ export default function Insight({ Close, dataValue }) {
         </div>
         <div className={styles.container}>
           <div className={styles.shareservice}>
-            <span className={styles.titleshare}>{dataValue.Title}</span>
-            <div>
-              <span className={styles.type}> {dataValue.servicetype} </span>
-              <span className={styles.text}> {dataValue.oneoff} </span>
+            <span className={styles.titleshare}>{data.service_name}</span>
+            <div className={styles.serviceType}>
+              <span className={styles.type}> Service type: </span>
+              <span className={styles.text}> {data.service_type} </span>
+              {data?.one_off_type === "time-based" ? (
+                <img src={timeImage} alt='' />
+              ) : (
+                <>{/* <img src={time} alt='' /> */}</>
+              )}
             </div>
           </div>
         </div>

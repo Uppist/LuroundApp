@@ -1,13 +1,17 @@
 /** @format */
 
 import React, { useState } from "react";
-import Delete from "../../QuickAction/Delete";
+// import Delete from "../../QuickAction/Delete";
 import styles from "./DetailService.module.css";
 import Insight from "../../QuickAction/Insight";
 import Share from "../../QuickAction/Share";
 import QrCode from "../../QuickAction/QrCode";
+import Delete from "../../QuickAction/Delete";
+import { Link } from "react-router-dom";
+import axios from "axios";
+// import Delete from "./Delete";
 
-export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
+export default function QuickAction({ setIsEdit, data, Back, showPart }) {
   // const [Quick, setQuick] = useState({});
 
   const [isInsight, setIsInsight] = useState(false);
@@ -28,9 +32,7 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
   function QR() {
     setIsQr(true);
   }
-  function toggle() {
-    setIsSuspended((prevState) => !prevState);
-  }
+  function toggle() {}
 
   function EditDetail() {
     setIsEdit(true);
@@ -46,6 +48,32 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
     setIsDelete(false);
   }
 
+  function suspendService(e) {
+    console.log(data._id);
+    const checked = e.target.checked;
+    setIsSuspended(checked);
+    const token = localStorage.getItem("Token");
+
+    axios
+      .put(
+        `https://api.luround.com/v1/services/suspend-user-service?service_id=${data._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+
+      .then((res) => {
+        console.log("Suspend Service");
+        // toast.success("Service Deleted");
+
+        // setUserService((prev) => prev.filter((item) => item._id !== data._id));
+        // setTimeout(() => {
+        //   navigate("/oneoff");
+        // }, 15000);
+      });
+  }
+
   return (
     <div className={styles.quickcontainer}>
       {showPart && (
@@ -56,26 +84,29 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
       )}
 
       <div className={styles.settingsdetail}>
-        <div className={styles.settingscontainer} onClick={EditDetail}>
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M15 6.00019L18 9.00019M5 16.0002L4 20.0002L8 19.0002L19.586 7.41419C19.9609 7.03913 20.1716 6.53051 20.1716 6.00019C20.1716 5.46986 19.9609 4.96124 19.586 4.58619L19.414 4.41419C19.0389 4.03924 18.5303 3.82861 18 3.82861C17.4697 3.82861 16.9611 4.03924 16.586 4.41419L5 16.0002Z'
-              stroke='currentColor'
-              strokeOpacity='0.8'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+        <Link to='/time-based'>
+          {" "}
+          <div className={styles.settingscontainer}>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M15 6.00019L18 9.00019M5 16.0002L4 20.0002L8 19.0002L19.586 7.41419C19.9609 7.03913 20.1716 6.53051 20.1716 6.00019C20.1716 5.46986 19.9609 4.96124 19.586 4.58619L19.414 4.41419C19.0389 4.03924 18.5303 3.82861 18 3.82861C17.4697 3.82861 16.9611 4.03924 16.586 4.41419L5 16.0002Z'
+                stroke='currentColor'
+                strokeOpacity='0.8'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
 
-          <span> Edit</span>
-        </div>
+            <span> Edit</span>
+          </div>
+        </Link>
 
         <div className={styles.settingscontainer} onClick={ServiceInsight}>
           <svg
@@ -94,7 +125,7 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
 
           <span>Service Insight</span>
         </div>
-        {isInsight && <Insight Close={CloseInsight} dataValue={dataValue} />}
+        {isInsight && <Insight Close={CloseInsight} data={data} />}
 
         <div className={`${styles.settingscontainer} ${styles.suspend}`}>
           <div className={styles.suspenddiv}>
@@ -145,7 +176,7 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
               type='checkbox'
               id='check'
               className='check'
-              onChange={toggle}
+              onChange={suspendService}
               checked={isSuspended}
             />
             <label for='check' className={styles.toggle}></label>
@@ -168,7 +199,7 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
           </svg>
           <span> Share Service</span>
         </div>
-        {isShare && <Share Close={CloseInsight} dataValue={dataValue} />}
+        {isShare && <Share Close={CloseInsight} data={data} />}
 
         <div className={styles.settingscontainer} onClick={QR}>
           <svg
@@ -207,7 +238,7 @@ export default function QuickAction({ setIsEdit, dataValue, Back, showPart }) {
         </div>
         {isDelete && (
           <Delete
-            datavalue={dataValue}
+            data={data}
             backdelete={Back}
             showContainer={true}
             Close={CloseInsight}

@@ -1,35 +1,43 @@
 /** @format */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./create.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function ServiceCreate({ nextStep }) {
+export default function ServiceCreate({
+  serviceType,
+  setTimeBased,
+  timeBased,
+  Type,
+}) {
+  const [text, setText] = useState("");
+
   const [createService, setCreateService] = useState({
-    name: "",
+    service_name: "",
     description: "",
+    service_type: serviceType,
+    one_off_type: Type,
   });
-
-  const [isErrors, setIsError] = useState(false);
 
   function Details(e) {
     setCreateService((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
+  const navigate = useNavigate();
+
   function Submit() {
-    const newErrors = {};
+    console.log(createService);
+    setTimeBased((prev) => ({
+      ...prev,
+      ...createService,
+    }));
+    console.log(timeBased);
 
-    if (!createService.name) {
-      newErrors.name = "Service name is required.";
-    }
-    if (!createService.description) {
-      newErrors.description = "Description is required.";
-    }
-
-    setIsError(newErrors);
-    if (Object.keys(newErrors).length === 0) {
-      nextStep();
-    }
+    setCreateService({ service_name: "", description: "" });
+    navigate("pricing");
   }
+
+  const isNext = Object.values(createService).every((val) => val.trim() !== "");
 
   return (
     <div className={styles.createtime}>
@@ -60,32 +68,33 @@ export default function ServiceCreate({ nextStep }) {
           <input
             type='text'
             placeholder='e.g Personal Training'
-            name='name'
-            value={createService.name}
+            name='service_name'
+            value={createService.service_name}
             onChange={Details}
           />
-          {isErrors.name && <p>{isErrors.name}</p>}
         </div>
         <div className={styles.number}>
           <div className={styles.time}>
             <span>Description</span>
             <textarea
+              maxLength={500}
               placeholder='Write a brief descriptive summary of the service you provide'
               name='description'
               value={createService.description}
               onChange={Details}
+              rows={7}
+              cols={40}
             ></textarea>
           </div>
           <div className={styles.span}>
             {" "}
-            <span>0/500</span>
+            <span>{createService.description.length}/500</span>
           </div>
-          {isErrors.description && <p>{isErrors.description}</p>}
         </div>
       </div>
       <div>
         {" "}
-        <button onClick={Submit} className={styles.button}>
+        <button onClick={Submit} className={styles.button} disabled={!isNext}>
           Next
         </button>
       </div>

@@ -1,39 +1,26 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./NavBar.module.css";
 import scan from "../../elements/scan.jpg";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { userContext } from "../../Context";
 export default function NavBar() {
-  const navigate = useNavigate();
+  const location = useLocation();
 
-  const [viewerData, setViewerData] = useState(null);
+  const data = location.state || {};
 
-  useEffect(() => {
-    const data = localStorage.getItem("userData");
-    if (data) {
-      const user = JSON.parse(data);
-      setViewerData(user);
-    } else {
-      console.log("No user data found in localStorage");
-      navigate("/");
-    }
-  }, [navigate]);
+  console.log(data);
 
-  if (!viewerData) {
-    return null;
-  }
-
-  const { company, logo, name } = viewerData;
-
-  const nameFormatted = name.replace(/\s+/g, "_");
-
+  const nameFormatted = data?.displayName
+    ? data.displayName.replace(/ /g, "_")
+    : "";
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={logo || scan} alt='' />
-        <span>{company}</span>
+        <img src={data.logo || scan} alt='' />
+        <span>{data.company || "no company yet"}</span>
       </div>
 
       <ul className={styles.list}>

@@ -1,7 +1,9 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { userContext } from "../../components/Context";
 
 export async function handleLogin(logindetail, setUserData, e) {
   if (!logindetail.email || !logindetail.password) {
@@ -17,29 +19,10 @@ export async function handleLogin(logindetail, setUserData, e) {
     );
 
     localStorage.setItem("Token", data.accessToken);
-    alert("Login!");
 
-    const profileResponse = await axios.get(
-      "https://api.luround.com/v1/profile/get",
-      {
-        headers: { Authorization: `Bearer ${data.accessToken}` },
-        params: { email: logindetail.email },
-      }
-    );
+    toast.success("Login Successful");
 
-    console.log("Full API Response:", profileResponse.data);
-
-    setUserData({
-      name: profileResponse.data.displayName || "",
-      company: profileResponse.data.company || "",
-      photoUrl: profileResponse.data.photoUrl || "",
-      url: profileResponse.data.luround_url || "",
-      logo: profileResponse.data.logo_url || "",
-      about: profileResponse.data.about || "",
-      socialLinks: profileResponse.data.media_links || [],
-      occupation: profileResponse.data.occupation || "",
-      email: profileResponse.data.email || logindetail.email,
-    });
+    return data.user;
   } catch (error) {
     console.error("Error:", error.response?.data || error.message);
     alert("Unauthorized");

@@ -9,6 +9,14 @@ body {
   height: 100vh;
 }
 
+.Toastify__progress-bar--success {
+  background-color: hsla(180, 100%, 40%, 1) !important;
+}
+
+.Toastify__toast-icon svg {
+  fill: hsla(180, 100%, 40%, 1) !important;
+}
+
 a {
   text-decoration: none;
   color: currentColor;

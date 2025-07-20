@@ -1,12 +1,20 @@
 /** @format */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./DetailService.module.css";
 import Timebased from "../TimeBased/TimeBased";
 import VirtualContainer from "./VirtualContainer";
+import image from "../../../../elements/gallery.png";
+
 import QuickAction from "./QuickAction";
-export default function DetailOne({ dataValue, handleClick }) {
+import { Link, useLocation } from "react-router-dom";
+export default function DetailOne({ handleClick }) {
   const [isEdit, setIsEdit] = useState(false);
+
+  const location = useLocation();
+  const { data } = location.state || {};
+
+  console.log(data);
 
   return (
     <>
@@ -14,38 +22,40 @@ export default function DetailOne({ dataValue, handleClick }) {
         <Timebased />
       ) : (
         <div className={styles.timebasedcontainer}>
-          <button className={styles.timebasedback} onClick={handleClick}>
-            <svg
-              width='7'
-              height='12'
-              viewBox='0 0 7 12'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M6 1L1 6L6 11'
-                stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
+          <Link to='/oneoff'>
+            <button className={styles.timebasedback}>
+              <svg
+                width='7'
+                height='12'
+                viewBox='0 0 7 12'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M6 1L1 6L6 11'
+                  stroke='currentColor'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
 
-            <span>Back</span>
-          </button>
+              <span>Back</span>
+            </button>
+          </Link>
 
           <div className={styles.moredetails}>
             <div className={styles.morecontainer}>
-              <img src={dataValue.image} alt='' />
+              <img src={data.image || image} alt='' />
               <div className={styles.contenttype}>
                 <div className={styles.personalservice}>
-                  <span className={styles.personal}>{dataValue.Title}</span>
+                  <span className={styles.personal}>{data.service_name}</span>
                 </div>
                 <div className={styles.description}>
                   <span>About service</span>
                   <span className={`${styles.text} ${styles.text2}`}>
-                    {dataValue.text}
-                    {dataValue.text2}
+                    {data.description}
+                    {/* {dataValue.text2} */}
                   </span>
                 </div>
               </div>
@@ -53,19 +63,26 @@ export default function DetailOne({ dataValue, handleClick }) {
               <div className={styles.availability}>
                 <label>Service schedule</label>
                 <div className={styles.time}>
-                  <span>{dataValue.firstday}</span>
-                  <span>{dataValue.secondday}</span>
+                  {data.availability && data.availability.length > 0 ? (
+                    data.availability.map((slot, idx) => (
+                      <span key={idx}>
+                        {slot.day}: {slot.from_time} - {slot.to_time}
+                      </span>
+                    ))
+                  ) : (
+                    <span>No availability set</span>
+                  )}
                 </div>
               </div>
 
-              <VirtualContainer data={dataValue} />
+              <VirtualContainer data={data} />
             </div>
 
             <QuickAction
               showPart={true}
               isEdit={isEdit}
               setIsEdit={setIsEdit}
-              dataValue={dataValue}
+              data={data}
               // Back={Back}
             />
           </div>

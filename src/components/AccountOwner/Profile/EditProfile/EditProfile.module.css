@@ -58,9 +58,6 @@
   font-weight: 500;
 }
 
-.photo {
-  display: none;
-}
 .editimage {
   width: 380px;
   height: 231.7px;
@@ -255,7 +252,12 @@
   flex-direction: column;
 }
 
-.uploadlogo label {
+.photo {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
   cursor: pointer;
   height: 36px;
   padding: 0px 16px;

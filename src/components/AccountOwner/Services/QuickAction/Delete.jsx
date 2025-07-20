@@ -1,14 +1,45 @@
 /** @format */
 
 import styles from "./styles.module.css";
+import time from "../../../elements/services/timebased.svg";
+import axios from "axios";
+import { userContext } from "../../../Context";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 /** @format */
 export default function Delete({
-  datavalue,
+  data,
   backdelete,
   showContainer,
   dataretainer,
   Close,
 }) {
+  const [_, __, userService, setUserService] = useContext(userContext);
+
+  const navigate = useNavigate();
+
+  function Delete() {
+    const token = localStorage.getItem("Token");
+    axios
+      .delete(
+        `https://api.luround.com/v1/services/delete?serviceId=${data._id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        console.log("Data deleted");
+        toast.success("Service Deleted");
+
+        setUserService((prev) => prev.filter((item) => item._id !== data._id));
+        setTimeout(() => {
+          navigate("/oneoff");
+        }, 15000);
+      });
+  }
+
   return (
     <div>
       <div className='popupcancel'>
@@ -42,13 +73,17 @@ export default function Delete({
             <>
               <div className={styles.container}>
                 <div className={styles.titleservice}>
-                  <span className={styles.title}>{datavalue.Title}</span>
+                  <span className={styles.title}>{data.service_name}</span>
                   <div>
                     <span className={styles.type}>
                       {" "}
-                      {datavalue.servicetype}{" "}
+                      service type: {data.service_type}{" "}
+                      {data?.one_off_type === "time-based" ? (
+                        <img src={time} alt='' />
+                      ) : (
+                        <>{/* <img src={time} alt='' /> */}</>
+                      )}
                     </span>
-                    <span className={styles.text}> {datavalue.oneoff} </span>
                   </div>
                 </div>
                 <p className={styles.paragraph}>
@@ -82,11 +117,12 @@ export default function Delete({
             <button className={styles.cancel} onClick={Close}>
               Cancel
             </button>
-            <button className={styles.delete} onClick={backdelete}>
+            <button className={styles.delete} onClick={Delete}>
               Delete
             </button>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

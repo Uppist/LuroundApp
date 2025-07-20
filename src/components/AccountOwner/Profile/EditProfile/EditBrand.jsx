@@ -1,11 +1,98 @@
 /** @format */
 
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./EditProfile.module.css";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { userContext } from "../../../Context";
 
 export default function EditBrand({ scrollBrand }) {
+  const [isBrand, setIsBrand] = useState({ brand_name: "", logo: "" });
+  const [image, setImage] = useState(null);
+  const [brandUrl, setBrandUrl] = useState("");
+
+  const [userData, setUserData] = useContext(userContext);
+
+  function handleImage(e) {
+    // alert("hello");
+    // console.log("File input changed");
+
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+      console.log("Selected file:", selectedFile);
+    }
+  }
+
+  async function UploadImage() {
+    if (!image) return alert("Please select a file first");
+
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "brandImage");
+    formData.append("cloud_name", "dxyzeiigv");
+
+    try {
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const data = res.data;
+      setBrandUrl(data.secure_url);
+
+      setIsBrand((prev) => ({ ...prev, logo: data.secure_url }));
+
+      console.log("Uploaded image URL:", data.secure_url);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  }
+
+  const fileSizeInMB = image ? (image.size / (1024 * 1024)).toFixed(2) : 0;
+  useEffect(() => {
+    if (image) {
+      UploadImage();
+    }
+  }, [image]);
+
+  function handleBrand(e) {
+    setIsBrand({ ...isBrand, [e.target.name]: e.target.value });
+  }
+  async function handleSubmitBrand(e) {
+    e.preventDefault();
+    const local = localStorage.getItem("Token");
+
+    const request = await axios.put(
+      "https://api.luround.com/v1/profile/brand/add",
+      { brand: isBrand },
+      {
+        headers: {
+          Authorization: `Bearer ${local}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(isBrand);
+    // alert("Updated");
+    toast.success("Updated");
+
+    setUserData((prev) => ({
+      ...prev,
+      brands: [...(prev.brands || []), isBrand],
+    }));
+
+    setIsBrand({ brand_name: "", logo: "" });
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmitBrand}>
       <div className={styles.editprofileabout} ref={scrollBrand}>
         <span>Brand I've worked with.</span>
         <div className={styles.firstname}>
@@ -13,9 +100,9 @@ export default function EditBrand({ scrollBrand }) {
           <input
             placeholder='Brand name'
             type='text'
-            // value={isValue.lastName}
-            name='lastName'
-            // onChange={(e) => handleEditProfile(e)}
+            value={isBrand.brand_name}
+            name='brand_name'
+            onChange={(e) => handleBrand(e)}
           />
         </div>
 
@@ -63,41 +150,41 @@ export default function EditBrand({ scrollBrand }) {
                   />
                 </svg>
 
-                <div>
-                  <label htmlFor='photo'>Upload Logo</label>
-
+                {/* <div> */}
+                <label htmlFor='photo' className={styles.label}>
+                  Upload Logo
                   <input
-                    type='file'
-                    name='logo_url'
-                    // onChange={(e) => LogoUpload(e)}
                     id='photo'
+                    type='file'
+                    onChange={handleImage}
+                    accept='image/*'
                     className={styles.photo}
-                    accept='image/png, image/jpeg, image/img'
                   />
-                </div>
+                </label>
+                {/* </div> */}
               </div>
             </span>
           </div>
         </div>
         <>
-          {/* {logourl && ( */}
-          <div className={styles.logodelete}>
-            <div className={styles.logochange}>
-              <img
-                className={styles.logoimage}
-                //   src={URL.createObjectURL(logourl)}
-                alt='Uploaded Logo'
-              />
-              <div className={styles.uploadedlogo}>
-                {/* <p>Uploaded Logo.{logourl.type.split("/").pop()}</p> */}
-                <span>
-                  {/* {logourl.type.split("/").pop()} . {fileSizeInMB} mb */}
-                </span>
+          {image && (
+            <div className={styles.logodelete}>
+              <div className={styles.logochange}>
+                <img
+                  className={styles.logoimage}
+                  src={URL.createObjectURL(image)}
+                  alt='Uploaded Logo'
+                />
+                <div className={styles.uploadedlogo}>
+                  <p>Uploaded Logo.{image?.type.split("/").pop()}</p>
+                  <span>
+                    {image?.type.split("/").pop()} . {fileSizeInMB} mb
+                  </span>
+                </div>
               </div>
+              <button>Delete</button>
             </div>
-            <button>Delete</button>
-          </div>
-          {/* )} */}
+          )}
         </>
 
         <div className={styles.canceldone}>
@@ -107,6 +194,8 @@ export default function EditBrand({ scrollBrand }) {
           </button>
         </div>
       </div>
+
+      <ToastContainer />
     </form>
   );
 }

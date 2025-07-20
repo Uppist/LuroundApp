@@ -88,6 +88,7 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 4px 7px 0px rgba(2, 3, 3, 0.05);
+  gap: 24px;
 }
 .OneOffcontainer:hover {
   background-color: hsla(180, 12%, 95%, 1);
@@ -98,6 +99,12 @@
   display: flex;
   gap: 24px;
   align-items: center;
+}
+
+.titlecontainer img {
+  width: 184px;
+  height: 148px;
+  border-radius: 16px;
 }
 
 .days-time {
@@ -163,6 +170,8 @@
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 5%, 43%, 1);
+  overflow-wrap: anywhere;
+  gap: 8px;
 }
 
 .oneoffdetails {
