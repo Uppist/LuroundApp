@@ -1,22 +1,29 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./profile.module.css";
 import scan from "../../elements/scan.jpg";
 import { Link } from "react-router-dom";
+import { userContext } from "../../Context";
 
-export default function ViewerProfile({ name, url, photoUrl, Occupation }) {
+export default function ViewerProfile() {
+  const [userData, setUserData] = useContext(userContext);
+  console.log(userData);
   return (
     <div className={styles.review}>
       {/* <div className={styles.imageprofile}> */}
       <div className={styles.image}>
-        <img className={styles.img} src={photoUrl || scan} alt='Profile' />
+        <img
+          className={styles.img}
+          src={userData.photoUrl || scan}
+          alt='Profile'
+        />
       </div>
       <div className={styles.nameprofile}>
-        <label className={styles.name}>{name}</label>
+        <label className={styles.name}>{userData.displayName}</label>
 
         <div className={styles.professional}>
-          <label className={styles.profspec}>{Occupation}</label>
+          <label className={styles.profspec}>{userData.occupation}</label>
           <div className={styles.britnext}>
             <div className={styles.imagebrit}></div>
           </div>
@@ -24,7 +31,7 @@ export default function ViewerProfile({ name, url, photoUrl, Occupation }) {
 
         <div>
           <div className={styles.loremicon}>
-            <Link className={styles.lorem}>{url}</Link>
+            {/* <Link className={styles.lorem}>{url}</Link> */}
             <svg
               onClick={() => {
                 navigator.clipboard.writeText(url);

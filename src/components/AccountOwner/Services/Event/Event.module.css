@@ -16,15 +16,6 @@
   color: hsla(180, 9%, 32%, 1);
 }
 
-.createeventservice {
-  padding: 24px;
-  background-color: white;
-  border-radius: 16px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 32px;
-}
-
 .createservice {
   display: flex;
   flex-direction: column;
@@ -34,18 +25,6 @@
   border-radius: 16px;
   width: 440px;
   height: 390px;
-}
-
-.createtimebased {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.createtimeservice {
-  font-size: 20px;
-  font-weight: 600;
-  color: hsla(197, 100%, 11%, 1);
 }
 
 .eventtype {
@@ -76,83 +55,6 @@
   background-color: #fff;
   border: 0;
   font-size: 20px;
-}
-
-.startendtime {
-  display: flex;
-  justify-content: center;
-  gap: 90x;
-  margin-left: 20px;
-}
-
-.timeservice {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.timeservice > input {
-  padding: 16px 24px;
-  border-radius: 16px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-
-.timedescription {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.timedescription > textarea {
-  height: 196px !important;
-  width: -webkit-fill-available !important;
-  border-radius: 16px;
-  padding: 12px 24px;
-  border: 1.5px solid hsla(180, 11%, 89%, 1);
-}
-.daycheckedcontainer {
-  display: grid;
-  gap: 24px;
-}
-
-.nairavirtualinperson {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.inputtimecontainer {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.nairavirtual > input,
-.nairainperson > input {
-  background-color: white;
-  width: 100px;
-  padding: 14px 14px 14px 8px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 5%, 26%, 1);
-}
-
-.inpersonvirtual > svg {
-  margin-top: 40px;
-}
-.addtimebutton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 400;
-  color: hsla(180, 23%, 15%, 1);
-  background-color: white;
-  border: 0;
 }
 
 .checkbox {

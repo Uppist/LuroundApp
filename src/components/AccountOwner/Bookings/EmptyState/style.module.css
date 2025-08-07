@@ -1,0 +1,45 @@
+/** @format */
+
+.savedaccount {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 160px 24px;
+  gap: 32px;
+}
+
+.bank {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+}
+
+.savedaddaccount {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+.savedaddaccount > span {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.savedaddaccount label {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+  color: rgba(29, 46, 46, 0.8);
+}
+.addanaccount {
+  padding: 12px 73px;
+  background-color: hsla(180, 100%, 40%, 1);
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}

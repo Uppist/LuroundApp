@@ -28,7 +28,7 @@ export default function AddService({ onClose, onTime, onProject }) {
                 </button>
 
                 <button className='project-based' onClick={onProject}>
-                  Project-based
+                  <Link to='/project-based'>Project-based</Link>
                 </button>
               </div>
             </li>

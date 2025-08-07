@@ -1,11 +1,13 @@
 /** @format */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./NavBar.module.css";
 // import image2 from "../../elements/image.png";
 import Dropdown from "./DropDown";
+import scan from "../../../elements/scan.jpg";
 import Notification from "./Notification";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { userContext } from "../../../Context";
 // import ShareProfile from "./ShareProfile";
 
 export default function Search({ logindetail, Submit, LoginDetail }) {
@@ -42,23 +44,25 @@ export default function Search({ logindetail, Submit, LoginDetail }) {
   const [viewerData, setViewerData] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const data = localStorage.getItem("userData");
-    if (data) {
-      const user = JSON.parse(data);
-      // console.log(user);
-      setViewerData(user);
-    } else {
-      console.log("No user data found in localStorage");
-      navigate("/");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const data = localStorage.getItem("userData");
+  //   if (data) {
+  //     const user = JSON.parse(data);
+  //     // console.log(user);
+  //     setViewerData(user);
+  //   } else {
+  //     console.log("No user data found in localStorage");
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
-  if (!viewerData) {
-    return null;
-  }
+  // if (!viewerData) {
+  //   return null;
+  // }
 
-  const { photoUrl } = viewerData;
+  // const { photoUrl } = viewerData;
+
+  const [userData] = useContext(userContext);
 
   return (
     <div className={styles.searchbar}>
@@ -166,8 +170,8 @@ export default function Search({ logindetail, Submit, LoginDetail }) {
             <div className={styles.imagearrow}>
               <img
                 className={styles.smallerimage}
-                src={photoUrl}
-                alt={photoUrl}
+                src={userData.photoUrl || scan}
+                // alt={photoUrl}
               />
               <svg
                 className={`${styles.arrow} ${isdropDown ? "open" : ""}`}

@@ -1,5 +1,5 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HashRouter, useLocation, useNavigate } from "react-router-dom";
 import Search from "./components/AccountOwner/Profile/NavBar/LuroundSearch";
 import Sidebar from "./components/AccountOwner/Profile/SideBar/LuroundSidebar";
@@ -17,12 +17,12 @@ import ViewerServiceRouting from "./Routings/AccountViewer/Services/ViewerServic
 import ViewerStorefrontRouting from "./Routings/AccountViewer/Storefront/ViewerStorefrontRouting";
 import SupportRouting from "./Routings/AccountOwner/Support/SupportRouting";
 import BookingsRouting from "./Routings/AccountOwner/Bookings/BookingsRouting";
+import { userContext } from "./components/Context";
 
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [viewerData, setViewerData] = useState(null);
-
+  const [userData] = useContext(userContext);
   const loginRoutes = [
     "/",
     "/Login",
@@ -32,23 +32,30 @@ export default function App() {
     "/password-updated",
   ];
 
-  // Load userData from localStorage if available
-  useEffect(() => {
-    const data = localStorage.getItem("userData");
-    if (data) {
-      try {
-        const user = JSON.parse(data);
-        setViewerData(user);
-      } catch (err) {
-        console.error("Invalid JSON in localStorage:", err);
-      }
-    } else {
-      // If not logged in and not on a login route, redirect
-      if (!loginRoutes.includes(location.pathname)) {
-        navigate("/");
-      }
-    }
-  }, [location.pathname, navigate]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("Token");
+  //   if (token && window.location.pathname === "/") {
+  //     navigate("/profile-page");
+  //   }
+  // }, []);
+
+  // // Load userData from localStorage if available
+  // useEffect(() => {
+  //   const data = localStorage.getItem("userData");
+  //   if (data) {
+  //     try {
+  //       const user = JSON.parse(data);
+  //       setViewerData(user);
+  //     } catch (err) {
+  //       console.error("Invalid JSON in localStorage:", err);
+  //     }
+  //   } else {
+  //     // If not logged in and not on a login route, redirect
+  //     if (!loginRoutes.includes(location.pathname)) {
+  //       navigate("/");
+  //     }
+  //   }
+  // }, [location.pathname, navigate]);
 
   const isLoginRoute = loginRoutes.includes(location.pathname);
   const isAccountOwnerRoute =
@@ -78,7 +85,7 @@ export default function App() {
       <LoginRouting />
 
       {/* Account Owner Routes */}
-      {viewerData && (
+      {userData && (
         <div className='profiledashboard'>
           <ProfileRouting />
           <ServiceRouting />

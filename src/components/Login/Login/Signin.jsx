@@ -12,7 +12,7 @@ export default function Signin({
   isFormComplete,
 }) {
   return (
-    <form onSubmit={Submit} action='' className={styles2.form}>
+    <form onSubmit={Submit} className={styles2.form}>
       <div>
         <label htmlFor=''>Email address</label>
         <input

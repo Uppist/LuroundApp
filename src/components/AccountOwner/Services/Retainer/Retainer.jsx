@@ -1,14 +1,13 @@
 /** @format */
 
 /** @format */
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import styles from "./Retainer.module.css";
-import RetainerDetail from "./RetainerDetail";
-import retainer from "./retainer.json";
-import RetainerService from "./RetainerService";
 import EmptyState from "./EmptyState";
 import Update from "./Update";
+import { userContext } from "../../../Context";
+import { useNavigate } from "react-router-dom";
 export default function Retainer() {
   const [isDetail, setisDetail] = useState(null);
   const [isService, setisService] = useState(null);
@@ -33,56 +32,64 @@ export default function Retainer() {
     }, 200);
   };
 
+  const navigate = useNavigate();
+
   function openService() {
-    setisService(true);
+    navigate("/createretainer");
   }
+
+  const { userData, setUserData, userService, setUserService } =
+    useContext(userContext);
 
   return (
     <>
-      {isService ? (
-        <RetainerService handleClick={handleClick} />
-      ) : isDetail === null ? (
-        <div className={styles.retainer}>
-          <div className={styles.retainerservice}>
-            <div className={styles.numberofservice}>
-              <span className={styles.oneoffservice}>Retainers</span>
-              <span className={styles.number}>{retainer.length}</span>
-            </div>
-            <div>
-              <button onClick={openService} className={styles.addservice}>
-                <svg
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
-                    fill='#FFFFFF'
-                  />
-                </svg>
-                <span>Create</span>
-              </button>
-            </div>
+      <div className={styles.retainer}>
+        <div className={styles.retainerservice}>
+          <div className={styles.numberofservice}>
+            <span className={styles.oneoffservice}>Retainers</span>
+            {Array.isArray(userService) &&
+              userService.filter(
+                (service) => service.service_type === "retainer"
+              ).length > 0 && (
+                <span className={styles.number}>
+                  {
+                    userService.filter(
+                      (service) => service.service_type === "retainer"
+                    ).length
+                  }
+                </span>
+              )}
           </div>
-          {activeComponent === "retainerService" && (
-            <Update
-              handleClick={handleClick}
-              isVisible={isVisible}
-              openDetail={openDetail}
-            />
-          )}
-
-          {!isService &&
-            activeComponent === "emptystate" &&
-            isVisible !== "fade-out" && (
-              <EmptyState isService={isService} openService={openService} />
-            )}
+          <div>
+            <button onClick={openService} className={styles.addservice}>
+              <svg
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
+                  fill='#FFFFFF'
+                />
+              </svg>
+              <span>Create</span>
+            </button>
+          </div>
         </div>
-      ) : (
-        <RetainerDetail dataretainer={retainer[isDetail]} />
-      )}
+
+        {Array.isArray(userService) &&
+        userService.some((service) => service.service_type === "retainer") ? (
+          <Update
+            handleClick={handleClick}
+            isVisible={isVisible}
+            openDetail={openDetail}
+          />
+        ) : (
+          <EmptyState isService={isService} openService={openService} />
+        )}
+      </div>
     </>
   );
 }

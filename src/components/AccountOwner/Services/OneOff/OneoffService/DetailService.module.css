@@ -82,6 +82,8 @@
 
 .morecontainer img {
   width: 360px;
+  height: 360px;
+  border-radius: 16px;
 }
 
 .text {
@@ -241,6 +243,41 @@ input:checked + .toggle::before {
   flex-direction: row;
   gap: 8px;
   /* align-items: center; */
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.delivery {
+  display: flex;
+  padding: 24px 0;
+  flex-direction: column;
+  gap: 24px;
+  width: -webkit-fill-available;
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.delivery > span {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: hsla(180, 17%, 98%, 1);
+  text-align: end;
+  font-size: 18px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
+}
+
+.timeline label {
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.timeline span {
+  color: hsla(39, 100%, 50%, 1);
   font-size: 12px;
   font-weight: 500;
 }

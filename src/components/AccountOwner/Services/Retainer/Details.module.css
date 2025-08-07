@@ -297,49 +297,6 @@ input:checked + .toggle::before {
   border: 1px solid hsla(180, 11%, 89%, 1);
 }
 
-.listoffers {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
-}
-
-.listoffers > input {
-  padding: 16px 24px;
-  border-radius: 16px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-}
-
-.list {
-  display: grid;
-  gap: 24px;
-}
-
-.offers {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.circleoffer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.circle {
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
-  background-color: hsla(180, 100%, 36%, 1);
-}
-
-.circleoffer span {
-  text-transform: capitalize;
-}
-
 .step {
   display: flex;
   flex-direction: column;

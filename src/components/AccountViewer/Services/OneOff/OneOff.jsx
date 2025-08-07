@@ -8,11 +8,10 @@ import VirtualContainer from "../../../AccountOwner/Services/OneOff/OneoffServic
 import { Link } from "react-router-dom";
 import image from "../../../elements/gallery.png";
 
-import { userContext } from "../../../Context";
+import { ServiceContext, userContext } from "../../../Context";
 
 export default function OneOff() {
-  const [userData, setUserData, userService, setUserService] =
-    useContext(userContext);
+  const [userService, setUserService] = useContext(ServiceContext);
 
   console.log(userService);
   return (
@@ -82,9 +81,29 @@ export default function OneOff() {
                       </div>
                     </div>
                     <div className={styles.virtualinperson}>
-                      <hr />
+                      {data.one_off_type === "time-based" ? (
+                        <>
+                          {" "}
+                          <hr />
+                          <VirtualContainer data={data} index={index} />
+                        </>
+                      ) : (
+                        <>
+                          <hr />
 
-                      <VirtualContainer data={data} index={index} />
+                          <div className={styles.delivery}>
+                            <div className={styles.timeline}>
+                              <span>Delivery Timeline</span>
+                              <label htmlFor=''>
+                                Within {data.delivery_timeline}
+                              </label>
+                            </div>
+                            <span>
+                              ₦ {Number(data.project_pricing).toLocaleString()}
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useContext } from "react";
-import Data from "../data.json";
 import VirtualContainer from "../VirtualContainer";
 import styles from "../OneOff.module.css";
 import image from "../../../../../elements/gallery.png";
@@ -10,7 +9,7 @@ import { userContext } from "../../../../../Context";
 import EmptyState from "../EmptyState";
 import { Link } from "react-router-dom";
 
-export default function Update({ handleClick, isVisible, openDetail }) {
+export default function Update({ isVisible }) {
   const [userData, setUserData, userService, setUserService] =
     useContext(userContext);
 
@@ -79,9 +78,29 @@ export default function Update({ handleClick, isVisible, openDetail }) {
                   </div>
                 </div>
                 <div className={styles.virtualinperson}>
-                  <hr />
+                  {data.one_off_type === "time-based" ? (
+                    <>
+                      {" "}
+                      <hr />
+                      <VirtualContainer data={data} index={index} />
+                    </>
+                  ) : (
+                    <>
+                      <hr />
 
-                  <VirtualContainer data={data} index={index} />
+                      <div className={styles.delivery}>
+                        <div className={styles.timeline}>
+                          <span>Delivery Timeline</span>
+                          <label htmlFor=''>
+                            Within {data.delivery_timeline}
+                          </label>
+                        </div>
+                        <span>
+                          ₦ {Number(data.project_pricing).toLocaleString()}
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

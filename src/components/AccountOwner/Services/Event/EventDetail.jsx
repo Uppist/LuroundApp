@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
 import Delete from "../OneOff/OneoffService/Delete";
-import EventService from "./EventService";
+import EventService from "./CreateEvent/EventService";
 import Event from "./Event";
 import styles from "./Event.module.css";
 import styles2 from "../Retainer/Details.module.css";

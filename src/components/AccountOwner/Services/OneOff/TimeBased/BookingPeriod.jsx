@@ -103,7 +103,7 @@ export default function BookingPeriod({ setPeriod }) {
         </button>
       </div>
       {/* Notice Period */}
-      <div className={styles.bookingperiod}>
+      {/* <div className={styles.bookingperiod}>
         <div className={styles.pbooking}>
           <span>Notice period</span>
           <p>Minimum notice before someone can book</p>
@@ -160,9 +160,9 @@ export default function BookingPeriod({ setPeriod }) {
             </div>
           </button>
         </div>
-      </div>
+      </div> */}
       {/* Appointment Buffer */}
-      <div className={styles.bookingperiod}>
+      {/* <div className={styles.bookingperiod}>
         <div className={styles.pbooking}>
           <span>Appointment buffer</span>
           <p>Minimum time between appointments</p>
@@ -218,7 +218,7 @@ export default function BookingPeriod({ setPeriod }) {
             </div>
           </button>
         </div>
-      </div>
+      </div> */}
       {/* Save Button */}
       {/* <div style={{ marginTop: "2rem" }}>
         <button onClick={handleSubmit} className={styles.saveBtn}>

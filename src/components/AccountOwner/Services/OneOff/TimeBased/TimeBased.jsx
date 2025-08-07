@@ -8,9 +8,9 @@ import PricingTime from "./Pricing";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-
 import styles from "./Time.module.css";
 import { Link, Outlet } from "react-router-dom";
+
 export default function Timebased({ timebased, setTimeBased }) {
   const [Image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");

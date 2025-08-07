@@ -7,7 +7,6 @@ import Timebased from "../../../../components/AccountOwner/Services/OneOff/TimeB
 import PricingTime from "../../../../components/AccountOwner/Services/OneOff/TimeBased/Pricing";
 import DayTime from "../../../../components/AccountOwner/Services/OneOff/TimeBased/DayTime";
 import ServiceCreate from "../../../../components/AccountOwner/Services/OneOff/TimeBased/Create/SeviceCreate";
-import axios from "axios";
 import DetailOne from "../../../../components/AccountOwner/Services/OneOff/OneoffService/DetailService";
 
 export default function OneOffRouting() {

@@ -84,30 +84,28 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
       )}
 
       <div className={styles.settingsdetail}>
-        <Link to='/time-based'>
-          {" "}
-          <div className={styles.settingscontainer}>
-            <svg
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M15 6.00019L18 9.00019M5 16.0002L4 20.0002L8 19.0002L19.586 7.41419C19.9609 7.03913 20.1716 6.53051 20.1716 6.00019C20.1716 5.46986 19.9609 4.96124 19.586 4.58619L19.414 4.41419C19.0389 4.03924 18.5303 3.82861 18 3.82861C17.4697 3.82861 16.9611 4.03924 16.586 4.41419L5 16.0002Z'
-                stroke='currentColor'
-                strokeOpacity='0.8'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
+        {/* <Link to='/time-based'> */}{" "}
+        <div className={styles.settingscontainer}>
+          <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M15 6.00019L18 9.00019M5 16.0002L4 20.0002L8 19.0002L19.586 7.41419C19.9609 7.03913 20.1716 6.53051 20.1716 6.00019C20.1716 5.46986 19.9609 4.96124 19.586 4.58619L19.414 4.41419C19.0389 4.03924 18.5303 3.82861 18 3.82861C17.4697 3.82861 16.9611 4.03924 16.586 4.41419L5 16.0002Z'
+              stroke='currentColor'
+              strokeOpacity='0.8'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
 
-            <span> Edit</span>
-          </div>
-        </Link>
-
+          <span> Edit</span>
+        </div>
+        {/* </Link> */}
         <div className={styles.settingscontainer} onClick={ServiceInsight}>
           <svg
             width='24'
@@ -126,7 +124,6 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
           <span>Service Insight</span>
         </div>
         {isInsight && <Insight Close={CloseInsight} data={data} />}
-
         <div className={`${styles.settingscontainer} ${styles.suspend}`}>
           <div className={styles.suspenddiv}>
             {isSuspended ? (
@@ -182,7 +179,6 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
             <label for='check' className={styles.toggle}></label>
           </div>
         </div>
-
         <div className={styles.settingscontainer} onClick={ShareService}>
           <svg
             width='24'
@@ -200,7 +196,6 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
           <span> Share Service</span>
         </div>
         {isShare && <Share Close={CloseInsight} data={data} />}
-
         <div className={styles.settingscontainer} onClick={QR}>
           <svg
             width='24'
@@ -217,9 +212,7 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
           </svg>
           <span>Service QR code</span>
         </div>
-
         {isQr && <QrCode Close={CloseInsight} />}
-
         <div className={styles.settingscontainer} onClick={DeleteOneoff}>
           <svg
             width='24'

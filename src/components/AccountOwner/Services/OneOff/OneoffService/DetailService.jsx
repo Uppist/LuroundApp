@@ -60,22 +60,38 @@ export default function DetailOne({ handleClick }) {
                 </div>
               </div>
 
-              <div className={styles.availability}>
-                <label>Service schedule</label>
-                <div className={styles.time}>
-                  {data.availability && data.availability.length > 0 ? (
-                    data.availability.map((slot, idx) => (
-                      <span key={idx}>
-                        {slot.day}: {slot.from_time} - {slot.to_time}
-                      </span>
-                    ))
-                  ) : (
-                    <span>No availability set</span>
-                  )}
-                </div>
-              </div>
+              {data.one_off_type === "time-based" ? (
+                <>
+                  <div className={styles.availability}>
+                    <label>Service schedule</label>
+                    <div className={styles.time}>
+                      {data.availability && data.availability.length > 0 ? (
+                        data.availability.map((slot, idx) => (
+                          <span key={idx}>
+                            {slot.day}: {slot.from_time} - {slot.to_time}
+                          </span>
+                        ))
+                      ) : (
+                        <span>No availability set</span>
+                      )}
+                    </div>
+                  </div>
 
-              <VirtualContainer data={data} />
+                  <VirtualContainer data={data} />
+                </>
+              ) : (
+                <>
+                  <div className={styles.delivery}>
+                    <div className={styles.timeline}>
+                      <span>Delivery Timeline</span>
+                      <label htmlFor=''>Within {data.delivery_timeline}</label>
+                    </div>
+                    <span>
+                      ₦ {Number(data.project_pricing).toLocaleString()}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
 
             <QuickAction

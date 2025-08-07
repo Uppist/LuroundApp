@@ -1,0 +1,122 @@
+/** @format */
+
+input[type="date"] {
+  font-family: "Inter";
+  padding: 8px 12px;
+  /* font-size: 16px; */
+  /* border-radius: 8px; */
+  /* width: 100%; */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  padding: 5px;
+  font-family: "Inter";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.timeservice {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.timeservice > span {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.timeservice > input {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.timedescription {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 12px;
+  margin-top: 25px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.timedescription > textarea {
+  height: 196px !important;
+  width: -webkit-fill-available !important;
+  border-radius: 16px;
+  padding: 12px 24px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.count {
+  margin-top: -25px;
+  text-align: end;
+}
+.daycheckedcontainer {
+  display: grid;
+  gap: 24px;
+}
+
+.nairavirtualinperson {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.inputtimecontainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.nairavirtual > input,
+.nairainperson > input {
+  background-color: white;
+  width: 100px;
+  padding: 14px 14px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.inpersonvirtual > svg {
+  margin-top: 40px;
+}
+.addtimebutton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 1);
+  background-color: white;
+  border: 0;
+}
+.startendtime {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.calendar {
+  opacity: 0;
+}
+
+.custom {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 116px !important;
+  padding: 14px 14px 14px 8px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.react-datepicker {
+  font-family: "Inter", sans-serif;
+}

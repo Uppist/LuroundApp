@@ -1,28 +1,35 @@
 /** @format */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import event from "./event.json";
-import EventService from "./EventService";
+import EventService from "./CreateEvent/EventService";
 import EventDetail from "./EventDetail";
 import styles from "./Event.module.css";
 import styles2 from "../Retainer/Retainer.module.css";
 import Update from "./Update";
 import EmptyState from "./EmptyState";
+import { userContext } from "../../../Context";
+import { useNavigate } from "react-router-dom";
 export default function Event() {
   const [isDetail, setisDetail] = useState(null);
   const [isService, setIsService] = useState(false);
   const [activeComponent, setActiveComponent] = useState("emptystate");
 
-  function openDetail(index) {
-    setisDetail(index);
-  }
+  const { userData, setUserData, userService, setUserService } =
+    useContext(userContext);
+
+  // function openDetail(index) {
+  //   setisDetail(index);
+  // }
+
+  const navigate = useNavigate();
 
   function openService() {
-    setIsService(true);
+    navigate("/create");
   }
 
-  function closeService() {
-    setIsService(false);
-  }
+  // function closeService() {
+  //   setIsService(false);
+  // }
   const handleClick = (container) => {
     // setVisible("fade-out");
     if (isService) setIsService(false);
@@ -62,6 +69,17 @@ export default function Event() {
               </button>
             </div>
           </div>
+
+          {Array.isArray(userService) &&
+          userService.some((service) => service.service_type === "event") ? (
+            <Update
+              handleClick={handleClick}
+              isVisible={isVisible}
+              openDetail={openDetail}
+            />
+          ) : (
+            <EmptyState isService={isService} openService={openService} />
+          )}
           {activeComponent === "eventService" && (
             <Update
               handleClick={handleClick}

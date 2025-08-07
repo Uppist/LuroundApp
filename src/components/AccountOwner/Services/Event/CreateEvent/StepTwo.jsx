@@ -1,10 +1,10 @@
 /** @format */
 
 import React, { useState } from "react";
-import styles from "./Event.module.css";
-import nigeria from "../../../elements/nigeria.png";
+import styles from "../Event.module.css";
+import nigeria from "../../../../elements/nigeria.png";
 
-export default function SecondEvent({ handleClick }) {
+export default function StepTwo({ handleClick }) {
   const [isTicket, setIsTicket] = useState(false);
   const [isVirtual, setIsVirtual] = useState(false);
   const [isPerson, setIsPerson] = useState(false);

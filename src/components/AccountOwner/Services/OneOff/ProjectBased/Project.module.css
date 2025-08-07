@@ -47,7 +47,7 @@
 }
 
 .img {
-  width: 445px;
+  width: 400px;
   border-radius: 8px;
   height: 340px;
 }
@@ -119,6 +119,13 @@
   border-radius: 16px;
   padding: 12px 24px;
   border: 1.5px solid hsla(180, 11%, 89%, 1);
+}
+
+.span {
+  margin-top: -40px;
+  font-size: 14px;
+  text-align: end;
+  color: hsla(180, 23%, 15%, 0.8);
 }
 
 .pricingproject {
@@ -215,7 +222,7 @@
 .donetime {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 400;
   font-size: 16px;
@@ -225,6 +232,10 @@
 .donetime {
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
+}
+
+.donetime:hover {
+  background-color: hsla(180, 100%, 36%, 1);
 }
 .time {
   display: grid;
@@ -255,13 +266,41 @@
   color: hsla(180, 23%, 15%, 0.8);
 }
 
-.date textarea {
+.date {
   padding: 16px 24px;
   border: 1.5px solid hsla(180, 11%, 89%, 1);
   border-radius: 16px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: hsla(180, 23%, 15%, 0.65);
   width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.donetime:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdownList {
+  margin: 0;
+  position: absolute;
+  width: -webkit-fill-available;
+  margin-top: 115px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: white;
+  box-shadow: 0px 4px 7px hsla(0, 0%, 0%, 0.06);
+  border-radius: 8px;
+  padding: 16px 24px;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
 }

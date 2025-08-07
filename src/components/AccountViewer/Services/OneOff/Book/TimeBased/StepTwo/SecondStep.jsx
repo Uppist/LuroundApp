@@ -1,9 +1,14 @@
 /** @format */
 
 import React, { useState } from "react";
-import styles from "../style.module.css";
+import styles from "../../../style.module.css";
 
-export default function SecondStep({ handleCloseNext, handleDetails }) {
+export default function SecondStep({
+  handleCloseNext,
+  handleDetails,
+  setInformation,
+  information,
+}) {
   const time = [
     "9:00am",
     "9:30am",
@@ -26,6 +31,16 @@ export default function SecondStep({ handleCloseNext, handleDetails }) {
 
   const [active, setActive] = useState(null);
 
+  function handleSelectTime(selectedTime, index) {
+    setActive(index);
+    setInformation((prev) => ({
+      ...prev,
+      time: selectedTime,
+    }));
+
+    console.log("Selected Time:", selectedTime);
+  }
+
   return (
     <div className={styles.selectTime}>
       <label htmlFor=''>Select time</label>{" "}
@@ -34,7 +49,7 @@ export default function SecondStep({ handleCloseNext, handleDetails }) {
           <div
             key={index}
             className={`${active === index ? styles.active : styles.list}`}
-            onClick={() => setActive(index)}
+            onClick={() => handleSelectTime(data, index)}
           >
             <span>{data}</span>
           </div>

@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
 import styles from "./Time.module.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PricingTime({ timeBased, setTimeBased }) {
   // Initialize with one default pricing entry for the 15 min slot
@@ -123,8 +123,10 @@ export default function PricingTime({ timeBased, setTimeBased }) {
     <section className={styles.section}>
       <div className={styles.create}>
         <div>
-          <span>Create One-off service</span>
+          {/* {currentLocation} */}
+          <span>Create One-off Service</span>
           {/* SVG for step indicator */}
+
           <svg
             width='111'
             height='24'

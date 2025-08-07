@@ -41,10 +41,6 @@ export default function One({ backone }) {
     setIsProjectBased(true);
   }
 
-  function closeProjectBased() {
-    setIsProjectBased(false);
-  }
-
   const handleClick = (container) => {
     setVisible("fade-out");
     if (isService) setisService(false);
@@ -56,61 +52,41 @@ export default function One({ backone }) {
     }, 200);
   };
 
-  function closeTime() {
-    setIsTimeBased(false);
-  }
-
   function openDetail(index) {
     setisDetail(index);
   }
 
-  function goBackFromDetail() {
-    setisDetail(null);
-    setActiveComponent("oneoffService");
-  }
-
   return (
     <>
-      {isProjectBased ? (
-        <Projectbased
-          backone={backone}
-          handleClick={handleClick}
-          closeProjectBased={closeProjectBased}
-        />
-      ) : isDetail === null ? (
-        <div className={styles.oneoff}>
-          <div className={styles.oneoffservice}>
-            <div className={styles.numberofservice}>
-              <span className={styles.oneoffservice}>One-off</span>
-              {!userService ? null : (
-                <span className={styles.number}>{userService.length}</span>
-              )}
-            </div>
-            <div>
-              <Create
-                onTime={TimeBased}
-                onProject={ProjectBased}
-                openModal={openModal}
-                closeModal={closeModal}
-                isService={isService}
-              />
-            </div>
+      <div className={styles.oneoff}>
+        <div className={styles.oneoffservice}>
+          <div className={styles.numberofservice}>
+            <span className={styles.oneoffservice}>One-off</span>
+            {!userService ? null : (
+              <span className={styles.number}>{userService.length}</span>
+            )}
           </div>
-
-          {!userService ? (
-            <EmptyState isService={isService} openModal={openModal} />
-          ) : (
-            <Update
-              handleClick={handleClick}
-              isVisible={isVisible}
-              openDetail={openDetail}
+          <div>
+            <Create
+              onTime={TimeBased}
+              onProject={ProjectBased}
+              openModal={openModal}
+              closeModal={closeModal}
+              isService={isService}
             />
-          )}
+          </div>
         </div>
-      ) : (
-        <></>
-        // <DetailOne dataValue={Data[isDetail]} handleClick={goBackFromDetail} />
-      )}
+
+        {!userService ? (
+          <EmptyState isService={isService} openModal={openModal} />
+        ) : (
+          <Update
+            handleClick={handleClick}
+            isVisible={isVisible}
+            openDetail={openDetail}
+          />
+        )}
+      </div>
     </>
   );
 }

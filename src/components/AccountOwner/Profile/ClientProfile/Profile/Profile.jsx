@@ -5,7 +5,7 @@ import scan from "../../../../elements/scan.jpg";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../../../Context";
-export default function Profile({}) {
+export default function Profile() {
   const [isImageVisible, setIsImageVisible] = useState(true);
 
   function handleSvg() {

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../../apis/LoginAPI/LoginAPI";
+import { toast } from "react-toastify";
+
 import axios from "axios";
 import { useContext } from "react";
 import styles from "./Login.module.css";
@@ -27,16 +29,35 @@ export default function Login() {
   const handleLoginDetailChange = (e) => {
     setLogindetail((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = async (e) => {
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    const user = await handleLogin(logindetail);
-    if (user) {
-      setUserData(user);
+    try {
+      const { data } = await axios.post(
+        "https://api.luround.com/v1/auth/login",
+        logindetail,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      localStorage.setItem("Token", data.accessToken);
+
+      toast.success("Login Successful");
+
+      const profileRes = await axios.get(
+        "https://api.luround.com/v1/profile/get",
+        {
+          headers: { Authorization: `Bearer ${data.accessToken}` },
+        }
+      );
+
+      setUserData(profileRes.data);
+      navigate("/profile-page");
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+      toast.error("Unauthorized");
     }
-    console.log("userData from context:", userData);
-    navigate("/profile-page");
-  };
+  }
 
   // useEffect(() => {
   //   if (userData.email && !fromSignup) {
