@@ -5,22 +5,17 @@ import { useContext, useState } from "react";
 
 import styles from "./Retainer.module.css";
 import EmptyState from "./EmptyState";
-import Update from "./Update";
-import { userContext } from "../../../Context";
+// import Update from "../Update";
+import { ServiceContext, userContext } from "../../../Context";
 import { useNavigate } from "react-router-dom";
+import Update from "./RetainerValue/Update";
 export default function Retainer() {
   const [isDetail, setisDetail] = useState(null);
   const [isService, setisService] = useState(null);
   const [isVisible, setVisible] = useState("fade-in");
   const [activeComponent, setActiveComponent] = useState("emptystate");
 
-  function openDetail(index) {
-    setVisible("fade-out");
-    setTimeout(() => {
-      setisDetail(index);
-      setVisible("fade-in");
-    }, 200);
-  }
+  const navigate = useNavigate();
 
   const handleClick = (container) => {
     setVisible("fade-out");
@@ -32,14 +27,12 @@ export default function Retainer() {
     }, 200);
   };
 
-  const navigate = useNavigate();
-
   function openService() {
     navigate("/createretainer");
   }
 
-  const { userData, setUserData, userService, setUserService } =
-    useContext(userContext);
+  const [userService, setUserService] = useContext(ServiceContext);
+  console.log(userService);
 
   return (
     <>
@@ -81,11 +74,7 @@ export default function Retainer() {
 
         {Array.isArray(userService) &&
         userService.some((service) => service.service_type === "retainer") ? (
-          <Update
-            handleClick={handleClick}
-            isVisible={isVisible}
-            openDetail={openDetail}
-          />
+          <Update handleClick={handleClick} isVisible={isVisible} />
         ) : (
           <EmptyState isService={isService} openService={openService} />
         )}

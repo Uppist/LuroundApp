@@ -3,8 +3,52 @@ import { useState } from "react";
 import styles from "./style.module.css";
 import Container from "./Container";
 import Amount from "./Amount";
+import { useNavigate } from "react-router-dom";
 
-export default function Pricing() {
+export default function Pricing({ retainerService, setRetainerService }) {
+  //amount component
+  const [slots, setSlots] = useState([
+    { id: Date.now(), time_allocation: "", virtual: "", in_person: "" },
+  ]);
+
+  const addSlot = () => {
+    setSlots((prev) => [
+      ...prev,
+      { id: Date.now(), time_allocation: "", virtual: "", in_person: "" },
+    ]);
+  };
+
+  const deleteSlot = (id) => {
+    setSlots((prev) => prev.filter((slot) => slot.id !== id));
+  };
+
+  const updateSlot = (id, field, value) => {
+    setSlots((prev) =>
+      prev.map((slot) => (slot.id === id ? { ...slot, [field]: value } : slot))
+    );
+  };
+  const navigate = useNavigate();
+
+  function handleNext() {
+    console.log(slots);
+    const cleanedSlots = slots.map((slot) => ({
+      time_allocation: slot.time_allocation,
+      virtual: slot.virtual !== "" ? slot.virtual : null,
+      in_person: slot.in_person !== "" ? slot.in_person : null,
+    }));
+
+    console.log(cleanedSlots);
+
+    setRetainerService((prev) => ({ ...prev, pricng: cleanedSlots }));
+    console.log(retainerService);
+    navigate("../date");
+  }
+
+  const isAnyFilled = slots.some(
+    (entry) =>
+      (entry.virtual ?? "").trim() !== "" ||
+      (entry.in_person ?? "").trim() !== ""
+  );
   return (
     <section className={styles.section}>
       <div className={styles.create}>
@@ -20,10 +64,21 @@ export default function Pricing() {
         <div className={styles.inputtime}>
           <Container />
 
-          <Amount />
+          <Amount
+            slots={slots}
+            updateSlot={updateSlot}
+            deleteSlot={deleteSlot}
+            addSlot={addSlot}
+          />
         </div>
         <div>
-          <button className={styles.next}>Next</button>
+          <button
+            className={styles.next}
+            onClick={handleNext}
+            disabled={!isAnyFilled}
+          >
+            Next
+          </button>
         </div>
       </div>
     </section>

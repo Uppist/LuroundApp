@@ -11,7 +11,7 @@ import Projectbased from "../ProjectBased/ProjectBased";
 import Create from "./CreateService";
 import Update from "./UpdatedValue/Update";
 import EmptyState from "./EmptyState";
-import { userContext } from "../../../../Context";
+import { ServiceContext, userContext } from "../../../../Context";
 
 export default function One({ backone }) {
   const [isDetail, setisDetail] = useState(null);
@@ -21,8 +21,7 @@ export default function One({ backone }) {
 
   const [isService, setisService] = useState(false);
 
-  const [userData, setUserData, userService, setUserService] =
-    useContext(userContext);
+  const [userService, setUserService] = useContext(ServiceContext);
   // console.log(userService);
 
   const openModal = () => {

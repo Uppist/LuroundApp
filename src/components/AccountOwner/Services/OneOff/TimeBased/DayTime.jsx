@@ -69,7 +69,6 @@ export default function DayTime({
       .catch((err) => {
         console.error("Error sending data:", err);
       });
-    // setTimeBased({ ...timeBased, booking: period });
     console.log(timeBased);
 
     console.log("Saved Booking Period:", period);

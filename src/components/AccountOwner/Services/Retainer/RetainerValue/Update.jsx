@@ -1,33 +1,32 @@
 /** @format */
 
 import React, { useContext } from "react";
-import VirtualContainer from "../VirtualContainer";
-import styles from "../OneOff.module.css";
-import image from "../../../../../elements/gallery.png";
-
-import { ServiceContext } from "../../../../../Context";
+import styles from "../Retainer.module.css";
+// import VirtualContainer from "../../../OneOff/OneoffService/VirtualContainer";
+import { ServiceContext } from "../../../../Context";
 import EmptyState from "../EmptyState";
+import image from "../../../../elements/gallery.png";
+import VirtualContainer from "../../OneOff/OneoffService/VirtualContainer";
 import { Link } from "react-router-dom";
 
-export default function Update({ isVisible }) {
+export default function Update({ isVisible, openDetail }) {
   const [userService, setUserService] = useContext(ServiceContext);
 
   console.log(userService);
-
   return (
-    <div className={styles.dataoneoff}>
+    <div className={styles.dataretainer}>
       {Array.isArray(userService) && userService.length > 0 ? (
         <>
+          {" "}
           {userService.map((data, index) => (
-            // console.log(data, index);
-
-            <div className={styles.eachoneoffcontainer}>
-              <div className={styles.OneOffcontainer} key={data.title}>
+            <div className={styles.eachretainercontainer}>
+              <div className={styles.retainercontainer} key={data.Title}>
                 <div className={styles.titlecontainer}>
                   <div className={styles.daystimeline}>
                     <div className={styles.daystime}>
-                      <img src={data.imageUrl || image} alt='' />
+                      <img src={data.image || image} alt='' />
                     </div>
+                    {/* <hr className={styles.containerline} /> */}
                   </div>
                   <div className={styles.personaltrainingdetails}>
                     <div className={styles.personaltraining}>
@@ -37,18 +36,16 @@ export default function Update({ isVisible }) {
                             {data.service_name}
                           </span>
                         </div>
-                        <span className={styles.text}>
-                          {data.description}
-                          {data.dots}
-                        </span>
-                      </div>{" "}
+                        <div className={styles.textvector}>
+                          <span className={styles.text}>
+                            {data.description}
+                            {data.dots}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-
-                    <Link to='/one-off-details' state={{ data: data }}>
-                      <div
-                        className={`${styles.oneoffdetails} ${isVisible}`}
-                        // onClick={() => openDetail(index)}
-                      >
+                    <Link to='/retainer-details' state={{ data: data }}>
+                      <div className={`${styles.oneoffdetails} ${isVisible}`}>
                         <span>More details</span>
                         <svg
                           width='16'
@@ -72,34 +69,13 @@ export default function Update({ isVisible }) {
                             strokeLinejoin='round'
                           />
                         </svg>
-                      </div>{" "}
+                      </div>
                     </Link>
                   </div>
                 </div>
                 <div className={styles.virtualinperson}>
-                  {data.one_off_type === "time-based" ? (
-                    <>
-                      {" "}
-                      <hr />
-                      <VirtualContainer data={data} index={index} />
-                    </>
-                  ) : (
-                    <>
-                      <hr />
-
-                      <div className={styles.delivery}>
-                        <div className={styles.timeline}>
-                          <span>Delivery Timeline</span>
-                          <label htmlFor=''>
-                            Within {data.delivery_timeline}
-                          </label>
-                        </div>
-                        <span>
-                          ₦ {Number(data.project_pricing).toLocaleString()}
-                        </span>
-                      </div>
-                    </>
-                  )}
+                  <hr />
+                  <VirtualContainer data={data} index={index} />
                 </div>
               </div>
             </div>

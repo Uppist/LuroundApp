@@ -90,6 +90,12 @@
   color: hsla(180, 9%, 32%, 1);
   width: max-content;
 }
+
+.daystime img {
+  width: 184px;
+  height: 148px;
+  border-radius: 16px;
+}
 .dataretainer {
   display: grid;
   gap: 24px;

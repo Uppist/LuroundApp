@@ -1,40 +1,8 @@
 /** @format */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./style.module.css";
 
-export default function Amount() {
-  const [slots, setSlots] = useState([
-    { id: Date.now(), months: "", virtual: "", in_person: "" },
-  ]);
-
-  // Log each slot's values when slots change
-  useEffect(() => {
-    slots.forEach((slot, index) => {
-      console.log(
-        `Slot ${index + 1}: ${slot.months} month(s), Virtual ₦${
-          slot.virtual
-        }, In-person ₦${slot.in_person}`
-      );
-    });
-  }, [slots]);
-
-  const addSlot = () => {
-    setSlots((prev) => [
-      ...prev,
-      { id: Date.now(), months: "", virtual: "", in_person: "" },
-    ]);
-  };
-
-  const deleteSlot = (id) => {
-    setSlots((prev) => prev.filter((slot) => slot.id !== id));
-  };
-
-  const updateSlot = (id, field, value) => {
-    setSlots((prev) =>
-      prev.map((slot) => (slot.id === id ? { ...slot, [field]: value } : slot))
-    );
-  };
-
+export default function Amount({ slots, updateSlot, addSlot, deleteSlot }) {
   return (
     <>
       <div className={styles.timecontainer}>
@@ -52,8 +20,10 @@ export default function Amount() {
                 type='text'
                 inputMode='numeric'
                 maxLength={2}
-                value={slot.months}
-                onChange={(e) => updateSlot(slot.id, "months", e.target.value)}
+                value={slot.time_allocation}
+                onChange={(e) =>
+                  updateSlot(slot.id, "time_allocation", e.target.value)
+                }
               />
               <span>Months</span>
             </div>

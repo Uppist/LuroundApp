@@ -3,9 +3,9 @@
 import styles from "./styles.module.css";
 import time from "../../../elements/services/timebased.svg";
 import axios from "axios";
-import { userContext } from "../../../Context";
+import { ServiceContext, userContext } from "../../../Context";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 /** @format */
@@ -16,9 +16,10 @@ export default function Delete({
   dataretainer,
   Close,
 }) {
-  const [_, __, userService, setUserService] = useContext(userContext);
+  const [userService, setUserService] = useContext(ServiceContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function Delete() {
     const token = localStorage.getItem("Token");
@@ -35,8 +36,12 @@ export default function Delete({
 
         setUserService((prev) => prev.filter((item) => item._id !== data._id));
         setTimeout(() => {
-          navigate("/oneoff");
-        }, 15000);
+          if (location.pathname.includes("one-off")) {
+            navigate("/oneoff");
+          } else if (location.pathname.includes("retainer")) {
+            navigate("/retainer");
+          }
+        }, 3000);
       });
   }
 

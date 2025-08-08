@@ -8,7 +8,7 @@ export default function RetainerService({ handleClick }) {
   return (
     <>
       <div className={styles.timebased}>
-        <Link to='/retainer'>
+        <Link to={-1}>
           {" "}
           <button className={styles.timeback}>
             <svg

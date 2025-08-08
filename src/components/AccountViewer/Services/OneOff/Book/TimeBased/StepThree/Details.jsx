@@ -19,24 +19,30 @@ export default function Details({ handleCloseDetails, information }) {
   const { bookingsId, setBookingsId } = useContext(bookingsContext);
   // Handler for Proceed to payment button
   const handleProceedToPayment = () => {
+    const token = localStorage.getItem("Token");
+
+    console.log("Booking Service ID:", data._id);
+    console.log("Booking payload:", information);
+
     axios
       .post(
         `https://api.luround.com/v1/booking/book-service?serviceId=${data._id}`,
-        information
+        information,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log("Booking success:", res.data);
         setBookingsId(res.data.BookingId);
-        // navigate("/Success", { state: { data } }); // Navigate to success page
+      })
+      .catch((err) => {
+        console.error("Booking failed:", err.response?.data || err.message);
       });
   };
-
-  useEffect(() => {
-    if (bookingsId) {
-      console.log("Updated bookingsId:", bookingsId);
-      navigate("/Success", { state: { data } });
-    }
-  }, [bookingsId]);
 
   console.log(data.pricing?.[0]?.time_allocation);
   return (

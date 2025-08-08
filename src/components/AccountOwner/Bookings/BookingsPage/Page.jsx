@@ -7,21 +7,24 @@ import EmptyState from "../EmptyState/EmptyState";
 
 export default function Page({ bookings, isOpen, SeeMore, bookingsOpen }) {
   console.log("Bookings:", bookings);
+  console.log("Bookings:", bookings.booking_user_info);
+  console.log("typeof", typeof bookings);
 
   return (
-    <div className={styles.bookingcontainer}>
-      {Array.isArray(bookings) && bookings.length > 0 ? (
-        bookings.map((data, index) => {
-          const userInfo = data.booking_user_info || {};
-          const service = data.service_details || {};
-          const initials = userInfo.displayName
-            ? userInfo.displayName
-                .split(" ")
-                .map((word) => word[0])
-                .join("")
-            : "?";
+    <>
+      {bookings.map((data, index) => {
+        const userInfo = data.booking_user_info || {};
+        const service = data.service_details || {};
+        const initials = userInfo.displayName
+          ? userInfo.displayName
+              .split(" ")
+              .map((word) => word[0])
+              .join("")
+          : "?";
+        console.log(userInfo);
 
-          return (
+        return (
+          <div className={styles.bookingcontainer}>
             <div className={styles.bookcontainer} key={data._id || index}>
               <div className={styles.imagesvg}>
                 <div className={styles.imagecontainer}>
@@ -103,11 +106,9 @@ export default function Page({ bookings, isOpen, SeeMore, bookingsOpen }) {
                 </button>
               </div>
             </div>
-          );
-        })
-      ) : (
-        <EmptyState />
-      )}
-    </div>
+          </div>
+        );
+      })}
+    </>
   );
 }

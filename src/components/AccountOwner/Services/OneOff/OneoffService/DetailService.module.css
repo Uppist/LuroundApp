@@ -175,7 +175,7 @@
 }
 
 .settingscontainer:hover {
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 100%, 36%, 1);
   color: hsla(180, 100%, 36%, 1);
   cursor: pointer;

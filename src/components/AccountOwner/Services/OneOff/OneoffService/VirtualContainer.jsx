@@ -128,7 +128,10 @@ export default function VirtualContainer({ data, index, showPart }) {
                     />
                   </svg>
                 </div> */}
-                <span>{data.pricing?.[0]?.time_allocation} mins</span>
+                <span>
+                  {data.pricing?.[0]?.time_allocation}{" "}
+                  {data.service_type === "retainer" ? "months" : "mins"}
+                </span>
                 {/* {isOpen[index] && (
                   <ul className={styles.menu}>
                     {options.map((option) => (

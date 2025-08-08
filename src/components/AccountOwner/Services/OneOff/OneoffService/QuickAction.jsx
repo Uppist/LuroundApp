@@ -7,7 +7,7 @@ import Insight from "../../QuickAction/Insight";
 import Share from "../../QuickAction/Share";
 import QrCode from "../../QuickAction/QrCode";
 import Delete from "../../QuickAction/Delete";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import Delete from "./Delete";
 
@@ -32,10 +32,17 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
   function QR() {
     setIsQr(true);
   }
-  function toggle() {}
 
-  function EditDetail() {
-    setIsEdit(true);
+  const navigate = useNavigate();
+
+  function handleEdit() {
+    if (data.one_off_type === "time-based") {
+      navigate("/time-based", { state: { edit: true, data: data } });
+    } else if (data.one_off_type === "project-based") {
+      navigate("/project-based", { state: { data } });
+    } else if (data.service_type === "retainer") {
+      navigate("/createretainer", { state: { data } });
+    }
   }
 
   function DeleteOneoff() {
@@ -76,16 +83,14 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
 
   return (
     <div className={styles.quickcontainer}>
-      {showPart && (
-        <div className={styles.quickaction}>
-          <label>Quick actions</label>
-          <hr />
-        </div>
-      )}
+      <div className={styles.quickaction}>
+        <label>Quick actions</label>
+        <hr />
+      </div>
 
       <div className={styles.settingsdetail}>
         {/* <Link to='/time-based'> */}{" "}
-        <div className={styles.settingscontainer}>
+        <div className={styles.settingscontainer} onClick={handleEdit}>
           <svg
             width='24'
             height='24'

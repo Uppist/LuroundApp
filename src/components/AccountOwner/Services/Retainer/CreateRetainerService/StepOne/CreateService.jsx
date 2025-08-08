@@ -32,6 +32,11 @@ export default function CreateService({
 
   function Next() {
     console.log(createService);
+    // console.log(retainerService);
+    setRetainerService((prev) => ({
+      ...prev,
+      ...createService,
+    }));
     console.log(retainerService);
     navigate("pricing");
   }
