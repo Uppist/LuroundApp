@@ -123,6 +123,7 @@
   font-size: 14px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+  position: relative;
 }
 
 .programrecurrence button {
@@ -141,6 +142,15 @@
   padding: 15px;
   border-radius: 8px;
   border: 1px solid hsla(180, 23%, 15%, 0.65);
+}
+
+.participant input {
+  padding: 0 !important;
+  border: 0 !important;
+  background-color: transparent !important;
+  width: 50px !important;
+  text-align: center;
+  height: 20px !important;
 }
 
 .nigeriaprice {
@@ -208,4 +218,56 @@
   font-size: 16px;
   font-weight: 600;
   color: white;
+}
+
+.next:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ul {
+  position: absolute;
+  margin-top: 191px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 12px;
+  z-index: 1;
+}
+
+.ul ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ul ul li {
+  color: hsla(180, 23%, 15%, 0.8);
+  font-weight: 400;
+  cursor: pointer;
+  padding: 12px 24px;
+}
+
+.dropdown {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
 }

@@ -21,6 +21,12 @@
   flex-direction: column;
 }
 
+.createtimebased {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .createeventservice > img {
   border-radius: 16px;
   width: 440px;
@@ -112,8 +118,7 @@ input[type="radio"]:checked {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  border: 1px solid hsla(180, 11%, 89%, 1);
-  padding: 16px;
+  width: -webkit-fill-available;
 }
 
 .ticketname {
@@ -129,10 +134,21 @@ input[type="radio"]:checked {
   gap: 16px;
 }
 
-.ticketevent div {
+.ticketevent > div {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.virtual div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: -webkit-fill-available;
+}
+
+.virtual div > input {
+  width: -webkit-fill-available;
 }
 
 .button {
@@ -155,4 +171,31 @@ input[type="radio"]:checked {
   flex-direction: column;
   gap: 16px !important;
   align-items: baseline !important;
+}
+
+.regular,
+.vip {
+  padding: 16px 24px;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pricingproject {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: baseline !important;
+}
+
+.pricingproject button {
+  padding: 16px;
+  background-color: transparent;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+  font-family: "Inter";
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
 }

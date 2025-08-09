@@ -5,7 +5,7 @@ import styles from "../../../OneOff/TimeBased/Time.module.css";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-export default function DateTime({ retainerService, setRetainerService }) {
+export default function DateTime({ programService, setProgramService }) {
   const [selectedFrom, setSelectedFrom] = useState({});
   const [selectedTo, setSelectedTo] = useState({});
   const [checkedDays, setCheckedDays] = useState({});
@@ -31,34 +31,40 @@ export default function DateTime({ retainerService, setRetainerService }) {
       }
       return acc;
     }, []);
+    // setProgramService((prev) => ({ ...prev, availability }));
+    // console.log(availability);
+    // console.log(programService);
+    const dataToSend = {
+      ...programService,
+      availability,
+    };
 
-    console.log(availability);
-    // const dataToSend = {
-    //   ...retainerService,
-    //   availability,
-    // };
-
-    // setRetainerService(dataToSend);
-    // const token = localStorage.getItem("Token");
-    // axios
-    //   .post("https://api.luround.com/v1/services/create", dataToSend, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     console.log("Data sent:", dataToSend);
-    //     navigate("/retainer", { state: dataToSend });
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error sending data:", err);
-    //   });
-    // console.log(retainerService);
+    setProgramService(dataToSend);
+    const token = localStorage.getItem("Token");
+    axios
+      .post("https://api.luround.com/v1/services/create", dataToSend, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log("Data sent:", dataToSend);
+        navigate("/program", { state: dataToSend });
+      })
+      .catch((err) => {
+        console.error("Error sending data:", err);
+      });
+    console.log(programService);
   }
 
-  //   useEffect(() => {
-  //     if (Object.keys(retainerService).length > 0) {
-  //     }
-  //   }, [retainerService]);
+  useEffect(() => {
+    if (Object.keys(programService).length > 0) {
+    }
+  }, [programService]);
+
+  const Done = Object.keys(checkedDays).some((index) => {
+    if (!checkedDays[index]) return false;
+    return selectedFrom[index] && selectedTo[index];
+  });
 
   return (
     <section className={styles.section}>
@@ -109,7 +115,11 @@ export default function DateTime({ retainerService, setRetainerService }) {
           </div>
           <div className={styles.done}>
             <button className={styles.canceltime}>Cancel</button>
-            <button className={styles.donetime} onClick={Submit}>
+            <button
+              className={styles.donetime}
+              onClick={Submit}
+              disabled={!Done}
+            >
               Done
             </button>
           </div>

@@ -22,20 +22,69 @@ export default function CreateService({
     setCreateService((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
   const navigate = useNavigate();
+
+  const [program, setProgram] = useState({
+    program_start_date: "",
+    program_end_date: "",
+    program_recurrence: "",
+    max_participants: 0,
+  });
+
+  const [pricing, setPricing] = useState([
+    {
+      virtual: "",
+      in_person: "",
+    },
+  ]);
+
+  function handleProgram(e) {
+    const { name, value } = e.target;
+
+    setProgram((prev) => ({
+      ...prev,
+      [name]: name === "max_participants" ? Number(value) : value,
+    }));
+  }
+  function handlePricing(e) {
+    setPricing((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function changeDate(isoDate) {
+    if (!isoDate) return "";
+    const dateObj = new Date(isoDate);
+    if (isNaN(dateObj)) return "";
+    return dateObj.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
+
   function Next() {
     console.log(createService);
-    // console.log(retainerService);
+    const cleanPrice = {
+      virtual: pricing.virtual !== "" ? pricing.virtual : null,
+      in_person: pricing.in_person !== "" ? pricing.in_person : null,
+    };
     setProgramService((prev) => ({
       ...prev,
       ...createService,
+      ...program,
+      pricing: cleanPrice,
     }));
+    console.log(programService);
     navigate("choosedate");
   }
 
   const isNext =
     createService.service_name.trim() !== "" &&
     createService.description.trim() !== "" &&
-    createService.core_features.length > 0;
+    program.max_participants > 0 &&
+    program.program_end_date.trim() !== "" &&
+    program.program_recurrence.trim() !== "" &&
+    program.program_start_date.trim() !== "" &&
+    ((pricing.virtual ?? "").trim() !== "" ||
+      (pricing.in_person ?? "").trim() !== "");
 
   return (
     <>
@@ -49,12 +98,23 @@ export default function CreateService({
         <div className={styles.description}>
           <div className={styles.service}>
             <span>Service Name</span>
-            <input type='text' placeholder='e.g Personal Training' />
+            <input
+              type='text'
+              name='service_name'
+              value={createService.service_name}
+              onChange={handleChange}
+              placeholder='e.g Personal Training'
+            />
           </div>
           <div className={styles.number}>
             <div className={styles.time}>
               <span>Description</span>
-              <textarea placeholder='Write a brief descriptive summary of the service you provide'></textarea>
+              <textarea
+                name='description'
+                value={createService.description}
+                onChange={handleChange}
+                placeholder='Write a brief descriptive summary of the service you provide'
+              ></textarea>
             </div>
             <div className={styles.span}>
               {" "}
@@ -63,10 +123,19 @@ export default function CreateService({
           </div>
         </div>
       </div>
-      <ProgramDate />
+      <ProgramDate
+        programService={programService}
+        setProgramService={setProgramService}
+        program={program}
+        setProgram={setProgram}
+        handleProgram={handleProgram}
+        changeDate={changeDate}
+        pricing={pricing}
+        handlePricing={handlePricing}
+      />
 
       <div>
-        <button onClick={Next} className={styles2.next}>
+        <button onClick={Next} className={styles2.next} disabled={!isNext}>
           Next
         </button>
       </div>

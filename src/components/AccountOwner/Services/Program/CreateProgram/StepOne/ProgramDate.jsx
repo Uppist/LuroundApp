@@ -1,11 +1,56 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import nigeria from "../../../../../elements/nigeria.png";
 
 import styles from "../../Program.module.css";
 
-export default function ProgramDate() {
+export default function ProgramDate({
+  program,
+  setProgram,
+  programService,
+  setProgramService,
+  handleProgram,
+  changeDate,
+  pricing,
+  handlePricing,
+}) {
+  const [dropdown, setDropdown] = useState(false);
+
+  const options = [
+    "Once a week",
+    "Twice a week",
+    "Once every 2 weeks",
+    "Once every month",
+    "Custom",
+  ];
+
+  function handleDropdown() {
+    setDropdown((prev) => !prev);
+  }
+
+  function handleRecurrence(option) {
+    setProgram((prev) => ({ ...prev, program_recurrence: option }));
+    setDropdown(false);
+    console.log(program);
+  }
+
+  function increaseParticipants() {
+    setProgram((prev) => ({
+      ...prev,
+      max_participants: Number(prev.max_participants + 1),
+    }));
+  }
+
+  function decreaseParticipants() {
+    setProgram((prev) => ({
+      ...prev,
+      max_participants: Number(prev.max_participants > 0)
+        ? Number(prev.max_participants - 1)
+        : 0,
+    }));
+  }
+
   return (
     <div className={styles.programcalendar}>
       <div className={styles.startcalendar}>
@@ -14,18 +59,46 @@ export default function ProgramDate() {
           <span>End date</span>
         </div>
         <div className={styles.inputcalendar}>
-          <input type='calendar' placeholder='dd/mm/yy' />
-          <input type='calendar' placeholder='dd/mm/yy' />
+          <input
+            type='date'
+            name='program_start_date'
+            value={program.program_start_date}
+            onChange={handleProgram}
+            placeholder='mm/dd/yy'
+          />
+          <input
+            type='date'
+            name='program_end_date'
+            value={program.program_end_date}
+            onChange={handleProgram}
+            placeholder='mm/dd/yy'
+          />
         </div>
       </div>
       <div className={styles.programrecurrence}>
         <span>Program recurrence</span>
-        <button>Once a week</button>
+        <button onClick={handleDropdown}>
+          {" "}
+          {program.program_recurrence || "Once a week"}
+        </button>
       </div>
+      <div className={styles.ul}>
+        {dropdown &&
+          options.map((option, index) => (
+            <ul>
+              <li key={index} onClick={() => handleRecurrence(option)}>
+                {option}
+              </li>
+            </ul>
+          ))}
+      </div>
+
       <div className={styles.noofparticipant}>
         <span>Maximum number of participants</span>
         <div className={styles.participant}>
           <svg
+            onClick={decreaseParticipants}
+            style={{ cursor: "pointer" }}
             width='20'
             height='20'
             viewBox='0 0 20 20'
@@ -38,9 +111,17 @@ export default function ProgramDate() {
             />
           </svg>
 
-          <span>0</span>
-
+          <input
+            type='text'
+            name='max_participants'
+            value={Number(program.max_participants)}
+            onChange={handleProgram}
+            placeholder='0'
+            id=''
+          />
           <svg
+            onClick={increaseParticipants}
+            style={{ cursor: "pointer" }}
             width='20'
             height='20'
             viewBox='0 0 20 20'
@@ -85,7 +166,13 @@ export default function ProgramDate() {
                   </div>
                 </div>
               </button>
-              <input type='text' placeholder='0.00' />
+              <input
+                type='number'
+                name='in_person'
+                value={pricing.in_person}
+                onChange={handlePricing}
+                placeholder='0.00'
+              />
             </div>
           </div>
           <div className={styles.inperson}>
@@ -115,7 +202,13 @@ export default function ProgramDate() {
                   </div>
                 </div>
               </button>
-              <input type='text' placeholder='0.00' />
+              <input
+                type='number'
+                name='virtual'
+                value={pricing.virtual}
+                onChange={handlePricing}
+                placeholder='0.00'
+              />
             </div>
           </div>
         </div>

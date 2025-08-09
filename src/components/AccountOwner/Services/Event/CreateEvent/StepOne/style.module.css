@@ -68,16 +68,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .inputtimecontainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  place-items: center;
+  margin-bottom: 30px;
 }
 
-.nairavirtual > input,
-.nairainperson > input {
+.nairavirtual,
+.nairainperson {
   background-color: white;
   width: 100px;
   padding: 14px 14px 14px 8px;
   border-radius: 16px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
   border: 1px solid hsla(180, 11%, 89%, 1);
+}
+
+.selecttimecontainer {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  cursor: pointer;
+  position: relative;
 }
 
 .inpersonvirtual > svg {
@@ -95,10 +110,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .startendtime {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
   margin-bottom: 15px;
   font-size: 14px;
   font-weight: 500;
+  place-items: center;
   color: hsla(180, 23%, 15%, 0.8);
 }
 
@@ -119,4 +135,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .react-datepicker {
   font-family: "Inter", sans-serif;
+}
+
+.menu {
+  list-style: none;
+  background-color: white;
+  border-radius: 0px 0px 4px 4px;
+  padding: 8px 0px 8px 0px;
+  display: grid;
+  position: absolute;
+  transition: 0.4s;
+  z-index: 1;
+  color: hsla(180, 23%, 15%, 0.8);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: scroll;
+  height: 244px;
+  padding: 16px;
+  align-items: center;
+  margin-top: -300px;
+}
+
+.menu li {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
 }

@@ -80,17 +80,6 @@ export default function Event() {
           ) : (
             <EmptyState isService={isService} openService={openService} />
           )}
-          {activeComponent === "eventService" && (
-            <Update
-              handleClick={handleClick}
-              // isVisible={isVisible}
-              openDetail={openDetail}
-            />
-          )}
-
-          {!isService && activeComponent === "emptystate" && (
-            <EmptyState isService={isService} openService={openService} />
-          )}
         </div>
       ) : (
         <EventDetail dataevent={event[isDetail]} />
