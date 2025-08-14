@@ -52,7 +52,9 @@ export default function Login() {
       );
 
       setUserData(profileRes.data);
-      navigate("/profile-page");
+      setTimeout(() => {
+        navigate("/profile-page");
+      }, 3000);
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
       toast.error("Unauthorized");
@@ -107,7 +109,7 @@ export default function Login() {
         </div>
       </div>
       <Animation />
-      <ToastContainer />
+      <ToastContainer style={{ fontFamily: "Inter" }} />
     </section>
   );
 }

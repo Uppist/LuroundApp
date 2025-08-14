@@ -3,8 +3,15 @@
 import React from "react";
 import styles2 from "../../../StoreFront/style.module.css";
 import image from "../../../../elements/services/oneoff.svg";
+import AddService from "./AddService";
 
-export default function EmptyState({ isService, openModal }) {
+export default function EmptyState({
+  isService,
+  openModal,
+  closeModal,
+  onTime,
+  onProject,
+}) {
   return (
     <div className={` ${styles2.savedaccount}`}>
       <div className={styles2.bank}>
@@ -21,6 +28,13 @@ export default function EmptyState({ isService, openModal }) {
         <button className={`${styles2.addanaccount}`} onClick={openModal}>
           Add service
         </button>
+        {isService && (
+          <AddService
+            onClose={closeModal}
+            onTime={onTime}
+            onProject={onProject}
+          />
+        )}
       </div>
     </div>
   );

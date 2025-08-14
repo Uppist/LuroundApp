@@ -80,7 +80,7 @@ export default function VirtualContainer({ data }) {
                   }`}
                   onClick={dropDown}
                 >
-                  <span className='selected-list'>
+                  <span className={styles.selectlist}>
                     {activePricing?.time_allocation || "Select"}{" "}
                     {data.service_type === "retainer" ? "months" : "mins"}
                     <svg

@@ -23,7 +23,7 @@ export default function Context({ children }) {
 
   if (pathname.includes("retainer")) {
     type = "retainer";
-  } else if (pathname.includes("one-off")) {
+  } else if (pathname.includes("oneoff")) {
     type = "one-off";
   } else if (pathname.includes("program")) {
     type = "program";

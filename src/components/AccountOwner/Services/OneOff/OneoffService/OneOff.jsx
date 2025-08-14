@@ -22,7 +22,6 @@ export default function One({ backone }) {
   const [isService, setisService] = useState(false);
 
   const [userService, setUserService] = useContext(ServiceContext);
-  // console.log(userService);
 
   const openModal = () => {
     setisService(true);
@@ -62,7 +61,20 @@ export default function One({ backone }) {
           <div className={styles.numberofservice}>
             <span className={styles.oneoffservice}>One-off</span>
             {!userService ? null : (
-              <span className={styles.number}>{userService.length}</span>
+              <>
+                {Array.isArray(userService) &&
+                  userService.filter(
+                    (service) => service.service_type === "one-off"
+                  ).length > 0 && (
+                    <span className={styles.number}>
+                      {
+                        userService.filter(
+                          (service) => service.service_type === "one-off"
+                        ).length
+                      }
+                    </span>
+                  )}
+              </>
             )}
           </div>
           <div>
@@ -76,13 +88,19 @@ export default function One({ backone }) {
           </div>
         </div>
 
-        {!userService ? (
-          <EmptyState isService={isService} openModal={openModal} />
-        ) : (
+        {userService.some((service) => service.service_type === "one-off") ? (
           <Update
             handleClick={handleClick}
             isVisible={isVisible}
             openDetail={openDetail}
+          />
+        ) : (
+          <EmptyState
+            onTime={TimeBased}
+            onProject={ProjectBased}
+            isService={isService}
+            openModal={openModal}
+            closeModal={closeModal}
           />
         )}
       </div>

@@ -65,6 +65,7 @@ export default function DayTime({
       .then((res) => {
         console.log(res.data);
         console.log("Data sent:", dataToSend);
+        navigate("/oneoff", { state: dataToSend });
       })
       .catch((err) => {
         console.error("Error sending data:", err);
@@ -72,8 +73,6 @@ export default function DayTime({
     console.log(timeBased);
 
     console.log("Saved Booking Period:", period);
-
-    navigate("/oneoff", { state: dataToSend });
   }
 
   useEffect(() => {

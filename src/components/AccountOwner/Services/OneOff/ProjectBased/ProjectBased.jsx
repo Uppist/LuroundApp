@@ -1,10 +1,10 @@
 /** @format */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Project.module.css";
 
 import ProjectSvg from "./ProjectSvg";
 import Upload from "./Upload";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Pricing from "./Pricing";
 import Delivery from "./Delivery";
 import axios from "axios";
@@ -34,6 +34,8 @@ export default function Projectbased({
     setCreateService((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
+  const navigate = useNavigate();
+
   function handlePricing(e) {
     setPricingTime(e.target.value);
   }
@@ -51,11 +53,15 @@ export default function Projectbased({
         toast.success("Project sucessfully added!");
         setProjectBased(details);
         console.log(res.data);
+        navigate("/oneoff", { state: details });
       });
-
-    setProjectBased(details);
-    console.log(projectBased);
   }
+
+  useEffect(() => {
+    if (Object.keys(projectBased).length > 0) {
+    }
+  }, [projectBased]);
+
   const submitProject = Object.values(details).every((val) => {
     if (typeof val === "string") {
       return val.trim() !== "";
