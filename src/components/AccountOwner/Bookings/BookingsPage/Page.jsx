@@ -91,17 +91,16 @@ export default function Page({ bookings, isOpen, bookingsOpen }) {
                     {detail.service_details.duration}{" "}
                   </span>
                 </div>
-
-                <div className={styles.seemoreline}>
-                  <Link to='/bookingspage' state={{ data: detail }}>
+                <Link to='/bookingspage' state={{ data: detail }}>
+                  <div className={styles.seemoreline}>
                     <button
                       // onClick={() => SeeMore(bookingIndex)}
                       className={styles.seemore}
                     >
                       See More
                     </button>
-                  </Link>
-                </div>
+                  </div>{" "}
+                </Link>
               </div>
             </div>
           );
