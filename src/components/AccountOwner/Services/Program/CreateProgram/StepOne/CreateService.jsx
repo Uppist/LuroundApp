@@ -16,6 +16,9 @@ export default function CreateService({
     service_name: "",
     description: "",
     service_type: serviceType,
+    in_personevent_fee: "N/A",
+    virtual_event_fee: "N/A",
+    duration: "N/A",
   });
 
   function handleChange(e) {
@@ -62,10 +65,16 @@ export default function CreateService({
 
   function Next() {
     console.log(createService);
+    console.log(program);
     const cleanPrice = {
-      virtual: pricing.virtual !== "" ? pricing.virtual : null,
-      in_person: pricing.in_person !== "" ? pricing.in_person : null,
+      virtual:
+        (pricing.virtual ?? "").trim() === "" ? "N/A" : pricing.virtual.trim(),
+      in_person:
+        (pricing.in_person ?? "").trim() === ""
+          ? "N/A"
+          : pricing.in_person.trim(),
     };
+
     setProgramService((prev) => ({
       ...prev,
       ...createService,

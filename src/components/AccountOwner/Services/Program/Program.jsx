@@ -1,12 +1,10 @@
 /** @format */
-import { useContext, useState } from "react";
-import program from "./program.json";
-import ProgramService from "../Program/ProgramService";
-import ProgramDetail from "./ProgramDetail";
+import { useContext, useEffect, useState } from "react";
+
 import styles from "./Program.module.css";
 import styles2 from "../Retainer/Retainer.module.css";
 import EmptyState from "./EmptyState";
-import Update from "./Update";
+import Update from "./ProgramValue/Update";
 import { ServiceContext } from "../../../Context";
 import { useNavigate } from "react-router-dom";
 export default function Program() {
@@ -17,14 +15,6 @@ export default function Program() {
   const [isService, setIsService] = useState(false);
 
   const [userService, setUserService] = useContext(ServiceContext);
-
-  function openDetail(index) {
-    setVisible("fade-out");
-    setTimeout(() => {
-      setisDetail(index);
-      setVisible("fade-in");
-    }, 200);
-  }
 
   const navigate = useNavigate();
 

@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import styles from "./See.module.css";
-import styles2 from "../Booking.module.css";
-import styles3 from "../../Services/Retainer/Details.module.css";
-import styles4 from "../../Services/Retainer/Retainer.module.css";
+import styles2 from "../../Booking.module.css";
+import styles3 from "../../../Services/Retainer/Details.module.css";
+import styles4 from "../../../Services/Retainer/Retainer.module.css";
 import Reschedule from "./Reschedule";
 import QuickAction from "./QuickAction";
 import { Link, useLocation } from "react-router-dom";
@@ -16,11 +16,7 @@ export default function See() {
     setShowReschedule(true);
   };
   const location = useLocation();
-  const { booking } = location.state || {};
-
-  if (!booking) {
-    return <div>No bookings yet</div>;
-  }
+  const { data } = location.state || {};
 
   const openModal = () => {
     setonCancel(true);
@@ -38,7 +34,7 @@ export default function See() {
   return (
     <div className={styles2.bookings}>
       <div className={styles.see}>
-        <Link to='/bookings'>
+        <Link to={-1}>
           <button className={styles3.timeback}>
             <svg
               width='7'
@@ -65,10 +61,19 @@ export default function See() {
               <div className={styles2.imagesvg}>
                 <div className={styles2.imagecontainer}>
                   <div className={styles2.circlename}>
-                    <img src={booking.image} />
+                    <span className={styles.initials}>
+                      {data.image && <img src={data.image} alt='' />}
+                      {!data.image && data.booking_user_info.displayName
+                        ? data.booking_user_info.displayName
+                            .charAt(0)
+                            .toUpperCase()
+                        : "No"}{" "}
+                    </span>
                   </div>
                   <div className={styles2.namebook}>
-                    <span className={styles2.bookingname}>{booking.Name}</span>
+                    <span className={styles2.bookingname}>
+                      {data.booking_user_info.displayName}
+                    </span>
                     {/* <div className='imagebookedyou'>
                     <span className='bookedyou'>{booking.Booked}</span>
                     <img src={booking.bookedyou} />
@@ -80,15 +85,16 @@ export default function See() {
                 <div className={styles2.datetitle}>
                   <div className={styles2.bookingtitle}>
                     <div className={styles2.titleservice}>
-                      <span className={styles2.title}>{booking.title}</span>
+                      <span className={styles2.title}>
+                        {data.service_details.service_name}
+                      </span>
                       <div className='service-one'>
                         <span className={styles4.servicetype}>
-                          {" "}
-                          {booking.service}{" "}
+                          Service Type:
                         </span>
                         <span className={styles4.oneofftext}>
                           {" "}
-                          {booking.type}{" "}
+                          {data.service_details.service_type}{" "}
                         </span>
                       </div>
                     </div>
@@ -103,7 +109,7 @@ export default function See() {
                             <span
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
-                              {booking.Date}
+                              {data.service_details.date}{" "}
                             </span>
                           </div>
                           <div className={styles.appointmentdate}>
@@ -115,7 +121,7 @@ export default function See() {
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
                               {" "}
-                              {booking.time}
+                              {data.service_details.time}{" "}
                             </span>
                           </div>
                         </div>
@@ -126,7 +132,7 @@ export default function See() {
                             <span
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
-                              {booking.hour}
+                              {data.service_details.duration}{" "}
                             </span>
                           </div>
                           <div className={styles.appointmentdate}>
@@ -148,7 +154,7 @@ export default function See() {
                             <span
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
-                              Virtual
+                              {data.service_details.appointment_type}
                             </span>
                           </div>
                           <div className={styles.appointmentdate}>
@@ -156,7 +162,7 @@ export default function See() {
                             <span
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
-                              This is a google meet web conference
+                              {data.service_details.location}{" "}
                             </span>
                           </div>
                         </div>
@@ -171,7 +177,7 @@ export default function See() {
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
                               {" "}
-                              35,000{" "}
+                              ₦ {data.service_details.service_fee}{" "}
                             </span>
                           </div>
                           <div className={styles.appointmentdate}>
@@ -182,7 +188,7 @@ export default function See() {
                             <span
                               className={`${styles2.dateam} ${styles.bookingdetails}`}
                             >
-                              jennifermerit@gmail.com
+                              {data.booking_user_info.email}{" "}
                             </span>
                           </div>
                         </div>
@@ -195,7 +201,8 @@ export default function See() {
                         </p>
                       </div>
                       <label className={styles.label}>
-                        This booking was made on; <span>{booking.Date}</span>
+                        This booking was made on;{" "}
+                        <span>{data.service_details.date}</span>
                       </label>
                     </div>
                   </div>
@@ -214,7 +221,7 @@ export default function See() {
             {showReschedule ? (
               <Reschedule
                 backReschedule={backReschedule}
-                booking={booking}
+                booking={data}
                 // onSeeLess={onSeeLess}
                 // ChangeBack={ChangeBack}
               />
@@ -223,7 +230,7 @@ export default function See() {
                 RescheduleDate={RescheduleDate}
                 onCancel={onCancel}
                 openModal={openModal}
-                booking={booking}
+                booking={data}
                 closeModal={closeModal}
               />
             )}

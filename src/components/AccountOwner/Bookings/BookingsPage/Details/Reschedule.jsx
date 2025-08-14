@@ -1,7 +1,7 @@
 /** @format */
 
-import React from "react";
-import Calendar from "../Calendar/Calendar";
+import React, { useState } from "react";
+import Calendar from "../../Calendar/Calendar";
 import styles from "./See.module.css";
 
 export default function Reschedule({
@@ -61,7 +61,7 @@ export default function Reschedule({
                   </defs>
                 </svg>
 
-                <span> Friday, 14 July 2023</span>
+                <span> {booking.service_details.date} </span>
               </div>
               <div className={styles.svgtime}>
                 <svg
@@ -77,7 +77,7 @@ export default function Reschedule({
                     fillOpacity='0.8'
                   />
                 </svg>
-                <span>9:30am - 11:00 am</span>
+                <span>{booking.service_details.time} </span>
               </div>
             </div>
             <hr />

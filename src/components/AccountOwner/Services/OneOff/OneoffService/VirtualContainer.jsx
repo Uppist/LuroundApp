@@ -1,89 +1,58 @@
 /** @format */
-
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./OneOff.module.css";
 
-export default function VirtualContainer({ data, index, showPart }) {
-  // console.log(`Data at index ${index}:`, data.minutes);
+export default function VirtualContainer({ data }) {
+  const [selectRadio, setSelectRadio] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedPricing, setSelectedPricing] = useState(null);
 
-  const [selectRadio, setSelectRadio] = useState({});
-  const [isOpen, setIsOpen] = useState({});
-  const [selectedOption, setSelectedOption] = useState([]);
-  const OneOffoptions = [
-    "15 mins",
-    "30 mins",
-    "45 mins",
-    "60 mins",
-    "90 mins",
-    "120 mins",
-  ];
+  // Auto-select default radio when component mounts
+  useEffect(() => {
+    if (data?.pricing?.[0]) {
+      if (data.pricing[0].virtual) {
+        setSelectRadio("virtual");
+      } else if (data.pricing[0].in_person) {
+        setSelectRadio("in-person");
+      }
+    }
+  }, [data]);
 
-  const retainerOption = ["3 months", "6 months", "12 months", "24 months"];
-
-  // console.log(`Session Type at index ${index}:`, data.minutes);
-
-  // useEffect(() => {
-  //   if (data?.sessionType) {
-  //     if (data.sessionType === "oneoff") {
-  //       setSelectedOption(OneOffoptions);
-  //     } else if (data.sessionType === "retainer") {
-  //       setSelectedOption(retainerOption);
-  //     } else if (data.sessionType === "event") {
-  //       defaultOption = "";
-  //     } else {
-  //       // console.warn(`Invalid sessionType at index ${index}:`, data);
-  //     }
-  //   } else {
-  //     // console.warn(`sessionType is missing in data at index ${index}:`, data);
-  //   }
-  // }, [data.sessionType]);
-
-  function radioChange(index, type) {
-    setSelectRadio((prevState) => ({
-      ...prevState,
-      [index]: type,
-    }));
+  function radioChange(type) {
+    setSelectRadio(type);
   }
 
-  function dropDown(index) {
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+  function dropDown() {
+    setIsOpen((prev) => !prev);
   }
 
-  function handleDropdown(index, option) {
-    setSelectedOption((prevState) => ({
-      ...prevState,
-      [index]: option,
-    }));
-    setIsOpen((prevState) => ({
-      ...prevState,
-      [index]: false,
-    }));
+  function handleDropdown(pricingObj) {
+    setSelectedPricing(pricingObj);
+    setIsOpen(false);
   }
 
-  // const sessionType = data.sessionType;
-  // const sessionType = data.minutes; // Example: "oneoff" or "retainer"
-  const options =
-    data.service_type === "one-off" ? OneOffoptions : retainerOption;
+  // Default to first pricing object if none selected
+  const activePricing =
+    selectedPricing || (Array.isArray(data.pricing) && data.pricing[0]);
 
   return (
     <div
-      className={`${styles.pricesession}  ${
-        selectRadio[index] === "virtual"
-          ? `${styles.virtualbg}`
-          : selectRadio[index] === "in-person"
-          ? `${styles.inpersonbg}`
+      className={`${styles.pricesession} ${
+        selectRadio === "virtual"
+          ? styles.virtualbg
+          : selectRadio === "in-person"
+          ? styles.inpersonbg
           : ""
       }`}
     >
+      {/* Radio Buttons */}
       <div className={styles.radiovirtual}>
         <div className={styles.virtual}>
           <input
             type='radio'
             name='radio'
-            onChange={() => radioChange(index, "virtual")}
+            checked={selectRadio === "virtual"}
+            onChange={() => radioChange("virtual")}
           />
           <span>Virtual</span>
         </div>
@@ -91,80 +60,85 @@ export default function VirtualContainer({ data, index, showPart }) {
           <input
             type='radio'
             name='radio'
-            onChange={() => radioChange(index, "in-person")}
+            checked={selectRadio === "in-person"}
+            onChange={() => radioChange("in-person")}
           />
           <span>In-person</span>
         </div>
       </div>
+
+      {/* Pricing + Dropdown */}
       <div className={styles.pricingamount}>
         <div className={styles.pricing}>
-          {/* <span>{data.pricing?.[0]?.virtual || "N/A"}</span> */}
-          {data.service_type !== "event" && data.service_type !== "program" && (
+          {/* Show dropdown only if NOT program */}
+          {data.service_type !== "program" && (
             <div className={styles.minsarrow}>
               <div className={styles.dropdown}>
-                {/* <div
+                <div
                   className={`${styles.selectlist} ${
-                    isOpen[index] ? "select-clicked" : ""
+                    isOpen ? "select-clicked" : ""
                   }`}
-                  onClick={() => dropDown(index)}
+                  onClick={dropDown}
                 >
                   <span className='selected-list'>
-                    {selectedOption[index] || options[0]}{" "}
+                    {activePricing?.time_allocation || "Select"}{" "}
+                    {data.service_type === "retainer" ? "months" : "mins"}
+                    <svg
+                      width='16'
+                      height='16'
+                      viewBox='0 0 16 16'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                        stroke='currentColor'
+                        strokeOpacity='0.8'
+                        strokeMiterlimit='10'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
                   </span>
-                  <svg
-                    width='16'
-                    height='16'
-                    viewBox='0 0 16 16'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                      stroke='currentColor'
-                      strokeOpacity='0.8'
-                      strokeMiterlimit='10'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </div> */}
-                <span>
-                  {data.pricing?.[0]?.time_allocation}{" "}
-                  {data.service_type === "retainer" ? "months" : "mins"}
-                </span>
-                {/* {isOpen[index] && (
+                </div>
+
+                {isOpen && (
                   <ul className={styles.menu}>
-                    {options.map((option) => (
+                    {data.pricing?.map((pricingObj, idx) => (
                       <li
-                        key={option}
+                        key={idx}
                         className={`menu-item ${
-                          selectedOption[index] === option ? "active" : ""
+                          activePricing?.time_allocation ===
+                          pricingObj.time_allocation
+                            ? "active"
+                            : ""
                         }`}
-                        onClick={() => handleDropdown(index, option)}
+                        onClick={() => handleDropdown(pricingObj)}
                       >
-                        {option}
+                        {pricingObj.time_allocation}{" "}
+                        {data.service_type === "retainer" ? "months" : "mins"}
                       </li>
                     ))}
                   </ul>
-                )} */}
+                )}
               </div>
             </div>
           )}
         </div>
+
+        {/* Price Display */}
         <div className={styles.nairasession}>
           <span className={styles.naira}>
-            {selectRadio[index] === "in-person"
-              ? data?.pricing?.[0]?.in_person != null &&
-                !isNaN(data.pricing[0].in_person)
-                ? `₦${Number(data.pricing[0].in_person).toLocaleString()}`
+            {selectRadio === "in-person"
+              ? activePricing?.in_person && !isNaN(activePricing.in_person)
+                ? `₦${Number(activePricing.in_person).toLocaleString()}`
                 : "N/A"
-              : data?.pricing?.[0]?.virtual != null &&
-                !isNaN(data.pricing[0].virtual)
-              ? `₦${Number(data.pricing[0].virtual).toLocaleString()}`
+              : selectRadio === "virtual"
+              ? activePricing?.virtual && !isNaN(activePricing.virtual)
+                ? `₦${Number(activePricing.virtual).toLocaleString()}`
+                : "N/A"
               : "N/A"}
           </span>
-
-          {/* <span className={styles.session}>{data.session}</span> */}
         </div>
       </div>
     </div>

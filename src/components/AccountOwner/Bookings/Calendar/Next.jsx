@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import SelectTime from "./Time";
 import styles from "./Calendar.module.css";
 import Bookings from "../Bookings";
-import styles2 from "../Details/See.module.css";
-import { Link } from "react-router-dom";
+import styles2 from "../BookingsPage/Details/See.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+
+import axios from "axios";
 
 export default function Next({
   formattedDate,
@@ -29,13 +33,59 @@ export default function Next({
 
   const [selectedTime, setSelectedTime] = useState(true);
   const [isBooking, setIsBooking] = useState(true);
+  const [isReason, setIsReason] = useState({ reason: "" });
 
   function ChangeBack() {
     setSelectedTime(false);
   }
 
-  function UpdateBooking() {
-    setIsBooking(false);
+  function Reason(e) {
+    setIsReason((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+  const navigate = useNavigate();
+
+  function UpdateBooking(e) {
+    const start = currentTime;
+    const end = newTime;
+
+    const durationMs = end - start;
+
+    const durationMinutes = Math.floor(durationMs / (1000 * 60));
+    const hours = Math.floor(durationMinutes / 60);
+    const minutes = durationMinutes % 60;
+
+    const durationLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+    const dataToSend = {
+      date: formattedDate,
+      time: `${start
+        .toLocaleTimeString([], timeFormatOptions)
+        .toLowerCase()} - ${end
+        .toLocaleTimeString([], timeFormatOptions)
+        .toLowerCase()}`,
+      duration: durationLabel,
+      reason: isReason.reason,
+    };
+
+    const token = localStorage.getItem("Token");
+
+    axios
+      .put(
+        `https://api.luround.com/v1/booking/reschedule?bookingId=${booking._id}`,
+        dataToSend,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        console.log("Data sent:", dataToSend);
+        toast.success("Bookings Updated!");
+        setTimeout(() => {
+          navigate("/bookings", { state: dataToSend });
+        }, 3000);
+      });
+    console.log(dataToSend);
   }
 
   return (
@@ -106,17 +156,20 @@ export default function Next({
 
           <div className={styles.reasonforchange}>
             <label>Reason for change</label>
-            <textarea></textarea>
+            <textarea
+              name='reason'
+              value={isReason.reason}
+              onChange={Reason}
+            ></textarea>
           </div>
           <div className={styles.updatebutton}>
-            <button onClick={onSeeLess}>
-              <Link to='/bookings'> Update Booking</Link>
-            </button>
+            <button onClick={UpdateBooking}>Update Booking</button>
           </div>
         </div>
       ) : (
         <SelectTime selectedDate={selectedDate} booking={booking} />
       )}
+      <ToastContainer />
     </>
   );
 }

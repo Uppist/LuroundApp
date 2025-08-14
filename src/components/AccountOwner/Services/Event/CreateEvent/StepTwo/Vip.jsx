@@ -3,18 +3,40 @@
 import React from "react";
 import styles from "../../Event.module.css";
 import nigeria from "../../../../../elements/nigeria.png";
-export default function Vip({ Person, isVipVirtual, isVipPerson, Virtual }) {
+export default function Vip({
+  Person,
+  isVipVirtual,
+  isVipPerson,
+  Virtual,
+  tickets,
+  setTickets,
+  handleTicketTier,
+}) {
+  function Remove() {
+    setTickets("");
+  }
   return (
     <div className={styles.ticket}>
       <div className={styles.ticketname}>
         <span>Name</span>
-        <input type='text' name='' id='' placeholder='e.g VIP' />
+        <input
+          type='text'
+          name='name'
+          value={tickets.vip.name}
+          onChange={handleTicketTier}
+          id=''
+          onClick={(e) => e.stopPropagation()}
+          placeholder='e.g VIP'
+        />
       </div>
       <div className={styles.ticketname}>
         <span>Description</span>
         <textarea
-          name=''
+          name='description'
+          value={tickets.vip.description}
+          onChange={handleTicketTier}
           id=''
+          onClick={(e) => e.stopPropagation()}
           placeholder='Write a brief descriptive summary of this ticket tier'
         ></textarea>
       </div>
@@ -37,8 +59,11 @@ export default function Vip({ Person, isVipVirtual, isVipPerson, Virtual }) {
               <div>
                 <input
                   type='text'
-                  name=''
+                  name='virtual_link'
+                  value={tickets.vip.virtual_link}
+                  onChange={handleTicketTier}
                   id=''
+                  onClick={(e) => e.stopPropagation()}
                   placeholder='Add meeting link for virtual event'
                 />
               </div>
@@ -46,8 +71,10 @@ export default function Vip({ Person, isVipVirtual, isVipPerson, Virtual }) {
                 <span>Perks</span>
                 <input
                   type='text'
-                  name=''
-                  id=''
+                  name='perks'
+                  value={tickets.vip.perks}
+                  onChange={handleTicketTier}
+                  onClick={(e) => e.stopPropagation()}
                   placeholder='List out the perks of this ticket tier'
                 />
               </div>
@@ -78,7 +105,14 @@ export default function Vip({ Person, isVipVirtual, isVipPerson, Virtual }) {
                       </div>
                     </div>
                   </button>
-                  <input type='text' placeholder='0.00' />
+                  <input
+                    type='number'
+                    name='amount'
+                    value={tickets.vip.amount}
+                    onChange={handleTicketTier}
+                    placeholder='0.00'
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 </div>
               </div>{" "}
             </div>
@@ -99,7 +133,7 @@ export default function Vip({ Person, isVipVirtual, isVipPerson, Virtual }) {
       </div>
       <div className={styles.button}>
         {" "}
-        <button>Remove</button>
+        <button onClick={Remove}>Remove</button>
       </div>
     </div>
   );

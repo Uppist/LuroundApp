@@ -31,15 +31,20 @@ export default function Pricing({ retainerService, setRetainerService }) {
 
   function handleNext() {
     console.log(slots);
-    const cleanedSlots = slots.map((slot) => ({
-      time_allocation: slot.time_allocation,
-      virtual: slot.virtual !== "" ? slot.virtual : null,
-      in_person: slot.in_person !== "" ? slot.in_person : null,
-    }));
+    const filledPricing = slots
+      .filter(
+        (slot) =>
+          slot.time_allocation &&
+          (slot.virtual.trim() !== "" || slot.in_person.trim() !== "")
+      )
+      .map((slot) => ({
+        ...slot,
+        virtual: slot.virtual.trim() === "" ? "N/A" : slot.virtual.trim(),
+        in_person: slot.in_person.trim() === "" ? "N/A" : slot.in_person.trim(),
+      }));
+    console.log("Filtered Pricing:", filledPricing);
 
-    console.log(cleanedSlots);
-
-    setRetainerService((prev) => ({ ...prev, pricng: cleanedSlots }));
+    setRetainerService((prev) => ({ ...prev, pricing: filledPricing }));
     console.log(retainerService);
     navigate("../date");
   }

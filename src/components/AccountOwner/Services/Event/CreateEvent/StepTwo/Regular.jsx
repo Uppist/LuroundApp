@@ -8,18 +8,36 @@ export default function Regular({
   Person,
   isRegularVirtual,
   isRegularPerson,
+  tickets,
+  setTickets,
+  handleTicketTier,
 }) {
+  function Remove() {
+    setTickets("");
+  }
+
   return (
     <div className={styles.ticket}>
       <div className={styles.ticketname}>
         <span>Name</span>
-        <input type='text' name='' id='' placeholder='Regular' />
+        <input
+          type='text'
+          name='name'
+          value={tickets.regular.name}
+          onChange={handleTicketTier}
+          id=''
+          onClick={(e) => e.stopPropagation()}
+          placeholder='Regular'
+        />
       </div>
       <div className={styles.ticketname}>
         <span>Description</span>
         <textarea
-          name=''
+          name='description'
+          value={tickets.regular.description}
+          onChange={handleTicketTier}
           id=''
+          onClick={(e) => e.stopPropagation()}
           placeholder='Write a brief descriptive summary of this ticket tier'
         ></textarea>
       </div>
@@ -42,8 +60,11 @@ export default function Regular({
               <div>
                 <input
                   type='text'
-                  name=''
+                  name='virtual_link'
+                  value={tickets.regular.virtual_link}
+                  onChange={handleTicketTier}
                   id=''
+                  onClick={(e) => e.stopPropagation()}
                   placeholder='Add meeting link for virtual event'
                 />
               </div>
@@ -51,7 +72,10 @@ export default function Regular({
                 <span>Perks</span>
                 <input
                   type='text'
-                  name=''
+                  name='perks'
+                  value={tickets.perks}
+                  onChange={handleTicketTier}
+                  onClick={(e) => e.stopPropagation()}
                   id=''
                   placeholder='List out the perks of this ticket tier'
                 />
@@ -83,7 +107,14 @@ export default function Regular({
                       </div>
                     </div>
                   </button>
-                  <input type='text' placeholder='0.00' />
+                  <input
+                    type='number'
+                    name='amount'
+                    value={tickets.regular.amount}
+                    onChange={handleTicketTier}
+                    placeholder='0.00'
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 </div>
               </div>{" "}
             </div>
@@ -104,7 +135,7 @@ export default function Regular({
       </div>
       <div className={styles.button}>
         {" "}
-        <button>Remove</button>
+        <button onClick={Remove}>Remove</button>
       </div>
     </div>
   );

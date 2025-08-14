@@ -76,10 +76,10 @@ export default function StepOne({
     console.log("createService:", createService);
     console.log("dates:", dates);
     console.log("eventSchedule:", eventSchedule);
-    setEventSchedule((prev) => ({
+    setEventService((prev) => ({
       ...prev,
       ...createService,
-      event_scchedule: updatedSchedule,
+      event_schedule: eventSchedule,
     }));
     console.log(eventService);
     navigate("event2");

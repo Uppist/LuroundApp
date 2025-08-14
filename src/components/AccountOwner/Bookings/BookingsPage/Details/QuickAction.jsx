@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import CancelN from "../Cancel/Cancel";
+import CancelN from "../../Cancel/Cancel";
 import styles from "./See.module.css";
 
 export default function QuickAction({

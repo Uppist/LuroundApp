@@ -5,7 +5,7 @@ export default function Open({ isOpen, onClose, data }) {
     <div>
       <div className='popupcancel sharepopup'>
         <div className='overlayshare' onClick={onClose}></div>
-        <div className={`bookingsopen ${isOpen ? "open" : ""}`} key={data.Name}>
+        <div className={`bookingsopen ${isOpen ? "open" : ""}`}>
           <div className='reschedule-cancel'>
             <button className='rescheduletext2'>
               <svg

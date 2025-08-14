@@ -40,6 +40,8 @@ export default function Delete({
             navigate("/oneoff");
           } else if (location.pathname.includes("retainer")) {
             navigate("/retainer");
+          } else if (location.pathname.includes("program")) {
+            navigate("/program");
           }
         }, 3000);
       });

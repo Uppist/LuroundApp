@@ -1,0 +1,30 @@
+/** @format */
+
+.virtualinperson {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+}
+
+.container {
+  display: flex;
+  align-items: end;
+  padding-left: 200px;
+  justify-content: end;
+  background-color: hsla(180, 17%, 98%, 1);
+  width: -webkit-fill-available;
+  height: fit-content;
+  border-radius: 8px;
+}
+
+.container span {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: hsla(197, 100%, 11%, 1);
+  text-transform: capitalize;
+}
+
+.virtualinperson hr {
+  height: -webkit-fill-available;
+}

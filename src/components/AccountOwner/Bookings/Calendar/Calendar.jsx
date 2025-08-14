@@ -40,7 +40,11 @@ export default function Calendar({ booking, ChangeBack, onSeeLess }) {
     setselectedDate(date);
     setSelectedTime(true);
   }
-
+  useEffect(() => {
+    if (selectedDate) {
+      console.log(selectedDate); // logs after state actually updates
+    }
+  }, [selectedDate]);
   return (
     <>
       {!selectedTime ? (

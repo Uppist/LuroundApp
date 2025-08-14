@@ -3,7 +3,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Bookings from "../../../components/AccountOwner/Bookings/Bookings";
-import See from "../../../components/AccountOwner/Bookings/Details/SeeMore";
+import See from "../../../components/AccountOwner/Bookings/BookingsPage/Details/SeeMore";
 
 export default function BookingsRouting() {
   return (

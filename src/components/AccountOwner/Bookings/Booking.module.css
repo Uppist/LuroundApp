@@ -141,6 +141,13 @@
   flex-direction: column;
   gap: 8px;
 }
+
+.datetime {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
 .dateam {
   font-size: 14px;
   font-weight: 400;
@@ -166,6 +173,8 @@
 .seemoreline {
   display: flex;
   flex-direction: column;
+
+  border-top: 1px solid hsla(180, 11%, 89%, 1);
   align-items: center;
 }
 .seemore {
@@ -176,7 +185,6 @@
   font-weight: 600;
   color: hsla(180, 100%, 40%, 1);
   font-family: "Inter";
-  border-top: 1px solid hsla(180, 11%, 89%, 1);
   width: -webkit-fill-available;
 }
 

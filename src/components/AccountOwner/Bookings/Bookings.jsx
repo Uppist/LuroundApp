@@ -7,7 +7,7 @@ import book from "./booking.json";
 
 import styles from "./Booking.module.css";
 import styles2 from "../Services/Retainer/Retainer.module.css";
-import See from "./Details/SeeMore";
+import See from "./BookingsPage/Details/SeeMore";
 import Open from "./BookingsOpen";
 import { Link } from "react-router-dom";
 import EmptyState from "./EmptyState/EmptyState";
@@ -69,7 +69,16 @@ export default function Bookings(ChangeBack) {
       <div className={styles2.retainerservice}>
         <div className={styles2.numberofservice}>
           <span className={styles2.oneoffservice}>Bookings</span>
-          <span className={styles2.number}>{book.length}</span>
+          <span className={styles2.number}>
+            {Array.isArray(bookings)
+              ? bookings.reduce(
+                  (total, item) =>
+                    total +
+                    (Array.isArray(item.details) ? item.details.length : 0),
+                  0
+                )
+              : 0}
+          </span>
         </div>
         <div className={styles.filterby}>
           <span>Filter by:</span>

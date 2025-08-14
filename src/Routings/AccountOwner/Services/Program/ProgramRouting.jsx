@@ -6,6 +6,7 @@ import Program from "../../../../components/AccountOwner/Services/Program/Progra
 import ProgramService from "../../../../components/AccountOwner/Services/Program/ProgramService";
 import CreateService from "../../../../components/AccountOwner/Services/Program/CreateProgram/StepOne/CreateService";
 import StepTwo from "../../../../components/AccountOwner/Services/Program/CreateProgram/StepTwo/StepTwo";
+import ProgramDetail from "../../../../components/AccountOwner/Services/Program/ProgramValue/ProgramDetail";
 
 export default function ProgramRouting() {
   const [programService, setProgramService] = useState({});
@@ -41,6 +42,7 @@ export default function ProgramRouting() {
           }
         />
       </Route>
+      <Route path='/program-details' element={<ProgramDetail />} />
     </Routes>
   );
 }

@@ -19,8 +19,17 @@ export default function Context({ children }) {
 
   const pathname = location.pathname;
 
-  const isRetainer = pathname.includes("retainer");
-  const isOneOff = pathname.includes("oneoff");
+  let type = "";
+
+  if (pathname.includes("retainer")) {
+    type = "retainer";
+  } else if (pathname.includes("one-off")) {
+    type = "one-off";
+  } else if (pathname.includes("program")) {
+    type = "program";
+  } else if (pathname.includes("event")) {
+    type = "event";
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -34,31 +43,32 @@ export default function Context({ children }) {
         })
         .catch((err) => setUserData({}));
 
-      axios
-        .get(
-          `https://api.luround.com/v1/services/get-services?service_type=${
-            pathname.includes("retainer") ? "retainer" : "one-off"
-          }`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-          setUserService(res.data);
-        });
+      if (type) {
+        axios
+          .get(
+            `https://api.luround.com/v1/services/get-services?service_type=${type}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            setUserService(res.data);
+          });
+      }
 
       axios
-        .get(`https://api.luround.com/v1/booking/get?bookingId=${bookingsId}`, {
+        .get(`https://api.luround.com/v1/booking/my-bookings`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
           console.log("Booking:", res.data);
           const data = res.data;
           setBookings(data);
-          const ids = data.map((booking) => booking.BookingId);
-          setBookingsId(ids);
-          console.log(bookingsId);
+          console.log(bookings);
+          // const ids = data.map((booking) => booking.BookingId);
+          // setBookingsId(ids);
+          // console.log(bookingsId);
         })
         .catch((err) => console.error("Error fetching booking:", err));
     }
@@ -71,8 +81,8 @@ export default function Context({ children }) {
   //get bookings
 
   useEffect(() => {
-    console.log("bookingsId from context:", bookingsId);
-  }, [bookingsId]);
+    console.log("bookingsId from context:", bookings);
+  }, [bookings]);
 
   return (
     <userContext.Provider value={[userData, setUserData]}>

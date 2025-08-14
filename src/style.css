@@ -581,7 +581,6 @@ input:checked + .toggle::before {
 }
 
 .title-service {
-  color: hsla(180, 23%, 15%, 1);
 }
 
 .title-p {
