@@ -1,8 +1,9 @@
 /** @format */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Login from "../../../Login/Login/Login";
 import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { userContext } from "../../../Context";
 
 export default function Dropdown({
   onClose,
@@ -23,24 +24,7 @@ export default function Dropdown({
   const [viewerData, setViewerData] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const data = localStorage.getItem("userData");
-    if (data) {
-      const user = JSON.parse(data);
-      // console.log(user);
-      setViewerData(user);
-    } else {
-      console.log("No user data found in localStorage");
-      navigate("/");
-    }
-  }, [navigate]);
-
-  if (!viewerData) {
-    return null;
-  }
-
-  const { photoUrl, name, email } = viewerData;
-
+  const [userData] = useContext(userContext);
   return (
     <div>
       {isLogOut ? (
@@ -54,11 +38,13 @@ export default function Dropdown({
           <div className={styles.overlaydropdown} onClick={onClose}></div>
           <div className={styles.profileedit}>
             <div className={styles.imagename}>
-              <img src={photoUrl} alt={photoUrl} />
+              <img src={userData.photoUrl} alt={userData.photoUrl} />
               <div className={styles.namebutton}>
                 <div className={styles.spanname}>
-                  <span className={styles.ronaldname}>{name}</span>
-                  <span className={styles.email}>{email}</span>
+                  <span className={styles.ronaldname}>
+                    {userData.displayName}
+                  </span>
+                  <span className={styles.email}>{userData.email}</span>
                 </div>
                 <button onClick={onClose}>
                   <Link to='/editprofile'>Edit Profile</Link>

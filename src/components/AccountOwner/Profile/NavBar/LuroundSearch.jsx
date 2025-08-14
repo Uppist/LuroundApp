@@ -63,6 +63,7 @@ export default function Search({ logindetail, Submit, LoginDetail }) {
   // const { photoUrl } = viewerData;
 
   const [userData] = useContext(userContext);
+  console.log(userData);
 
   return (
     <div className={styles.searchbar}>
@@ -203,19 +204,6 @@ export default function Search({ logindetail, Submit, LoginDetail }) {
             />
           )}
         </div>
-
-        {/* <div>
-          <li className={styles.icons}>
-            <button
-              className={`${styles.share} ${isShareProfile ? "open" : ""}`}
-              onClick={Share}
-            >
-              Share Profile
-            </button>
-          </li>
-
-          {isShareProfile && <ShareProfile onClose={closeModal} />}
-        </div> */}
       </ul>
     </div>
   );
