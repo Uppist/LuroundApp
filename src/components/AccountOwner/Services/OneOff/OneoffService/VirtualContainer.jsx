@@ -35,6 +35,8 @@ export default function VirtualContainer({ data }) {
   const activePricing =
     selectedPricing || (Array.isArray(data.pricing) && data.pricing[0]);
 
+  console.log(data.pricing.in_person);
+
   return (
     <div
       className={`${styles.pricesession} ${

@@ -18,7 +18,7 @@ export default function Dropdown({
 
   const [isLogOut, setIsLogOut] = useState(false);
   function LogOut() {
-    setIsLogOut(true);
+    navigate("/Login");
   }
 
   const [viewerData, setViewerData] = useState(null);
