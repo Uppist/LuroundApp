@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { bookingsContext } from "../../../Context";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import check from "../../../elements/bookings/check.svg";
+import check from "../../../elements/bookings/Check.svg";
 
 /** @format */
 export default function CancelN({ booking, onClose }) {
