@@ -6,13 +6,22 @@ export default function VirtualContainer({ data }) {
   const [selectRadio, setSelectRadio] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPricing, setSelectedPricing] = useState(null);
+  const [pricingArray, setPricingArray] = useState([]);
 
-  // Auto-select default radio when component mounts
   useEffect(() => {
-    if (data?.pricing?.[0]) {
-      if (data.pricing[0].virtual) {
+    const array = Array.isArray(data?.pricing)
+      ? data.pricing
+      : data?.pricing
+      ? [data.pricing]
+      : [];
+    setPricingArray(array);
+
+    if (array[0]) {
+      setSelectedPricing(array[0]);
+
+      if (array[0].virtual && array[0].virtual !== "N/A") {
         setSelectRadio("virtual");
-      } else if (data.pricing[0].in_person) {
+      } else if (array[0].in_person && array[0].in_person !== "N/A") {
         setSelectRadio("in-person");
       }
     }
@@ -31,11 +40,7 @@ export default function VirtualContainer({ data }) {
     setIsOpen(false);
   }
 
-  // Default to first pricing object if none selected
-  const activePricing =
-    selectedPricing || (Array.isArray(data.pricing) && data.pricing[0]);
-
-  console.log(data.pricing.in_person);
+  const activePricing = selectedPricing;
 
   return (
     <div
@@ -72,7 +77,6 @@ export default function VirtualContainer({ data }) {
       {/* Pricing + Dropdown */}
       <div className={styles.pricingamount}>
         <div className={styles.pricing}>
-          {/* Show dropdown only if NOT program */}
           {data.service_type !== "program" && (
             <div className={styles.minsarrow}>
               <div className={styles.dropdown}>
@@ -106,7 +110,7 @@ export default function VirtualContainer({ data }) {
 
                 {isOpen && (
                   <ul className={styles.menu}>
-                    {data.pricing?.map((pricingObj, idx) => (
+                    {pricingArray.map((pricingObj, idx) => (
                       <li
                         key={idx}
                         className={`menu-item ${
@@ -132,11 +136,15 @@ export default function VirtualContainer({ data }) {
         <div className={styles.nairasession}>
           <span className={styles.naira}>
             {selectRadio === "in-person"
-              ? activePricing?.in_person && !isNaN(activePricing.in_person)
+              ? activePricing?.in_person &&
+                !isNaN(activePricing.in_person) &&
+                activePricing.in_person !== "N/A"
                 ? `₦${Number(activePricing.in_person).toLocaleString()}`
                 : "N/A"
               : selectRadio === "virtual"
-              ? activePricing?.virtual && !isNaN(activePricing.virtual)
+              ? activePricing?.virtual &&
+                !isNaN(activePricing.virtual) &&
+                activePricing.virtual !== "N/A"
                 ? `₦${Number(activePricing.virtual).toLocaleString()}`
                 : "N/A"
               : "N/A"}
