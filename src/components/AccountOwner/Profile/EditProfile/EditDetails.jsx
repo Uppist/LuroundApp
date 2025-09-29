@@ -76,7 +76,7 @@ export default function EditDetails({ scrollDetails }) {
 
   async function handleSubmitDetails(e) {
     e.preventDefault();
-    const local = localStorage.getItem("Token");
+    const token = localStorage.getItem("Token");
 
     // ✅ Filter out empty links
     const media_links = Object.keys(socialLinks)
@@ -84,44 +84,40 @@ export default function EditDetails({ scrollDetails }) {
       .filter((item) => item.link.trim() !== "");
 
     try {
-      const request = await axios.put(
+      const res = await axios.put(
         "https://api.luround.com/v1/profile/media-links/update",
         { media_links },
         {
           headers: {
-            Authorization: `Bearer ${local}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
+      console.log("Response:", res);
 
+      console.log("full Response:", res.data);
       toast.success("Updated");
       console.log("Updated social links:", media_links);
-      console.log("request data", request);
 
-      const prevData = JSON.parse(localStorage.getItem("userData"));
-      const mergedSocialLinks = { ...prevData.socialLinks };
-
-      changedFields.forEach((field) => {
-        if (socialLinks[field].link.trim() !== "") {
-          mergedSocialLinks[field] = socialLinks[field];
-        }
-      });
-
-      const updatedUserData = {
-        ...prevData,
-        socialLinks: mergedSocialLinks,
-      };
-
-      localStorage.setItem("userData", JSON.stringify(updatedUserData));
-
-      localStorage.setItem("userData", JSON.stringify(updatedUserData));
+      // clear changedFields if needed
       setChangedFields([]);
     } catch (error) {
       toast.error("Failed to update");
       console.error("Update error:", error);
     }
   }
+
+  const isMedia =
+    socialLinks.email.link.trim() !== "" ||
+    socialLinks.facebook.link.trim() !== "" ||
+    socialLinks.instagram.link.trim() !== "" ||
+    socialLinks.linkedIn.link.trim() !== "" ||
+    socialLinks.location.link.trim() !== "" ||
+    socialLinks.mobile.link.trim() !== "" ||
+    socialLinks.twitter.link.trim() !== "" ||
+    socialLinks.website.link.trim() !== "" ||
+    socialLinks.youtube.link.trim() !== "";
 
   return (
     <form onSubmit={handleSubmitDetails}>
@@ -133,14 +129,14 @@ export default function EditDetails({ scrollDetails }) {
           socialLinks={socialLinks}
         />
         <div className={styles.canceldone}>
-          <button className={styles.canceltime} type='button'>
+          {/* <button className={styles.canceltime} type='button'>
             Cancel
-          </button>
-          <button type='submit' className={styles.donetime}>
+          </button> */}
+          <button type='submit' disabled={!isMedia} className={styles.donetime}>
             Save
           </button>
         </div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </form>
   );

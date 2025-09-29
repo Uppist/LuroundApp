@@ -6,7 +6,7 @@ import Luround from "../../../elements/LuroundApp.png";
 import { Link } from "react-router-dom";
 
 export default function Sidebar({ onComponentSwitch }) {
-  const [isActive, setIsActive] = useState("profile");
+  const [isActive, setIsActive] = useState(null);
   const [isArrowDownVisible, setIsArrowDownVisible] = useState(false);
   const [isArrowDownServiceVisible, setIsArrowDownServiceVisible] =
     useState(false);
@@ -274,7 +274,7 @@ export default function Sidebar({ onComponentSwitch }) {
       </ul>
       {isArrowDownVisible && (
         <ul className={styles.moreDown}>
-          <hr />
+          {/* <hr /> */}
           <Link to='/storefront'>
             {" "}
             <li

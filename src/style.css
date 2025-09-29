@@ -17,6 +17,17 @@ body {
   fill: hsla(180, 100%, 40%, 1) !important;
 }
 
+.Toastify__toast {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+  top: 15px !important;
+  font-family: "Inter" !important;
+  width: fit-content;
+  text-align: center !important;
+}
+
 a {
   text-decoration: none;
   color: currentColor;
@@ -155,11 +166,6 @@ textarea {
   color: hsla(180, 23%, 15%, 1);
 }
 
-.dropdown-service > li:hover {
-  background-color: hsla(180, 17%, 98%, 1);
-  border-radius: 8px;
-}
-
 .alltime-ul {
   margin: 0;
   padding: 0;
@@ -172,10 +178,10 @@ textarea {
   color: hsla(180, 23%, 15%, 1);
 }
 
-.oneoff-service:hover {
+/* .oneoff-service:hover {
   background-color: hsla(180, 17%, 98%, 1);
   border-radius: 8px;
-}
+} */
 
 .alltime-container {
   padding: 12px 12px 12px 16px;
@@ -581,9 +587,6 @@ input:checked + .toggle::before {
   color: white;
 }
 
-.title-service {
-}
-
 .title-p {
   text-align: center;
 }
@@ -614,5 +617,13 @@ input:checked + .toggle::before {
 @media only screen and (max-width: 900px) {
   .grid-container {
     display: none;
+  }
+
+  /* body {
+    background-color: white;
+  } */
+
+  .profiledashboard {
+    left: 0;
   }
 }

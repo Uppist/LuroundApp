@@ -2,8 +2,16 @@
 
 import React, { useState } from "react";
 import styles from "./EditProfile.module.css";
+import UploadImage from "./UploadImage";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function EditIntro({ scrollPhoto, profile, inputRef }) {
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [logourl, setLogoUrl] = useState(null);
+  const [fileSizeInMB, setFileSizeInMB] = useState(0);
+
   const [isValue, setIsValue] = useState({
     firstName: "",
     lastName: "",
@@ -20,52 +28,122 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
     e.preventDefault();
     console.log(isValue);
   }
+  const token = localStorage.getItem("Token");
 
+  async function handleImage(e) {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+      console.log("Selected file:", selectedFile);
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("upload_preset", "profileImage");
+      formData.append("cloud_name", "dxyzeiigv");
+
+      try {
+        const res = await axios.post(
+          "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const data = res.data;
+        setImageUrl(data.secure_url);
+
+        // toast.success("Image uploaded successfully!");
+        console.log("Uploaded image URL:", data.secure_url);
+
+        axios
+          .put(
+            "https://api.luround.com/v1/profile/photo/update",
+            { photoUrl: data.secure_url },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err.data);
+          });
+      } catch (error) {
+        console.error("Upload error:", error);
+      }
+    }
+  }
+
+  // Handle logo upload
+  async function LogoUpload(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setLogoUrl(file);
+      setFileSizeInMB((file.size / (1024 * 1024)).toFixed(2));
+      console.log("Logo file:", file);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "brandImage");
+      formData.append("cloud_name", "dxyzeiigv");
+
+      try {
+        const res = await axios.post(
+          "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const data = res.data;
+        setImageUrl(data.secure_url);
+        setIsValue((prev) => ({ ...prev, logo_url: data.secure_url }));
+
+        // toast.success("Logo uploaded successfully!");
+        console.log("Uploaded logo URL:", data.secure_url);
+      } catch (error) {
+        console.error("Upload error:", error);
+      }
+    }
+  }
+
+  const isSave =
+    isValue.firstName.trim() !== "" &&
+    isValue.lastName.trim() !== "" &&
+    isValue.occupation.trim() !== "" &&
+    isValue.company.trim() !== "" &&
+    isValue.logo_url?.trim() !== "";
+
+  function Save() {
+    axios
+      .put(
+        "https://api.luround.com/v1/profile/personal-details/update",
+        isValue,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Profile Updated!");
+      });
+    console.log(isValue);
+  }
   return (
     <form method='PUT' onSubmit={handleProfileAPI}>
       <div className={styles.photosintros} ref={scrollPhoto}>
         <span>Photo & Intro</span>
 
         <div>
-          <div>
-            {/* {image ? ( */}
-            {/* <img
-              name='photoUrl'
-              className={`${styles.img} ${styles.editimage}`}
-              src={
-                typeof image === "string" ? image : URL.createObjectURL(image)
-              }
-            /> */}
-            {/* ) : (  */}
-            <img
-              className={`${styles.img} ${styles.editimage}`}
-              src={profile}
-            />
-            {/* )} */}
-            <label className={styles.edit} htmlFor='photo-edit'>
-              <svg
-                width='22'
-                height='22'
-                viewBox='0 0 22 22'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M19.2666 2.73341C18.9885 2.45518 18.6582 2.23448 18.2947 2.08391C17.9312 1.93334 17.5416 1.85583 17.1482 1.85583C16.7547 1.85583 16.3651 1.93334 16.0016 2.08391C15.6382 2.23448 15.3079 2.45518 15.0297 2.73341L3.76341 13.9997C3.42817 14.3349 3.18436 14.7509 3.05712 15.2081L1.87845 19.4176C1.85122 19.5152 1.85042 19.6182 1.87613 19.7162C1.90185 19.8142 1.95315 19.9036 2.02479 19.9753C2.09643 20.0469 2.18582 20.0982 2.28381 20.1239C2.38181 20.1496 2.48487 20.1488 2.58245 20.1216L6.79122 18.9429C7.24831 18.815 7.66474 18.5715 8.00036 18.2359L19.2666 6.9696C19.8283 6.40779 20.1438 5.64591 20.1438 4.8515C20.1438 4.05709 19.8283 3.29521 19.2666 2.73341ZM15.8381 3.54103C16.1856 3.19357 16.657 2.99841 17.1484 2.99848C17.6399 2.99855 18.1112 3.19385 18.4586 3.54141C18.8061 3.88897 19.0013 4.36032 19.0012 4.85177C19.0011 5.34322 18.8058 5.81452 18.4583 6.16198L17.2849 7.33455L14.6647 4.7136L15.8381 3.54103ZM13.8571 5.52198L16.4781 8.14293L7.19198 17.4283C6.9953 17.625 6.75127 17.7677 6.48341 17.8427L3.25217 18.7471L4.15655 15.5166C4.2317 15.2488 4.37443 15.0048 4.57103 14.8081L13.8571 5.52198Z'
-                  fill='white'
-                />
-              </svg>
-              <input
-                type='file'
-                ref={inputRef}
-                name='upload2'
-                // onChange={handleChange}
-                className={styles.photo}
-                id='photo-edit'
-                accept='image/png, image/jpeg, image/img'
-              />
-            </label>
-          </div>
+          <UploadImage
+            profile={profile}
+            inputRef={inputRef}
+            image={image}
+            handleImage={handleImage}
+          />
           <div className={styles.editprofileintroduce}>
             <div className={styles.firstname}>
               <span>First name</span>
@@ -74,7 +152,7 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                 name='firstName'
                 type='text'
                 value={isValue.firstName}
-                onChange={(e) => handleEditProfile(e)}
+                onChange={handleEditProfile}
               />
             </div>
             <div className={styles.firstname}>
@@ -84,7 +162,7 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                 type='text'
                 value={isValue.lastName}
                 name='lastName'
-                onChange={(e) => handleEditProfile(e)}
+                onChange={handleEditProfile}
               />
             </div>
             <div className={styles.firstname}>
@@ -104,7 +182,7 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                 placeholder='Your profession'
                 type='text'
                 value={isValue.occupation}
-                onChange={(e) => handleEditProfile(e)}
+                onChange={handleEditProfile}
               />
             </div>
 
@@ -150,15 +228,13 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
                         fill='#1D2E2E'
                         fillOpacity='0.65'
                       />
-                    </svg>
-
+                    </svg>{" "}
                     <div>
                       <label htmlFor='photo'>Upload Logo</label>
-
                       <input
                         type='file'
                         name='logo_url'
-                        // onChange={(e) => LogoUpload(e)}
+                        onChange={LogoUpload}
                         id='photo'
                         className={styles.photo}
                         accept='image/png, image/jpeg, image/img'
@@ -169,30 +245,37 @@ export default function EditIntro({ scrollPhoto, profile, inputRef }) {
               </div>
             </div>
             <>
-              {/* {logourl && ( */}
-              <div className={styles.logodelete}>
-                <div className={styles.logochange}>
-                  <img
-                    className={styles.logoimage}
-                    //   src={URL.createObjectURL(logourl)}
-                    alt='Uploaded Logo'
-                  />
-                  <div className={styles.uploadedlogo}>
-                    {/* <p>Uploaded Logo.{logourl.type.split("/").pop()}</p> */}
-                    <span>
-                      {/* {logourl.type.split("/").pop()} . {fileSizeInMB} mb */}
-                    </span>
+              {logourl && (
+                <div className={styles.logodelete}>
+                  <div className={styles.logochange}>
+                    <img
+                      className={styles.logoimage}
+                      src={URL.createObjectURL(logourl)}
+                      alt='Uploaded Logo'
+                    />
+                    <div className={styles.uploadedlogo}>
+                      <p>Uploaded Logo.{logourl.type.split("/").pop()}</p>
+                      <span>
+                        {logourl.type.split("/").pop()} . {fileSizeInMB} mb
+                      </span>
+                    </div>
                   </div>
+                  <button type='button' onClick={() => setLogoUrl(null)}>
+                    Delete
+                  </button>
                 </div>
-                <button>Delete</button>
-              </div>
-              {/* )} */}
+              )}
             </>
           </div>
         </div>
         <div className={styles.canceldone}>
-          <button className={styles.canceltime}>Cancel</button>
-          <button className={styles.donetime} type='submit'>
+          {/* <button className={styles.canceltime}>Cancel</button> */}
+          <button
+            disabled={!isSave}
+            className={styles.donetime}
+            onClick={Save}
+            type='button'
+          >
             Save
           </button>
         </div>

@@ -3,7 +3,6 @@
 import OtherDetails from "./OtherDetails";
 import profile from "../../../elements/Profile.jpg";
 import { useRef, useState, useEffect } from "react";
-import axios from "axios";
 import styles from "./EditProfile.module.css";
 import EditIntro from "./EditIntro";
 import EditAbout from "./EditAbout";

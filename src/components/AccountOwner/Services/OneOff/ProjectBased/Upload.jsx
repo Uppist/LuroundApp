@@ -3,50 +3,9 @@
 import React, { useState } from "react";
 import image from "../../../../elements/gallery.png";
 import styles from "./Project.module.css";
+import { toast } from "react-toastify";
 
-export default function Upload() {
-  const [Image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-
-  function handleImage(e) {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      setImage(selectedFile);
-      console.log("Selected file:", selectedFile);
-    }
-  }
-
-  async function UploadImage() {
-    if (!Image) return alert("Please select a file first");
-
-    const formData = new FormData();
-    formData.append("file", Image);
-    formData.append("upload_preset", "TimeBased");
-    formData.append("cloud_name", "dxyzeiigv");
-
-    try {
-      const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      const data = res.data;
-      setImageUrl(data.secure_url);
-      setTimeBased({ imageUrl: data.secure_url });
-      console.log(timebased);
-      toast.success("Image uploaded successfully!");
-
-      console.log("Uploaded image URL:", data.secure_url);
-    } catch (error) {
-      console.error("Upload error:", error);
-    }
-  }
-
+export default function Upload({ Image, UploadImage, handleImage }) {
   return (
     <>
       <img

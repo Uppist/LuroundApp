@@ -23,7 +23,7 @@ export default function Delete() {
           your account
         </p>
         <div className={styles.canceldone}>
-          <button className={styles.canceltime}>Cancel</button>
+          {/* <button className={styles.canceltime}>Cancel</button> */}
           <button type='submit' onClick={DeleteAcc} className={styles.donetime}>
             Continue
           </button>

@@ -5,13 +5,11 @@
 import styles from "./OneOff.module.css";
 // import Data from "./data.json";
 import React, { useContext, useState } from "react";
-import DetailOne from "./DetailService";
-import Timebased from "../TimeBased/TimeBased";
-import Projectbased from "../ProjectBased/ProjectBased";
+
 import Create from "./CreateService";
 import Update from "./UpdatedValue/Update";
 import EmptyState from "./EmptyState";
-import { ServiceContext, userContext } from "../../../../Context";
+import { ServiceContext } from "../../../../Context";
 
 export default function One({ backone }) {
   const [isDetail, setisDetail] = useState(null);

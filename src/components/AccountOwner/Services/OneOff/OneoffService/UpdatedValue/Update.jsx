@@ -19,7 +19,7 @@ export default function Update({ isVisible }) {
       {Array.isArray(userService) && userService.length > 0 ? (
         <>
           {userService.map((data, index) => (
-            // console.log(data, index);
+            // console.log(data, index)
 
             <div className={styles.eachoneoffcontainer}>
               <div className={styles.OneOffcontainer} key={data.title}>
@@ -38,8 +38,8 @@ export default function Update({ isVisible }) {
                           </span>
                         </div>
                         <span className={styles.text}>
-                          {data.description}
-                          {data.dots}
+                          {data.description.slice(0, 50)}
+                          {data.description.length > 50 ? "..." : ""}
                         </span>
                       </div>{" "}
                     </div>

@@ -3,15 +3,18 @@
 import React from "react";
 import styles from "./styles.module.css";
 import QRsvg from "./QRsvg";
+import { useLocation } from "react-router-dom";
 
 export default function QrCode({ Close }) {
+  const location = useLocation();
+  const store = location.pathname.includes("storefront");
   return (
     <div className='popupcancel'>
       <div className='overlay' onClick={Close}></div>
       <div className={styles.body}>
         <div>
           <div className={styles.cancelbooking}>
-            <label>Service QR Code</label>
+            <label>{store ? "Product" : "Service"} QR Code</label>
             <svg
               onClick={Close}
               width='24'
@@ -35,7 +38,7 @@ export default function QrCode({ Close }) {
           <p className={styles.p}>
             <i>
               Please scan QR code to share this <br />
-              service
+              {store ? "product" : "service"}
             </i>
           </p>
         </div>

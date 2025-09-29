@@ -1,15 +1,58 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Edit.module.css";
+import Services from "./Services";
+import axios from "axios";
 
 export default function AddService() {
+  const [service, setService] = useState(false);
+
+  function handleService() {
+    setService((prev) => !prev);
+  }
+
+  const [userService, setUserService] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  const token = localStorage.getItem("Token");
+
+  const serviceTypes = ["program", "one-off", "retainer", "event"];
+  const subtotal = selectedServices.reduce((sum, service) => {
+    // adjust based on your API shape
+    const price = Number(
+      service.project_pricing?.amount || service.price || service.amount || 0
+    );
+    return sum + price;
+  }, 0);
+
+  useEffect(() => {
+    Promise.all(
+      serviceTypes.map((type) =>
+        axios
+          .get(
+            `https://api.luround.com/v1/services/get-services?service_type=${type}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          .then((res) => res.data)
+      )
+    ).then((results) => {
+      // merge all into one array
+      const allServices = results.flat();
+      console.log(allServices);
+      setUserService(allServices);
+    });
+  }, []);
+
   return (
     <>
       <div>
         <div className={styles.addservice}>
           <label>Add service</label>
           <svg
+            onClick={handleService}
             width='24'
             height='24'
             viewBox='0 0 24 24'
@@ -23,11 +66,18 @@ export default function AddService() {
             />
           </svg>
         </div>
+        {service ? (
+          <Services
+            userService={userService}
+            setSelectedServices={setSelectedServices}
+            selectedServices={selectedServices}
+          />
+        ) : null}
         <hr />
         <div className={styles.service}>
           <div>
             <label>SubTotal</label>
-            <span>₦0</span>
+            <span>₦{Number(subtotal).toLocaleString()}</span>
           </div>
           <div>
             {" "}
@@ -53,6 +103,7 @@ export default function AddService() {
             id=''
             placeholder='write a note to the recipient'
           ></textarea>
+          <span> 0/500</span>
         </div>
       </div>
     </>

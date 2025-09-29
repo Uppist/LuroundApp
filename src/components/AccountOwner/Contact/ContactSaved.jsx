@@ -1,24 +1,26 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "./Contact.module.css";
 import Transaction from "./Transaction";
 import { Link, useLocation } from "react-router-dom";
 import NewContact from "./NewContact";
+import exportsvg from "../../../components/elements/contact/export.svg";
+import { ContactContext } from "../../Context";
+import axios from "axios";
+import MobileContactSaved from "./mobileContact/MobileContactSaved";
 
-export default function ContactSaved() {
-  const location = useLocation();
-
-  const { contacts } = location.state || { contacts: [] }; // Default to an empty array if state is undefined
-
-  console.log("contact", contacts);
-  const [transactionIndex, setTransactionIndex] = useState(null);
+export default function ContactSaved({
+  Transactions,
+  setTransactions,
+  transactions,
+  setTransactionIndex,
+  transactionIndex,
+}) {
+  // const [transactionIndex, setTransactionIndex] = useState(null);
   const [isSend, setIsSend] = useState(false);
+  // const [transactions, setTransactions] = useState({});
   const dropdownRef = useRef([]);
-
-  useEffect(() => {
-    dropdownRef.current = contacts.map(() => React.createRef());
-  }, [contacts]);
 
   // Toggle dropdown open/close
   function Send(index, e) {
@@ -35,6 +37,7 @@ export default function ContactSaved() {
 
   // Open transaction for specific contact
   function History(index) {
+    // alert("Transaction history");
     setTransactionIndex(index);
   }
 
@@ -61,90 +64,133 @@ export default function ContactSaved() {
     };
   }, [isSend]);
 
+  const [isContacts, setIsContacts] = useContext(ContactContext);
+
+  console.log(isContacts);
+
+  //get transactions
+
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
+    isContacts.forEach((contact) => {
+      axios
+        .get(
+          `https://api.luround.com/v1/crm/customer-transactions?customer_email=${contact.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(`Transactions for ${contact.email}:`, res.data);
+          setTransactions((prev) => ({
+            ...prev,
+            [contact.email]: res.data,
+          }));
+        });
+    });
+  }, [isContacts]);
+
+  const mobileview = window.innerWidth <= 900;
   return (
-    <div className={styles.contact}>
-      <NewContact />
-      <div className={styles.account}>
-        <div className={styles.export}>
-          <span>Export Contact</span>
-        </div>
-
-        <div>
-          <div className={styles.saved}>
-            <span>Name</span>
-            <span>Email</span>
-            <span>Phone</span>
+    <>
+      {mobileview ? (
+        <MobileContactSaved
+          Transactions={Transactions}
+          setTransactions={setTransactions}
+          setTransactionIndex={setTransactionIndex}
+        />
+      ) : (
+        <div className={styles.account}>
+          <div className={styles.export}>
+            <img src={exportsvg} alt='' />
+            <span>Export contacts</span>
           </div>
-          <hr />
-        </div>
 
-        <div className='transaction-line'>
-          {contacts.map((contact, index) => (
-            <div className={styles.saveddetail} key={index}>
-              <span>{contact.name}</span>
-              <span>{contact.email}</span>
-              <span>{contact.phone}</span>
+          <div>
+            <div className={styles.saved}>
+              <span>Name</span>
+              <span>Email </span>
+              <span>Phone</span>
+              <span className={styles.text}>send</span>
+              <span className={styles.text}> transaction</span>
+            </div>
+            <hr />
+          </div>
 
-              <div className={styles.send}>
-                <span>Send</span>
+          <div className='transaction-line'>
+            {isContacts.map((contact, index) => (
+              <div className={styles.saveddetail} key={index}>
+                <span>{contact.name}</span>
+                <span>{contact.email}</span>
+                <span>{contact.phone_number}</span>
+
+                <div className={styles.send}>
+                  <span>Send</span>
+                  <svg
+                    onClick={(e) => Send(index, e)}
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                      stroke='#FFFFFF'
+                      strokeOpacity='0.8'
+                      strokeMiterlimit='10'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+
+                  {isSend === index && (
+                    <ul
+                      className={styles.sendlist}
+                      ref={dropdownRef.current[index]}
+                    >
+                      <Link to='/quote'>
+                        {" "}
+                        <li>Quote</li>
+                      </Link>
+                      <li onClick={() => Click("invoices")}>Invoice</li>
+                      <Link to='/receipt'>
+                        <li>Receipt</li>
+                      </Link>
+                    </ul>
+                  )}
+                </div>
+
                 <svg
-                  onClick={(e) => Send(index, e)}
-                  width='16'
-                  height='16'
-                  viewBox='0 0 16 16'
+                  onClick={() => History(index)}
+                  width='7'
+                  height='12'
+                  viewBox='0 0 7 12'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
                 >
                   <path
-                    d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                    stroke='#FFFFFF'
+                    d='M1 11L6 6L1 1'
+                    stroke='#1D2E2E'
                     strokeOpacity='0.8'
-                    strokeMiterlimit='10'
+                    strokeWidth='1.5'
                     strokeLinecap='round'
                     strokeLinejoin='round'
                   />
                 </svg>
-
-                {isSend === index && (
-                  <ul
-                    className={styles.sendlist}
-                    ref={dropdownRef.current[index]}
-                  >
-                    <Link to='/quote'>
-                      {" "}
-                      <li>Quote</li>
-                    </Link>
-                    <li onClick={() => Click("invoices")}>Invoice</li>
-                    <Link to='/receipt'>
-                      <li>Receipt</li>
-                    </Link>
-                  </ul>
+                {transactionIndex === index && (
+                  <Transaction
+                    transactions={transactions[contact.email]}
+                    Cancel={Cancel}
+                  />
                 )}
               </div>
-
-              <svg
-                onClick={() => History(index)}
-                width='7'
-                height='12'
-                viewBox='0 0 7 12'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M1 11L6 6L1 1'
-                  stroke='#1D2E2E'
-                  strokeOpacity='0.8'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-
-              {transactionIndex === index && <Transaction Cancel={Cancel} />}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

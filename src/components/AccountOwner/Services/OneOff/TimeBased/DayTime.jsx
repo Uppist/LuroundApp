@@ -5,6 +5,7 @@ import styles from "./Time.module.css";
 import BookingPeriod from "./BookingPeriod";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function DayTime({
   backprice,
   backone,
@@ -65,7 +66,10 @@ export default function DayTime({
       .then((res) => {
         console.log(res.data);
         console.log("Data sent:", dataToSend);
-        navigate("/oneoff", { state: dataToSend });
+        toast.success("One-off service created sucessfully");
+        setTimeout(() => {
+          navigate("/oneoff", { state: dataToSend });
+        }, 1000);
       })
       .catch((err) => {
         console.error("Error sending data:", err);

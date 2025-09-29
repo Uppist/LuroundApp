@@ -3,10 +3,16 @@
 import styles from "./NavBar.module.css";
 import notify from "./Notification.json";
 import jenny from "../../../../../public/jennifer.png";
+import { useContext } from "react";
+import { NotificationContext } from "../../../Context";
 export default function Notification({ onClose, onComponentSwitch }) {
   function Notify(item) {
     onComponentSwitch(item);
   }
+
+  const [notification, setNotification] = useContext(NotificationContext);
+
+  console.log(notification);
   return (
     <div>
       <div className={styles.profiledropdown}>
@@ -14,10 +20,10 @@ export default function Notification({ onClose, onComponentSwitch }) {
         <div className={styles.notificationdropdown}>
           <label>Your Notifications</label>
           <div className={styles.scrollablenotification}>
-            {notify.map((data, index) => (
+            {notification.map((data, index) => (
               <div
                 className={styles.notificationbooked}
-                onClick={() => Notify("bookings")}
+                // onClick={() => Notify("bookings")}
               >
                 <img src={jenny} />
 

@@ -10,21 +10,28 @@ import { useContext } from "react";
 
 export default function About() {
   const [userData] = useContext(userContext);
+  const hasContactInfo = userData?.media_links?.some(
+    (item) =>
+      ["Location", "Mobile", "Email"].includes(item.name) &&
+      item.link?.trim() !== ""
+  );
 
-  const hasContactInfo =
-    userData?.socialLinks?.location?.link?.trim() ||
-    userData?.socialLinks?.mobile?.link?.trim() ||
-    userData?.socialLinks?.email?.link?.trim();
-
-  const hasSocialMedia =
-    userData?.socialLinks?.website?.link?.trim() ||
-    userData?.socialLinks?.instagram?.link?.trim() ||
-    userData?.socialLinks?.linkedin?.link?.trim() ||
-    userData?.socialLinks?.youtube?.link?.trim() ||
-    userData?.socialLinks?.facebook?.link?.trim() ||
-    userData?.socialLinks?.twitter?.link?.trim();
+  const hasSocialMedia = userData?.media_links?.some(
+    (item) =>
+      [
+        "Website",
+        "Instagram",
+        "LinkedIn",
+        "YouTube",
+        "Facebook",
+        "Twitter",
+      ].includes(item.name) && item.link?.trim() !== ""
+  );
 
   console.log(userData.media_links);
+  console.log(hasContactInfo);
+  console.log(hasSocialMedia);
+  console.log(userData?.media_links);
   return (
     <section className={styles.about}>
       {!userData?.about?.trim() ? (
@@ -42,19 +49,19 @@ export default function About() {
               </>
             )}
 
-          {/* {hasContactInfo && (
+          {hasContactInfo && (
             <>
               <hr />
-              <Contact />
+              <Contact hasContactInfo={hasContactInfo} />
             </>
-          )} */}
+          )}
 
-          {/* {hasSocialMedia && (
+          {hasSocialMedia && (
             <>
               <hr />
               <SocialMedia />
             </>
-          )} */}
+          )}
         </>
       )}
     </section>

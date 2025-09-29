@@ -1,13 +1,13 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import scan from "../../elements/scan.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { userContext } from "../../Context";
+import axios from "axios";
 
-export default function ViewerProfile() {
-  const [userData, setUserData] = useContext(userContext);
+export default function ViewerProfile({ userData }) {
   console.log(userData);
   return (
     <div className={styles.review}>

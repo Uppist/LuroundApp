@@ -3,9 +3,14 @@
 .sidebar {
   width: 240px;
   padding: 25px;
-  height: 982px;
+  height: 650px;
   background-color: white;
   position: fixed;
+  overflow: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .luround {
@@ -165,4 +170,10 @@
   border-left: 2px solid hsla(180, 100%, 40%, 1);
   border-radius: 2px;
   padding: 0px 73px 0px 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
 }

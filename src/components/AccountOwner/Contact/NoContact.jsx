@@ -9,7 +9,16 @@ export default function NoContact({
   AddContact,
   CancelAddContact,
   visible,
+  isValue,
+  setIsValue,
+  Values,
+  contacts,
+  setContacts,
+  setIsContacts,
+  isContacts,
 }) {
+  const mobileview = window.innerWidth <= 900;
+
   return (
     <div className={` ${styles.savedaccount}  ${visible}`}>
       <div className={styles.bank}>
@@ -55,7 +64,7 @@ export default function NoContact({
         </svg>
 
         <div className={styles.savedaddaccount}>
-          <span>No contact yet </span>
+          <span>No contacts yet </span>
           <label>
             when you add a contact, it'll
             <br /> show up here
@@ -67,9 +76,20 @@ export default function NoContact({
           className={`${styles.addanaccount} ${isAddContact ? "open" : ""}`}
           onClick={AddContact}
         >
-          Add a contact
+          {mobileview ? <>Refresh</> : <>Add a contact</>}
         </button>
-        {isAddContact && <Addcontact CancelAddContact={CancelAddContact} />}
+        {isAddContact && (
+          <Addcontact
+            CancelAddContact={CancelAddContact}
+            isValue={isValue}
+            setIsValue={setIsValue}
+            Values={Values}
+            contacts={contacts}
+            setContacts={setContacts}
+            isContacts={isContacts}
+            setIsContacts={setIsContacts}
+          />
+        )}
       </div>
     </div>
   );

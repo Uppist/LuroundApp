@@ -10,6 +10,8 @@ export default function NoAccount({
   isAddAccount,
   handleOneOffClick,
   visible,
+  setSavedBanks = { setSavedBanks },
+  savedBanks = { savedBanks },
 }) {
   return (
     <div className={`${styles.saved} ${visible}`}>
@@ -35,6 +37,8 @@ export default function NoAccount({
           <AddBank
             handleOneOffClick={handleOneOffClick}
             CancelAddAccount={CancelAddAccount}
+            setSavedBanks={setSavedBanks}
+            savedBanks={savedBanks}
           />
         )}
       </div>

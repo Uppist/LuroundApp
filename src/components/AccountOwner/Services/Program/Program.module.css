@@ -58,7 +58,7 @@
 
 .retainercontainer:hover {
   background-color: hsla(180, 12%, 95%, 1);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .contenttype {

@@ -1,12 +1,52 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../CreateAccount/style.module.css";
 import image from "../../../elements/LuroundApp.png";
 import Animation from "../../Animation/Animation";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function ResetPassword() {
+  const location = useLocation();
+
+  const emailData = location.state.data.data.email || {};
+  const [passwordChange, setPasswordChange] = useState({
+    newpassword: "",
+    confirmpassword: "",
+  });
+
+  function handleChange(e) {
+    setPasswordChange((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  const isReset =
+    passwordChange.newpassword.trim() !== "" &&
+    passwordChange.confirmpassword.trim() !== "";
+
+  const navigate = useNavigate();
+  function Reset() {
+    const data = {
+      otp: "",
+      email: emailData,
+      new_password: passwordChange.newpassword,
+    };
+    if (passwordChange.newpassword === passwordChange.confirmpassword) {
+      toast.success("Password Match!");
+      navigate("/password-updated");
+
+      axios
+        .put("https://api.luround.com/v1/reset-password", data)
+        .then((res) => console.log(res.data))
+        .catch((err) => {
+          console.log(err.data);
+        });
+    } else {
+      toast.error("Please make sure your password match");
+    }
+    console.log(data);
+  }
   return (
     <section className={styles.account}>
       <div className={styles.imgdiv}>
@@ -21,31 +61,33 @@ export default function ResetPassword() {
             <div className={styles.container}>
               <form action='' className={styles.form}>
                 <div>
-                  <label htmlFor=''>Password</label>
+                  <label htmlFor=''>New Password</label>
                   <input
                     type='password'
-                    name=''
+                    name='newpassword'
                     id=''
+                    value={passwordChange.newpassword}
                     placeholder='Input password'
-                    //   value={logindetail.email}
-                    //   onChange={(e) => LoginDetail(e)}
+                    onChange={handleChange}
                   />
                 </div>{" "}
                 <div>
                   <label htmlFor=''>Confirm Password</label>
                   <input
                     type='password'
-                    name='password'
+                    name='confirmpassword'
                     id=''
                     placeholder='Re-type password'
-                    //   value={logindetail.password}
-                    //   onChange={(e) => LoginDetail(e)}
+                    value={passwordChange.confirmpassword}
+                    onChange={handleChange}
                   />
                 </div>{" "}
               </form>
-              <Link to='/password-updated'>
-                <button type='submit'>Reset</button>
-              </Link>
+              {/* <Link to='/password-updated'> */}
+              <button type='button' disabled={!isReset} onClick={Reset}>
+                Reset
+              </button>
+              {/* </Link> */}
             </div>
           </div>
 

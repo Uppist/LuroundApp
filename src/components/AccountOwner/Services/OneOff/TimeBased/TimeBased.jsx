@@ -11,7 +11,20 @@ import { ToastContainer, toast } from "react-toastify";
 import styles from "./Time.module.css";
 import { Link, Outlet } from "react-router-dom";
 
-export default function Timebased({ timebased, setTimeBased }) {
+export default function Timebased({
+  timebased,
+  setTimeBased,
+  existingData,
+  onCancel,
+}) {
+  const [form, setForm] = useState({
+    service_name: existingData?.service_name || "",
+    description: existingData?.description || "",
+    availability: existingData?.availability || [],
+    delivery_timeline: existingData?.delivery_timeline || "",
+    project_pricing: existingData?.project_pricing || "",
+    // ... other fields
+  });
   const [Image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   function handleImage(e) {
@@ -19,6 +32,7 @@ export default function Timebased({ timebased, setTimeBased }) {
     if (selectedFile) {
       setImage(selectedFile);
       console.log("Selected file:", selectedFile);
+      toast.success("Please upload your image");
     }
   }
 
@@ -126,19 +140,8 @@ export default function Timebased({ timebased, setTimeBased }) {
             </div>
           </div>
 
-          <Outlet />
+          <Outlet existingData={existingData} form={form} />
         </div>
-        <ToastContainer
-          position='top-right'
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </div>
     </>
   );

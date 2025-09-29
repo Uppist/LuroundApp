@@ -319,7 +319,7 @@ input[type="checkbox"]:checked::after {
   float: right;
   border: 0;
   padding: 12px 51px;
-  border-radius: 16px;
+  border-radius: 8px;
   background-color: hsla(180, 100%, 40%, 1);
   font-size: 16px;
   font-weight: 600;
@@ -328,6 +328,27 @@ input[type="checkbox"]:checked::after {
 
 .next:hover {
   background-color: hsla(180, 100%, 36%, 1);
+}
+
+.cancel {
+  padding: 12px 51px;
+  border-radius: 8px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  background-color: hsla(0, 0%, 98%, 1);
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.cancel:hover {
+  background-color: hsla(0, 0%, 93%, 1);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
 }
 
 .next:disabled,
@@ -365,16 +386,27 @@ input[type="checkbox"]:checked::after {
 .donetime {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 23%, 15%, 0.8);
 }
+.canceltime {
+  background-color: hsla(0, 0%, 98%, 1);
+}
+
+.canceltime:hover {
+  background-color: hsla(0, 0%, 93%, 1);
+}
 
 .donetime {
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
+}
+
+.donetime:hover {
+  background-color: hsla(180, 100%, 36%, 1);
 }
 
 /*Time styling*/
@@ -463,6 +495,12 @@ input[type="checkbox"]:checked::after {
   border-radius: 16px;
   width: -webkit-fill-available;
   align-items: baseline;
+  height: 244px;
+  overflow: scroll;
+}
+
+.menubooking::-webkit-scrollbar {
+  display: none;
 }
 
 .menubooking span:hover {

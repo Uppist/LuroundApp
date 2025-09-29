@@ -15,7 +15,7 @@ export default function Page({ bookings, isOpen, bookingsOpen }) {
   return (
     <div className={styles.bookingcontainer}>
       {bookings.map((booking, bookingIndex) =>
-        (booking.details || []).map((detail, detailIndex) => {
+        booking.details.map((detail, detailIndex) => {
           return (
             <div key={`${bookingIndex}-${detailIndex}`}>
               <div className={styles.bookcontainer}>

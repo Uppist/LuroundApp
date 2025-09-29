@@ -181,21 +181,31 @@ export default function Time({
                   </span>
                 </div>
                 {isOpenFrom[index] && (
-                  <ul className={styles.menu}>
-                    {time.map((option) => (
-                      <li
-                        key={option}
-                        className={`menu-item ${
-                          selectedFrom[index] === option ? "active" : ""
-                        }`}
+                  <>
+                    <div className='profiledropdown'>
+                      <div
+                        className='overlaydropdown'
                         onClick={() =>
-                          handleDropdownSelect(index, option, "from")
+                          setIsOpenFrom((prev) => ({ ...prev, [index]: false }))
                         }
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
+                      ></div>
+                      <ul className={styles.menu}>
+                        {time.map((option) => (
+                          <li
+                            key={option}
+                            className={`menu-item ${
+                              selectedFrom[index] === option ? "active" : ""
+                            }`}
+                            onClick={() =>
+                              handleDropdownSelect(index, option, "from")
+                            }
+                          >
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
@@ -213,21 +223,29 @@ export default function Time({
                   </span>
                 </div>
                 {isOpenTo[index] && (
-                  <ul className={styles.menu}>
-                    {time.map((option) => (
-                      <li
-                        key={option}
-                        className={`menu-item ${
-                          selectedTo[index] === option ? "active" : ""
-                        }`}
-                        onClick={() =>
-                          handleDropdownSelect(index, option, "to")
-                        }
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className='profiledropdown'>
+                    <div
+                      className='overlaydropdown'
+                      onClick={() =>
+                        setIsOpenTo((prev) => ({ ...prev, [index]: false }))
+                      }
+                    ></div>
+                    <ul className={styles.menu}>
+                      {time.map((option) => (
+                        <li
+                          key={option}
+                          className={`menu-item ${
+                            selectedTo[index] === option ? "active" : ""
+                          }`}
+                          onClick={() =>
+                            handleDropdownSelect(index, option, "to")
+                          }
+                        >
+                          {option}
+                        </li>
+                      ))}
+                    </ul>{" "}
+                  </div>
                 )}
               </div>
             </div>

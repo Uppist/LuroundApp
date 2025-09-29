@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
-import styles from './store.module.css';
-import { FiSearch, FiShoppingCart, FiX, FiArrowRight } from 'react-icons/fi';
-import BookInfo from './BookInfo';
-import Cart from './Cart';
-import CartSuccess from './CartSuccess';
+/** @format */
+
+import React, { useContext, useState } from "react";
+import styles from "./store.module.css";
+import { FiSearch, FiShoppingCart, FiX, FiArrowRight } from "react-icons/fi";
+import BookInfo from "./BookInfo";
+import Cart from "./Cart";
+import CartSuccess from "./CartSuccess";
 
 // Book Images
-import beautifulResistance from '/public/assets/png/beautiful-resistance.png';
-import contentFuel from '/public/assets/png/content-fuel.png';
-import thinking from '/public/assets/png/thinking.png';
-import milk from '/public/assets/png/milk.png';
+import beautifulResistance from "/public/assets/png/beautiful-resistance.png";
+import contentFuel from "/public/assets/png/content-fuel.png";
+import thinking from "/public/assets/png/thinking.png";
+import milk from "/public/assets/png/milk.png";
+import { StorefrontContext } from "../../Context";
+import { ViewerStoreContext } from "../../ViewerContext";
 
 const Store = () => {
   const [cartCount, setCartCount] = useState(0);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isBookInfo, setIsBookInfo] = useState(false);
   const [isCart, setIsCart] = useState(false);
@@ -23,7 +27,7 @@ const Store = () => {
 
   const handleClearSearch = () => {
     setIsSearchActive(false);
-    setSearchText('');
+    setSearchText("");
   };
 
   const handleBookClick = (book) => {
@@ -34,9 +38,12 @@ const Store = () => {
 
   // Function to add item to cart, passed to BookInfo
   const handleAddToCart = () => {
-    if (selectedBook && !cartItems.some(item => item.title === selectedBook.title)) {
+    if (
+      selectedBook &&
+      !cartItems.some((item) => item.title === selectedBook.title)
+    ) {
       setCartItems([...cartItems, selectedBook]);
-      setCartCount(prevCount => prevCount + 1);
+      setCartCount((prevCount) => prevCount + 1);
     }
     setIsCart(true); // Show Cart
     setIsBookInfo(false); // Hide BookInfo
@@ -69,89 +76,124 @@ const Store = () => {
     setIsBookInfo(false); // Ensure BookInfo is hidden
   };
 
-  const books = [
-    { title: 'Beautiful Resistance', price: 'N7,000', image: beautifulResistance, author: 'Jon Tyson' },
-    { title: 'Thinking Fast and Slow', price: 'N11,500', image: thinking },
-    { title: 'Milk and Honey', price: 'N3,000', image: milk },
-    { title: 'The Content Fuel Framework', price: 'N2,500', image: contentFuel },
-    { title: 'The Content Fuel Framework', price: 'N2,500', image: contentFuel },
-    { title: 'Milk and Honey', price: 'N3,000', image: milk },
-    { title: 'Beautiful Resistance', price: 'N7,000', image: beautifulResistance, author: 'Jon Tyson' },
-    { title: 'Thinking Fast and Slow', price: 'N11,500', image: thinking },
-  ];
+  const [userViewerStore, setUserViewerStore] = useContext(ViewerStoreContext);
+  function formatCategory(category) {
+    return category
+      .replace(/\s*&\s*/g, "/")
+      .replace(/\s+/g, "_")
+      .trim()
+      .toLowerCase();
+  }
 
-  return (
-    isBookInfo ? (
-      <BookInfo
-        book={selectedBook}
-        onAddToCart={handleAddToCart}
-        onBack={handleBackToStore}
-      />
-    ) : isCart ? (
-      <Cart
-        cartCount={cartCount}
-        cartItems={cartItems}
-        onBack={handleBackToStore}
-        onItemsChange={handleItemsChange}
-        onCheckout={handleCheckoutSuccess} // New prop for checkout action
-      />
-    ) : isCartSuccess ? (
-      <CartSuccess onBack={handleBackToStore} />
-    ) : (
-      <div className={styles.storeContainer}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>Storefront</h2>
+  const [click, setClick] = useState("All");
 
-          <div className={styles.searchWrapper}>
-            <FiSearch className={styles.searchIcon} />
-            <input
-              type="text"
-              placeholder={isSearchActive ? '' : 'Search'}
-              className={styles.searchInput}
-              value={searchText}
-              onFocus={() => setIsSearchActive(true)}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            {isSearchActive && (
-              <FiX className={styles.clearIcon} onClick={handleClearSearch} />
-            )}
-          </div>
+  console.log(userViewerStore);
 
-          <div className={styles.cartWrapper}>
-            <FiShoppingCart className={styles.cartIcon} onClick={handleCartClick} />
-            <span className={styles.cartBadge}>{cartCount}</span>
-          </div>
+  return isBookInfo ? (
+    <BookInfo
+      book={selectedBook}
+      onAddToCart={handleAddToCart}
+      onBack={handleBackToStore}
+      // storeFront={storeFront[index]}
+    />
+  ) : isCart ? (
+    <Cart
+      cartCount={cartCount}
+      cartItems={cartItems}
+      book={selectedBook}
+      onBack={handleBackToStore}
+      onItemsChange={handleItemsChange}
+      onCheckout={handleCheckoutSuccess} // New prop for checkout action
+    />
+  ) : isCartSuccess ? (
+    <CartSuccess onBack={handleBackToStore} />
+  ) : (
+    <div className={styles.storeContainer}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Storefront</h2>
+
+        <div className={styles.searchWrapper}>
+          <FiSearch className={styles.searchIcon} />
+          <input
+            type='text'
+            placeholder={isSearchActive ? "" : "Search"}
+            className={styles.searchInput}
+            value={searchText}
+            onFocus={() => setIsSearchActive(true)}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          {isSearchActive && (
+            <FiX className={styles.clearIcon} onClick={handleClearSearch} />
+          )}
         </div>
 
-        <div className={styles.tabs}>
-          {['All', 'eBooks', 'Courses', 'Music & Audio', 'Photography', 'Digital arts'].map((item, index) => (
-            <button
-              key={index}
-              className={`${styles.tabButton} ${index === 0 ? styles.activeTab : ''}`}
-            >
-              {item}
-            </button>
-          ))}
+        <div className={styles.cartWrapper}>
+          <FiShoppingCart
+            className={styles.cartIcon}
+            onClick={handleCartClick}
+          />
+          <span className={styles.cartBadge}>{cartCount}</span>
         </div>
+      </div>
 
-        <div className={styles.booksGrid}>
-          {books.map((book, index) => (
+      <div className={styles.tabs}>
+        {[
+          "All",
+          "eBooks",
+          "Courses",
+          "Music & Audio",
+          "Photography",
+          "Digital arts",
+        ].map((item, index) => (
+          <button
+            key={index}
+            onClick={() => setClick(item)}
+            className={`${styles.tabButton} ${
+              click === item ? styles.activeTab : ""
+            }`}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.booksGrid}>
+        {userViewerStore
+          .filter((data) => {
+            if (click === "All" || click === "") return true;
+            return formatCategory(data.category) === formatCategory(click);
+          })
+          .map((book, index) => (
             <div
               key={index}
               className={styles.bookItem}
               onClick={() => handleBookClick(book)}
             >
-              <img src={book.image} alt={book.title} className={styles.bookImage} />
+              <img
+                src={book.photoURL}
+                alt={book.product_name}
+                className={styles.bookImage}
+              />
               <div className={styles.bookDetails}>
-                <h3 className={styles.bookTitle}>{book.title}</h3>
-                <p className={styles.bookPrice}>{book.price}</p>
+                <h3 className={styles.bookTitle}>{book.product_name}</h3>
+                <p className={styles.bookPrice}>
+                  ₦{Number(book.price).toLocaleString()}
+                </p>
                 <FiArrowRight className={styles.arrowIcon} />
               </div>
             </div>
           ))}
-        </div>
       </div>
-    )
+      {userViewerStore.filter((data) => {
+        if (click === "All" || click === "") return true;
+        return formatCategory(data.category) === formatCategory(click);
+      }).length === 0 && (
+        <p className={styles.emptyState}>
+          {" "}
+          No {click === "All" || click === "" ? "products" : click} here yet
+        </p>
+      )}
+    </div>
   );
 };
 

@@ -3,7 +3,11 @@
 import styles from "./styles.module.css";
 import time from "../../../elements/services/timebased.svg";
 import axios from "axios";
-import { ServiceContext, userContext } from "../../../Context";
+import {
+  ServiceContext,
+  StorefrontContext,
+  userContext,
+} from "../../../Context";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,10 +22,14 @@ export default function Delete({
 }) {
   const [userService, setUserService] = useContext(ServiceContext);
 
+  const [storeFront, setStoreFront] = useContext(StorefrontContext);
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  function Delete() {
+  const store = location.pathname.includes("storefront");
+
+  function handleDelete() {
     const token = localStorage.getItem("Token");
     axios
       .delete(
@@ -45,6 +53,29 @@ export default function Delete({
           }
         }, 3000);
       });
+
+    if (store) {
+      axios
+        .delete(
+          `https://api.luround.com/v1/storefront/delete-product?productId=${data._id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log("Product deleted");
+          toast.success("Product Deleted");
+          setStoreFront((prev) => prev.filter((item) => item._id !== data._id));
+          setTimeout(() => {
+            navigate("/storefront");
+          }, 1000);
+          Close();
+        })
+        .catch((err) => {
+          // toast.error("Failed to delete product");
+          console.log(err);
+        });
+    }
   }
 
   return (
@@ -54,7 +85,7 @@ export default function Delete({
         <div className={styles.body}>
           <div>
             <div className={styles.cancelbooking}>
-              <label>Delete Service</label>
+              <label>Delete {store ? <>Product</> : <>Service</>} </label>
               <svg
                 onClick={Close}
                 width='24'
@@ -76,60 +107,61 @@ export default function Delete({
             {/* <hr /> */}
           </div>
 
-          {showContainer ? (
-            <>
-              <div className={styles.container}>
-                <div className={styles.titleservice}>
-                  <span className={styles.title}>{data.service_name}</span>
-                  <div>
-                    <span className={styles.type}>
-                      {" "}
-                      service type: {data.service_type}{" "}
-                      {data?.one_off_type === "time-based" ? (
-                        <img src={time} alt='' />
-                      ) : (
-                        <>{/* <img src={time} alt='' /> */}</>
-                      )}
-                    </span>
-                  </div>
-                </div>
-                <p className={styles.paragraph}>
-                  Are you sure you want to delete this service?
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className='cancel-container'>
-                <div className='titleservice cancel-title'>
-                  <span className='title title-service'>
-                    {dataretainer.Title}
+          {store ? (
+            <div className={styles.container}>
+              {/* <div className={styles.titleservice}>
+                <span className={styles.title}>{data.product_name}</span>
+              </div> */}
+              <p className={styles.paragraph}>
+                Are you sure you want to delete this product?
+              </p>
+            </div>
+          ) : showContainer ? (
+            <div className={styles.container}>
+              <div className={styles.titleservice}>
+                <span className={styles.title}>{data.service_name}</span>
+                <div>
+                  <span className={styles.type}>
+                    service type: {data.service_type}{" "}
+                    {data?.one_off_type === "time-based" && (
+                      <img src={time} alt='' />
+                    )}
                   </span>
-                  <div className='service-one'>
-                    <span className='servicetype'>
-                      {" "}
-                      {dataretainer.servicetype}{" "}
-                    </span>
-                    <span className='oneofftext'> {dataretainer.oneoff} </span>
-                  </div>
                 </div>
-                <p className='title-p'>
-                  Are you sure you want to delete this service?
-                </p>
               </div>
-            </>
+              <p className={styles.paragraph}>
+                Are you sure you want to delete this service?
+              </p>
+            </div>
+          ) : (
+            <div className='cancel-container'>
+              <div className='titleservice cancel-title'>
+                <span className='title title-service'>
+                  {dataretainer.Title}
+                </span>
+                <div className='service-one'>
+                  <span className='servicetype'>
+                    {dataretainer.servicetype}
+                  </span>
+                  <span className='oneofftext'>{dataretainer.oneoff}</span>
+                </div>
+              </div>
+              <p className='title-p'>
+                Are you sure you want to delete this service?
+              </p>
+            </div>
           )}
 
           <div className={styles.docancel}>
             <button className={styles.cancel} onClick={Close}>
               Cancel
             </button>
-            <button className={styles.delete} onClick={Delete}>
+            <button className={styles.delete} onClick={handleDelete}>
               Delete
             </button>
           </div>
         </div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </div>
   );

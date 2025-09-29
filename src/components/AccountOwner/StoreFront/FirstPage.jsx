@@ -1,11 +1,13 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./style.module.css";
 import PopUp from "./Popup/PopUp";
 
 import SecondPage from "./SecondPage";
 import NoStorefront from "./NoStorefront";
+import { StorefrontContext } from "../../Context";
+import { Link } from "react-router-dom";
 // import DetailPopup from "./DetailPopup";
 
 export default function FirstPage({ showPart }) {
@@ -13,6 +15,9 @@ export default function FirstPage({ showPart }) {
   const [activeComponent, setActiveComponent] = useState("nostorefront");
   const [visible, setVisible] = useState("");
 
+  const [storeFront, setStoreFront] = useContext(StorefrontContext);
+
+  console.log(storeFront);
   function AddProduct() {
     setisStorefont(true);
   }
@@ -28,15 +33,14 @@ export default function FirstPage({ showPart }) {
   function CancelAddProduct() {
     setisStorefont(false);
   }
+
   return (
     <section className={styles.contact}>
-      {isStorefont ? (
-        <PopUp CancelAddProduct={CancelAddProduct} handleClick={handleClick} />
-      ) : (
-        <>
-          <div className={styles.addcontacts}>
-            <label>Storefront</label>
-            <div className={styles.order}>
+      <>
+        <div className={styles.addcontacts}>
+          <label>Storefront</label>
+          <div className={styles.order}>
+            <Link to='/orders'>
               <div className={styles.ordersvg}>
                 <svg
                   width='24'
@@ -87,7 +91,9 @@ export default function FirstPage({ showPart }) {
                   />
                 </svg>
               </div>
+            </Link>
 
+            <Link to='/add-product'>
               <div className={styles.addcontact}>
                 <svg
                   width='24'
@@ -108,23 +114,30 @@ export default function FirstPage({ showPart }) {
                   Add product
                 </label>
               </div>
-            </div>
+            </Link>
           </div>
+        </div>
 
-          {activeComponent === "secondpage" && (
-            <SecondPage onComponentSwitch={handleClick} />
-          )}
-
-          {!isStorefont && activeComponent === "nostorefront" && (
+        {storeFront.length > 0 ? (
+          <>
+            {" "}
+            <SecondPage
+              storeFront={storeFront}
+              onComponentSwitch={handleClick}
+            />
+          </>
+        ) : (
+          <>
+            {" "}
             <NoStorefront
               isStorefont={isStorefont}
               AddProduct={AddProduct}
               CancelAddProduct={CancelAddProduct}
               visible={visible}
             />
-          )}
-        </>
-      )}
+          </>
+        )}
+      </>
     </section>
   );
 }

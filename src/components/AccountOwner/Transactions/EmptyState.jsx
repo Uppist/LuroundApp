@@ -1,0 +1,109 @@
+/** @format */
+
+import React from "react";
+import styles from "./empty.module.css";
+
+export default function EmptyState({}) {
+  return (
+    <div className={` ${styles.savedaccount}`}>
+      <div className={styles.bank}>
+        <svg
+          width='261'
+          height='121'
+          viewBox='0 0 261 121'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <circle
+            cx='11.2586'
+            cy='61.4657'
+            r='10.4355'
+            fill='white'
+            stroke='#00A3A3'
+            strokeWidth='0.646219'
+          />
+          <rect
+            x='4.98279'
+            y='7.67188'
+            width='190.069'
+            height='21.5172'
+            rx='7.75463'
+            fill='#EBFFFF'
+          />
+          <rect
+            x='70.431'
+            y='50.707'
+            width='190.069'
+            height='21.5172'
+            rx='7.75463'
+            fill='#EBFFFF'
+          />
+          <rect
+            x='34.569'
+            y='94.6367'
+            width='130.897'
+            height='21.5172'
+            rx='7.75463'
+            fill='#EBFFFF'
+          />
+          <rect
+            x='6.14499'
+            y='27.391'
+            width='114.613'
+            height='75.1648'
+            rx='4.20043'
+            transform='rotate(-12.9733 6.14499 27.391)'
+            fill='white'
+            stroke='#00A3A3'
+            strokeWidth='1.93866'
+          />
+          <rect
+            x='66.9176'
+            y='44.5006'
+            width='114.613'
+            height='75.1648'
+            rx='4.20043'
+            fill='white'
+            stroke='#00A3A3'
+            strokeWidth='1.93866'
+          />
+          <rect
+            x='68.6379'
+            y='64.1562'
+            width='111.172'
+            height='16.1379'
+            fill='#D5FEFF'
+          />
+          <path
+            d='M68.6379 64.1562H110.776M114.81 64.1562H125.121M129.155 64.1562H170.397M179.362 80.2942H149.776M139.466 80.2942H88.3621'
+            stroke='#00A3A3'
+            strokeWidth='1.93866'
+            strokeLinecap='round'
+          />
+          <circle
+            cx='205.81'
+            cy='105.395'
+            r='10.4355'
+            fill='white'
+            stroke='#00A3A3'
+            strokeWidth='0.646219'
+          />
+          <circle cx='227.328' cy='18.4305' r='10.7586' fill='#EBFFFF' />
+        </svg>
+
+        <div className={styles.savedaddaccount}>
+          <span>No transaction yet </span>
+          <label>when you get a transaction, it'll show up here</label>
+        </div>
+      </div>
+      <div>
+        <button
+          onClick={() => window.location.reload()}
+          className={`${styles.addanaccount}`}
+        >
+          Refresh
+        </button>
+      </div>
+    </div>
+  );
+}

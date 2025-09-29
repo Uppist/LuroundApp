@@ -7,7 +7,7 @@ import Store from "../../../components/AccountViewer/Storefront/Store";
 export default function ViewerStorefrontRouting() {
   return (
     <Routes>
-      <Route path='/stores' element={<Store />} />
+      <Route path='/stores/:username' element={<Store />} />
     </Routes>
   );
 }

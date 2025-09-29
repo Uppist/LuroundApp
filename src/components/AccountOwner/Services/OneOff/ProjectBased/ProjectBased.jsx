@@ -22,6 +22,7 @@ export default function Projectbased({
     description: "",
     service_type: serviceType,
     one_off_type: Type,
+    // photoURL: "",
   });
 
   const [delivery_timeline, setDeliveryTime] = useState("");
@@ -35,6 +36,51 @@ export default function Projectbased({
   }
 
   const navigate = useNavigate();
+
+  const [Image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  function handleImage(e) {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+      console.log("Selected file:", selectedFile);
+      setTimeout(() => {
+        toast.success("Please upload your image");
+      }, 400);
+    }
+  }
+
+  async function UploadImage() {
+    if (!Image) return alert("Please select a file first");
+
+    const formData = new FormData();
+    formData.append("file", Image);
+    formData.append("upload_preset", "TimeBased");
+    formData.append("cloud_name", "dxyzeiigv");
+
+    try {
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const data = res.data;
+      setImageUrl(data.secure_url);
+      setTimeBased({ photoURL: data.secure_url });
+      console.log(timebased);
+      toast.success("Image uploaded successfully!");
+
+      console.log("Uploaded image URL:", data.secure_url);
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  }
 
   function handlePricing(e) {
     setPricingTime(e.target.value);
@@ -50,10 +96,12 @@ export default function Projectbased({
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        toast.success("Project sucessfully added!");
         setProjectBased(details);
         console.log(res.data);
-        navigate("/oneoff", { state: details });
+        toast.success("Project sucessfully added!");
+        setTimeout(() => {
+          navigate("/oneoff", { state: details });
+        }, 2000);
       });
   }
 
@@ -96,7 +144,11 @@ export default function Projectbased({
 
         <div className={styles.projectbasedgrid}>
           <div>
-            <Upload />
+            <Upload
+              Image={Image}
+              handleImage={handleImage}
+              UploadImage={UploadImage}
+            />
           </div>
 
           <div className={styles.section}>
@@ -131,7 +183,7 @@ export default function Projectbased({
 
               <div className={styles.span}>
                 {" "}
-                <span>0/500</span>
+                <span>{createService.description.length}/500</span>
               </div>
             </div>
 
@@ -160,7 +212,6 @@ export default function Projectbased({
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

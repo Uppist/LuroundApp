@@ -1,0 +1,216 @@
+/** @format */
+
+.fullcalendar {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  position: relative;
+  top: 143px;
+  background-color: white;
+}
+
+.select {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.calendar {
+  margin: 20px auto;
+  overflow: hidden;
+  display: grid;
+  gap: 16px;
+  font-family: "Inter";
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.header > svg {
+  cursor: pointer;
+}
+
+.daynames,
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dayname,
+.day,
+.emptyday {
+  width: 14.28%;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.day {
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transform: background-color 0.3s;
+  background: white;
+}
+
+.day:hover {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+
+.selected {
+  background-color: hsla(180, 100%, 40%, 1);
+  color: white;
+}
+
+.selecteddatecontainer {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+}
+
+.changedate {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.formatteddate {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.updated {
+  color: hsla(180, 23%, 15%, 1);
+  /* width: 122px; */
+}
+
+.change {
+  font-size: 16px;
+  font-family: "Inter";
+  font-weight: 400;
+  color: hsla(180, 100%, 36%, 1);
+  border: 0;
+  background-color: white;
+  padding: 0;
+}
+
+.cg {
+  font-size: 14px;
+}
+
+.selecttime {
+  font-size: 18px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.duration {
+  font-size: 16px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+}
+
+.updateschedulecontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: -24px;
+  padding: 0px 12px;
+}
+
+.updateschedule {
+  display: flex;
+  gap: 16px;
+}
+
+.reasonforchange {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.reasonforchange > textarea {
+  border-radius: 16px;
+  border: 1px solid hsla(180, 11%, 89%, 1);
+  height: 88px;
+}
+
+.updatebutton {
+  display: grid;
+  place-items: center;
+}
+
+.updatebutton > button {
+  background-color: hsla(197, 100%, 11%, 1);
+  color: hsla(198, 100%, 96%, 1);
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+  border: 0;
+  padding: 12px 72px;
+  border-radius: 16px;
+}
+
+.timeselectioncontainer {
+  display: grid;
+  place-items: center;
+}
+
+/* TimeButtons.css */
+
+.buttoncontainer {
+  margin: 10px 0;
+}
+
+.buttontime {
+  width: 280px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid hsla(180, 23%, 15%, 0.65);
+  font-family: "Inter";
+  background-color: white;
+}
+
+.buttontime.active {
+  width: 170px;
+  border: 1px solid hsla(180, 100%, 36%, 1);
+  color: hsla(180, 100%, 36%, 1);
+}
+
+.buttonnext {
+  margin-left: 10px;
+  display: none;
+}
+
+.buttonnext.show {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 0;
+  width: 105px;
+  background-color: hsla(197, 100%, 11%, 1);
+  color: white;
+  font-family: "Inter";
+}
+
+.timeservicedescription {
+  display: grid;
+  gap: 32px;
+}

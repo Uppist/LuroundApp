@@ -30,7 +30,11 @@ export default function FirstStep() {
 
   function handleNextStep() {
     console.log(information);
-    setNextStep(true);
+    if (data.service_type === "retainer") {
+      setDetails(true);
+    } else {
+      setNextStep(true);
+    }
   }
 
   function handleCloseNext() {
@@ -44,6 +48,8 @@ export default function FirstStep() {
   function handleCloseDetails() {
     setDetails(false);
   }
+
+  console.log(data);
   return (
     <>
       {details ? (
@@ -54,7 +60,7 @@ export default function FirstStep() {
         />
       ) : (
         <div className={styles.booknow}>
-          <Link to='/services' state={{ data }}>
+          <Link to={-1} state={{ data }}>
             <span className={styles.back}>
               <svg
                 width='7'
@@ -78,8 +84,11 @@ export default function FirstStep() {
 
           <div className={styles.container}>
             <div className={styles.header}>
-              <label htmlFor=''>Book {data.Title}</label>
-              <span>{nextStep ? "2 of 2 steps" : "1 of 2 steps"}</span>
+              <label htmlFor=''>Book {data.service_name}</label>
+
+              {data.service_type !== "retainer" && (
+                <span>{nextStep ? "2 of 2 steps" : "1 of 2 steps"}</span>
+              )}
             </div>
             <div className={styles.form}>
               <InputDetails
@@ -89,7 +98,7 @@ export default function FirstStep() {
               />
 
               <div className={styles.calendar}>
-                {nextStep ? (
+                {nextStep && data.service_type !== "retainer" ? (
                   <SecondStep
                     handleCloseNext={handleCloseNext}
                     handleDetails={handleDetails}

@@ -1,6 +1,32 @@
 /** @format */
 import styles from "./style.module.css";
-export default function ConfirmWithdraw({ onClose, confirm }) {
+export default function ConfirmWithdraw({
+  onClose,
+  confirm,
+  handleChange,
+  isNext,
+  inputRefs,
+  pinValues,
+  confirmPin,
+}) {
+  function handleConfirm() {
+    if (pinValues !== confirmPin) {
+      toast.error("Your pins have to match");
+    } else {
+      const token = localStorage("Token");
+      axios
+        .post(
+          "https://api.luround.com/v1/wallet/verify-wallet-pin",
+          pinValues,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => console.log("data", res.data));
+      confirm();
+    }
+  }
+
   return (
     <div>
       <div className='popupcancel popupwithdrawpin'>
@@ -33,15 +59,24 @@ export default function ConfirmWithdraw({ onClose, confirm }) {
               <label>Confirm your 4-digit pin</label>
             </div>
             <div className={styles.withdrawal}>
-              <input type='password' />
-              <input type='password' />
-              <input type='password' />
-              <input type='password' />
+              {inputRefs.map((ref, id) => (
+                <input
+                  key={id}
+                  type='password'
+                  maxLength={1}
+                  ref={ref}
+                  onChange={(e) => handleChange(e, id)}
+                />
+              ))}
             </div>
           </div>
 
           <div>
-            <button className='next Next' onClick={confirm}>
+            <button
+              disabled={!isNext}
+              className={styles.next}
+              onClick={handleConfirm}
+            >
               Confirm
             </button>
           </div>

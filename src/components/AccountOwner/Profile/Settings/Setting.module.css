@@ -152,6 +152,11 @@
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
 }
+
+.donetime:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .canceldone {
   display: flex;
   justify-content: end;

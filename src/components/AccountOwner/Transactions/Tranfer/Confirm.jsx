@@ -1,20 +1,69 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./transfer.module.css";
 import Success from "./Success";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export default function Confirm({ Cancel }) {
+export default function Confirm({ Cancel, details, account }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFadeOut, setIsFadeOut] = useState("fade-in");
-  function NextSuccess() {
-    setIsFadeOut("fade-out");
+  const [confirmPin, setConfirmPin] = useState(["", "", "", ""]);
+  const inputRefs = [useRef(), useRef(), useRef(), useRef()];
 
-    setTimeout(() => {
-      setIsSuccess(true);
-      setIsFadeOut("fade-in");
-    }, 200);
+  // console.log(account);
+
+  function NextSuccess() {
+    // setIsFadeOut("fade-out");
+
+    const data = {
+      account_bank: account.bank_code,
+      account_number: account.account_number,
+      amount: details.amount,
+      wallet_pin: confirmPin.join(""),
+      recipient_code: account.recipient_code,
+      reference: "N/A",
+    };
+    const token = localStorage.getItem("Token");
+
+    axios
+      .post("https://api.luround.com/v1/wallet/withdraw-funds", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        const id = toast.loading("Processing…");
+
+        toast.update(id, {
+          render: "Done!",
+          type: "success",
+          isLoading: false,
+          autoClose: 2000,
+        });
+        setTimeout(() => {
+          setIsSuccess(true);
+          setIsFadeOut("fade-in");
+        }, 200);
+      })
+      .catch((err) => {
+        toast.error("Wrong pin, please try again.");
+        setConfirmPin(["", "", "", ""]);
+      });
   }
+
+  function handleChange(e, id) {
+    const value = e.target.value;
+    const newPinValues = [...confirmPin];
+    newPinValues[id] = value;
+    setConfirmPin(newPinValues);
+
+    if (value.length === 1 && id < inputRefs.length - 1) {
+      inputRefs[id + 1].current.focus();
+    }
+  }
+
+  const isNext = confirmPin.every((val) => val.length === 1);
 
   return (
     <>
@@ -49,18 +98,31 @@ export default function Confirm({ Cancel }) {
 
             <div className={styles.pattern}>
               <p>
-                You are about to withdraw <span>₦5000</span> from your wallet to{" "}
-                <span>Ronald Richard - 0265007474 - GTB</span>{" "}
+                You are about to withdraw <span>₦{details.amount}</span> from
+                your wallet to{" "}
+                <span>
+                  {account.account_name} - {account.account_number} -{" "}
+                  {account.bank_name}
+                </span>{" "}
               </p>
               <div className={styles.password}>
                 <div className={styles.label}>
                   <label>Confirm your 4-digit pin</label>
                 </div>
                 <div className={styles.pin}>
-                  <input type='password' />
-                  <input type='password' />
-                  <input type='password' />
-                  <input type='password' />
+                  {inputRefs.map((ref, id) => (
+                    <input
+                      key={id}
+                      type='password'
+                      maxLength={1}
+                      ref={ref}
+                      value={confirmPin[id]}
+                      onChange={(e) => handleChange(e, id)}
+                    />
+                    // <input type='password' maxLength={1} />
+                    // <input type='password' maxLength={1} />
+                    // <input type='password' maxLength={1} />
+                  ))}
                 </div>
 
                 <div className={styles.numberpin}>
@@ -93,7 +155,9 @@ export default function Confirm({ Cancel }) {
                 </div>
               </div>{" "}
             </div>
-            <button onClick={NextSuccess}>Withdraw</button>
+            <button disabled={!isNext} onClick={NextSuccess}>
+              Withdraw
+            </button>
           </div>
         </section>
       )}

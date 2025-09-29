@@ -9,6 +9,7 @@ import Signup from "./Signup";
 import { useState } from "react";
 import axios from "axios";
 import Password from "./Password/Password";
+import { toast } from "react-toastify";
 
 export default function CreateAccount() {
   const [logindetail, setLogindetail] = useState({
@@ -36,7 +37,7 @@ export default function CreateAccount() {
     e.preventDefault();
 
     if (password.password !== password.confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -56,7 +57,7 @@ export default function CreateAccount() {
 
       const accessToken = response.data.accessToken;
 
-      localStorage.setItem("userData", JSON.stringify(data));
+      // localStorage.setItem("userData", JSON.stringify(data));
 
       const profileResponse = await axios.get(
         "https://api.luround.com/v1/profile/get",
@@ -66,23 +67,27 @@ export default function CreateAccount() {
         }
       );
 
-      const userData = {
-        name: profileResponse.data.displayName || "",
-        company: profileResponse.data.company || "",
-        photoUrl: profileResponse.data.photoUrl || "",
-        url: profileResponse.data.luround_url || "",
-        logo: profileResponse.data.logo_url || "",
-        about: profileResponse.data.about || "",
-        socialLinks: profileResponse.data.media_links || [],
-        occupation: profileResponse.data.occupation || "",
-        email: profileResponse.data.email || "",
-      };
+      // const userData = {
+      //   name: profileResponse.data.displayName || "",
+      //   company: profileResponse.data.company || "",
+      //   photoUrl: profileResponse.data.photoUrl || "",
+      //   url: profileResponse.data.luround_url || "",
+      //   logo: profileResponse.data.logo_url || "",
+      //   about: profileResponse.data.about || "",
+      //   socialLinks: profileResponse.data.media_links || [],
+      //   occupation: profileResponse.data.occupation || "",
+      //   email: profileResponse.data.email || "",
+      // };
 
-      localStorage.setItem("userData", JSON.stringify(userData));
-      navigate("/profile-page", { state: userData });
+      // localStorage.setItem("userData", JSON.stringify(userData));
+      toast.success("Account created successfully!");
+      setTimeout(() => {
+        navigate("/Login");
+      }, 1000);
     } catch (error) {
       console.error("Sign-up or profile fetch failed:", error);
-      alert("Something went wrong. Please try again.");
+      toast.error(error.response.data.message.message);
+      // console.log(error.message.response.data.message.message);
     }
   };
 
@@ -90,9 +95,8 @@ export default function CreateAccount() {
     (val) => val.trim() !== ""
   );
 
-  const isPasswordCheck = Object.values(password).every(
-    (val) => val.trim() !== ""
-  );
+  const isPasswordCheck =
+    password.password.length >= 8 && password.confirmPassword.length >= 8;
 
   const [nextStep, setNextStep] = useState(false);
 

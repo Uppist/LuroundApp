@@ -37,7 +37,7 @@ a {
 .label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .label label {
@@ -155,6 +155,10 @@ a {
 .form button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.form button:hover {
+  background-color: hsla(180, 100%, 36%, 1);
 }
 
 .google {

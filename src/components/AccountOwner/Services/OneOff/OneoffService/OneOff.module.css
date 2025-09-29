@@ -80,6 +80,10 @@
   padding: 0 60px;
 }
 
+.personaltrainingdetails a {
+  width: fit-content;
+}
+
 .OneOffcontainer {
   display: flex;
   width: -webkit-fill-available;
@@ -92,7 +96,7 @@
 }
 .OneOffcontainer:hover {
   background-color: hsla(180, 12%, 95%, 1);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .titlecontainer {

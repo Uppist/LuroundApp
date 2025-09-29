@@ -27,26 +27,22 @@ export default function Financials() {
       </div>
 
       <div className={styles.financialcontainer}>
-        <div>
+        <div className={styles.container1}>
           <Link to='/quote'>
             <label className={styles.quote}>Quotes</label>
           </Link>
         </div>
-        <div>
+        <div className={styles.container2}>
           <Link to='/invoice'>
             <label className={styles.invoice}>Invoices</label>
           </Link>
         </div>
-        <div>
+        <div className={styles.container3}>
           <Link to='/receipt'>
             <label className={styles.receipt}>Receipts</label>
           </Link>
         </div>
       </div>
-
-      {/* Conditionally render Edit */}
-      {activeComponent === "edit" && <Edit />}
-      {activeComponent === "quote" && <Quotes />}
     </section>
   );
 }

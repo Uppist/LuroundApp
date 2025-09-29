@@ -19,7 +19,7 @@ export default function WriteReview() {
       <section className={styles.writeReview}>
         <div className={styles.container}>
           <span className={styles.text}>
-            <Link to='/viewowner'>
+            <Link to={-1}>
               <svg
                 width='20'
                 height='20'

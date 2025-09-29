@@ -21,6 +21,135 @@
   transition: opacity 1.3s;
 }
 
+.createnew {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.createnew:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.createnew > label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: white;
+  cursor: pointer;
+}
+
+/** @format */
+
+.contact {
+  display: grid;
+  gap: 40px;
+  margin: 25px;
+  position: relative;
+  top: 80px;
+}
+
+.addcontacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.addcontacts > label {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.addcontact {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.addcontact > label {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(180, 100%, 96%, 1);
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ordersvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  background-color: white;
+}
+
+.savedaccount {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 160px 24px;
+  gap: 32px;
+}
+
+.bank {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+}
+
+.savedaddaccount {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+.savedaddaccount > span {
+  font-size: 20px;
+  font-weight: 600;
+  color: hsla(180, 23%, 15%, 1);
+}
+
+.savedaddaccount label {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+  color: rgba(29, 46, 46, 0.8);
+}
+
+.addanaccount {
+  padding: 12px 73px;
+  background-color: hsla(180, 100%, 40%, 1);
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.addanaccount:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
 .delete {
   display: flex;
   flex-direction: column;

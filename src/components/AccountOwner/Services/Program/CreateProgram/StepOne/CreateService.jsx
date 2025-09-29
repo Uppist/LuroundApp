@@ -120,6 +120,7 @@ export default function CreateService({
               <span>Description</span>
               <textarea
                 name='description'
+                maxLength={500}
                 value={createService.description}
                 onChange={handleChange}
                 placeholder='Write a brief descriptive summary of the service you provide'
@@ -127,7 +128,7 @@ export default function CreateService({
             </div>
             <div className={styles.span}>
               {" "}
-              <span>0/500</span>
+              <span>{createService.description.length}/500</span>
             </div>
           </div>
         </div>

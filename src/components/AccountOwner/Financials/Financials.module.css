@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.createnew:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
 .createnew > label {
   display: flex;
   align-items: center;
@@ -48,57 +52,76 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
+  background-color: white;
+  border-radius: 24px;
 }
 
 .financialcontainer div {
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   color: hsla(180, 23%, 15%, 1);
-  background: url("../elements/bg.png") no-repeat;
-  background-position-x: right;
-  background-position-y: bottom;
+  border-radius: 24px;
+  font-size: 20px;
 }
 
-.quote {
+.container1 {
   background: linear-gradient(
     180deg,
     hsla(0, 56%, 96%, 1),
     hsla(245, 92%, 91%, 1)
   );
-  width: 260px;
-  height: 220px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.invoice {
+.container2 {
   background: linear-gradient(
     180deg,
     hsla(30, 89%, 96%, 1),
     hsla(282, 70%, 94%, 1)
   );
-  width: 260px;
-  height: 220px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.receipt {
+.container3 {
   background: linear-gradient(
     180deg,
     hsla(245, 92%, 91%, 1),
     hsla(0, 56%, 96%, 1)
   );
+}
+
+.quote {
+  background: url("../../elements/bg.png") no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
   width: 260px;
   height: 220px;
-  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.invoice {
+  background: url("../../elements/bg.png") no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  width: 260px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.receipt {
+  background: url("../../elements/bg.png") no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
+  width: 260px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .lists {

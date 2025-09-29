@@ -13,6 +13,7 @@ export default function EditAbout({ scrollNext }) {
   function handleAbout(e) {
     setIsAbout({ ...isAbout, [e.target.name]: e.target.value });
   }
+
   async function handleSubmitAbout(e) {
     e.preventDefault();
     const local = localStorage.getItem("Token");
@@ -38,6 +39,8 @@ export default function EditAbout({ scrollNext }) {
 
     setIsAbout({ about: "" });
   }
+
+  const isabout = isAbout.about.trim() !== "";
   return (
     <form onSubmit={handleSubmitAbout}>
       <div className={styles.editprofileabout} ref={scrollNext}>
@@ -50,13 +53,13 @@ export default function EditAbout({ scrollNext }) {
         ></textarea>
 
         <div className={styles.canceldone}>
-          <button className={styles.canceltime}>Cancel</button>
-          <button type='submit' className='done-time'>
+          {/* <button className={styles.canceltime}>Cancel</button> */}
+          <button type='submit' disabled={!isabout} className={styles.donetime}>
             Save
           </button>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </form>
   );
 }

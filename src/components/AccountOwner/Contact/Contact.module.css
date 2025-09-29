@@ -1,5 +1,9 @@
 /** @format */
 
+.mobileview {
+  display: none;
+}
+
 .contact {
   display: grid;
   gap: 40px;
@@ -13,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.addcontacts > label {
+.contactImg > label {
   font-size: 20px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
@@ -91,6 +95,12 @@
   display: grid;
   gap: 32px;
   width: 500px;
+  height: 340px;
+  overflow: scroll;
+}
+
+.contactcontainer::-webkit-scrollbar {
+  display: none;
 }
 .contactline {
   display: flex;
@@ -187,21 +197,32 @@
   font-size: 12px;
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.export span {
+  border-bottom: 1px solid hsla(180, 23%, 15%, 0.8);
 }
 .saved {
   padding: 24px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   font-size: 12px;
   font-weight: 500;
   gap: 115px;
   color: hsla(180, 23%, 15%, 0.65);
 }
 
+.text {
+  visibility: hidden;
+}
+
 .saveddetail {
   padding: 16px;
   display: grid;
-  grid-template-columns: 4fr 6fr 5fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   font-size: 14px;
   font-weight: 600;
   gap: 115px;
@@ -210,10 +231,16 @@
   align-items: center;
 }
 
+.saveddetail > svg {
+  width: -webkit-fill-available;
+  display: flex;
+}
+
 .send {
   display: flex;
   align-items: center;
   gap: 4px;
+  width: fit-content;
   border-radius: 8px;
   padding: 6px 10px;
   background-color: hsla(197, 100%, 11%, 1);
@@ -252,6 +279,7 @@
   display: flex;
   flex-direction: column;
   /* gap: 32px; */
+  height: fit-content;
   border: 1px solid hsla(180, 11%, 89%, 1);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -260,7 +288,7 @@
 .amount {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 150px;
   padding: 24px;
   background-color: hsla(180, 12%, 95%, 1);
   border-bottom: 1px solid hsla(180, 11%, 89%, 1);
@@ -271,19 +299,300 @@
 .date {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 120px;
 }
 
 .amount2 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 160px;
   padding: 24px;
-  border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  border-top: 1px solid hsla(180, 11%, 89%, 1);
 }
 
 .date2 {
   display: flex;
   align-items: center;
-  gap: 45px;
+  gap: 90px;
+}
+
+.addcontacts > img {
+  display: none;
+}
+
+.contactImg img {
+  display: none;
+}
+
+.notransaction {
+  position: relative;
+  background: white;
+  padding: 24px;
+  z-index: 1001;
+}
+
+@media only screen and (max-width: 900px) {
+  .mobileview {
+    display: block;
+  }
+
+  .desktopview {
+    display: none;
+  }
+  .contact {
+    top: 0;
+    margin: 0;
+    padding: 24px 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .addcontact {
+    padding: 6px 16px;
+  }
+
+  .addcontacts {
+    width: -webkit-fill-available;
+    padding: 0 12px;
+  }
+
+  .contactImg {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .addcontact > label {
+    font-size: 14px;
+  }
+
+  .addcontacts > img {
+    display: block;
+  }
+
+  .contactImg > label {
+    font-size: 16px;
+  }
+  .contactImg img {
+    display: block;
+  }
+
+  .bank svg {
+    width: 100px;
+    height: 100px;
+  }
+
+  .savedaddaccount span {
+    font-size: 18px;
+  }
+
+  .savedaddaccount label {
+    font-size: 16px;
+  }
+
+  .contactcontainer {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    padding: 0 12px;
+  }
+  .contactsvg {
+    justify-content: unset;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .next {
+    width: -webkit-fill-available;
+    margin-top: 230px;
+  }
+
+  .contactdetails input {
+    border: none;
+    border-bottom: 1px solid hsla(180, 23%, 15%, 0.65);
+    border-radius: 0;
+    padding: 16px 0;
+  }
+
+  .addnewcontact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid hsla(180, 100%, 40%, 1);
+  }
+  .addnewcontact label {
+    color: hsla(180, 100%, 40%, 1);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .initials {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: hsla(180, 100%, 40%, 1);
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .saveddetail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 12px;
+  }
+
+  .seeMore {
+    position: relative;
+    height: 260px;
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 12px;
+    border-bottom: 1px solid hsla(180, 11%, 89%, 1);
+  }
+
+  .saveddetail svg {
+    width: fit-content;
+  }
+
+  .saveddetail > div,
+  .seeMore > div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .account {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: -webkit-fill-available;
+  }
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .searchinput {
+    display: flex;
+    align-items: center;
+    width: 360px;
+    border: 1px solid rgba(225, 231, 231, 1);
+    border-radius: 8px;
+  }
+
+  .search {
+    position: absolute;
+    width: 17px;
+    margin-left: 20px;
+  }
+
+  .input {
+    padding: 14px 16px;
+    border: 0;
+    margin-left: 40px;
+    font-family: "Inter";
+    width: -webkit-fill-available;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+
+  .export {
+    width: -webkit-fill-available;
+    padding: 0 12px;
+  }
+
+  .line {
+    width: -webkit-fill-available;
+  }
+  .rotatedArrow {
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+  }
+
+  .more {
+    position: absolute;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: baseline !important;
+    gap: 24px !important;
+    border-top: 1px solid hsla(180, 11%, 89%, 1);
+    padding: 20px 50px;
+  }
+
+  .more span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: hsla(180, 23%, 15%, 1);
+  }
+
+  .more label {
+    font-size: 14px;
+    font-weight: 400;
+    color: hsla(212, 96%, 44%, 1);
+    text-decoration: underline;
+    font-style: italic;
+    cursor: pointer;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .buttons button {
+    font-size: 12px;
+    font-weight: 400;
+    color: hsla(180, 23%, 15%, 1);
+    padding: 8px 6px;
+    border: 1px solid hsla(180, 23%, 15%, 0.8);
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .details {
+    width: fit-content;
+  }
+  .date {
+    font-size: 14px;
+    gap: 50px;
+  }
+
+  .amount {
+    padding: 14px 16px;
+    gap: 38px;
+    font-size: 14px;
+  }
+
+  .date2 {
+    font-size: 12px;
+    gap: 26px;
+  }
+
+  .amount2 {
+    gap: 45px;
+    padding: 14px 20px;
+    width: fit-content;
+    font-size: 12px;
+  }
 }

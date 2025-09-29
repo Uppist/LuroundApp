@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../../apis/LoginAPI/LoginAPI";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 import axios from "axios";
 import { useContext } from "react";
@@ -33,6 +35,11 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // if (logindetail.password !== userData.password) {
+    //   toast.error("Incorrect Password");
+    //   return;
+    // }
+
     try {
       const { data } = await axios.post(
         "https://api.luround.com/v1/auth/login",
@@ -54,17 +61,52 @@ export default function Login() {
       setUserData(profileRes.data);
       setTimeout(() => {
         navigate("/profile-page");
-      }, 3000);
+      }, 1000);
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
-      toast.error("Unauthorized");
+      const errorMsg =
+        error.response?.data?.message?.message ||
+        error.response?.data?.message ||
+        error.message;
+      toast.error(errorMsg);
     }
   }
 
-  // useEffect(() => {
-  //   if (userData.email && !fromSignup) {
-  //   }
-  // }, [userData, navigate, fromSignup]);
+  async function handleGoogleLogin(res) {
+    try {
+      const googleToken = res.credential;
+      console.log("Google Token:", jwtDecode(googleToken));
+
+      const googleData = {
+        email: jwtDecode(googleToken).email,
+        // name: jwtDecode(googleToken).name,
+        firstName: jwtDecode(googleToken).given_name,
+        lastName: jwtDecode(googleToken).family_name,
+        user_nToken: "",
+      };
+      console.log(googleData);
+      const { data } = await axios.post(
+        "https://api.luround.com/google/signIn",
+        googleData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      localStorage.setItem("Token", data.accessToken);
+
+      toast.success("Login Successful");
+
+      const profileRes = await axios.get(
+        "https://api.luround.com/v1/profile/get",
+        { headers: { Authorization: `Bearer ${data.accessToken}` } }
+      );
+
+      setUserData(profileRes.data);
+      navigate("/profile-page");
+    } catch (err) {
+      console.error("Google login error:", err.response?.data || err.message);
+      // toast.error("Google login failed");
+    }
+  }
 
   const isFormComplete = Object.values(logindetail).every(
     (val) => val.trim() !== ""
@@ -95,10 +137,11 @@ export default function Login() {
             </div>
           </div>
           <div className={styles2.google}>
-            <div className={styles2.googlebutton}>
-              <img src={google} alt='Google logo' />
-              <button type='button'>Login with Google</button>
-            </div>
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => toast.error("Google login failed")}
+            />
+
             <div className={styles2.login}>
               <label>Don't have an account?</label>
               <Link to='/'>
@@ -109,7 +152,6 @@ export default function Login() {
         </div>
       </div>
       <Animation />
-      <ToastContainer style={{ fontFamily: "Inter" }} />
     </section>
   );
 }

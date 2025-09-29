@@ -2,6 +2,7 @@
 
 import React from "react";
 import styles from "./style.module.css";
+import { Link } from "react-router-dom";
 
 export default function NoStorefront({
   visible,
@@ -62,13 +63,16 @@ export default function NoStorefront({
         </div>
       </div>
       <div>
-        <button
-          className={`${styles.addanaccount} ${isStorefront ? "open" : ""}`}
-          onClick={AddProduct}
-        >
-          Add a product
-        </button>
-        {isStorefront && <Addcontact CancelAddProduct={CancelAddProduct} />}
+        <Link to='/add-product'>
+          <button
+            className={`${styles.addanaccount} ${isStorefront ? "open" : ""}`}
+            onClick={AddProduct}
+          >
+            Add a product
+          </button>
+        </Link>
+
+        {/* <Addcontact CancelAddProduct={CancelAddProduct} /></Link> */}
       </div>
     </div>
   );

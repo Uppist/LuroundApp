@@ -75,6 +75,11 @@
   position: relative;
   top: -40px;
   left: 340px;
+  cursor: pointer;
+}
+
+.edit input {
+  cursor: pointer;
 }
 
 .editprofileabout {
@@ -241,6 +246,15 @@
   padding: 0px 16px;
 }
 
+.uploadyourlogo div label {
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
 .filetype {
   display: flex;
   flex-direction: column;
@@ -261,31 +275,48 @@
   cursor: pointer;
   height: 36px;
   padding: 0px 16px;
-  color: white;
   border: 0;
   background-color: hsla(180, 100%, 40%, 1);
-  font-size: 14px;
-  font-weight: 500;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
 }
 
+.label span {
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.label input {
+  cursor: pointer;
+}
+
 .canceltime,
 .donetime {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 400;
   font-size: 16px;
   color: hsla(180, 23%, 15%, 0.8);
 }
 
+.donetime:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
 .donetime {
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
+}
+.donetime:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .canceldone {

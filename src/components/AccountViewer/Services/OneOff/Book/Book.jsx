@@ -12,7 +12,8 @@ export default function Book() {
   console.log(data);
   return (
     <>
-      {data.one_off_type === "time-based" ? (
+      {data.one_off_type === "time-based" ||
+      data.service_type === "retainer" ? (
         <FirstStep />
       ) : (
         <ProjectFirstStep />

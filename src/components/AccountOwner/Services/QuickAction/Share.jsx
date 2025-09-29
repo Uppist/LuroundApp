@@ -5,11 +5,15 @@ import styles from "./styles.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import timeImage from "../../../elements/services/timebased.svg";
+import { useLocation } from "react-router-dom";
 
 export default function Share({ Close, data }) {
-  function copyText() {
-    navigator.clipboard.writeText(data.service_link);
+  const location = useLocation();
 
+  const store = location.pathname.includes("storefront");
+  function copyText() {
+    navigator.clipboard.writeText(data.service_link || data.product_link);
+    console.log("copied");
     toast.success("copied");
   }
   return (
@@ -41,16 +45,20 @@ export default function Share({ Close, data }) {
         </div>
         <div className={styles.container}>
           <div className={styles.shareservice}>
-            <span className={styles.titleshare}>{data.service_name}</span>
-            <div className={styles.serviceType}>
-              <span className={styles.type}> Service type:</span>
-              <span className={styles.text}> {data.service_type} </span>
-              {data?.one_off_type === "time-based" ? (
-                <img src={timeImage} alt='' />
-              ) : (
-                <>{/* <img src={time} alt='' /> */}</>
-              )}
-            </div>
+            <span className={styles.titleshare}>
+              {store ? data.product_name : data.service_name}
+            </span>
+            {!store && (
+              <div className={styles.serviceType}>
+                <span className={styles.type}> Service type:</span>
+                <span className={styles.text}> {data.service_type} </span>
+                {data?.one_off_type === "time-based" ? (
+                  <img src={timeImage} alt='' />
+                ) : (
+                  <>{/* <img src={time} alt='' /> */}</>
+                )}
+              </div>
+            )}
           </div>
           <div className={styles.cancelshare}>
             <div className={styles.sharecontainer} onClick={copyText}>
@@ -123,7 +131,7 @@ export default function Share({ Close, data }) {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 }

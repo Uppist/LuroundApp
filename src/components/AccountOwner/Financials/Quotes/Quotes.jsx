@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Quotes.module.css";
 import CreateNew from "../CreateNew";
 import quote from "./Quotes.json";
@@ -9,6 +9,9 @@ import View from "./View/View";
 import Delete from "./Delete";
 import Convert from "./Convert/Convert";
 import Resend from "./Resend/Resend";
+import { Link } from "react-router-dom";
+import { QuotesContext } from "../../../Context";
+import EmptyState from "./EmptyState";
 
 export default function Quotes({ onComponentSwitch }) {
   const [isActive, setIsActive] = useState(null);
@@ -35,31 +38,66 @@ export default function Quotes({ onComponentSwitch }) {
   function closeOption() {
     setIsOption(false);
   }
+
+  const [quotes, setQuotes] = useContext(QuotesContext);
   return (
     <section className={styles.quotes}>
       <div className={styles.createquote}>
-        <div className={styles.quotesvg}>
-          <svg
-            onClick={() => {
-              handleBack("financial");
-            }}
-            width='7'
-            height='12'
-            viewBox='0 0 7 12'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M6 1L1 6L6 11'
-              stroke='hsla(180, 23%, 15%, 0.8)'
-              strokeWidth='1.5'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-          <label>Quotes</label>
-        </div>
-        <CreateNew />
+        <Link to='/financials'>
+          <div className={styles.quotesvg}>
+            <svg
+              width='7'
+              height='12'
+              viewBox='0 0 7 12'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M6 1L1 6L6 11'
+                stroke='hsla(180, 23%, 15%, 0.8)'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+            <label>Quotes</label>
+          </div>
+        </Link>
+        <Link to='/quote/edit'>
+          <div className={styles.createnew}>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M10.7755 20.5714V13.2245H3.42859V10.7755H10.7755V3.42859H13.2245V10.7755H20.5714V13.2245H13.2245V20.5714H10.7755Z'
+                fill='#FFFFFF'
+              />
+            </svg>
+            <label>
+              Create new
+              <svg
+                width='25'
+                height='25'
+                viewBox='0 0 16 16'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                  stroke='#FFFFFF'
+                  strokeOpacity='0.8'
+                  strokeMiterlimit='10'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </label>{" "}
+          </div>{" "}
+        </Link>
       </div>
 
       <div className={styles.quotecontainer}>
@@ -92,84 +130,82 @@ export default function Quotes({ onComponentSwitch }) {
             </svg>
           </div>
         </div>
-        <div>
-          <div className={styles.cardline}>
-            <div className={styles.statuscontainer}>
-              <span>Quote No.</span>
-              <span>Name</span>
-
-              <span>Date</span>
-              <span>Amount</span>
-            </div>
-            <hr />
-          </div>
-
-          {quote.map((data) => (
-            <div className={styles.transactionline} key={data.ID}>
-              <div className={styles.transactionstatus}>
-                <div className={styles.transactionid}>
-                  <span>{data.ID}</span>
+        {quotes.length > 0 ? (
+          <>
+            <div>
+              <div className={styles.cardline}>
+                <div className={styles.statuscontainer}>
+                  <span>Quote No.</span>
+                  <span>Name</span>
+                  <span>Date</span>
+                  <span>Amount</span>
                 </div>
-                <div className={styles.transactionname}>
-                  <span>{data.Name}</span>
-                </div>
-                <div className={styles.transactiondate}>
-                  <span>{data.Date}</span>
-                </div>
-                <div className={styles.transactionamount}>
-                  <span>{data.Amount}</span>
-                </div>
-
-                <svg
-                  onClick={(event) => OptionDrop(event, data.ID)}
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 28'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M12 9C13.1046 9 14 8.10457 14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9Z'
-                    fill='#1D2E2E'
-                  />
-                  <path
-                    d='M12 16C13.1046 16 14 15.1046 14 14C14 12.8954 13.1046 12 12 12C10.8954 12 10 12.8954 10 14C10 15.1046 10.8954 16 12 16Z'
-                    fill='#1D2E2E'
-                  />
-                  <path
-                    d='M12 23C13.1046 23 14 22.1046 14 21C14 19.8954 13.1046 19 12 19C10.8954 19 10 19.8954 10 21C10 22.1046 10.8954 23 12 23Z'
-                    fill='#1D2E2E'
-                  />
-                </svg>
-                {isOption === data.ID && (
-                  //   <div className={styles.popup}>
-                  //     <div className={styles.overlay} onClick={closeOption}>
-                  //   <div className={styles.listoption}>
-                  <ul className={styles.lists}>
-                    <li onClick={() => OpenModal("view")}>View</li>
-                    <li onClick={() => handleBack("edit")}>Edit</li>
-                    <li onClick={() => OpenModal("resend")}>Resend</li>
-                    <li>Download</li>
-                    <li onClick={() => OpenModal("convert")}>
-                      Convert to Invoice
-                    </li>
-                    <li onClick={() => OpenModal("delete")}>Delete</li>
-                  </ul>
-                  //   </div>
-                  // </div>
-                  //   </div>
-                )}
+                <hr />
               </div>
 
-              <hr />
-            </div>
-          ))}
+              {quotes.map((data) => (
+                <div className={styles.transactionline} key={data.ID}>
+                  <div className={styles.transactionstatus}>
+                    <div className={styles.transactionid}>
+                      <span>{data.ID}</span>
+                    </div>
+                    <div className={styles.transactionname}>
+                      <span>{data.Name}</span>
+                    </div>
+                    <div className={styles.transactiondate}>
+                      <span>{data.Date}</span>
+                    </div>
+                    <div className={styles.transactionamount}>
+                      <span>{data.Amount}</span>
+                    </div>
 
-          {isActive === "view" && <View CloseView={CloseView} />}
-          {isActive === "resend" && <Resend CloseView={CloseView} />}
-          {isActive === "convert" && <Convert CloseView={CloseView} />}
-          {isActive === "delete" && <Delete CloseView={CloseView} />}
-        </div>
+                    <svg
+                      onClick={(event) => OptionDrop(event, data.ID)}
+                      width='20'
+                      height='20'
+                      viewBox='0 0 24 28'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M12 9C13.1046 9 14 8.10457 14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9Z'
+                        fill='#1D2E2E'
+                      />
+                      <path
+                        d='M12 16C13.1046 16 14 15.1046 14 14C14 12.8954 13.1046 12 12 12C10.8954 12 10 12.8954 10 14C10 15.1046 10.8954 16 12 16Z'
+                        fill='#1D2E2E'
+                      />
+                      <path
+                        d='M12 23C13.1046 23 14 22.1046 14 21C14 19.8954 13.1046 19 12 19C10.8954 19 10 19.8954 10 21C10 22.1046 10.8954 23 12 23Z'
+                        fill='#1D2E2E'
+                      />
+                    </svg>
+
+                    {isOption === data.ID && (
+                      <ul className={styles.lists}>
+                        <li onClick={() => OpenModal("view")}>View</li>
+                        <li onClick={() => handleBack("edit")}>Edit</li>
+                        <li onClick={() => OpenModal("resend")}>Resend</li>
+                        <li>Download</li>
+                        <li onClick={() => OpenModal("convert")}>
+                          Convert to Invoice
+                        </li>
+                        <li onClick={() => OpenModal("delete")}>Delete</li>
+                      </ul>
+                    )}
+                  </div>
+                  <hr />
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <EmptyState />
+        )}
+        {isActive === "view" && <View CloseView={CloseView} />}
+        {isActive === "resend" && <Resend CloseView={CloseView} />}
+        {isActive === "convert" && <Convert CloseView={CloseView} />}
+        {isActive === "delete" && <Delete CloseView={CloseView} />}
       </div>
     </section>
   );

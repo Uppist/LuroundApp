@@ -63,7 +63,7 @@
 .donetime {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 600;
   font-size: 16px;
@@ -74,8 +74,70 @@
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
 }
+
+.donetime:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .cancelsubmit {
   display: flex;
   justify-content: end;
   gap: 24px;
+}
+
+.label img {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .support {
+    top: 0;
+    gap: 15px;
+    margin: 0;
+    margin-top: 5px;
+    background-color: transparent;
+  }
+
+  .label {
+    background-color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .label img {
+    display: block;
+  }
+
+  .contact {
+    font-size: 14px;
+  }
+
+  .supportcontainer {
+    background-color: white;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .subject input,
+  .description textarea {
+    border: none;
+    border-bottom: 2px solid;
+    border-radius: unset;
+    padding: 16px 0 0;
+    height: unset;
+  }
+
+  .cancelsubmit {
+    margin-top: 230px;
+  }
+
+  .canceltime {
+    display: none;
+  }
+
+  .donetime {
+    width: -webkit-fill-available;
+  }
 }

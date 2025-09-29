@@ -97,15 +97,51 @@
 }
 
 .select {
+  position: relative;
   padding: 16px 24px;
   background-color: white;
   border-radius: 16px;
   border: 1.5px solid hsla(180, 11%, 89%, 1);
 }
 
+.allbank {
+  position: absolute;
+  background-color: white;
+  top: 165px;
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 0px 4px 7px hsla(0, 0%, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: -webkit-fill-available;
+}
+
+.allbank div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 250px;
+  overflow: scroll;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+}
+
+.allbank div span {
+  cursor: pointer;
+}
+
+.allbank div::-webkit-scrollbar {
+  display: none;
+}
+
 .booking {
   display: flex;
   align-items: center;
+  width: -webkit-fill-available;
+  justify-content: space-between;
 }
 
 .input {
@@ -164,7 +200,7 @@
 .time {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 400;
   font-size: 16px;
@@ -174,6 +210,11 @@
 .time {
   background-color: hsla(180, 100%, 40%, 1);
   color: white;
+}
+
+.time:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 /*Saved Account*/

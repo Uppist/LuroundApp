@@ -6,6 +6,8 @@ import Sidebar from "./components/AccountOwner/Profile/SideBar/LuroundSidebar";
 import NavBar from "./components/AccountViewer/NavBar/NavBar";
 import "./style.css";
 
+import { ToastContainer } from "react-toastify";
+import { Zoom } from "react-toastify";
 import FinancialRouting from "./Routings/AccountOwner/Financials/FinancialRouting";
 import ProfileRouting from "./Routings/AccountOwner/Profile/ProfileRouting";
 import ServiceRouting from "./Routings/AccountOwner/Services/ServiceRouting";
@@ -18,6 +20,8 @@ import ViewerStorefrontRouting from "./Routings/AccountViewer/Storefront/ViewerS
 import SupportRouting from "./Routings/AccountOwner/Support/SupportRouting";
 import BookingsRouting from "./Routings/AccountOwner/Bookings/BookingsRouting";
 import { userContext } from "./components/Context";
+import CalendarRouting from "./Routings/AccountOwner/Calendar/CalendarRouting";
+import StorefrontRouting from "./Routings/AccountOwner/Storefront/StorefrontRouting";
 
 export default function App() {
   const location = useLocation();
@@ -67,7 +71,8 @@ export default function App() {
     location.pathname.startsWith("/details") ||
     location.pathname.startsWith("/booknow") ||
     location.pathname.startsWith("/Success") ||
-    location.pathname.startsWith("/stores");
+    location.pathname.startsWith("/stores") ||
+    location.pathname.startsWith("/bookingdetails");
 
   return (
     <div>
@@ -90,6 +95,9 @@ export default function App() {
           <ProfileRouting />
           <ServiceRouting />
           <BookingsRouting />
+
+          <StorefrontRouting />
+          <CalendarRouting />
           <TransactionRouting />
           <FinancialRouting />
           <ContactRouting />
@@ -101,6 +109,22 @@ export default function App() {
       <ViewerProfileRouting />
       <ViewerServiceRouting />
       <ViewerStorefrontRouting />
+
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+        icon={false}
+        transition={Zoom}
+        closeButton={false}
+      />
     </div>
   );
 }

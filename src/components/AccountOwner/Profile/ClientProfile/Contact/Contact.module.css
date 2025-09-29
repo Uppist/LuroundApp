@@ -20,7 +20,18 @@
   font-weight: 500;
 }
 
+.contacts a {
+  cursor: pointer;
+}
+
 .contacts div {
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+
+.contacts div label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
 }

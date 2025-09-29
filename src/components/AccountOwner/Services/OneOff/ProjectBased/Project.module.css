@@ -304,3 +304,7 @@
   font-weight: 500;
   color: hsla(180, 23%, 15%, 0.8);
 }
+
+.dropdownList li {
+  cursor: pointer;
+}

@@ -1,12 +1,15 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./style.module.css";
 import NoAccount from "./NoAccount";
 import SavedAccount from "./SavedAccount";
 import AddBank from "./Addbank";
+import axios from "axios";
+import { userContext } from "../../../Context";
+
 export default function Account({ onClose }) {
-  const [isAddAccount, setIsAddAccount] = useState(false);
+  const [isAddAccount, setIsAddAccount] = useState("");
   const [visible, setVisible] = useState("");
   const [activeComponent, setActiveComponent] = useState("noaccount");
   function AddAccount() {
@@ -24,6 +27,39 @@ export default function Account({ onClose }) {
       setVisible("fade-in");
     }, 200);
   };
+
+  const [userData] = useContext(userContext);
+  const [savedBanks, setSavedBanks] = useState([]);
+  console.log(savedBanks);
+
+  console.log(userData._id);
+  //get saved banks
+  useEffect(() => {
+    if (!userData?._id) return;
+    const token = localStorage.getItem("Token");
+    axios
+      .get(
+        `https://api.luround.com/v1/wallet/get-saved-banks?userId=${userData._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        console.log("Saved accounts:", res.data);
+        console.log(userData._id);
+
+        // // check where the accounts actually live in the response
+        // const accounts = Array.isArray(res.data.data)
+        //   ? res.data.data
+        //   : res.data;
+        // console.log(accounts);
+
+        setSavedBanks(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching saved accounts:", err);
+        // setIsSavedAccount([]); // fallback so UI doesn’t break
+      });
+  }, [userData._id]);
+
   return (
     <div className={styles.transaction}>
       <div className={styles.filter}>
@@ -47,23 +83,27 @@ export default function Account({ onClose }) {
             </div>
             {isAddAccount && (
               <AddBank
-                handleOneOffClick={handleOneOffClick}
+                // handleOneOffClick={handleOneOffClick}
                 CancelAddAccount={CancelAddAccount}
+                setSavedBanks={setSavedBanks}
+                savedBanks={savedBanks}
               />
             )}
           </div>
         </div>
       </div>
 
-      {activeComponent === "accountsaved" && <SavedAccount />}
-
-      {!isAddAccount && activeComponent === "noaccount" && (
+      {savedBanks && savedBanks.length > 0 ? (
+        <SavedAccount savedBanks={savedBanks} />
+      ) : (
         <NoAccount
           isAddAccount={isAddAccount}
           AddAccount={AddAccount}
           CancelAddAccount={CancelAddAccount}
           handleOneOffClick={handleOneOffClick}
           visible={visible}
+          setSavedBanks={setSavedBanks}
+          savedBanks={savedBanks}
         />
       )}
     </div>

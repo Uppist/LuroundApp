@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styles from "./Setting.module.css";
 import PasswordChange from "./PasswordChange";
 import ChangeWithdrawalPin from "./ChangeWithdrawalPin";
@@ -10,6 +10,7 @@ import Notifications from "./Notifications";
 import Delete from "./Delete";
 import BankDetails from "./BankDetails";
 import AddBank from "../../Transactions/SavedAccount/Addbank";
+import { TransactionContext } from "../../../Context";
 
 export default function Settings() {
   const [isBank, setIsBank] = useState(false);
@@ -28,6 +29,12 @@ export default function Settings() {
     });
   };
 
+  const [
+    transactions,
+    setTransactions,
+    transactionBalance,
+    setTransactionBalance,
+  ] = useContext(TransactionContext);
   function Bank() {
     setIsBank(true);
   }
@@ -116,12 +123,16 @@ export default function Settings() {
           <div ref={scrollpassword}>
             <PasswordChange />
           </div>
-          <div ref={scrollwithdraw}>
-            <ChangeWithdrawalPin />
-          </div>
-          <div ref={scrollforgot}>
-            <ForgotWithdrawalPin />
-          </div>
+          {/* {transactionBalance.wallet_pin && ( */}
+          <>
+            <div ref={scrollwithdraw}>
+              <ChangeWithdrawalPin />
+            </div>
+            <div ref={scrollforgot}>
+              <ForgotWithdrawalPin />
+            </div>
+          </>
+          {/* )} */}
 
           <div className={styles.bank} ref={scrollaccount}>
             <label>Bank account details</label>

@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import styles from "./Setting.module.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteAccount({ CloseDelete }) {
   const [isTextarea, setIsTextarea] = useState(false);
@@ -10,6 +13,20 @@ export default function DeleteAccount({ CloseDelete }) {
     if (index === 5) {
       setIsTextarea((prev) => !prev);
     }
+  }
+
+  const navigate = useNavigate();
+  function Delete() {
+    const token = localStorage.getItem("Token");
+    axios
+      .delete("https://api.luround.com/v1/user/account/delete", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        localStorage.removeItem("Token");
+        toast.error("Account Deleted");
+        navigate("/");
+      });
   }
   return (
     <section>
@@ -56,7 +73,9 @@ export default function DeleteAccount({ CloseDelete }) {
             <button className={styles.canceltime} onClick={CloseDelete}>
               Cancel
             </button>
-            <button className={styles.delete}>Delete</button>
+            <button className={styles.delete} onClick={Delete}>
+              Delete
+            </button>
           </div>
         </div>
       </div>

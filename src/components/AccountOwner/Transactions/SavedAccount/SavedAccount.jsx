@@ -4,31 +4,53 @@ import styles from "./style.module.css";
 import Bank from "./Bank";
 import Transfer from "../Tranfer/Transfer";
 
-export default function SavedAccount() {
-  const [isTransfer, setIsTransfer] = useState(false);
-  function TransferTo() {
-    setIsTransfer(true);
+export default function SavedAccount({ savedBanks }) {
+  const [isTransfer, setIsTransfer] = useState(null);
+  function TransferTo(index) {
+    setIsTransfer(index);
   }
 
   function CancelTransfer() {
-    setIsTransfer(false);
+    setIsTransfer(null);
   }
+
+  console.log(savedBanks);
   return (
     <div className={styles.savedaccount}>
-      <div className={styles.radio}>
-        <div className={styles.banksvg}>
-          <Bank />
-          <div>
-            <label htmlFor=''>Melissa Gates</label>
-            <span>Fidelity | 6550735271</span>
+      {savedBanks.map((account, index) => (
+        <>
+          <div className={styles.radio} key={index}>
+            <div className={styles.banksvg}>
+              <Bank />
+
+              <div>
+                <label htmlFor={`account-radio-${index}`}>
+                  {account.account_name}
+                </label>
+                <span>
+                  {account.bank_name} | {account.account_number}
+                </span>
+              </div>
+            </div>
+
+            <input
+              type='radio'
+              name='saved-account-radio'
+              id={`account-radio-${index}`}
+              onClick={() => TransferTo(index)}
+            />
+
+            {isTransfer === index && (
+              <Transfer
+                // isSavedAccount={isSavedAccount}
+                account={account}
+                CancelTransfer={CancelTransfer}
+              />
+            )}
           </div>
-        </div>
-
-        <input type='radio' name='' id='' onClick={TransferTo} />
-
-        {isTransfer && <Transfer CancelTransfer={CancelTransfer} />}
-      </div>
-      <hr />
+          <hr />
+        </>
+      ))}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Contact from "../../../components/AccountOwner/Contact/Contact";
 import Addcontact from "../../../components/AccountOwner/Contact/Addcontact";
 import ContactSaved from "../../../components/AccountOwner/Contact/ContactSaved";
+import AddMobileContact from "../../../components/AccountOwner/Contact/mobileContact/AddMobileContact";
 
 export default function ContactRouting() {
   return (
@@ -12,6 +13,7 @@ export default function ContactRouting() {
       <Route path='/contact' element={<Contact />} />
       <Route path='/addnewcontact' element={<Addcontact />} />
       <Route path='/contactsaved' element={<ContactSaved />} />
+      <Route path='/contact/add' element={<AddMobileContact />} />
     </Routes>
   );
 }

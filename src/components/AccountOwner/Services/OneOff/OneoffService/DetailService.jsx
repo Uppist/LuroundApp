@@ -19,7 +19,7 @@ export default function DetailOne({ handleClick }) {
   return (
     <>
       {isEdit ? (
-        <Timebased />
+        <Timebased existingData={data} onCancel={() => setIsEdit(false)} />
       ) : (
         <div className={styles.timebasedcontainer}>
           <Link to='/oneoff'>

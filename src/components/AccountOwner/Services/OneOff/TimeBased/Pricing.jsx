@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
 import styles from "./Time.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function PricingTime({ timeBased, setTimeBased }) {
   // Initialize with one default pricing entry for the 15 min slot
@@ -413,7 +413,10 @@ export default function PricingTime({ timeBased, setTimeBased }) {
             </button>
           </div>
         </div>
-        <div>
+        <div className={styles.button}>
+          <Link to='/oneoff'>
+            <button className={styles.cancel}>Cancel</button>
+          </Link>
           <button className={styles.next} onClick={Submit} disabled={!isNext}>
             Next
           </button>

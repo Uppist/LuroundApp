@@ -151,6 +151,10 @@
   color: hsla(180, 23%, 15%, 0.8);
 }
 
+.transactstatus {
+  text-transform: capitalize;
+}
+
 .date {
   display: flex;
   flex-direction: column;
@@ -247,6 +251,25 @@
   font-weight: 600;
   color: white;
   height: 56px;
+}
+
+.next:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+.next {
+  float: right;
+  border: 0;
+  padding: 12px 51px;
+  border-radius: 8px;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .next:hover {

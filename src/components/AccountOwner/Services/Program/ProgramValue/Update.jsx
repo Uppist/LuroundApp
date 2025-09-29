@@ -19,7 +19,7 @@ export default function Update({ isVisible, openDetail }) {
       {Array.isArray(userService) && userService.length > 0 ? (
         <>
           {userService.map((data, index) => (
-            <div className={styles.eachprogramcontainer}>
+            <div className={styles.eachprogramcontainer} key={index}>
               <div className={styles.retainercontainer} key={data.service_name}>
                 <div className={styles2.titlecontainer}>
                   <div className={styles2.daystimeline}>
@@ -49,8 +49,8 @@ export default function Update({ isVisible, openDetail }) {
                         </div>
                         <div className={styles2.textvector}>
                           <span className={styles2.text}>
-                            {data.description}
-                            {data.dots}
+                            {data.description.slice(0, 50)}
+                            {data.description.length > 50 ? "..." : ""}{" "}
                           </span>
                         </div>
                       </div>

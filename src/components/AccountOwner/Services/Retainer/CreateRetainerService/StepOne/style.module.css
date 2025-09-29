@@ -96,6 +96,10 @@
   color: white;
 }
 
+.button:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;

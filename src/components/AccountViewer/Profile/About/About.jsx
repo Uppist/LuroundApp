@@ -9,8 +9,7 @@ import SocialMedia from "../../../AccountOwner/Profile/ClientProfile/SocialMedia
 import Review from "../Reviews/Review";
 import { userContext } from "../../../Context";
 
-export default function About({ about }) {
-  const [userData, setUserData] = useContext(userContext);
+export default function About({ userData }) {
   return (
     <section className={styles.about2}>
       <label className={styles.aboutlabel}> About</label>
@@ -20,8 +19,8 @@ export default function About({ about }) {
       <hr />
       <Review />
       <hr />
-      <Contact />
-      <SocialMedia />
+      <Contact userData={userData} />
+      <SocialMedia userData={userData} />
     </section>
   );
 }

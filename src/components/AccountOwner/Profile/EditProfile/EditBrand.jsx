@@ -4,7 +4,6 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./EditProfile.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import { userContext } from "../../../Context";
 
 export default function EditBrand({ scrollBrand }) {
@@ -15,9 +14,6 @@ export default function EditBrand({ scrollBrand }) {
   const [userData, setUserData] = useContext(userContext);
 
   function handleImage(e) {
-    // alert("hello");
-    // console.log("File input changed");
-
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setImage(selectedFile);
@@ -69,16 +65,21 @@ export default function EditBrand({ scrollBrand }) {
     e.preventDefault();
     const local = localStorage.getItem("Token");
 
-    const request = await axios.put(
-      "https://api.luround.com/v1/profile/brand/add",
-      { brand: isBrand },
-      {
-        headers: {
-          Authorization: `Bearer ${local}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const request = await axios
+      .put(
+        "https://api.luround.com/v1/profile/brand/add",
+        { brand: isBrand },
+        {
+          headers: {
+            Authorization: `Bearer ${local}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Updated");
+        console.log(res.data);
+      });
     console.log(isBrand);
     // alert("Updated");
     toast.success("Updated");
@@ -90,6 +91,9 @@ export default function EditBrand({ scrollBrand }) {
 
     setIsBrand({ brand_name: "", logo: "" });
   }
+
+  const isbrand =
+    isBrand.brand_name.trim() !== "" && isBrand.logo.trim() !== "";
 
   return (
     <form onSubmit={handleSubmitBrand}>
@@ -152,7 +156,7 @@ export default function EditBrand({ scrollBrand }) {
 
                 {/* <div> */}
                 <label htmlFor='photo' className={styles.label}>
-                  Upload Logo
+                  <span> Upload Logo</span>
                   <input
                     id='photo'
                     type='file'
@@ -188,14 +192,12 @@ export default function EditBrand({ scrollBrand }) {
         </>
 
         <div className={styles.canceldone}>
-          <button className={styles.canceltime}>Cancel</button>
-          <button type='submit' className='done-time'>
+          {/* <button className={styles.canceltime}>Cancel</button> */}
+          <button type='submit' disabled={!isbrand} className={styles.donetime}>
             Save
           </button>
         </div>
       </div>
-
-      <ToastContainer />
     </form>
   );
 }
