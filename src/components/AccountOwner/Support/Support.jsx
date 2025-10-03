@@ -6,7 +6,7 @@ import { userContext } from "../../Context";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import { Slide, Zoom, Flip, Bounce } from "react-toastify";
-import arrow from "../../../components/elements/support/arrow.svg";
+import arrow from "../../../components/elements/support/Arrow.svg";
 import axios from "axios";
 
 export default function Support() {
