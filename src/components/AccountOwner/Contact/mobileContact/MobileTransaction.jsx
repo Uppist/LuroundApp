@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "../Contact.module.css";
-import arrow from "../../../../components/elements/support/arrow.svg";
+import arrow from "../../../../components/elements/support/Arrow.svg";
 
 export default function MobileTransaction({ Cancel, transactions }) {
   console.log(transactions);

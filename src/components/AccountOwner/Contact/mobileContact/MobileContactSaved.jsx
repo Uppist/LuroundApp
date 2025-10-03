@@ -9,7 +9,6 @@ import { ContactContext } from "../../../Context";
 import axios from "axios";
 import email from "../../../../components/elements/contact/email.svg";
 import call from "../../../../components/elements/contact/call.svg";
-import MobileTransaction from "./MobileTransaction";
 
 export default function MobileContactSaved({
   Transactions,

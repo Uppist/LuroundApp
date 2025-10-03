@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "./Contact.module.css";
 import Transaction from "./Transaction";
 import { Link, useLocation } from "react-router-dom";
-import NewContact from "./NewContact";
 import exportsvg from "../../../components/elements/contact/export.svg";
 import { ContactContext } from "../../Context";
 import axios from "axios";

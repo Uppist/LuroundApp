@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import styles from "./Contact.module.css";
 import Addcontact from "./Addcontact";
-import arrow from "../../../components/elements/support/arrow.svg";
+import arrow from "../../../components/elements/support/Arrow.svg";
 
 export default function NewContact({
   isAddContact,
