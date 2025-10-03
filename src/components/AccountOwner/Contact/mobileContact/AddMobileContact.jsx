@@ -6,7 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 // import arrow from "../../components/elements/support/arrow.svg";
-import arrow from "../../../elements/support/arrow.svg";
+import arrow from "../../../elements/support/Arrow.svg";
+import arrow from "../../../elements";
 export default function AddMobileContact({
   CancelAddContact,
   isValue,
