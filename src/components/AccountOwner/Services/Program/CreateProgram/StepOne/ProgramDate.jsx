@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import nigeria from "../../../../../elements/nigeria.png";
 
 import styles from "../../Program.module.css";
+import DatePicker from "react-datepicker";
 
 export default function ProgramDate({
   program,
@@ -32,67 +33,82 @@ export default function ProgramDate({
   function handleRecurrence(option) {
     setProgram((prev) => ({ ...prev, program_recurrence: option }));
     setDropdown(false);
-    console.log(program);
   }
 
   function increaseParticipants() {
     setProgram((prev) => ({
       ...prev,
-      max_participants: Number(prev.max_participants + 1),
+      max_participants: Math.max(0, Number(prev.max_participants) + 1),
     }));
   }
 
   function decreaseParticipants() {
     setProgram((prev) => ({
       ...prev,
-      max_participants: Number(prev.max_participants > 0)
-        ? Number(prev.max_participants - 1)
-        : 0,
+      max_participants: Math.max(0, Number(prev.max_participants) - 1),
     }));
   }
 
   return (
     <div className={styles.programcalendar}>
+      {/* Start & End Date */}
       <div className={styles.startcalendar}>
         <div className={styles.startenddate}>
           <span>Start date</span>
           <span>End date</span>
         </div>
         <div className={styles.inputcalendar}>
-          <input
-            type='date'
-            name='program_start_date'
-            value={program.program_start_date}
-            onChange={handleProgram}
-            placeholder='mm/dd/yy'
+          <DatePicker
+            selected={
+              program.program_start_date
+                ? new Date(program.program_start_date)
+                : null
+            }
+            onChange={(date) =>
+              handleProgram({
+                target: { name: "program_start_date", value: date },
+              })
+            }
+            dateFormat='dd MMM yyyy'
+            placeholderText='Select a date'
+            className={styles.custom}
           />
-          <input
-            type='date'
-            name='program_end_date'
-            value={program.program_end_date}
-            onChange={handleProgram}
-            placeholder='mm/dd/yy'
+          <DatePicker
+            selected={
+              program.program_end_date
+                ? new Date(program.program_end_date)
+                : null
+            }
+            onChange={(date) =>
+              handleProgram({
+                target: { name: "program_end_date", value: date },
+              })
+            }
+            dateFormat='dd MMM yyyy'
+            placeholderText='Select a date'
+            className={styles.custom}
           />
         </div>
       </div>
+
+      {/* Recurrence */}
       <div className={styles.programrecurrence}>
         <span>Program recurrence</span>
         <button onClick={handleDropdown}>
-          {" "}
           {program.program_recurrence || "Once a week"}
         </button>
       </div>
-      <div className={styles.ul}>
-        {dropdown &&
-          options.map((option, index) => (
-            <ul>
-              <li key={index} onClick={() => handleRecurrence(option)}>
-                {option}
-              </li>
-            </ul>
+      {dropdown && (
+        <ul className={styles.ul}>
+          {options.map((option, index) => (
+            <li key={index} onClick={() => handleRecurrence(option)}>
+              {option}
+            </li>
           ))}
-      </div>
+        </ul>
+      )}
 
+      {/* Participants */}
       <div className={styles.noofparticipant}>
         <span>Maximum number of participants</span>
         <div className={styles.participant}>
@@ -112,13 +128,19 @@ export default function ProgramDate({
           </svg>
 
           <input
-            type='text'
+            type='number'
+            min='0'
             name='max_participants'
-            value={Number(program.max_participants)}
-            onChange={handleProgram}
+            value={program.max_participants || 0}
+            onChange={(e) =>
+              setProgram((prev) => ({
+                ...prev,
+                max_participants: Math.max(0, Number(e.target.value)),
+              }))
+            }
             placeholder='0'
-            id=''
           />
+
           <svg
             onClick={increaseParticipants}
             style={{ cursor: "pointer" }}
@@ -136,6 +158,7 @@ export default function ProgramDate({
         </div>
       </div>
 
+      {/* Pricing */}
       <div className={styles.programfee}>
         <span>Program fee</span>
         <div className={styles.programservice}>
@@ -144,7 +167,7 @@ export default function ProgramDate({
             <div className={styles.nigeriaprice}>
               <button>
                 <div className={styles.nigeriadown}>
-                  <img src={nigeria} />
+                  <img src={nigeria} alt='NGN' />
                   <div className={styles.ngndown}>
                     <span>NGN</span>
                     <svg
@@ -168,6 +191,7 @@ export default function ProgramDate({
               </button>
               <input
                 type='number'
+                min='0'
                 name='in_person'
                 value={pricing.in_person}
                 onChange={handlePricing}
@@ -180,7 +204,7 @@ export default function ProgramDate({
             <div className={styles.nigeriaprice}>
               <button>
                 <div className={styles.nigeriadown}>
-                  <img src={nigeria} />
+                  <img src={nigeria} alt='NGN' />
                   <div className={styles.ngndown}>
                     <span>NGN</span>
                     <svg
@@ -204,6 +228,7 @@ export default function ProgramDate({
               </button>
               <input
                 type='number'
+                min='0'
                 name='virtual'
                 value={pricing.virtual}
                 onChange={handlePricing}

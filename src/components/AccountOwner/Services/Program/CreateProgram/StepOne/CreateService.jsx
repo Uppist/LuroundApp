@@ -5,16 +5,20 @@ import styles2 from "../../Program.module.css";
 
 import styles from "../../../OneOff/TimeBased/Create/create.module.css";
 import ProgramDate from "./ProgramDate";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function CreateService({
   serviceType,
   programService,
   setProgramService,
 }) {
+  const location = useLocation();
+
+  const EditProgram = location.state.data || {};
+
   const [createService, setCreateService] = useState({
-    service_name: "",
-    description: "",
+    service_name: "" || EditProgram.service_name,
+    description: "" || EditProgram.description,
     service_type: serviceType,
     in_personevent_fee: "N/A",
     virtual_event_fee: "N/A",
@@ -27,18 +31,16 @@ export default function CreateService({
   const navigate = useNavigate();
 
   const [program, setProgram] = useState({
-    program_start_date: "",
-    program_end_date: "",
-    program_recurrence: "",
-    max_participants: 0,
+    program_start_date: "" || EditProgram.program_start_date,
+    program_end_date: "" || EditProgram.program_end_date,
+    program_recurrence: "" || EditProgram.program_recurrence,
+    max_participants: 0 || EditProgram.max_participants,
   });
 
-  const [pricing, setPricing] = useState([
-    {
-      virtual: "",
-      in_person: "",
-    },
-  ]);
+  const [pricing, setPricing] = useState({
+    virtual: "" || EditProgram.pricing.virtual,
+    in_person: "" || EditProgram.pricing.in_person,
+  });
 
   function handleProgram(e) {
     const { name, value } = e.target;
@@ -82,16 +84,16 @@ export default function CreateService({
       pricing: cleanPrice,
     }));
     console.log(programService);
-    navigate("choosedate");
+    navigate("choosedate", { state: EditProgram });
   }
 
   const isNext =
     createService.service_name.trim() !== "" &&
     createService.description.trim() !== "" &&
     program.max_participants > 0 &&
-    program.program_end_date.trim() !== "" &&
-    program.program_recurrence.trim() !== "" &&
-    program.program_start_date.trim() !== "" &&
+    program.program_end_date &&
+    program.program_recurrence &&
+    program.program_start_date &&
     ((pricing.virtual ?? "").trim() !== "" ||
       (pricing.in_person ?? "").trim() !== "");
 

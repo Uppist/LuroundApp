@@ -17,9 +17,7 @@ export default function ContactSaved({
   setTransactionIndex,
   transactionIndex,
 }) {
-  // const [transactionIndex, setTransactionIndex] = useState(null);
   const [isSend, setIsSend] = useState(false);
-  // const [transactions, setTransactions] = useState({});
   const dropdownRef = useRef([]);
 
   // Toggle dropdown open/close
@@ -66,8 +64,6 @@ export default function ContactSaved({
 
   const [isContacts, setIsContacts] = useContext(ContactContext);
 
-  console.log(isContacts);
-
   //get transactions
 
   useEffect(() => {
@@ -93,6 +89,30 @@ export default function ContactSaved({
   }, [isContacts]);
 
   const mobileview = window.innerWidth <= 900;
+  function exportContactsCSV() {
+    if (!isContacts || isContacts.length === 0) {
+      alert("No contacts to export");
+      return;
+    }
+
+    const headers = ["Name", "Email", "Phone"];
+    const rows = isContacts.map((contact) => [
+      contact.name,
+      contact.email,
+      contact.phone_number,
+    ]);
+
+    let csvContent =
+      "data:text/csv;charset=utf-8," +
+      [headers, ...rows].map((e) => e.join(",")).join("\n");
+
+    const link = document.createElement("a");
+    link.setAttribute("href", encodeURI(csvContent));
+    link.setAttribute("download", "contacts.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   return (
     <>
       {mobileview ? (
@@ -105,7 +125,7 @@ export default function ContactSaved({
         <div className={styles.account}>
           <div className={styles.export}>
             <img src={exportsvg} alt='' />
-            <span>Export contacts</span>
+            <span onClick={exportContactsCSV}>Export contacts</span>
           </div>
 
           <div>
@@ -151,12 +171,35 @@ export default function ContactSaved({
                       className={styles.sendlist}
                       ref={dropdownRef.current[index]}
                     >
-                      <Link to='/quote'>
+                      <Link
+                        to='/quote/edit'
+                        state={{
+                          name: contact.name,
+                          email: contact.email,
+                          phone: contact.phone_number,
+                        }}
+                      >
                         {" "}
                         <li>Quote</li>
                       </Link>
-                      <li onClick={() => Click("invoices")}>Invoice</li>
-                      <Link to='/receipt'>
+                      <Link
+                        to='/invoice/edit'
+                        state={{
+                          name: contact.name,
+                          email: contact.email,
+                          phone: contact.phone_number,
+                        }}
+                      >
+                        <li>Invoice</li>
+                      </Link>
+                      <Link
+                        to='/receipt/edit'
+                        state={{
+                          name: contact.name,
+                          email: contact.email,
+                          phone: contact.phone_number,
+                        }}
+                      >
                         <li>Receipt</li>
                       </Link>
                     </ul>

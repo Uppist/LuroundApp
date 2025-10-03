@@ -3,13 +3,22 @@ import { useState } from "react";
 import styles from "./style.module.css";
 import Container from "./Container";
 import Amount from "./Amount";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Pricing({ retainerService, setRetainerService }) {
   //amount component
-  const [slots, setSlots] = useState([
-    { id: Date.now(), time_allocation: "", virtual: "", in_person: "" },
-  ]);
+
+  const location = useLocation();
+  const EditRetainer = location.state || {};
+  console.log(EditRetainer);
+  const [slots, setSlots] = useState(() =>
+    EditRetainer.pricing && EditRetainer.pricing.length > 0
+      ? EditRetainer.pricing.map((slot) => ({
+          ...slot,
+          id: slot.id || Date.now() + Math.random(),
+        }))
+      : [{ id: Date.now(), time_allocation: "", virtual: "", in_person: "" }]
+  );
 
   const addSlot = () => {
     setSlots((prev) => [
@@ -46,7 +55,7 @@ export default function Pricing({ retainerService, setRetainerService }) {
 
     setRetainerService((prev) => ({ ...prev, pricing: filledPricing }));
     console.log(retainerService);
-    navigate("../date");
+    navigate("../date", { state: EditRetainer });
   }
 
   const isAnyFilled = slots.some(

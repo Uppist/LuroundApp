@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import styles from "../style.module.css";
 import nigeria from "../../../elements/nigeria.png";
 import Upload from "./Upload";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UploadImage from "./UploadImage";
 import { toast } from "react-toastify";
 import { StorefrontContext } from "../../../Context";
@@ -20,15 +20,19 @@ export default function PopUp() {
     "Photography",
     "Digital Arts",
   ]);
+  const location = useLocation();
+
+  const EditData = location.state?.EditData || {};
+  console.log(EditData);
 
   const [details, setDetails] = useState({
-    photoURL: "",
-    product_name: "",
-    description: "",
-    category: "",
-    links: "",
-    price: "",
-    owner_name: "",
+    photoURL: EditData.photoURL || "",
+    product_name: EditData.product_name || "",
+    description: EditData.description || "",
+    category: EditData.category || "eBooks",
+    links: EditData.links || "",
+    price: EditData.price || "",
+    owner_name: EditData.owner_name || "",
   });
 
   const [storeFront, setStoreFront] = useContext(StorefrontContext);
@@ -73,31 +77,54 @@ export default function PopUp() {
       photoURL: details.photoURL,
       category: formatCategory(details.category),
     };
-    console.log(data.photoUrl);
-    axios
-      .post("https://api.luround.com/v1/storefront/new-product", data, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setStoreFront([...storeFront, data]);
-        toast.success("Added a new product!");
-        setTimeout(() => {
-          navigate("/storefront");
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(data);
+    console.log(data.photoURL);
+    if (!EditData) {
+      axios
+        .post("https://api.luround.com/v1/storefront/new-product", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setStoreFront([...storeFront, data]);
+          toast.success("Added a new product!");
+          setTimeout(() => {
+            navigate("/storefront");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    if (EditData) {
+      axios
+        .put(
+          `https://api.luround.com/v1/storefront/edit-product?productId=${EditData._id}`,
+          data,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          toast.success("Product Edited successfully");
+          setTimeout(() => {
+            navigate("/storefront");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
   const isDone =
-    details.price.length > 0 &&
     details.product_name.trim() !== "" &&
     details.owner_name.trim() !== "" &&
     details.category.trim() !== "" &&
     details.description.trim() !== "" &&
-    details.photoURL.trim() !== "";
+    details.price !== "" &&
+    Number(details.price) > 0;
+  // details.photoURL.trim() !== "";
   return (
     <div className={styles.contact}>
       <Link to={-1}>

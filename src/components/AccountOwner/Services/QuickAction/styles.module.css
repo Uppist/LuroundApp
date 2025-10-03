@@ -198,9 +198,9 @@
 }
 
 .titleshare {
-  font-size: 20px;
-  font-weight: 700;
-  color: hsla(180, 100%, 36%, 1);
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: hsla(180, 23%, 15%, 1);
 }
 
 /*QR Code*/
@@ -225,6 +225,7 @@
   display: grid;
   gap: 32px;
   width: 445px;
+  padding: 0 0 30px 0;
 }
 
 .cancelbooking {

@@ -2,11 +2,18 @@
 import React, { useState, useEffect } from "react";
 import styles from "./OneOff.module.css";
 
-export default function VirtualContainer({ data }) {
+export default function VirtualContainer({
+  data,
+  selectedServices,
+  setSelectedServices,
+  index,
+}) {
   const [selectRadio, setSelectRadio] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPricing, setSelectedPricing] = useState(null);
   const [pricingArray, setPricingArray] = useState([]);
+
+  const serviceId = data.id || data._id;
 
   useEffect(() => {
     const array = Array.isArray(data?.pricing)
@@ -14,21 +21,62 @@ export default function VirtualContainer({ data }) {
       : data?.pricing
       ? [data.pricing]
       : [];
+
     setPricingArray(array);
 
     if (array[0]) {
       setSelectedPricing(array[0]);
 
+      let defaultType = "";
+      let defaultPrice = 0;
+
       if (array[0].virtual && array[0].virtual !== "N/A") {
-        setSelectRadio("virtual");
+        defaultType = "virtual";
+        defaultPrice = Number(array[0].virtual) || 0;
       } else if (array[0].in_person && array[0].in_person !== "N/A") {
-        setSelectRadio("in-person");
+        defaultType = "in-person";
+        defaultPrice = Number(array[0].in_person) || 0;
+      }
+
+      setSelectRadio(defaultType);
+
+      // ✅ Ensure selectedServices is updated with correct ID
+
+      if (setSelectedServices) {
+        setSelectedServices((prev) =>
+          prev.map((s) =>
+            (s.id || s._id) === serviceId
+              ? {
+                  ...s,
+                  chosenPricing: defaultType,
+                  selectedPrice: defaultPrice,
+                }
+              : s
+          )
+        );
       }
     }
-  }, [data]);
+  }, [data, setSelectedServices]);
+
+  const activePricing = selectedPricing;
 
   function radioChange(type) {
     setSelectRadio(type);
+
+    let chosenPrice = 0;
+    if (type === "virtual") {
+      chosenPrice = Number(activePricing?.virtual) || 0;
+    } else if (type === "in-person") {
+      chosenPrice = Number(activePricing?.in_person) || 0;
+    }
+
+    setSelectedServices((prev) =>
+      prev.map((s) =>
+        (s.id || s._id) === serviceId
+          ? { ...s, chosenPricing: type, selectedPrice: chosenPrice }
+          : s
+      )
+    );
   }
 
   function dropDown() {
@@ -38,9 +86,20 @@ export default function VirtualContainer({ data }) {
   function handleDropdown(pricingObj) {
     setSelectedPricing(pricingObj);
     setIsOpen(false);
-  }
 
-  const activePricing = selectedPricing;
+    const price =
+      selectRadio === "virtual"
+        ? Number(pricingObj?.virtual || 0)
+        : Number(pricingObj?.in_person || 0);
+
+    setSelectedServices((prev) =>
+      prev.map((s) =>
+        (s.id || s._id) === serviceId
+          ? { ...s, chosenPricing: selectRadio, selectedPrice: price }
+          : s
+      )
+    );
+  }
 
   return (
     <div
@@ -57,7 +116,7 @@ export default function VirtualContainer({ data }) {
         <div className={styles.virtual}>
           <input
             type='radio'
-            name='radio'
+            name={`radio-${index}`}
             checked={selectRadio === "virtual"}
             onChange={() => radioChange("virtual")}
           />
@@ -66,7 +125,7 @@ export default function VirtualContainer({ data }) {
         <div className={styles.inperson}>
           <input
             type='radio'
-            name='radio'
+            name={`radio-${index}`}
             checked={selectRadio === "in-person"}
             onChange={() => radioChange("in-person")}
           />
@@ -89,23 +148,23 @@ export default function VirtualContainer({ data }) {
                   <span className={styles.selectlist}>
                     {activePricing?.time_allocation || "Select"}{" "}
                     {data.service_type === "retainer" ? "months" : "mins"}
-                    <svg
-                      width='16'
-                      height='16'
-                      viewBox='0 0 16 16'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                        stroke='currentColor'
-                        strokeOpacity='0.8'
-                        strokeMiterlimit='10'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
                   </span>
+                  <svg
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                      stroke='currentColor'
+                      strokeOpacity='0.8'
+                      strokeMiterlimit='10'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
                 </div>
 
                 {isOpen && (
@@ -136,15 +195,11 @@ export default function VirtualContainer({ data }) {
         <div className={styles.nairasession}>
           <span className={styles.naira}>
             {selectRadio === "in-person"
-              ? activePricing?.in_person &&
-                !isNaN(activePricing.in_person) &&
-                activePricing.in_person !== "N/A"
+              ? activePricing?.in_person && activePricing.in_person !== "N/A"
                 ? `₦${Number(activePricing.in_person).toLocaleString()}`
                 : "N/A"
               : selectRadio === "virtual"
-              ? activePricing?.virtual &&
-                !isNaN(activePricing.virtual) &&
-                activePricing.virtual !== "N/A"
+              ? activePricing?.virtual && activePricing.virtual !== "N/A"
                 ? `₦${Number(activePricing.virtual).toLocaleString()}`
                 : "N/A"
               : "N/A"}

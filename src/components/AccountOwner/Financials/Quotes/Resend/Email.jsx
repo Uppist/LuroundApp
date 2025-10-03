@@ -37,7 +37,9 @@ export default function Email({ CloseView }) {
           </div>
 
           <div className={styles.cancelsubmit}>
-            <button className={styles.canceltime}>Cancel</button>
+            <button className={styles.canceltime} onClick={CloseView}>
+              Cancel
+            </button>
             <button className={styles.donetime} type='submit'>
               Send
             </button>

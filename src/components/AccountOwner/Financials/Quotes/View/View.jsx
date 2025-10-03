@@ -1,17 +1,37 @@
 /** @format */
 
-import React from "react";
+import React, { useContext, useState } from "react";
 import styles from "./View.module.css";
 import BankSvg from "../Edit/BankSvg";
+import { userContext } from "../../../../Context";
+import { useLocation } from "react-router-dom";
 
-export default function View({ CloseView }) {
+export default function View({ CloseView, data }) {
+  console.log(data);
+
+  const [userData] = useContext(userContext);
+
+  const [services, setServices] = useState(false);
+
+  function ProductClick() {
+    setServices((prev) => !prev);
+  }
+
+  console.log(userData);
+
+  const location = useLocation();
+
+  const receipt = location.pathname.includes("receipt");
+  const invoice = location.pathname.includes("invoice");
   return (
     <>
       <div className={styles.popup}>
         <div className={styles.overlay} onClick={CloseView}></div>
         <div className={styles.quotepreview}>
           <div className={styles.quotesvg}>
-            <label>Quote Preview</label>
+            <label>
+              {receipt ? "Receipt" : invoice ? "Invoice" : "Quote"} Preview
+            </label>
             <svg
               onClick={CloseView}
               width='24'
@@ -35,9 +55,13 @@ export default function View({ CloseView }) {
           <div className={styles.sendfrom}>
             <label>Sent from:</label>
             <div className={styles.label}>
-              <label htmlFor=''>Kafayah</label>
-              <span htmlFor=''>k@gmail.com</span>
-              <span htmlFor=''>09037654672</span>
+              <label htmlFor=''>{userData.displayName}</label>
+              <span htmlFor=''>{userData.email}</span>
+              {userData.media_links
+                ?.filter((link) => link.name === "Mobile")
+                .map((link, index) => (
+                  <span key={index}>{link.link}</span>
+                ))}{" "}
             </div>
           </div>
           <hr />
@@ -45,40 +69,56 @@ export default function View({ CloseView }) {
           <div className={styles.sendfrom}>
             <label>Sent to:</label>
             <div className={styles.label}>
-              <label htmlFor=''>Kafayah</label>
-              <span htmlFor=''>k@gmail.com</span>
-              <span htmlFor=''>09037654672</span>
+              <label htmlFor=''>{data.send_to_name}</label>
+              <span htmlFor=''>{data.send_to_email}</span>
+              <span htmlFor=''>{data.phone_number}</span>
             </div>
           </div>
           <hr />
 
           <div className={styles.quotedetail}>
-            <label>Quotes Details</label>
+            <label>
+              {receipt ? "Receipt" : invoice ? "Invoice" : "Quote"} Details
+            </label>
             <div className={styles.service}>
               <div>
                 <label>Status</label>
-                <span className={styles.sent}>SENT</span>
+                {receipt ? (
+                  "receipts"
+                ) : invoice ? (
+                  data.payment_status === "PENDING" ? (
+                    <span className={styles.unpaid}>UNPAID</span>
+                  ) : (
+                    <span className={styles.paid}>PAID</span>
+                  )
+                ) : (
+                  <span className={styles.sent}>SENT</span>
+                )}
               </div>
               <div>
                 {" "}
-                <label>Quote Number</label>
-                <span>#000001</span>
+                <label>
+                  {receipt ? "Receipt" : invoice ? "Invoice" : "Quote"} Number
+                </label>
+                <span>
+                  {data.invoice_id || data.quote_id || data.receipt_data}
+                </span>
               </div>
               <div>
                 {" "}
                 <label>Valid till</label>
-                <span>14, Oct 2023</span>
+                <span>{data.due_date}</span>
               </div>
               <div>
                 {" "}
                 <label>Grand Total</label>
-                <span>₦82,000</span>
+                <span>₦{data.total.toLocaleString()}</span>
               </div>
               <hr />
             </div>
           </div>
 
-          <div className={styles.products}>
+          <div className={styles.products} onClick={ProductClick}>
             <label>Product/Services</label>
             <svg
               width='20'
@@ -98,27 +138,60 @@ export default function View({ CloseView }) {
               />
             </svg>
           </div>
+          {services &&
+            Array.isArray(data.product_detail) &&
+            data.product_detail.map((data) => (
+              <div className={styles.h3}>
+                <h3>{data.service_name}</h3>
+                <div className={styles.services}>
+                  <div>
+                    <label htmlFor=''>Meeting Type:</label>
+                    <span>{data.appointment_type}</span>
+                  </div>
+                  <div>
+                    {" "}
+                    <label htmlFor=''>Rate:</label>
+                    <span>₦{data.rate.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    {" "}
+                    <label htmlFor=''>Duration:</label>
+                    <span>{data.duration}</span>
+                  </div>
+                  <div>
+                    {" "}
+                    <label htmlFor=''>Discount:</label>
+                    <span>₦{data.discount.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    {" "}
+                    <label htmlFor=''>Total:</label>
+                    <span>₦{data.total.toLocaleString()}</span>
+                  </div>{" "}
+                </div>
+              </div>
+            ))}
           <hr />
 
           <div className={styles.service2}>
             <div>
               <label>Subtotal</label>
-              <span>₦39,000</span>
+              <span>₦{data.sub_total.toLocaleString()}</span>
             </div>
             <div>
               {" "}
               <label>Discount</label>
-              <span>-₦2,500</span>
+              <span>-₦{data.discount.toLocaleString()}</span>
             </div>
             <div>
               {" "}
               <label>VAT</label>
-              <span>₦500</span>
+              <span>₦{data.vat.toLocaleString()}</span>
             </div>
             <div>
               {" "}
               <label>Total</label>
-              <span>₦36,500</span>
+              <span>₦{data.total.toLocaleString()}</span>
             </div>
           </div>
 
@@ -151,8 +224,11 @@ export default function View({ CloseView }) {
                 <div className={styles.bank}>
                   <BankSvg />
                   <div>
-                    <label>Melissa Gates</label>
-                    <span>Fidelity Bank | 6550067619</span>
+                    {/* <label>{data.bank_details.account_name || ""}</label>
+                    <span>
+                      {data.bank_details.bank || ""} |{" "}
+                      {data.bank_details.account_number || ""}
+                    </span> */}
                   </div>
                 </div>
                 <svg

@@ -38,11 +38,13 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
 
   function handleEdit() {
     if (data.one_off_type === "time-based") {
-      navigate("/time-based", { state: { edit: true, data: data } });
+      navigate("/time-based", { state: { data } });
     } else if (data.one_off_type === "project-based") {
       navigate("/project-based", { state: { data } });
     } else if (data.service_type === "retainer") {
       navigate("/createretainer", { state: { data } });
+    } else if (data.service_type === "program") {
+      navigate("/createprogram", { state: { data } });
     } else if (data.service_type === "event") {
       navigate("/create");
     }
@@ -244,7 +246,7 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
           </svg>
           <span>Service QR code</span>
         </div>
-        {isQr && <QrCode Close={CloseInsight} />}
+        {isQr && <QrCode Close={CloseInsight} data={data} />}
         <div className={styles.settingscontainer} onClick={DeleteOneoff}>
           <svg
             width='24'

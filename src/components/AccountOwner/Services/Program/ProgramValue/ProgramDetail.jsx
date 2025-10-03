@@ -97,9 +97,23 @@ export default function ProgramDetail() {
                       fillOpacity='0.8'
                     />
                   </svg>
-                  {data.availability?.map((item, index) => (
-                    <span key={index}>{item.day}</span>
-                  ))}{" "}
+                  {data.availability &&
+                    (() => {
+                      const days = data.availability.map((item) => item.day);
+                      if (days.length === 1) return <span>{days[0]}</span>;
+                      if (days.length === 2)
+                        return (
+                          <span>
+                            {days[0]} & {days[1]}
+                          </span>
+                        );
+                      return (
+                        <span>
+                          {days.slice(0, -1).join(", ")} &{" "}
+                          {days[days.length - 1]}
+                        </span>
+                      );
+                    })()}
                 </div>
                 <div className={styles.svg}>
                   <svg

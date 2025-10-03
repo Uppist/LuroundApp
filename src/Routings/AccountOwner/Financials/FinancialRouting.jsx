@@ -17,7 +17,7 @@ export default function FinancialRouting() {
       <Route path='/receipt' element={<Receipt />} />
 
       {/*Quotes */}
-      <Route path='/quote/edit' element={<Edit />} />
+      <Route path='/:type/edit' element={<Edit />} />
     </Routes>
   );
 }

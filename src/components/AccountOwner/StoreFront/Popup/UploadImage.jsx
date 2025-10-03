@@ -53,7 +53,16 @@ export default function UploadImage({ setDetails, details }) {
 
   return (
     <div className={styles.imageupload}>
-      <img src={Image ? URL.createObjectURL(Image) : image} alt='' />
+      <img
+        src={
+          details.photoURL
+            ? details.photoURL
+            : Image
+            ? URL.createObjectURL(Image)
+            : image
+        }
+        alt=''
+      />
       <div className={styles.choose}>
         <div className={styles.gallery}>
           <label htmlFor='photo-edit'>Choose from Gallery</label>

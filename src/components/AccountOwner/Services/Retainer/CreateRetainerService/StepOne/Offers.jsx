@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 
-export default function Offers({ handleCoreFeatures }) {
+export default function Offers({ handleCoreFeatures, initialFeatures }) {
   const [task, setTask] = useState({ name: "", done: false }); // properly initialized
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(
+    initialFeatures.map((name) => ({ name, done: false }))
+  );
 
   // Sort: incomplete first
   const sortedTodos = todos
@@ -15,7 +17,7 @@ export default function Offers({ handleCoreFeatures }) {
   // Update parent with core feature names only
   useEffect(() => {
     handleCoreFeatures(todos.map((t) => t.name));
-  }, [todos, handleCoreFeatures]);
+  }, [todos]);
 
   function handleDelete(item) {
     setTodos(todos.filter((todo) => todo !== item));

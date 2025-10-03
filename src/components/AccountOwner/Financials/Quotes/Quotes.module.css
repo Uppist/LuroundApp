@@ -259,7 +259,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   font-size: 12px;
   font-weight: 500;
-  /* gap: 105px; */
+  gap: 105px;
   color: hsla(180, 23%, 15%, 0.65);
 }
 

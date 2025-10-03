@@ -9,22 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./Time.module.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
-export default function Timebased({
-  timebased,
-  setTimeBased,
-  existingData,
-  onCancel,
-}) {
-  const [form, setForm] = useState({
-    service_name: existingData?.service_name || "",
-    description: existingData?.description || "",
-    availability: existingData?.availability || [],
-    delivery_timeline: existingData?.delivery_timeline || "",
-    project_pricing: existingData?.project_pricing || "",
-    // ... other fields
-  });
+export default function Timebased({ timebased, setTimeBased, onCancel }) {
   const [Image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   function handleImage(e) {
@@ -67,10 +54,16 @@ export default function Timebased({
     }
   }
 
+  const location = useLocation();
+
+  const EditTime = location.state?.data || {};
+
+  console.log(EditTime);
+
   return (
     <>
       <div className={styles.timebasedcontainer}>
-        <Link to='/oneoff'>
+        <Link to={-1}>
           <button className={styles.timebasedback}>
             <svg
               width='7'
@@ -140,7 +133,7 @@ export default function Timebased({
             </div>
           </div>
 
-          <Outlet existingData={existingData} form={form} />
+          <Outlet context={{ EditTime }} />
         </div>
       </div>
     </>

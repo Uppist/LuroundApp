@@ -25,3 +25,29 @@
   font-weight: 500;
   color: hsla(180, 23%, 15%, 1);
 }
+
+.createnew {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: hsla(180, 100%, 40%, 1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.createnew:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.createnew > label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: white;
+  cursor: pointer;
+}

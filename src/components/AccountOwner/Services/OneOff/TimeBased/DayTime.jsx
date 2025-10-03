@@ -4,8 +4,9 @@ import Time from "./Time";
 import styles from "./Time.module.css";
 import BookingPeriod from "./BookingPeriod";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useOutletContext } from "react-router-dom";
 export default function DayTime({
   backprice,
   backone,
@@ -15,9 +16,35 @@ export default function DayTime({
   setTimeBased,
   timeBased,
 }) {
-  const [selectedFrom, setSelectedFrom] = useState({});
-  const [selectedTo, setSelectedTo] = useState({});
-  const [checkedDays, setCheckedDays] = useState({});
+  function getInitialTimes(editAvailability, dayInfo, type) {
+    const result = {};
+    if (Array.isArray(editAvailability)) {
+      dayInfo.forEach((day, idx) => {
+        const found = editAvailability.find((a) => a.day === day);
+        if (found) {
+          result[idx] = type === "from" ? found.from_time : found.to_time;
+        }
+      });
+    }
+    return result;
+  }
+
+  function getInitialCheckedDays(editAvailability, dayInfo) {
+    const result = {};
+    if (Array.isArray(editAvailability)) {
+      dayInfo.forEach((day, idx) => {
+        const found = editAvailability.find((a) => a.day === day);
+        if (found) {
+          result[idx] = true;
+        }
+      });
+    }
+    return result;
+  }
+  const location = useLocation();
+
+  const EditTime = location.state || {};
+  console.log(EditTime.availability);
 
   const dayInfo = [
     "Monday",
@@ -28,12 +55,22 @@ export default function DayTime({
     "Saturday",
     "Sunday",
   ];
+  const [selectedFrom, setSelectedFrom] = useState(() =>
+    getInitialTimes(EditTime.availability, dayInfo, "from")
+  );
+  const [selectedTo, setSelectedTo] = useState(() =>
+    getInitialTimes(EditTime.availability, dayInfo, "to")
+  );
+  const [checkedDays, setCheckedDays] = useState(() =>
+    getInitialCheckedDays(EditTime.availability, dayInfo)
+  );
+
   const [period, setPeriod] = useState({
-    booking_period: "3 months",
-    notice_period: "1" + " " + "days",
-    appointment_buffer: "15" + " " + "minutes",
-    in_person_location: "",
-    virtual_meeting_link: "",
+    booking_period: "3 months" || EditTime.booking_period,
+    notice_period: "1" + " " + "days" || EditTime.notice_period,
+    appointment_buffer: "15" + " " + "minutes" || EditTime.appointment_buffer,
+    in_person_location: "" || EditTime.in_person_location,
+    virtual_meeting_link: "" || EditTime.virtual_meeting_link,
   });
 
   const navigate = useNavigate();
@@ -59,24 +96,48 @@ export default function DayTime({
     setTimeBased(dataToSend);
     const token = localStorage.getItem("Token");
     console.log("Ready to POST:", dataToSend);
-    axios
-      .post("https://api.luround.com/v1/services/create", dataToSend, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log(res.data);
-        console.log("Data sent:", dataToSend);
-        toast.success("One-off service created sucessfully");
-        setTimeout(() => {
-          navigate("/oneoff", { state: dataToSend });
-        }, 1000);
-      })
-      .catch((err) => {
-        console.error("Error sending data:", err);
-      });
-    console.log(timeBased);
 
-    console.log("Saved Booking Period:", period);
+    if (!EditTime) {
+      axios
+        .post("https://api.luround.com/v1/services/create", dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log("Data sent:", dataToSend);
+          toast.success("One-off service created sucessfully");
+          setTimeout(() => {
+            navigate("/oneoff", { state: dataToSend });
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("Error sending data:", err);
+        });
+    }
+
+    if (EditTime) {
+      axios
+        .put(
+          `https://api.luround.com/v1/services/edit?serviceId=${EditTime._id}`,
+          dataToSend,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          toast.success("Service Edited sucessfully");
+          setTimeout(() => {
+            navigate("/oneoff", { state: dataToSend });
+          }, 1000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    // console.log(timeBased);
+
+    // console.log("Saved Booking Period:", period);
   }
 
   useEffect(() => {

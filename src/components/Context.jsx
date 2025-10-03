@@ -11,10 +11,14 @@ export const ServiceContext = createContext();
 export const bookingsContext = createContext();
 export const ContactContext = createContext();
 export const TransactionContext = createContext();
+export const BankContext = createContext();
 export const StorefrontContext = createContext();
 export const OrderHistoryContext = createContext();
 export const NotificationContext = createContext();
 export const QuotesContext = createContext();
+export const InvoiceContext = createContext();
+export const ReceiptContext = createContext();
+export const ProductContext = createContext();
 
 export default function Context({ children }) {
   const [userData, setUserData] = useState({});
@@ -28,7 +32,22 @@ export default function Context({ children }) {
   const [orderHistory, setOrderHistory] = useState([]);
   const [notification, setNotification] = useState([]);
   const [quotes, setQuotes] = useState([]);
+  const [savedQuotes, setSavedQuote] = useState([]);
+  const [invoices, setInvoices] = useState([]);
+  const [notPaidInvoices, setNotPaidInvoices] = useState([]);
+  const [receipt, setReceipt] = useState([]);
+  const [saveReceipt, setSaveReceipt] = useState([]);
+  const [savedBanks, setSavedBanks] = useState([]);
+  const [product, setProduct] = useState([]);
+
   const location = useLocation();
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("User");
+    if (savedUser) {
+      setUserData(JSON.parse(savedUser));
+    }
+  }, []);
 
   const pathname = location.pathname;
 
@@ -122,6 +141,23 @@ export default function Context({ children }) {
         setTransactionBalance(res.data);
       });
 
+    //get saved Banks
+
+    axios
+      .get(
+        `https://api.luround.com/v1/wallet/get-saved-banks?userId=${userData._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        console.log("Saved accounts:", res.data);
+        // console.log(userData._id);
+
+        setSavedBanks(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching saved accounts:", err);
+      });
+
     //get storefront
 
     axios
@@ -154,6 +190,19 @@ export default function Context({ children }) {
         setNotification(res.data);
       });
 
+    //get save quotes
+    axios
+      .get("https://api.luround.com/v1/quotes/saved-quotes", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Quotes:", res.data);
+        setSavedQuote(res.data);
+      })
+      .catch((err) => console.error("Error fetching quotes:", err));
+
+    //get send quotes
+
     axios
       .get("https://api.luround.com/v1/quotes/sent-quotes", {
         headers: { Authorization: `Bearer ${token}` },
@@ -163,7 +212,68 @@ export default function Context({ children }) {
         setQuotes(res.data);
       })
       .catch((err) => console.error("Error fetching quotes:", err));
-  }, [pathname]);
+
+    //get invoices for paid invoice
+    axios
+      .get("https://api.luround.com/v1/invoice/paid-invoices", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Invoices:", res.data);
+        setInvoices(res.data);
+      })
+      .catch((err) => console.error("Error fetching invoices:", err));
+
+    //get invoices for unpaid invoice
+    axios
+      .get("https://api.luround.com/v1/invoice/unpaid-invoices", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Not Paid Invoices:", res.data);
+        setNotPaidInvoices(res.data);
+      })
+      .catch((err) => console.error("Error fetching not paid invoices:", err));
+
+    //get saved receipts
+    axios
+      .get("https://api.luround.com/v1/receipt/saved-receipts", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Receipts:", res.data);
+        setSaveReceipt(res.data);
+      })
+      .catch((err) => console.error("Error fetching receipts:", err));
+
+    //get sent receipt
+    axios
+      .get("https://api.luround.com/v1/receipt/receipts", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Receipts:", res.data);
+        setReceipt(res.data);
+      })
+      .catch((err) => console.error("Error fetching receipts:", err));
+
+    //get product insight
+
+    axios
+      .get(
+        `https://api.luround.com/v1/storefront/product-insight?productId=${storeFront._id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setProduct(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [pathname, userData._id, storeFront._id]);
 
   useEffect(() => {
     console.log("userService updated:", userService);
@@ -190,19 +300,45 @@ export default function Context({ children }) {
                 setTransactionBalance,
               ]}
             >
-              <StorefrontContext.Provider value={[storeFront, setStoreFront]}>
-                <OrderHistoryContext.Provider
-                  value={[orderHistory, setOrderHistory]}
-                >
-                  <NotificationContext.Provider
-                    value={[notification, setNotification]}
+              <BankContext.Provider value={[savedBanks, setSavedBanks]}>
+                <StorefrontContext.Provider value={[storeFront, setStoreFront]}>
+                  <OrderHistoryContext.Provider
+                    value={[orderHistory, setOrderHistory]}
                   >
-                    <QuotesContext.Provider value={[quotes, setQuotes]}>
-                      {children}
-                    </QuotesContext.Provider>
-                  </NotificationContext.Provider>
-                </OrderHistoryContext.Provider>
-              </StorefrontContext.Provider>{" "}
+                    <NotificationContext.Provider
+                      value={[notification, setNotification]}
+                    >
+                      <QuotesContext.Provider
+                        value={[quotes, setQuotes, savedQuotes, setSavedQuote]}
+                      >
+                        <InvoiceContext.Provider
+                          value={[
+                            invoices,
+                            setInvoices,
+                            notPaidInvoices,
+                            setNotPaidInvoices,
+                          ]}
+                        >
+                          <ReceiptContext.Provider
+                            value={[
+                              receipt,
+                              setReceipt,
+                              saveReceipt,
+                              setSaveReceipt,
+                            ]}
+                          >
+                            <ProductContext.Provider
+                              value={[product, setProduct]}
+                            >
+                              {children}
+                            </ProductContext.Provider>
+                          </ReceiptContext.Provider>
+                        </InvoiceContext.Provider>
+                      </QuotesContext.Provider>
+                    </NotificationContext.Provider>
+                  </OrderHistoryContext.Provider>
+                </StorefrontContext.Provider>{" "}
+              </BankContext.Provider>
             </TransactionContext.Provider>
           </ContactContext.Provider>
         </bookingsContext.Provider>

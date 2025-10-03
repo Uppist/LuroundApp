@@ -75,36 +75,25 @@ export default function Login() {
   async function handleGoogleLogin(res) {
     try {
       const googleToken = res.credential;
-      console.log("Google Token:", jwtDecode(googleToken));
+      const decoded = jwtDecode(googleToken);
 
       const googleData = {
-        email: jwtDecode(googleToken).email,
-        // name: jwtDecode(googleToken).name,
-        firstName: jwtDecode(googleToken).given_name,
-        lastName: jwtDecode(googleToken).family_name,
-        user_nToken: "",
+        email: decoded.email,
+        firstName: decoded.given_name,
+        lastName: decoded.family_name,
       };
-      console.log(googleData);
-      const { data } = await axios.post(
-        "https://api.luround.com/google/signIn",
-        googleData,
-        { headers: { "Content-Type": "application/json" } }
-      );
 
-      localStorage.setItem("Token", data.accessToken);
+      // Store something in localStorage so it persists
+      localStorage.setItem("Token", googleToken);
+      localStorage.setItem("User", JSON.stringify(googleData));
 
       toast.success("Login Successful");
 
-      const profileRes = await axios.get(
-        "https://api.luround.com/v1/profile/get",
-        { headers: { Authorization: `Bearer ${data.accessToken}` } }
-      );
-
-      setUserData(profileRes.data);
-      navigate("/profile-page");
+      // setUserData(googleData);
+      // navigate("/profile-page", { state: userData });
     } catch (err) {
-      console.error("Google login error:", err.response?.data || err.message);
-      // toast.error("Google login failed");
+      console.error("Google login error:", err);
+      toast.error("Google login failed");
     }
   }
 

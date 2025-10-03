@@ -12,8 +12,6 @@ import { Link } from "react-router-dom";
 export default function Update({ isVisible }) {
   const [userService, setUserService] = useContext(ServiceContext);
 
-  console.log(userService);
-
   return (
     <div className={styles.dataoneoff}>
       {Array.isArray(userService) && userService.length > 0 ? (

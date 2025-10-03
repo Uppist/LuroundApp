@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./Financials.module.css";
+import { Link } from "react-router-dom";
 
 export default function CreateNew({ onComponentSwitch }) {
   const [isDropdown, setisDropdown] = useState(false);
@@ -50,27 +51,15 @@ export default function CreateNew({ onComponentSwitch }) {
 
       {isDropdown && (
         <ul className={styles.lists}>
-          <li
-            onClick={() => {
-              Next("edit");
-            }}
-          >
-            Quotes
-          </li>
-          <li
-            onClick={() => {
-              Next("edit");
-            }}
-          >
-            Invoices
-          </li>
-          <li
-            onClick={() => {
-              Next("edit");
-            }}
-          >
-            Receipts
-          </li>
+          <Link to='/quote/edit'>
+            <li>Quotes</li>
+          </Link>
+          <Link to='/invoice/edit'>
+            <li>Invoices</li>
+          </Link>
+          <Link to='/receipt/edit'>
+            <li>Receipts</li>
+          </Link>
         </ul>
       )}
     </div>

@@ -22,7 +22,7 @@ export default function Share({ Close, data }) {
       <div className={styles.share}>
         <div>
           <div className={styles.cancelbooking}>
-            <label>Share Service</label>
+            <label>Share {store ? "Product" : "Service"} </label>
             <svg
               onClick={Close}
               width='24'

@@ -2,9 +2,13 @@
 
 import React from "react";
 import styles from "./Quotes.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function EmptyState({}) {
+  const location = useLocation();
+  const quote = location.pathname.includes("quotes");
+  const invoice = location.pathname.includes("invoice");
+  const receipt = location.pathname.includes("receipt");
   return (
     <div className={` ${styles.savedaccount}`}>
       <div className={styles.bank}>
@@ -64,16 +68,24 @@ export default function EmptyState({}) {
         </svg>
 
         <div className={styles.savedaddaccount}>
-          <span>No sent quotes yet </span>
+          <span>
+            No sent {receipt ? "receipts" : invoice ? "invoices" : "quotes"} yet{" "}
+          </span>
           <label>
-            Click on the <b>“Create quote”</b> button below to create and send a
-            quote
+            Click on the{" "}
+            <b>“Create {receipt ? "receipt" : invoice ? "invoice" : "quote"}</b>
+            " button below to create and send a{" "}
+            {receipt ? "receipt" : invoice ? "invoice" : "quote"}
           </label>
         </div>
       </div>
       <div>
-        <Link to='/quote/edit'>
-          <button className={`${styles.addanaccount} `}>Create quote</button>
+        <Link
+          to={`/${receipt ? "receipt" : invoice ? "invoice" : "quote"}/edit`}
+        >
+          <button className={`${styles.addanaccount} `}>
+            Create {receipt ? "receipt" : invoice ? "invoice" : "quote"}
+          </button>
         </Link>
         {/* {isStorefront && <Addcontact CancelAddProduct={CancelAddProduct} />} */}
       </div>

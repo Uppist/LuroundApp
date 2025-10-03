@@ -4,7 +4,7 @@ import styles from "./Project.module.css";
 
 import ProjectSvg from "./ProjectSvg";
 import Upload from "./Upload";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Pricing from "./Pricing";
 import Delivery from "./Delivery";
 import axios from "axios";
@@ -17,17 +17,24 @@ export default function Projectbased({
   serviceType,
   Type,
 }) {
+  const location = useLocation();
+  const EditProject = location.state.data || {};
+  // console.log(EditProject);
   const [createService, setCreateService] = useState({
-    service_name: "",
-    description: "",
+    service_name: "" || EditProject.service_name,
+    description: "" || EditProject.description,
     service_type: serviceType,
     one_off_type: Type,
     // photoURL: "",
   });
 
-  const [delivery_timeline, setDeliveryTime] = useState("");
+  const [delivery_timeline, setDeliveryTime] = useState(
+    "" || EditProject.delivery_timeline
+  );
 
-  const [project_pricing, setPricingTime] = useState("");
+  const [project_pricing, setPricingTime] = useState(
+    "" || EditProject.project_pricing
+  );
 
   const details = { ...createService, delivery_timeline, project_pricing };
 
@@ -91,18 +98,40 @@ export default function Projectbased({
 
     const token = localStorage.getItem("Token");
 
-    axios
-      .post("https://api.luround.com/v1/services/create", details, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setProjectBased(details);
-        console.log(res.data);
-        toast.success("Project sucessfully added!");
-        setTimeout(() => {
-          navigate("/oneoff", { state: details });
-        }, 2000);
-      });
+    if (!EditProject) {
+      axios
+        .post("https://api.luround.com/v1/services/create", details, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setProjectBased(details);
+          console.log(res.data);
+          toast.success("Project sucessfully added!");
+          setTimeout(() => {
+            navigate("/oneoff", { state: details });
+          }, 2000);
+        });
+    }
+
+    if (EditProject) {
+      axios
+        .put(
+          `https://api.luround.com/v1/services/edit?serviceId=${EditProject._id}`,
+          details,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          toast.success("Service Edited sucessfully");
+          setTimeout(() => {
+            navigate("/oneoff", { state: details });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   useEffect(() => {
@@ -120,7 +149,7 @@ export default function Projectbased({
   return (
     <>
       <div className={styles.projectbasedcontainer}>
-        <Link to='/oneoff'>
+        <Link to={-1}>
           <button className={styles.projectbasedback}>
             {" "}
             <svg
@@ -198,7 +227,7 @@ export default function Projectbased({
             </div>
 
             <div className={styles.done}>
-              <Link to='/oneoff'>
+              <Link to={-1}>
                 <button className={styles.canceltime}>Cancel</button>
               </Link>
               <button

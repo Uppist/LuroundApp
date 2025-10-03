@@ -3,7 +3,7 @@
 import styles from "./Profile.module.css";
 import scan from "../../../../elements/scan.jpg";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { userContext } from "../../../../Context";
 export default function Profile() {
   const [isImageVisible, setIsImageVisible] = useState(true);
@@ -96,9 +96,9 @@ export default function Profile() {
               <Link
                 to={`/profile/${nameFormatted}`}
                 className={styles.lorem}
-                // target='blank'
+                target='blank'
                 rel='noopener noreferrer'
-                state={{ userData }}
+                // state={{ userData }}
               >
                 {userData.luround_url}
               </Link>

@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./create.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 export default function ServiceCreate({
   serviceType,
@@ -12,9 +13,11 @@ export default function ServiceCreate({
 }) {
   const [text, setText] = useState("");
 
+  const { EditTime } = useOutletContext();
+
   const [createService, setCreateService] = useState({
-    service_name: "",
-    description: "",
+    service_name: EditTime.service_name || "",
+    description: EditTime.description || "",
     service_type: serviceType,
     one_off_type: Type,
   });
@@ -34,7 +37,7 @@ export default function ServiceCreate({
     console.log(timeBased);
 
     setCreateService({ service_name: "", description: "" });
-    navigate("pricing");
+    navigate("pricing", { state: EditTime });
   }
 
   const isNext = Object.values(createService).every((val) => val.trim() !== "");

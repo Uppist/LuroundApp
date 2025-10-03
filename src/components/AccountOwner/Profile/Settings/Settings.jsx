@@ -10,7 +10,8 @@ import Notifications from "./Notifications";
 import Delete from "./Delete";
 import BankDetails from "./BankDetails";
 import AddBank from "../../Transactions/SavedAccount/Addbank";
-import { TransactionContext } from "../../../Context";
+import { BankContext, TransactionContext } from "../../../Context";
+import Bank from "../../Transactions/SavedAccount/Bank";
 
 export default function Settings() {
   const [isBank, setIsBank] = useState(false);
@@ -29,13 +30,17 @@ export default function Settings() {
     });
   };
 
+  const [savedBanks, setSavedBanks] = useContext(BankContext);
+
+  // console.log(savedBanks);
+
   const [
     transactions,
     setTransactions,
     transactionBalance,
     setTransactionBalance,
   ] = useContext(TransactionContext);
-  function Bank() {
+  function handleBank() {
     setIsBank(true);
   }
 
@@ -133,28 +138,52 @@ export default function Settings() {
             </div>
           </>
           {/* )} */}
+          <div className={styles.bank}>
+            <div className={styles.bank2} ref={scrollaccount}>
+              <label>Bank account details</label>
+              <svg
+                onClick={handleBank}
+                width='48'
+                height='40'
+                viewBox='0 0 48 40'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M0 8C0 3.58172 3.58172 0 8 0H40C44.4183 0 48 3.58172 48 8V32C48 36.4183 44.4183 40 40 40H8C3.58172 40 0 36.4183 0 32V8Z'
+                  fill='#00CCCC'
+                />
+                <path
+                  d='M22.7757 28.5714V21.2245H15.4287V18.7755H22.7757V11.4286H25.2246V18.7755H32.5716V21.2245H25.2246V28.5714H22.7757Z'
+                  fill='#EBFFFF'
+                />
+              </svg>
+            </div>{" "}
+            <div className={styles.savedBanks}>
+              {savedBanks.length === 0
+                ? null
+                : savedBanks.map((bank, index) => (
+                    <div key={index} className={styles.bankCard}>
+                      <Bank />
 
-          <div className={styles.bank} ref={scrollaccount}>
-            <label>Bank account details</label>
-            <svg
-              onClick={Bank}
-              width='48'
-              height='40'
-              viewBox='0 0 48 40'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M0 8C0 3.58172 3.58172 0 8 0H40C44.4183 0 48 3.58172 48 8V32C48 36.4183 44.4183 40 40 40H8C3.58172 40 0 36.4183 0 32V8Z'
-                fill='#00CCCC'
-              />
-              <path
-                d='M22.7757 28.5714V21.2245H15.4287V18.7755H22.7757V11.4286H25.2246V18.7755H32.5716V21.2245H25.2246V28.5714H22.7757Z'
-                fill='#EBFFFF'
-              />
-            </svg>
+                      <div>
+                        <label>{bank.bank_name}</label>
+                        <span>
+                          {bank.bank_name} | {bank.account_number}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+            </div>
           </div>
-          {isBank && <AddBank onExit={CloseBank} />}
+
+          {isBank && (
+            <AddBank
+              CancelAddAccount={CloseBank}
+              savedBanks={savedBanks}
+              setSavedBanks={setSavedBanks}
+            />
+          )}
 
           <div ref={scrollurl}>
             <CustomizeURL />

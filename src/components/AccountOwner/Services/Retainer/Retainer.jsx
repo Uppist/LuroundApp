@@ -32,7 +32,6 @@ export default function Retainer() {
   }
 
   const [userService, setUserService] = useContext(ServiceContext);
-  console.log(userService);
 
   return (
     <>

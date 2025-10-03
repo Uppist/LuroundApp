@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./style.module.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Offers from "./Offers";
 
 export default function CreateService({
@@ -10,11 +10,15 @@ export default function CreateService({
   retainerService,
   setRetainerService,
 }) {
+  const location = useLocation();
+
+  const EditRetainer = location.state.data || {};
+
   const [createService, setCreateService] = useState({
-    service_name: "",
-    description: "",
+    service_name: "" || EditRetainer.service_name,
+    description: "" || EditRetainer.description,
     service_type: serviceType,
-    core_features: [],
+    core_features: [] || EditRetainer.core_features,
   });
 
   function handleChange(e) {
@@ -37,8 +41,8 @@ export default function CreateService({
       ...prev,
       ...createService,
     }));
-    console.log(retainerService);
-    navigate("pricing");
+    // console.log(retainerService);
+    navigate("pricing", { state: EditRetainer });
   }
 
   const isNext =
@@ -82,7 +86,10 @@ export default function CreateService({
             <span>{createService.description.length}/500</span>
           </div>
         </div>
-        <Offers handleCoreFeatures={handleCoreFeatures} />
+        <Offers
+          handleCoreFeatures={handleCoreFeatures}
+          initialFeatures={EditRetainer.core_features || []}
+        />
       </div>
       <div>
         {" "}

@@ -1,8 +1,6 @@
 /** @format */
 
 import styles from "./NavBar.module.css";
-import notify from "./Notification.json";
-import jenny from "../../../../../public/jennifer.png";
 import { useContext } from "react";
 import { NotificationContext } from "../../../Context";
 export default function Notification({ onClose, onComponentSwitch }) {
@@ -25,17 +23,17 @@ export default function Notification({ onClose, onComponentSwitch }) {
                 className={styles.notificationbooked}
                 // onClick={() => Notify("bookings")}
               >
-                <img src={jenny} />
+                {/* <img src={} /> */}
 
                 <div key={index}>
                   <label className={styles.notificationname}>
-                    {data.Name}{" "}
+                    {data.body}{" "}
                     <span className={styles.notificationservice}>
                       {data.service}{" "}
                     </span>
                   </label>
                   <label className={styles.notificationperiod}>
-                    {data.time}{" "}
+                    {data.title}{" "}
                   </label>
                 </div>
               </div>

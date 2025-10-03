@@ -34,11 +34,22 @@ export default function Whatsapp({ CloseView }) {
 
           <div className={styles.receiver}>
             <label>Receiver's whatsapp number</label>
-            <input type='text' name='' id='' placeholder="receiver's number" />
+            <input
+              type='text'
+              name=''
+              inputMode='numeric'
+              onInput={(e) =>
+                (e.target.value = e.target.value.replace("/D/g", ""))
+              }
+              id=''
+              placeholder="receiver's number"
+            />
           </div>
 
           <div className={styles.cancelsubmit}>
-            <button className={styles.canceltime}>Cancel</button>
+            <button className={styles.canceltime} onClick={CloseView}>
+              Cancel
+            </button>
             <button className={styles.donetime} type='submit'>
               Send
             </button>

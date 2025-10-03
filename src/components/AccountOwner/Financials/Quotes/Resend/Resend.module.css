@@ -52,6 +52,14 @@
   font-weight: 500;
 }
 
+.receiver input {
+  font-size: 14px;
+  font-weight: 500;
+  border: 1.5px solid hsla(180, 11%, 89%, 1);
+  border-radius: 16px;
+  padding: 16px;
+}
+
 .quotesvg {
   display: flex;
   align-items: center;

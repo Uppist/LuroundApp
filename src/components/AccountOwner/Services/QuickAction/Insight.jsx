@@ -1,11 +1,13 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles.module.css";
 import history from "./History.json";
 import timeImage from "../../../elements/services/timebased.svg";
 
 import image from "../../../elements/history.png";
+import { ProductContext } from "../../../Context";
+import { useLocation } from "react-router-dom";
 
 export default function Insight({ Close, data }) {
   const [isAlltime, setIsAlltime] = useState(false);
@@ -32,6 +34,9 @@ export default function Insight({ Close, data }) {
     setIsAlltime(false);
   }
 
+  const [product, setProduct] = useContext(ProductContext);
+  console.log(product);
+
   return (
     <div className='popupcancel'>
       <div className='overlay' onClick={Close}></div>
@@ -39,7 +44,7 @@ export default function Insight({ Close, data }) {
       <div className={styles.share1}>
         <div>
           <div className={styles.cancelbooking}>
-            <label>Service Insight</label>
+            <label>{data.product_name ? "Product" : "Service"} Insight</label>
             <svg
               onClick={Close}
               width='24'
@@ -62,10 +67,18 @@ export default function Insight({ Close, data }) {
         </div>
         <div className={styles.container}>
           <div className={styles.shareservice}>
-            <span className={styles.titleshare}>{data.service_name}</span>
+            <span className={styles.titleshare}>
+              {data.service_name || data.product_name}
+            </span>
             <div className={styles.serviceType}>
-              <span className={styles.type}> Service type: </span>
-              <span className={styles.text}> {data.service_type} </span>
+              {data.owner_name ? (
+                "by"
+              ) : (
+                <span className={styles.type}> Service type: </span>
+              )}
+              <span className={styles.text}>
+                {data.service_type || data.owner_name}{" "}
+              </span>
               {data?.one_off_type === "time-based" ? (
                 <img src={timeImage} alt='' />
               ) : (
@@ -122,7 +135,7 @@ export default function Insight({ Close, data }) {
 
         <div className={styles.button}>
           <button type='button' className={styles.button1}>
-            102 <label className={styles.label}>Clicks</label>
+            {product.clicks || 0} <label className={styles.label}>Clicks</label>
             <svg
               width='225'
               height='140'
@@ -138,7 +151,8 @@ export default function Insight({ Close, data }) {
             </svg>
           </button>
           <button type='button' className={styles.button2}>
-            43 <label className={styles.label}> Booked</label>
+            {product.purchaseLength || 0}{" "}
+            <label className={styles.label}> Booked</label>
             <svg
               width='225'
               height='140'
@@ -156,20 +170,22 @@ export default function Insight({ Close, data }) {
         </div>
 
         <div className={styles.history}>
-          <label>Booking History</label>
+          <label>{data.product_name ? "Purchase" : "Booking"} History</label>
           <div className={styles.booking}>
-            {history.map((data, index) => (
-              <div key={index} className={styles.book}>
-                <img src={image} alt='' />
-                <div className={styles.name}>
-                  <label htmlFor='' className={styles.date}>
-                    {data.date}
-                  </label>
-                  <label className={styles.name2}>{data.Name}</label>
-                </div>
-                <hr />
-              </div>
-            ))}
+            {product.length > 0
+              ? product.purchaseHistory.map((data, index) => (
+                  <div key={index} className={styles.book}>
+                    <img src={data.image} alt='' />
+                    <div className={styles.name}>
+                      <label htmlFor='' className={styles.date}>
+                        {data.date}
+                      </label>
+                      <label className={styles.name2}>{data.Name}</label>
+                    </div>
+                    <hr />
+                  </div>
+                ))
+              : "No history yet"}
           </div>
         </div>
       </div>

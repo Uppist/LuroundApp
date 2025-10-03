@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import Time from "./Time";
 import styles from "../../../OneOff/TimeBased/Time.module.css";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 export default function DateTime({ retainerService, setRetainerService }) {
-  const [selectedFrom, setSelectedFrom] = useState({});
-  const [selectedTo, setSelectedTo] = useState({});
-  const [checkedDays, setCheckedDays] = useState({});
+  const location = useLocation();
+  const EditRetainer = location.state || {};
+  console.log(EditRetainer);
+
   const navigate = useNavigate();
 
   const dayInfo = [
@@ -20,6 +22,42 @@ export default function DateTime({ retainerService, setRetainerService }) {
     "Saturday",
     "Sunday",
   ];
+
+  function getInitialTimes(editAvailability, dayInfo, type) {
+    const result = {};
+    if (Array.isArray(editAvailability)) {
+      dayInfo.forEach((day, idx) => {
+        const found = editAvailability.find((a) => a.day === day);
+        if (found) {
+          result[idx] = type === "from" ? found.from_time : found.to_time;
+        }
+      });
+    }
+    return result;
+  }
+
+  function getInitialCheckedDays(editAvailability, dayInfo) {
+    const result = {};
+    if (Array.isArray(editAvailability)) {
+      dayInfo.forEach((day, idx) => {
+        const found = editAvailability.find((a) => a.day === day);
+        if (found) {
+          result[idx] = true;
+        }
+      });
+    }
+    return result;
+  }
+
+  const [selectedFrom, setSelectedFrom] = useState(() =>
+    getInitialTimes(EditRetainer.availability, dayInfo, "from")
+  );
+  const [selectedTo, setSelectedTo] = useState(() =>
+    getInitialTimes(EditRetainer.availability, dayInfo, "to")
+  );
+  const [checkedDays, setCheckedDays] = useState(() =>
+    getInitialCheckedDays(EditRetainer.availability, dayInfo)
+  );
   function Submit() {
     const availability = dayInfo.reduce((acc, day, index) => {
       if (checkedDays[index]) {
@@ -40,19 +78,46 @@ export default function DateTime({ retainerService, setRetainerService }) {
 
     setRetainerService(dataToSend);
     const token = localStorage.getItem("Token");
-    axios
-      .post("https://api.luround.com/v1/services/create", dataToSend, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log(res.data);
-        console.log("Data sent:", dataToSend);
-        navigate("/retainer", { state: dataToSend });
-      })
-      .catch((err) => {
-        console.error("Error sending data:", err);
-      });
-    console.log(retainerService);
+
+    if (!EditRetainer) {
+      axios
+        .post("https://api.luround.com/v1/services/create", dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+
+          console.log("Data sent:", dataToSend);
+          toast.success("Service created sucessfully");
+
+          setTimeout(() => {
+            navigate("/retainer", { state: dataToSend });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Error sending data:", err);
+        });
+    }
+
+    if (EditRetainer) {
+      axios
+        .put(
+          `https://api.luround.com/v1/services/edit?serviceId=${EditRetainer._id}`,
+          dataToSend,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          toast.success("Service Edited sucessfully");
+          setTimeout(() => {
+            navigate("/retainer", { state: dataToSend });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   useEffect(() => {

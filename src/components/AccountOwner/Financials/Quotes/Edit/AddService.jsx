@@ -5,7 +5,16 @@ import styles from "./Edit.module.css";
 import Services from "./Services";
 import axios from "axios";
 
-export default function AddService() {
+export default function AddService({
+  selectedServices,
+  setSelectedServices,
+  subtotal,
+  VAT,
+  total,
+  discountValue,
+  setDiscountValue,
+  discount,
+}) {
   const [service, setService] = useState(false);
 
   function handleService() {
@@ -13,18 +22,23 @@ export default function AddService() {
   }
 
   const [userService, setUserService] = useState([]);
-  const [selectedServices, setSelectedServices] = useState([]);
+  const [isDiscounted, setIsDiscounted] = useState({ discount: "" });
+
+  function handleDiscount(e) {
+    const { name, value } = e.target;
+    const onlyNums = value.replace(/\D/g, "");
+
+    setIsDiscounted((prev) => ({ ...prev, [name]: onlyNums }));
+
+    if (onlyNums === "") {
+      setDiscountValue(0);
+    }
+  }
 
   const token = localStorage.getItem("Token");
 
   const serviceTypes = ["program", "one-off", "retainer", "event"];
-  const subtotal = selectedServices.reduce((sum, service) => {
-    // adjust based on your API shape
-    const price = Number(
-      service.project_pricing?.amount || service.price || service.amount || 0
-    );
-    return sum + price;
-  }, 0);
+  console.log("Selected services for subtotal:", selectedServices);
 
   useEffect(() => {
     Promise.all(
@@ -77,22 +91,40 @@ export default function AddService() {
         <div className={styles.service}>
           <div>
             <label>SubTotal</label>
-            <span>₦{Number(subtotal).toLocaleString()}</span>
+            <span>₦{subtotal.toLocaleString()}</span>
           </div>
           <div>
             {" "}
             <label>Discount</label>
-            <span>₦0</span>
+            <div className={styles.discount}>
+              <input
+                type='text'
+                name='discount'
+                value={isDiscounted.discount}
+                inputMode='numeric'
+                id=''
+                onChange={handleDiscount}
+              />
+              %
+              <button
+                type='button'
+                disabled={!isDiscounted.discount}
+                onClick={() => setDiscountValue(Number(isDiscounted.discount))}
+              >
+                calculate
+              </button>
+            </div>
+            {discountValue > 0 && <span>₦{discount.toLocaleString()}</span>}
           </div>
           <div>
             {" "}
-            <label>VAT</label>
-            <span>₦0</span>
+            <label>VAT- 7.5%</label>
+            <span>₦{VAT === "NaN" ? "0" : VAT.toLocaleString()}</span>
           </div>
           <div>
             {" "}
             <label>Total</label>
-            <span>₦0</span>
+            <span>₦{total.toLocaleString()}</span>
           </div>
           <hr />
         </div>

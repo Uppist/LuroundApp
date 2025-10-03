@@ -4,10 +4,13 @@ import React from "react";
 import styles from "./styles.module.css";
 import QRsvg from "./QRsvg";
 import { useLocation } from "react-router-dom";
+import QRCode from "react-qr-code";
 
-export default function QrCode({ Close }) {
+export default function QrCode({ Close, data }) {
   const location = useLocation();
   const store = location.pathname.includes("storefront");
+
+  const qrValue = store ? data.product_link : data.service_link;
   return (
     <div className='popupcancel'>
       <div className='overlay' onClick={Close}></div>
@@ -25,11 +28,11 @@ export default function QrCode({ Close }) {
             >
               <path
                 d='M6.75781 17.2428L12.0008 11.9998L17.2438 17.2428M17.2438 6.75684L11.9998 11.9998L6.75781 6.75684'
-                stroke='currentColor'
-                strokeOpacity='0.8'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                stroke='#1D2E2E'
+                stroke-opacity='0.8'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
               />
             </svg>
           </div>
@@ -44,7 +47,7 @@ export default function QrCode({ Close }) {
         </div>
 
         <div className={styles.svg}>
-          <QRsvg />
+          <QRCode value={qrValue} size={200} />
         </div>
       </div>
     </div>

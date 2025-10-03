@@ -20,8 +20,6 @@ export default function RetainerDetail({}) {
 
   const { data } = location.state || {};
 
-  console.log(data);
-
   function Back() {
     setIsBack(true);
   }

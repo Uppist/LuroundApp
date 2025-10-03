@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 export default function Update({ isVisible, openDetail }) {
   const [userService, setUserService] = useContext(ServiceContext);
 
-  console.log(userService);
   return (
     <div className={styles.dataretainer}>
       {Array.isArray(userService) && userService.length > 0 ? (

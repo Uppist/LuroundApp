@@ -699,5 +699,5 @@ input:checked + .toggle::before {
 .suspend div {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 16px;
 }

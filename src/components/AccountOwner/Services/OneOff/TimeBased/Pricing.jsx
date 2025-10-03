@@ -2,21 +2,30 @@
 import { useState } from "react";
 import styles from "./Time.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 export default function PricingTime({ timeBased, setTimeBased }) {
   // Initialize with one default pricing entry for the 15 min slot
 
+  const location = useLocation();
+  const EditTime = location.state || {};
+  console.log(EditTime);
+
   const newSlotButtons = ["15", "30", "45", "60", "90", "120", "150"];
   const defaultTimeAllocation = newSlotButtons[0];
-  const [amount, setAmount] = useState({
-    pricing: [
-      {
-        time_allocation: defaultTimeAllocation,
-        virtual: "",
-        in_person: "",
-      },
-    ],
-  });
+  const [amount, setAmount] = useState(() => ({
+    pricing:
+      EditTime.pricing && EditTime.pricing.length > 0
+        ? EditTime.pricing
+        : [
+            {
+              id: Date.now(),
+              time_allocation: defaultTimeAllocation,
+              virtual: EditTime.virtual || "",
+              in_person: EditTime.in_person || "",
+            },
+          ],
+  }));
 
   const [IsAddTime, setIsAddTime] = useState([]);
 
@@ -27,32 +36,25 @@ export default function PricingTime({ timeBased, setTimeBased }) {
     );
     if (!available) return;
 
-    setIsAddTime((prev) => [
-      ...prev,
-      { id: Date.now(), time_allocation: available },
-    ]);
+    const newId = Date.now() + Math.random();
+
+    // setIsAddTime((prev) => [
+    //   ...prev,
+    //   { id: Date.now(), time_allocation: available },
+    // ]);
 
     setAmount((prev) => ({
       ...prev,
       pricing: [
         ...prev.pricing,
-        { time_allocation: available, virtual: "", in_person: "" },
+        { id: newId, time_allocation: available, virtual: "", in_person: "" },
       ],
     }));
   }
 
   function handleTimeDelete(itemToDelete) {
-    // Find the index of the item to delete in IsAddTime
-    const indexToDeleteInIsAddTime = IsAddTime.findIndex(
-      (item) => item.id === itemToDelete.id
-    );
+    // setIsAddTime((prev) => prev.filter((item) => item.id !== itemToDelete.id));
 
-    // Filter out the deleted item from IsAddTime
-    setIsAddTime((prev) => prev.filter((item) => item.id !== itemToDelete.id));
-
-    // Also remove the corresponding pricing entry from amount.pricing
-    // Remember the first entry in amount.pricing corresponds to the hardcoded 15 min slot
-    // So, dynamic slots start from index 1 in amount.pricing if `itemToDelete` comes from `IsAddTime`.
     setAmount((prev) => {
       const newPricing = prev.pricing.filter(
         (priceItem) => priceItem.id !== itemToDelete.id
@@ -61,14 +63,10 @@ export default function PricingTime({ timeBased, setTimeBased }) {
     });
   }
 
-  // Modified Details function to handle updates for specific indices in the pricing array
-  // and for different input types (time_allocation, virtual, in_person)
   function Details(e, index, fieldName, valueToSet = null) {
     setAmount((prev) => {
       const newPricing = [...prev.pricing];
       if (newPricing[index]) {
-        // If valueToSet is provided (e.g., from button click), use it directly
-        // Otherwise, use e.target.value for input fields
         newPricing[index] = {
           ...newPricing[index],
           [fieldName]: valueToSet !== null ? valueToSet : e.target.value,
@@ -109,7 +107,7 @@ export default function PricingTime({ timeBased, setTimeBased }) {
     setIsAddTime([]);
 
     console.log(timeBased);
-    navigate("../daytime");
+    navigate("../daytime", { state: EditTime });
   }
 
   // Validation logic
@@ -229,11 +227,9 @@ export default function PricingTime({ timeBased, setTimeBased }) {
               <span className={styles.del}>Delete</span>
             </div>
 
-            {/* Render the initial hardcoded 15 min slot from amount.pricing[0] */}
-            {amount.pricing[0] && ( // Ensure it exists before rendering
-              <div className={styles.inputtimecontainer}>
+            {amount.pricing.map((slot, index) => (
+              <div key={slot.id} className={styles.inputtimecontainer}>
                 <div className={styles.buttonmins}>
-                  {/* Now, the button value is tied to amount.pricing[0].time_allocation */}
                   <button className={styles.buttontimer}>
                     <div>
                       {/* SVG */}
@@ -250,8 +246,7 @@ export default function PricingTime({ timeBased, setTimeBased }) {
                           fillOpacity='0.8'
                         />
                       </svg>
-                      <span>{amount.pricing[0].time_allocation}</span>{" "}
-                      {/* Display value from state */}
+                      <span>{slot.time_allocation}</span>
                     </div>
                   </button>
                   <span>min</span>
@@ -262,8 +257,8 @@ export default function PricingTime({ timeBased, setTimeBased }) {
                     type='number'
                     name='virtual'
                     placeholder='₦20,000'
-                    value={amount.pricing[0].virtual}
-                    onChange={(e) => Details(e, 0, "virtual")}
+                    value={slot.virtual}
+                    onChange={(e) => Details(e, index, "virtual")}
                   />
                 </div>
 
@@ -272,14 +267,12 @@ export default function PricingTime({ timeBased, setTimeBased }) {
                     type='number'
                     name='in_person'
                     placeholder='₦120,000'
-                    value={amount.pricing[0].in_person}
-                    onChange={(e) => Details(e, 0, "in_person")}
+                    value={slot.in_person}
+                    onChange={(e) => Details(e, index, "in_person")}
                   />
                 </div>
-                {/* Delete icon for the first row (if it should be deletable) */}
-                {/* You might want to make the first row undeletable or handle its deletion separately */}
                 <svg
-                  onClick={() => handleTimeDelete(amount.pricing[0])} // Pass the item itself
+                  onClick={() => handleTimeDelete(slot)}
                   width='24'
                   height='24'
                   viewBox='0 0 24 24'
@@ -296,7 +289,7 @@ export default function PricingTime({ timeBased, setTimeBased }) {
                   />
                 </svg>
               </div>
-            )}
+            ))}
 
             <div className={styles.addtimeslot}>
               {IsAddTime.map((slot, index) => {
