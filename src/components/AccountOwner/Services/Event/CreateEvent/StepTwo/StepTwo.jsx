@@ -7,7 +7,7 @@ import Regular from "./Regular";
 import arrow from "../../../../../elements/arrow.svg";
 import Vip from "./Vip";
 import axios from "axios";
-import { set } from "@cloudinary/url-gen/actions/variable";
+import { toast } from "react-toastify";
 
 export default function StepTwo({ eventService, setEventService }) {
   const [isTicket, setIsTicket] = useState(false);
@@ -31,6 +31,11 @@ export default function StepTwo({ eventService, setEventService }) {
       virtual_link: "",
       event_type: [],
       ticket_id: "N/A",
+      virtual_perks: "",
+      virtual_amount: "",
+      in_person_location: "",
+      in_person_perks: "",
+      in_person_amount: "",
     },
     vip: {
       name: "",
@@ -42,6 +47,11 @@ export default function StepTwo({ eventService, setEventService }) {
       virtual_link: "",
       event_type: [],
       ticket_id: "N/A",
+      virtual_perks: "",
+      virtual_amount: "",
+      in_person_location: "",
+      in_person_perks: "",
+      in_person_amount: "",
     },
   });
 
@@ -143,46 +153,56 @@ export default function StepTwo({ eventService, setEventService }) {
 
   function Done() {
     const toSave = [];
-    if (toSave.length === 0) {
+    if (pricing_model === "Free") {
       toSave.push({
         ...tickets.regular,
-        name: pricing_model === "Free" ? "Free Ticket" : tickets.regular.name,
-        description:
-          pricing_model === "Free"
-            ? "Free entry ticket"
-            : tickets.regular.description,
-        amount: 0,
-        // ticket_type: "Regular",
-      });
-    }
-
-    if (tickets.regular.name || tickets.regular.amount) {
-      toSave.push({
-        ...tickets.regular,
-        pricing_model,
-      });
-    }
-    if (tickets.vip.name || tickets.vip.amount) {
-      toSave.push({
-        ...tickets.vip,
-        pricing_model,
-      });
-    }
-
-    if (toSave.length === 0) {
-      toSave.push({
-        ...tickets.regular,
+        name: "Free",
+        description: "Free entry ticket",
         amount: 0,
         ticket_type: "Regular",
       });
     }
+
+    const finalRegularAmount =
+      tickets.regular.virtual_amount || tickets.regular.in_person_amount || "";
+
+    // 🟦 Handle Ticket Tier model
+    if (pricing_model === "Ticket Tier") {
+      if (tickets.regular.name || tickets.regular.amount) {
+        toSave.push({
+          ...tickets.regular,
+          amount: finalRegularAmount,
+
+          pricing_model,
+        });
+      }
+
+      if (tickets.vip.name || tickets.vip.amount) {
+        toSave.push({
+          ...tickets.vip,
+          pricing_model,
+        });
+      }
+    }
+
+    const regularVirtualLink =
+      tickets?.regular?.virtual_link?.trim() ||
+      tickets?.vip?.virtual_link ||
+      "";
+
+    const locationToUse =
+      tickets?.regular.in_person_location?.trim() ||
+      tickets?.vip?.in_person_location?.trim();
+
     const dataToSend = {
       ...eventService,
       tickets: toSave,
       pricing_model,
+      in_person_location: locationToUse,
+      virtual_meeting_link: regularVirtualLink,
     };
 
-    console.log("Saving tickets:", toSave);
+    console.log("Saving tickets:", dataToSend);
     setEventService(dataToSend);
 
     const token = localStorage.getItem("Token");
@@ -193,10 +213,15 @@ export default function StepTwo({ eventService, setEventService }) {
       .then((res) => {
         console.log(res.data);
         console.log("Data sent:", dataToSend);
-        navigate("/event", { state: dataToSend });
+        toast.success("Event service created sucessfully!");
+
+        setTimeout(() => {
+          navigate("/event", { state: dataToSend });
+        }, 2000);
       })
       .catch((err) => {
         console.error("Error sending data:", err);
+        toast.error(err.response.data.message.message);
       });
     console.log(eventService);
   }

@@ -109,8 +109,8 @@ export default function Regular({
                   </button>
                   <input
                     type='number'
-                    name='amount'
-                    value={tickets.regular.amount}
+                    name='virtual_amount'
+                    value={tickets.regular.virtual_amount}
                     onChange={handleTicketTier}
                     placeholder='0.00'
                     onClick={(e) => e.stopPropagation()}
@@ -131,6 +131,71 @@ export default function Regular({
             />
             <span>In-person</span>
           </div>
+
+          {isRegularPerson && (
+            <div className={styles.virtual}>
+              <div>
+                <input
+                  type='text'
+                  name='in_person_location'
+                  value={tickets.regular.in_person_location}
+                  onChange={handleTicketTier}
+                  id=''
+                  onClick={(e) => e.stopPropagation()}
+                  placeholder='Add event location for in-person event'
+                />
+              </div>
+              <div>
+                <span>Perks</span>
+                <input
+                  type='text'
+                  name='in_person_perks'
+                  value={tickets.in_person_perks}
+                  onChange={handleTicketTier}
+                  onClick={(e) => e.stopPropagation()}
+                  id=''
+                  placeholder='List out the perks of this ticket tier'
+                />
+              </div>
+              <div className={styles.pricingproject}>
+                <span>Pricing</span>
+                <div className={styles.nigeriaprice}>
+                  <button>
+                    <div className={styles.nigeriadown}>
+                      <img src={nigeria} />
+                      <div className={styles.ngndown}>
+                        <span>NGN</span>
+                        <svg
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
+                            stroke='#1D2E2E'
+                            strokeOpacity='0.8'
+                            strokeMiterlimit='10'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
+                  <input
+                    type='number'
+                    name='in_person_amount'
+                    value={tickets.regular.in_person_amount}
+                    onChange={handleTicketTier}
+                    placeholder='0.00'
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
+              </div>{" "}
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.button}>

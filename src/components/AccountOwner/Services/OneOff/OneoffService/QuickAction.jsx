@@ -10,13 +10,14 @@ import Delete from "../../QuickAction/Delete";
 import view from "../../../../elements/bookings/View.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Ticket from "../../QuickAction/Ticket";
 // import Delete from "./Delete";
 
 export default function QuickAction({ setIsEdit, data, Back, showPart }) {
   // const [Quick, setQuick] = useState({});
 
   const [isInsight, setIsInsight] = useState(false);
-
+  const [ticket, setTicket] = useState(false);
   const [isSuspended, setIsSuspended] = useState(false);
   const [isShare, setIsShare] = useState(false);
   const [isQr, setIsQr] = useState(false);
@@ -24,6 +25,10 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
 
   function ServiceInsight() {
     setIsInsight(true);
+  }
+
+  function handleTicket() {
+    setTicket(true);
   }
 
   function ShareService() {
@@ -116,7 +121,7 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
           <span> Edit</span>
         </div>
         {data.service_type === "event" && (
-          <div className={styles.settingscontainer}>
+          <div className={styles.settingscontainer} onClick={handleTicket}>
             <svg
               width='24'
               height='24'
@@ -139,6 +144,7 @@ export default function QuickAction({ setIsEdit, data, Back, showPart }) {
             <span> View ticket</span>
           </div>
         )}
+        {ticket && <Ticket Close={() => setTicket(false)} data={data} />}
         {/* </Link> */}
         <div className={styles.settingscontainer} onClick={ServiceInsight}>
           <svg

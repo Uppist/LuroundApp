@@ -72,6 +72,17 @@ export default function StepOne({
     setEventSchedule(updatedSchedule);
   }
 
+  const isNext =
+    createService.service_name.trim() !== "" &&
+    createService.description.trim() !== "" &&
+    eventSchedule.length > 0 &&
+    eventSchedule.every(
+      (item) =>
+        item.day?.trim() !== "" &&
+        item.from_time?.trim() !== "" &&
+        item.to_time?.trim() !== ""
+    );
+
   function Next() {
     console.log("createService:", createService);
     console.log("dates:", dates);
@@ -105,7 +116,7 @@ export default function StepOne({
           handleDateChange={handleDateChange}
         />
         <div>
-          <button onClick={Next} className='next'>
+          <button onClick={Next} disabled={!isNext} className={styles.next}>
             Next
           </button>
         </div>

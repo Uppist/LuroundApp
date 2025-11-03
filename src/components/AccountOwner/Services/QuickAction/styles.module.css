@@ -319,3 +319,75 @@
   font-size: 16px;
   color: white;
 }
+
+/* Ticket*/
+
+.ticketContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 32px;
+}
+
+.eachContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: url("../../../elements/services/Cone.svg") no-repeat left
+      top/contain,
+    linear-gradient(180deg, hsla(300, 100%, 62%, 1), hsla(267, 99%, 55%, 1));
+  gap: 16px;
+  border-radius: 8px;
+}
+
+.ticket1 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 16px;
+  background-color: white;
+  border-radius: 8px;
+  color: hsla(276, 100%, 56%, 1);
+}
+
+.ticket1 span {
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ticket1 p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.ticket2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket2 > span {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.ticket2 div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ticket2 div span {
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(0, 0%, 100%, 0.75);
+}
+
+.timeSpan {
+  text-transform: lowercase;
+}

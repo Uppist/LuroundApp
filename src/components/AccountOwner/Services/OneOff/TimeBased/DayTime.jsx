@@ -66,14 +66,22 @@ export default function DayTime({
   );
 
   const [period, setPeriod] = useState({
-    booking_period: "3 months" || EditTime.booking_period,
-    notice_period: "1" + " " + "days" || EditTime.notice_period,
-    appointment_buffer: "15" + " " + "minutes" || EditTime.appointment_buffer,
-    in_person_location: "" || EditTime.in_person_location,
-    virtual_meeting_link: "" || EditTime.virtual_meeting_link,
+    booking_period: EditTime?.booking_period || "3 months",
+    notice_period: EditTime?.notice_period || "1 days",
+    appointment_buffer: EditTime?.appointment_buffer || "15 minutes",
+    in_person_location: EditTime?.in_person_location || "",
+    virtual_meeting_link: EditTime?.virtual_meeting_link || "",
   });
 
   const navigate = useNavigate();
+
+  const isDone =
+    Object.values(checkedDays).some(Boolean) &&
+    Object.entries(checkedDays).every(([idx, checked]) => {
+      if (!checked) return true;
+      return selectedFrom[idx] && selectedTo[idx];
+    }) &&
+    period.booking_period.trim() !== "";
 
   function Submit() {
     const availability = dayInfo.reduce((acc, day, index) => {
@@ -97,25 +105,7 @@ export default function DayTime({
     const token = localStorage.getItem("Token");
     console.log("Ready to POST:", dataToSend);
 
-    if (!EditTime) {
-      axios
-        .post("https://api.luround.com/v1/services/create", dataToSend, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          console.log("Data sent:", dataToSend);
-          toast.success("One-off service created sucessfully");
-          setTimeout(() => {
-            navigate("/oneoff", { state: dataToSend });
-          }, 1000);
-        })
-        .catch((err) => {
-          console.error("Error sending data:", err);
-        });
-    }
-
-    if (EditTime) {
+    if (EditTime && EditTime._id) {
       axios
         .put(
           `https://api.luround.com/v1/services/edit?serviceId=${EditTime._id}`,
@@ -134,10 +124,24 @@ export default function DayTime({
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      axios
+        .post("https://api.luround.com/v1/services/create", dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log("Data sent:", dataToSend);
+          toast.success("One-off service created sucessfully");
+          setTimeout(() => {
+            navigate("/oneoff", { state: dataToSend });
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("Error sending data:", err);
+          // toast.error(err);
+        });
     }
-    // console.log(timeBased);
-
-    // console.log("Saved Booking Period:", period);
   }
 
   useEffect(() => {
@@ -226,7 +230,11 @@ export default function DayTime({
           </div>
           <div className={styles.done}>
             <button className={styles.canceltime}>Cancel</button>
-            <button className={styles.donetime} onClick={Submit}>
+            <button
+              className={styles.donetime}
+              disabled={!isDone}
+              onClick={Submit}
+            >
               Done
             </button>
           </div>

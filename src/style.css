@@ -31,6 +31,7 @@ body {
 a {
   text-decoration: none;
   color: currentColor;
+  /* cursor: pointer; */
   /* width: -webkit-fill-available; */
   /* width: fit-content; */
 }
@@ -575,7 +576,7 @@ input:checked + .toggle::before {
 .done-time {
   padding: 12px 43px;
   height: 48px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid hsla(180, 11%, 89%, 1);
   font-weight: 400;
   font-size: 16px;

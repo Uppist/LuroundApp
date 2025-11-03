@@ -79,27 +79,7 @@ export default function DateTime({ retainerService, setRetainerService }) {
     setRetainerService(dataToSend);
     const token = localStorage.getItem("Token");
 
-    if (!EditRetainer) {
-      axios
-        .post("https://api.luround.com/v1/services/create", dataToSend, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-
-          console.log("Data sent:", dataToSend);
-          toast.success("Service created sucessfully");
-
-          setTimeout(() => {
-            navigate("/retainer", { state: dataToSend });
-          }, 2000);
-        })
-        .catch((err) => {
-          console.error("Error sending data:", err);
-        });
-    }
-
-    if (EditRetainer) {
+    if (EditRetainer && EditRetainer._id) {
       axios
         .put(
           `https://api.luround.com/v1/services/edit?serviceId=${EditRetainer._id}`,
@@ -116,6 +96,24 @@ export default function DateTime({ retainerService, setRetainerService }) {
         })
         .catch((err) => {
           console.log(err);
+        });
+    } else {
+      axios
+        .post("https://api.luround.com/v1/services/create", dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+
+          console.log("Data sent:", dataToSend);
+          toast.success("Service created sucessfully");
+
+          setTimeout(() => {
+            navigate("/retainer", { state: dataToSend });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Error sending data:", err);
         });
     }
   }

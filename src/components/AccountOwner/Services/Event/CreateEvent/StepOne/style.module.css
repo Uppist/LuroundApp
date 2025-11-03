@@ -110,7 +110,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .startendtime {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
   margin-bottom: 15px;
   font-size: 14px;
   font-weight: 500;
@@ -165,4 +165,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .menu::-webkit-scrollbar {
   display: none;
+}
+
+.next {
+  float: right;
+  border: 0;
+  padding: 12px 51px;
+  border-radius: 8px;
+  background-color: hsla(180, 100%, 40%, 1);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.next:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
+.next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -50,6 +50,8 @@ export default function Delete({
             navigate("/retainer");
           } else if (location.pathname.includes("program")) {
             navigate("/program");
+          } else if (location.pathname.includes("event")) {
+            navigate("/event");
           }
         }, 3000);
       });

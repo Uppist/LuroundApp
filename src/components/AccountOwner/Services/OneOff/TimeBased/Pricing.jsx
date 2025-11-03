@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Time.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
@@ -116,6 +116,10 @@ export default function PricingTime({ timeBased, setTimeBased }) {
       (entry.virtual ?? "").trim() !== "" ||
       (entry.in_person ?? "").trim() !== ""
   );
+
+  useEffect(() => {
+    localStorage.setItem("timeBased", JSON.stringify(timeBased));
+  }, [timeBased]);
 
   return (
     <section className={styles.section}>

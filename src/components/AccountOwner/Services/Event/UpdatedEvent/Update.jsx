@@ -48,7 +48,9 @@ export default function Update() {
                         </div>
                         <div className={styles2.textvector}>
                           <span className={styles2.text}>
-                            {data.description}
+                            {data.description.length > 50
+                              ? data.description.slice(0, 50) + "..."
+                              : data.description}
                           </span>
                         </div>
                       </div>

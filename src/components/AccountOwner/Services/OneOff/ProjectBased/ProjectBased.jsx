@@ -18,22 +18,22 @@ export default function Projectbased({
   Type,
 }) {
   const location = useLocation();
-  const EditProject = location.state.data || {};
+  const EditProject = location.state?.data || {};
   // console.log(EditProject);
   const [createService, setCreateService] = useState({
-    service_name: "" || EditProject.service_name,
-    description: "" || EditProject.description,
+    service_name: EditProject.service_name || "",
+    description: EditProject.description || "",
     service_type: serviceType,
     one_off_type: Type,
     // photoURL: "",
   });
 
   const [delivery_timeline, setDeliveryTime] = useState(
-    "" || EditProject.delivery_timeline
+    EditProject.delivery_timeline || ""
   );
 
   const [project_pricing, setPricingTime] = useState(
-    "" || EditProject.project_pricing
+    EditProject.project_pricing || ""
   );
 
   const details = { ...createService, delivery_timeline, project_pricing };
@@ -98,22 +98,7 @@ export default function Projectbased({
 
     const token = localStorage.getItem("Token");
 
-    if (!EditProject) {
-      axios
-        .post("https://api.luround.com/v1/services/create", details, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          setProjectBased(details);
-          console.log(res.data);
-          toast.success("Project sucessfully added!");
-          setTimeout(() => {
-            navigate("/oneoff", { state: details });
-          }, 2000);
-        });
-    }
-
-    if (EditProject) {
+    if (EditProject && EditProject._id) {
       axios
         .put(
           `https://api.luround.com/v1/services/edit?serviceId=${EditProject._id}`,
@@ -130,6 +115,19 @@ export default function Projectbased({
         })
         .catch((err) => {
           console.log(err);
+        });
+    } else {
+      axios
+        .post("https://api.luround.com/v1/services/create", details, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setProjectBased(details);
+          console.log(res.data);
+          toast.success("Project sucessfully added!");
+          setTimeout(() => {
+            navigate("/oneoff", { state: details });
+          }, 2000);
         });
     }
   }

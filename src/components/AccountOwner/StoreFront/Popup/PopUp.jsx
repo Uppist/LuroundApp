@@ -78,25 +78,8 @@ export default function PopUp() {
       category: formatCategory(details.category),
     };
     console.log(data.photoURL);
-    if (!EditData) {
-      axios
-        .post("https://api.luround.com/v1/storefront/new-product", data, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setStoreFront([...storeFront, data]);
-          toast.success("Added a new product!");
-          setTimeout(() => {
-            navigate("/storefront");
-          }, 2000);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
 
-    if (EditData) {
+    if (EditData && EditData._id) {
       axios
         .put(
           `https://api.luround.com/v1/storefront/edit-product?productId=${EditData._id}`,
@@ -114,6 +97,23 @@ export default function PopUp() {
         })
         .catch((err) => {
           console.log(err);
+        });
+    } else {
+      axios
+        .post("https://api.luround.com/v1/storefront/new-product", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setStoreFront([...storeFront, data]);
+          toast.success("Added a new product!");
+          setTimeout(() => {
+            navigate("/storefront");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.response.data.message.message[0]);
         });
     }
   }

@@ -11,8 +11,6 @@ export default function ServiceCreate({
   timeBased,
   Type,
 }) {
-  const [text, setText] = useState("");
-
   const { EditTime } = useOutletContext();
 
   const [createService, setCreateService] = useState({

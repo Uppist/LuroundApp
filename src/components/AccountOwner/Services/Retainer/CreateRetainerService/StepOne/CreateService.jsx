@@ -12,13 +12,13 @@ export default function CreateService({
 }) {
   const location = useLocation();
 
-  const EditRetainer = location.state.data || {};
+  const EditRetainer = location.state?.data || {};
 
   const [createService, setCreateService] = useState({
-    service_name: "" || EditRetainer.service_name,
-    description: "" || EditRetainer.description,
+    service_name: EditRetainer.service_name || "",
+    description: EditRetainer.description || "",
     service_type: serviceType,
-    core_features: [] || EditRetainer.core_features,
+    core_features: EditRetainer.core_features || [],
   });
 
   function handleChange(e) {

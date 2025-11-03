@@ -14,11 +14,11 @@ export default function CreateService({
 }) {
   const location = useLocation();
 
-  const EditProgram = location.state.data || {};
+  const EditProgram = location.state?.data || {};
 
   const [createService, setCreateService] = useState({
-    service_name: "" || EditProgram.service_name,
-    description: "" || EditProgram.description,
+    service_name: EditProgram.service_name || "",
+    description: EditProgram.description || "",
     service_type: serviceType,
     in_personevent_fee: "N/A",
     virtual_event_fee: "N/A",
@@ -31,15 +31,15 @@ export default function CreateService({
   const navigate = useNavigate();
 
   const [program, setProgram] = useState({
-    program_start_date: "" || EditProgram.program_start_date,
-    program_end_date: "" || EditProgram.program_end_date,
-    program_recurrence: "" || EditProgram.program_recurrence,
-    max_participants: 0 || EditProgram.max_participants,
+    program_start_date: EditProgram.program_start_date || "",
+    program_end_date: EditProgram.program_end_date || "",
+    program_recurrence: EditProgram.program_recurrence || "",
+    max_participants: EditProgram.max_participants || 0,
   });
 
   const [pricing, setPricing] = useState({
-    virtual: "" || EditProgram.pricing.virtual,
-    in_person: "" || EditProgram.pricing.in_person,
+    virtual: EditProgram.pricing?.virtual || "",
+    in_person: EditProgram.pricing?.in_person || "",
   });
 
   function handleProgram(e) {

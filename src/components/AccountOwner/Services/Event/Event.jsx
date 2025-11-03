@@ -1,6 +1,5 @@
 /** @format */
 import { useContext, useState } from "react";
-import event from "./event.json";
 import styles from "./Event.module.css";
 import styles2 from "../Retainer/Retainer.module.css";
 import Update from "./UpdatedEvent/Update";

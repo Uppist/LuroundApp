@@ -80,22 +80,7 @@ export default function DateTime({ programService, setProgramService }) {
     setProgramService(dataToSend);
     const token = localStorage.getItem("Token");
 
-    if (!EditProgram) {
-      axios
-        .post("https://api.luround.com/v1/services/create", dataToSend, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          toast.success("Service created sucessfully");
-          setTimeout(() => {
-            navigate("/program", { state: dataToSend });
-          }, 2000);
-        })
-        .catch((err) => {
-          console.error("Error sending data:", err);
-        });
-    }
-    if (EditProgram) {
+    if (EditProgram && EditProgram._id) {
       axios
         .put(
           `https://api.luround.com/v1/services/edit?serviceId=${EditProgram._id}`,
@@ -112,6 +97,20 @@ export default function DateTime({ programService, setProgramService }) {
         })
         .catch((err) => {
           console.log(err);
+        });
+    } else {
+      axios
+        .post("https://api.luround.com/v1/services/create", dataToSend, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          toast.success("Service created sucessfully");
+          setTimeout(() => {
+            navigate("/program", { state: dataToSend });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Error sending data:", err);
         });
     }
   }

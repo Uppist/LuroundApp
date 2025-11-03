@@ -17,6 +17,15 @@
   text-transform: lowercase;
   margin-top: 5px;
 }
+
+.time a label {
+  cursor: pointer;
+}
+
+.time label {
+  text-transform: capitalize;
+}
+
 .day {
   text-transform: capitalize;
 }

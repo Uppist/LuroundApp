@@ -112,10 +112,14 @@ export default function EventDetail() {
                   />
                 </svg>
 
-                <Link to={data.service_link}>
-                  {" "}
-                  <label htmlFor=''>{data.location || data.service_link}</label>
-                </Link>
+                {data.in_person_location === null ? (
+                  <Link to={data.virtual_meeting_link} target='_blank'>
+                    {" "}
+                    <label htmlFor=''>{data.virtual_meeting_link}</label>
+                  </Link>
+                ) : (
+                  <label htmlFor=''>{data.in_person_location}</label>
+                )}
               </div>
 
               <div className={styles.time}>
