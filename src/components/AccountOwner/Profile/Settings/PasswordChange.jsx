@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import styles from "./Setting.module.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export default function PasswordChange() {
+export default function PasswordChange({ loading, setLoading }) {
   const [password, setPassword] = useState({
     oldPassword: "",
     newPassword: "",
@@ -24,11 +25,21 @@ export default function PasswordChange() {
     };
     if (password.newPassword !== password.confirmPassword) {
       toast.error("Your password must match!");
+      setPassword({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
       return;
     }
 
     if (password.oldPassword === password.newPassword) {
       toast.error("Old password and new password should not be the same!");
+      setPassword({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
       return;
     }
 
@@ -45,10 +56,12 @@ export default function PasswordChange() {
           newPassword: "",
           confirmPassword: "",
         });
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.response.data.message.message);
         toast.error(err.response.data.message.message);
+        setLoading(false);
       });
     // }
 
@@ -106,7 +119,7 @@ export default function PasswordChange() {
             disabled={!isSave}
             className={styles.donetime}
           >
-            Save
+            {loading ? <CircularProgress size={20} color='inherit/' /> : "Save"}
           </button>
         </div>
       </div>

@@ -126,7 +126,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Transactions:", res.data);
+        // console.log("Transactions:", res.data);
         setTransactions(res.data);
       });
 

@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export default function DeleteAccount({ CloseDelete }) {
+export default function DeleteAccount({ CloseDelete, loading, setLoading }) {
   const [isTextarea, setIsTextarea] = useState(false);
 
   function Click(index) {
@@ -17,6 +17,7 @@ export default function DeleteAccount({ CloseDelete }) {
 
   const navigate = useNavigate();
   function Delete() {
+    setLoading(true);
     const token = localStorage.getItem("Token");
     axios
       .delete("https://api.luround.com/v1/user/account/delete", {
@@ -25,7 +26,11 @@ export default function DeleteAccount({ CloseDelete }) {
       .then((res) => {
         localStorage.removeItem("Token");
         toast.error("Account Deleted");
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 900);
+
+        setLoading(false);
       });
   }
   return (
@@ -74,7 +79,11 @@ export default function DeleteAccount({ CloseDelete }) {
               Cancel
             </button>
             <button className={styles.delete} onClick={Delete}>
-              Delete
+              {loading ? (
+                <CircularProgress size={20} color='inherit/' />
+              ) : (
+                "Delete"
+              )}
             </button>
           </div>
         </div>

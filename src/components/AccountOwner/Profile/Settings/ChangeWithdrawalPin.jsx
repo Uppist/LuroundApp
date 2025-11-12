@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import styles from "./Setting.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export default function ChangeWithdrawalPin() {
+export default function ChangeWithdrawalPin({ loading, setLoading }) {
   const [pins, setPins] = useState({
     current_pin: "",
     new_pin: "",
@@ -49,10 +50,12 @@ export default function ChangeWithdrawalPin() {
       .then((res) => {
         console.log(res.data);
         toast.success("Withdrawal pin updated!");
+        setLoading(false);
       })
       .catch((err) => {
         toast.error(err.response.data.message.message);
         console.log(err);
+        setLoading(false);
       });
     // console.log(pins);
     setPins({
@@ -113,10 +116,10 @@ export default function ChangeWithdrawalPin() {
           <button
             type='button'
             onClick={Save}
-            disabled={!isSave}
+            disabled={!isSave || loading}
             className={styles.donetime}
           >
-            Save
+            {loading ? <CircularProgress size={20} color='inherit/' /> : "Save"}
           </button>
         </div>
       </div>

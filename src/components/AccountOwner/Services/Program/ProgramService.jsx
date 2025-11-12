@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles2 from "../Retainer/Details.module.css";
-import UploadImage from "../../../Reuseables/UploadImage";
+import UploadImage from "../../Reuseables/UploadImage";
 import { Link, Outlet } from "react-router-dom";
 
 export default function ProgramService({ programService, setProgramService }) {

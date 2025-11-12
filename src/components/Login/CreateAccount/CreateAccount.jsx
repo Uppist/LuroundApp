@@ -10,6 +10,7 @@ import { useState } from "react";
 import axios from "axios";
 import Password from "./Password/Password";
 import { toast } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function CreateAccount() {
   const [logindetail, setLogindetail] = useState({
@@ -24,6 +25,7 @@ export default function CreateAccount() {
   });
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   function LoginDetail(e) {
     setLogindetail({ ...logindetail, [e.target.name]: e.target.value });
@@ -67,19 +69,6 @@ export default function CreateAccount() {
         }
       );
 
-      // const userData = {
-      //   name: profileResponse.data.displayName || "",
-      //   company: profileResponse.data.company || "",
-      //   photoUrl: profileResponse.data.photoUrl || "",
-      //   url: profileResponse.data.luround_url || "",
-      //   logo: profileResponse.data.logo_url || "",
-      //   about: profileResponse.data.about || "",
-      //   socialLinks: profileResponse.data.media_links || [],
-      //   occupation: profileResponse.data.occupation || "",
-      //   email: profileResponse.data.email || "",
-      // };
-
-      // localStorage.setItem("userData", JSON.stringify(userData));
       toast.success("Account created successfully!");
       setTimeout(() => {
         navigate("/Login");
@@ -87,7 +76,6 @@ export default function CreateAccount() {
     } catch (error) {
       console.error("Sign-up or profile fetch failed:", error);
       toast.error(error.response.data.message.message);
-      // console.log(error.message.response.data.message.message);
     }
   };
 
@@ -127,10 +115,14 @@ export default function CreateAccount() {
                 <Signup logindetail={logindetail} LoginDetail={LoginDetail} />
                 <button
                   type='button'
-                  disabled={!isFormComplete}
+                  disabled={!isFormComplete || loading}
                   onClick={NextStep}
                 >
-                  Next
+                  {loading ? (
+                    <CircularProgress size={20} color='inherit/' />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </form>
             )}

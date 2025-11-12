@@ -28,10 +28,10 @@ export default function About() {
       ].includes(item.name) && item.link?.trim() !== ""
   );
 
-  console.log(userData.media_links);
-  console.log(hasContactInfo);
-  console.log(hasSocialMedia);
-  console.log(userData?.media_links);
+  // console.log(userData.media_links);
+  // console.log(hasContactInfo);
+  // console.log(hasSocialMedia);
+  // console.log(userData?.media_links);
   return (
     <section className={styles.about}>
       {!userData?.about?.trim() ? (

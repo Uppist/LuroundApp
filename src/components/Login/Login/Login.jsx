@@ -2,14 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { handleLogin } from "../../../apis/LoginAPI/LoginAPI";
 import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 import axios from "axios";
 import { useContext } from "react";
-import styles from "./Login.module.css";
 import styles2 from "../CreateAccount/style.module.css";
 import image from "../../elements/LuroundApp.png";
 import google from "../../elements/Google.png";
@@ -17,7 +15,6 @@ import Signin from "./Signin";
 import Animation from "../Animation/Animation";
 import { Link } from "react-router-dom";
 import { userContext } from "../../Context";
-import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();

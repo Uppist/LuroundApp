@@ -10,7 +10,7 @@ export default function Notification({ onClose, onComponentSwitch }) {
 
   const [notification, setNotification] = useContext(NotificationContext);
 
-  console.log(notification);
+  // console.log(notification);
   return (
     <div>
       <div className={styles.profiledropdown}>
@@ -19,7 +19,7 @@ export default function Notification({ onClose, onComponentSwitch }) {
           <label>Your Notifications</label>
           <div className={styles.scrollablenotification}>
             {notification.map((data, index) => (
-              <div className={styles.notificationbooked}>
+              <div className={styles.notificationbooked} key={index}>
                 <div key={index}>
                   <label className={styles.notificationname}>
                     {data.body}{" "}

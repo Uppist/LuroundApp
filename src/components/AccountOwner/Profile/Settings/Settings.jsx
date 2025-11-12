@@ -7,11 +7,14 @@ import ChangeWithdrawalPin from "./ChangeWithdrawalPin";
 import ForgotWithdrawalPin from "./ForgotWithdrawalPin";
 import CustomizeURL from "./CustomizeURL";
 import Notifications from "./Notifications";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Delete from "./Delete";
-import BankDetails from "./BankDetails";
+// import BankDetails from "./BankDetails";
 import AddBank from "../../Transactions/SavedAccount/Addbank";
 import { BankContext, TransactionContext } from "../../../Context";
 import Bank from "../../Transactions/SavedAccount/Bank";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Settings() {
   const [isBank, setIsBank] = useState(false);
@@ -30,6 +33,7 @@ export default function Settings() {
     });
   };
 
+  const [loading, setLoading] = useState(false);
   const [savedBanks, setSavedBanks] = useContext(BankContext);
 
   // console.log(savedBanks);
@@ -63,41 +67,25 @@ export default function Settings() {
             <div className={styles.withdraw} onClick={Pin}>
               <label>Withdrawal Pin management</label>
               {isPinVisible ? (
-                <svg
-                  onClick={Pin}
-                  width='25'
-                  height='25'
-                  viewBox='0 0 16 16'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M11.3104 6.34485L8.00004 9.65519L4.6897 6.34485'
-                    stroke='#1D2E2E'
-                    strokeOpacity='0.8'
-                    strokeMiterlimit='10'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
+                <KeyboardArrowDownIcon
+                  // onClick={Pin}
+                  sx={{
+                    width: 25,
+                    height: 25,
+                    fill: "#1D2E2E",
+                    fillOpacity: "0.8",
+                  }}
+                />
               ) : (
-                <svg
-                  onClick={Pin}
-                  width='7'
-                  height='12'
-                  viewBox='0 0 7 12'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M1 11L6 6L1 1'
-                    stroke='#1D2E2E'
-                    strokeOpacity='0.8'
-                    strokeWidth='1.5'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
+                <ArrowForwardIosOutlinedIcon
+                  // onClick={Pin}
+                  sx={{
+                    width: 16,
+                    height: 16,
+                    fill: "#1D2E2E",
+                    fillOpacity: "0.8",
+                  }}
+                />
               )}
             </div>
             {isPinVisible && (
@@ -126,12 +114,11 @@ export default function Settings() {
 
         <div className={styles.settingssecond}>
           <div ref={scrollpassword}>
-            <PasswordChange />
+            <PasswordChange loading={loading} setLoading={setLoading} />
           </div>
-          {/* {transactionBalance.wallet_pin && ( */}
           <>
             <div ref={scrollwithdraw}>
-              <ChangeWithdrawalPin />
+              <ChangeWithdrawalPin loading={loading} setLoading={setLoading} />
             </div>
             <div ref={scrollforgot}>
               <ForgotWithdrawalPin />
@@ -141,23 +128,17 @@ export default function Settings() {
           <div className={styles.bank}>
             <div className={styles.bank2} ref={scrollaccount}>
               <label>Bank account details</label>
-              <svg
+              <AddIcon
                 onClick={handleBank}
-                width='48'
-                height='40'
-                viewBox='0 0 48 40'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M0 8C0 3.58172 3.58172 0 8 0H40C44.4183 0 48 3.58172 48 8V32C48 36.4183 44.4183 40 40 40H8C3.58172 40 0 36.4183 0 32V8Z'
-                  fill='#00CCCC'
-                />
-                <path
-                  d='M22.7757 28.5714V21.2245H15.4287V18.7755H22.7757V11.4286H25.2246V18.7755H32.5716V21.2245H25.2246V28.5714H22.7757Z'
-                  fill='#EBFFFF'
-                />
-              </svg>
+                sx={{
+                  width: 24,
+                  height: 24,
+                  fill: "#EBFFFF",
+                  backgroundColor: "#00CCCC",
+                  padding: "8px 12px",
+                  borderRadius: "8px",
+                }}
+              />
             </div>{" "}
             <div className={styles.savedBanks}>
               {savedBanks.length === 0
@@ -193,7 +174,7 @@ export default function Settings() {
           </div>
 
           <div ref={scrolldelete}>
-            <Delete />
+            <Delete loading={loading} setLoading={setLoading} />
           </div>
         </div>
       </div>

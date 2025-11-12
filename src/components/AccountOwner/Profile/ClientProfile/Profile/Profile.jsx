@@ -18,7 +18,7 @@ export default function Profile() {
 
   const [userData] = useContext(userContext);
 
-  console.log(userData);
+  // console.log(userData);
   const nameFormatted = userData?.displayName
     ? userData.displayName.replace(/ /g, "_")
     : "";

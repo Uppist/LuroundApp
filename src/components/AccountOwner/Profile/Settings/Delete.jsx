@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import styles from "./Setting.module.css";
 import DeleteAccount from "./DeleteAccount";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export default function Delete() {
+export default function Delete({ loading, setLoading }) {
   const [isDelete, setIsDelete] = useState(false);
 
   function DeleteAcc() {
@@ -28,7 +29,13 @@ export default function Delete() {
             Continue
           </button>
 
-          {isDelete && <DeleteAccount CloseDelete={CloseDelete} />}
+          {isDelete && (
+            <DeleteAccount
+              CloseDelete={CloseDelete}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          )}
         </div>
       </div>
     </>
