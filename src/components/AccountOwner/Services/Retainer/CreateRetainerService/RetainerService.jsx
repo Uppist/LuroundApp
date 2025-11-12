@@ -2,9 +2,12 @@
 import { useState } from "react";
 import styles from "../Details.module.css";
 
-import Upload from "./Upload";
+import UploadImage from "../../../Reuseables/UploadImage";
 import { Link, Outlet } from "react-router-dom";
-export default function RetainerService({ handleClick }) {
+export default function RetainerService({
+  retainerService,
+  setRetainerService,
+}) {
   return (
     <>
       <div className={styles.timebased}>
@@ -32,7 +35,10 @@ export default function RetainerService({ handleClick }) {
         </Link>
 
         <div className={styles.timebasedgridcontainer}>
-          <Upload />
+          <UploadImage
+            details={retainerService}
+            setDetails={setRetainerService}
+          />
           <div className='time-service-description'>
             <Outlet />
           </div>

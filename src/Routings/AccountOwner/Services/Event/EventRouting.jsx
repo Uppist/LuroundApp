@@ -13,7 +13,15 @@ export default function EventRouting() {
   return (
     <Routes>
       <Route path='/event' element={<Event />} />
-      <Route path='/create' element={<EventService />}>
+      <Route
+        path='/create'
+        element={
+          <EventService
+            eventService={eventService}
+            setEventService={setEventService}
+          />
+        }
+      >
         <Route
           index
           element={

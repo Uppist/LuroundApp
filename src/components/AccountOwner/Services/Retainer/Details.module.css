@@ -254,38 +254,6 @@ input:checked + .toggle::before {
   font-weight: 600;
   color: hsla(197, 100%, 11%, 1);
 }
-.imgchoose img {
-  width: 415px;
-}
-
-.imgchoose {
-  margin: 0 auto;
-}
-.choose {
-  /* position: absolute; */
-  margin-top: -75px;
-  /* margin-left: 220px; */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: end;
-}
-.photo {
-  display: none;
-}
-
-.gallery {
-  background-color: hsla(0, 0%, 27%, 0.74);
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  width: fit-content;
-}
 
 .timechoosedaytime {
   border-radius: 16px;

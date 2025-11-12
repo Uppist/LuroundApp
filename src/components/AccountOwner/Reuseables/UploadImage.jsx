@@ -1,71 +1,104 @@
 /** @format */
 
-import React, { useState } from "react";
-import styles from "../style.module.css";
-import image from "../../../elements/gallery.png";
+import { React, useState } from "react";
+import { useLocation } from "react-router-dom";
+import styles from "./style.module.css";
+import image from "../../elements/gallery.png";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Template from "./Template";
 
 export default function UploadImage({ setDetails, details }) {
+  const location = useLocation();
+
+  const store = location.pathname.includes("add-product");
+  const retainer = location.pathname.includes("retainer");
+  const program = location.pathname.includes("program");
+  const oneoff = location.pathname.includes("time-based");
+  const event = location.pathname.includes("event");
   const [Image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  function handleImage(e) {
+
+  const [isTemplateOpen, setIsTemplateOpen] = useState(false);
+
+  const [templateImage, setTemplateImage] = useState("");
+
+  function handleTemplate() {
+    setIsTemplateOpen(true);
+  }
+
+  function TemplateImage(imgSrc) {
+    setTemplateImage(imgSrc);
+    {
+      store && setDetails((prev) => ({ ...prev, photoURL: imgSrc }));
+    }
+    setImage("");
+    setTimeout(() => {
+      toast.success("Template selected!");
+    }, 900);
+    setIsTemplateOpen(false);
+  }
+
+  async function Upload(e) {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setImage(selectedFile);
+      toast.success("Image selected!");
       console.log("Selected file:", selectedFile);
-      setTimeout(() => {
-        toast.success("Please upload your image");
-      }, 2000);
     }
-  }
+    if (store) {
+      if (!store) return;
 
-  async function Upload() {
-    if (!Image) return alert("Please select a file first");
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("upload_preset", "Storefront");
+      formData.append("cloud_name", "dxyzeiigv");
 
-    const formData = new FormData();
-    formData.append("file", Image);
-    formData.append("upload_preset", "Storefront");
-    formData.append("cloud_name", "dxyzeiigv");
+      try {
+        const res = await axios.post(
+          "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
 
-    try {
-      const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+        const data = res.data;
+        setImageUrl(data.secure_url);
+        setDetails((prev) => ({ ...prev, photoURL: data.secure_url }));
+        console.log(details);
+        setTimeout(() => {
+          toast.success("Image uploaded successfully!");
+        }, 1500);
 
-      const data = res.data;
-      setImageUrl(data.secure_url);
-      setDetails((prev) => ({ ...prev, photoURL: data.secure_url }));
-      console.log(details);
-      toast.success("Image uploaded successfully!");
-
-      console.log("Uploaded image URL:", data.secure_url);
-    } catch (error) {
-      console.error("Upload error:", error);
+        console.log("Uploaded image URL:", data.secure_url);
+      } catch (error) {
+        console.error("Upload error:", error);
+      }
+      return;
     }
+
+    // if (oneoff) {
+    // }
   }
 
   return (
     <div className={styles.imageupload}>
       <img
         src={
-          details.photoURL
-            ? details.photoURL
-            : Image
+          Image
             ? URL.createObjectURL(Image)
+            : templateImage
+            ? templateImage
             : image
         }
         alt=''
       />
       <div className={styles.choose}>
-        <div className={styles.gallery}>
-          <label htmlFor='photo-edit'>Choose from Gallery</label>
+        <div className={styles.gallery} onClick={handleTemplate}>
+          <label htmlFor='photo-edit'>Choose from Template</label>
           <svg
             width='20'
             height='20'
@@ -78,18 +111,23 @@ export default function UploadImage({ setDetails, details }) {
               fill='white'
             />
           </svg>
+        </div>
+        {isTemplateOpen && (
+          <Template
+            onClose={() => setIsTemplateOpen(false)}
+            onSelect={TemplateImage}
+          />
+        )}
+
+        <div className={styles.gallery}>
           <input
             type='file'
-            // ref={inputRef}
-            name='upload2'
-            onChange={handleImage}
-            className={styles.photo}
-            id='photo-edit'
-            accept='image/png, image/jpeg, image/img'
+            id='fileInput'
+            accept='image/*'
+            style={{ display: "none" }}
+            onChange={Upload}
           />
-        </div>
-        <div className={styles.gallery}>
-          <label onClick={Upload}>Upload</label>
+          <label htmlFor='fileInput'>Upload</label>
           <svg
             width='20'
             height='20'

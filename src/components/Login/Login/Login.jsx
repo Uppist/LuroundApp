@@ -24,6 +24,7 @@ export default function Login() {
 
   const [logindetail, setLogindetail] = useState({ email: "", password: "" });
   const [userData, setUserData] = useContext(userContext);
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const fromSignup = location.state?.fromSignup;
@@ -39,7 +40,7 @@ export default function Login() {
     //   toast.error("Incorrect Password");
     //   return;
     // }
-
+    setLoading(true);
     try {
       const { data } = await axios.post(
         "https://api.luround.com/v1/auth/login",
@@ -69,6 +70,7 @@ export default function Login() {
         error.response?.data?.message ||
         error.message;
       toast.error(errorMsg);
+      setLoading(false);
     }
   }
 
@@ -94,6 +96,7 @@ export default function Login() {
     } catch (err) {
       console.error("Google login error:", err);
       toast.error("Google login failed");
+      setLoading(false);
     }
   }
 
@@ -117,6 +120,7 @@ export default function Login() {
                 logindetail={logindetail}
                 LoginDetail={handleLoginDetailChange}
                 isFormComplete={isFormComplete}
+                loading={loading}
               />
             </div>
             <div className={styles2.line}>

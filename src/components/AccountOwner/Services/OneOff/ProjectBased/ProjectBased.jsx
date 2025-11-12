@@ -3,13 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./Project.module.css";
 
 import ProjectSvg from "./ProjectSvg";
-import Upload from "./Upload";
+import UploadImage from "../../../Reuseables/UploadImage";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Pricing from "./Pricing";
 import Delivery from "./Delivery";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { userContext } from "../../../../Context";
+import { toast } from "react-toastify";
 
 export default function Projectbased({
   projectBased,
@@ -44,50 +43,50 @@ export default function Projectbased({
 
   const navigate = useNavigate();
 
-  const [Image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  // const [Image, setImage] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
 
-  function handleImage(e) {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      setImage(selectedFile);
-      console.log("Selected file:", selectedFile);
-      setTimeout(() => {
-        toast.success("Please upload your image");
-      }, 400);
-    }
-  }
+  // function handleImage(e) {
+  //   const selectedFile = e.target.files[0];
+  //   if (selectedFile) {
+  //     setImage(selectedFile);
+  //     console.log("Selected file:", selectedFile);
+  //     setTimeout(() => {
+  //       toast.success("Please upload your image");
+  //     }, 400);
+  //   }
+  // }
 
-  async function UploadImage() {
-    if (!Image) return alert("Please select a file first");
+  // async function UploadImage() {
+  //   if (!Image) return alert("Please select a file first");
 
-    const formData = new FormData();
-    formData.append("file", Image);
-    formData.append("upload_preset", "TimeBased");
-    formData.append("cloud_name", "dxyzeiigv");
+  //   const formData = new FormData();
+  //   formData.append("file", Image);
+  //   formData.append("upload_preset", "TimeBased");
+  //   formData.append("cloud_name", "dxyzeiigv");
 
-    try {
-      const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+  //   try {
+  //     const res = await axios.post(
+  //       "https://api.cloudinary.com/v1_1/dxyzeiigv/image/upload",
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
 
-      const data = res.data;
-      setImageUrl(data.secure_url);
-      setTimeBased({ photoURL: data.secure_url });
-      console.log(timebased);
-      toast.success("Image uploaded successfully!");
+  //     const data = res.data;
+  //     setImageUrl(data.secure_url);
+  //     setTimeBased({ photoURL: data.secure_url });
+  //     console.log(timebased);
+  //     toast.success("Image uploaded successfully!");
 
-      console.log("Uploaded image URL:", data.secure_url);
-    } catch (error) {
-      console.error("Upload error:", error);
-    }
-  }
+  //     console.log("Uploaded image URL:", data.secure_url);
+  //   } catch (error) {
+  //     console.error("Upload error:", error);
+  //   }
+  // }
 
   function handlePricing(e) {
     setPricingTime(e.target.value);
@@ -171,11 +170,7 @@ export default function Projectbased({
 
         <div className={styles.projectbasedgrid}>
           <div>
-            <Upload
-              Image={Image}
-              handleImage={handleImage}
-              UploadImage={UploadImage}
-            />
+            <UploadImage setDetails={setProjectBased} details={projectBased} />
           </div>
 
           <div className={styles.section}>

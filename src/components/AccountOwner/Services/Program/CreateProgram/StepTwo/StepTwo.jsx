@@ -3,7 +3,6 @@
 import React from "react";
 
 import styles2 from "../../../Retainer/Details.module.css";
-import Time from "./Time";
 import DateTime from "./Date";
 
 export default function StepTwo({ programService, setProgramService }) {

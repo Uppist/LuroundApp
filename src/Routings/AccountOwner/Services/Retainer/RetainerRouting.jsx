@@ -14,7 +14,15 @@ export default function RetainerRouting() {
   return (
     <Routes>
       <Route path='/retainer' element={<Retainer />} />
-      <Route path='/createretainer' element={<RetainerService />}>
+      <Route
+        path='/createretainer'
+        element={
+          <RetainerService
+            retainerService={retainerService}
+            setRetainerService={setRetainerService}
+          />
+        }
+      >
         <Route
           index
           element={

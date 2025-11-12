@@ -4,9 +4,9 @@ import styles from "./NavBar.module.css";
 import { useContext } from "react";
 import { NotificationContext } from "../../../Context";
 export default function Notification({ onClose, onComponentSwitch }) {
-  function Notify(item) {
-    onComponentSwitch(item);
-  }
+  // function Notify(item) {
+  //   onComponentSwitch(item);
+  // }
 
   const [notification, setNotification] = useContext(NotificationContext);
 
@@ -19,12 +19,7 @@ export default function Notification({ onClose, onComponentSwitch }) {
           <label>Your Notifications</label>
           <div className={styles.scrollablenotification}>
             {notification.map((data, index) => (
-              <div
-                className={styles.notificationbooked}
-                // onClick={() => Notify("bookings")}
-              >
-                {/* <img src={} /> */}
-
+              <div className={styles.notificationbooked}>
                 <div key={index}>
                   <label className={styles.notificationname}>
                     {data.body}{" "}

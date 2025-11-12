@@ -91,7 +91,7 @@ export default function Context({ children }) {
             }
           )
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setUserService(res.data);
           });
       }
@@ -102,10 +102,10 @@ export default function Context({ children }) {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          console.log("Booking:", res.data);
+          // console.log("Booking:", res.data);
           const data = res.data;
           setBookings(data);
-          console.log(bookings);
+          // console.log(bookings);
         })
         .catch((err) => console.error("Error fetching booking:", err));
     }
@@ -137,7 +137,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer  ${token}` },
       })
       .then((res) => {
-        console.log("balance", res.data);
+        // console.log("balance", res.data);
         setTransactionBalance(res.data);
       });
 
@@ -149,7 +149,7 @@ export default function Context({ children }) {
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {
-        console.log("Saved accounts:", res.data);
+        // console.log("Saved accounts:", res.data);
         // console.log(userData._id);
 
         setSavedBanks(res.data);
@@ -165,7 +165,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setStoreFront(res.data);
       });
 
@@ -176,7 +176,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setOrderHistory(res.data);
       });
 
@@ -186,7 +186,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNotification(res.data);
       });
 
@@ -196,7 +196,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Quotes:", res.data);
+        // console.log("Quotes:", res.data);
         setSavedQuote(res.data);
       })
       .catch((err) => console.error("Error fetching quotes:", err));
@@ -208,7 +208,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Quotes:", res.data);
+        // console.log("Quotes:", res.data);
         setQuotes(res.data);
       })
       .catch((err) => console.error("Error fetching quotes:", err));
@@ -219,7 +219,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Invoices:", res.data);
+        // console.log("Invoices:", res.data);
         setInvoices(res.data);
       })
       .catch((err) => console.error("Error fetching invoices:", err));
@@ -230,7 +230,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Not Paid Invoices:", res.data);
+        // console.log("Not Paid Invoices:", res.data);
         setNotPaidInvoices(res.data);
       })
       .catch((err) => console.error("Error fetching not paid invoices:", err));
@@ -241,7 +241,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Receipts:", res.data);
+        // console.log("Receipts:", res.data);
         setSaveReceipt(res.data);
       })
       .catch((err) => console.error("Error fetching receipts:", err));
@@ -252,7 +252,7 @@ export default function Context({ children }) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("Receipts:", res.data);
+        // console.log("Receipts:", res.data);
         setReceipt(res.data);
       })
       .catch((err) => console.error("Error fetching receipts:", err));
@@ -267,7 +267,7 @@ export default function Context({ children }) {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setProduct(res.data);
       })
       .catch((err) => {
@@ -276,13 +276,13 @@ export default function Context({ children }) {
   }, [pathname, userData._id, storeFront._id]);
 
   useEffect(() => {
-    console.log("userService updated:", userService);
+    // console.log("userService updated:", userService);
   }, [userService]);
 
   //get bookings
 
   useEffect(() => {
-    console.log("bookingsId from context:", bookings);
+    // console.log("bookingsId from context:", bookings);
   }, [bookings]);
 
   return (

@@ -3,9 +3,9 @@
 import React, { useContext, useState } from "react";
 import styles from "../style.module.css";
 import nigeria from "../../../elements/nigeria.png";
-import Upload from "./Upload";
+// import CircularProgress from "@mui/material/CircularProgress";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import UploadImage from "./UploadImage";
+import UploadImage from "../../Reuseables/UploadImage";
 import { toast } from "react-toastify";
 import { StorefrontContext } from "../../../Context";
 import axios from "axios";
@@ -13,6 +13,8 @@ import axios from "axios";
 export default function PopUp() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  const [loading, setLoading] = useState(false);
   const [options] = useState([
     "eBooks",
     "Courses",
@@ -23,7 +25,7 @@ export default function PopUp() {
   const location = useLocation();
 
   const EditData = location.state?.EditData || {};
-  console.log(EditData);
+  // console.log(EditData);
 
   const [details, setDetails] = useState({
     photoURL: EditData.photoURL || "",
@@ -79,6 +81,7 @@ export default function PopUp() {
     };
     console.log(data.photoURL);
 
+    setLoading(true);
     if (EditData && EditData._id) {
       axios
         .put(
@@ -311,6 +314,11 @@ export default function PopUp() {
               <button className={styles.cancel}>Cancel</button>
             </Link>
             <button disabled={!isDone} className={styles.next} onClick={Next}>
+              {/* {loading ? (
+                <CircularProgress size={24} color='inherit' />
+              ) : (
+                "Done"
+              )} */}
               Done
             </button>
           </div>

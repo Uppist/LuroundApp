@@ -65,8 +65,8 @@ export default function SecondPage({ onComponentSwitch, storeFront }) {
           <label htmlFor=''>eBooks</label>
         </div>
         <div
-          className={click === "course" ? styles.click : styles.all}
-          onClick={() => setClick("course")}
+          className={click === "Courses" ? styles.click : styles.all}
+          onClick={() => setClick("Courses")}
         >
           <label htmlFor=''>Courses</label>
         </div>
@@ -158,13 +158,6 @@ export default function SecondPage({ onComponentSwitch, storeFront }) {
                       />
                     </svg>
                   </Link>
-                  {/* {isDetail === index && selectedProduct && (
-                  <DetailPopup
-                    isDetail={true}
-                    Close={Close}
-                    data={selectedProduct}
-                  />
-                )} */}
                 </div>
               </div>
             </div>

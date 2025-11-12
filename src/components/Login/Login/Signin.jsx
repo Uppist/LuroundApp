@@ -1,15 +1,16 @@
 /** @format */
 
 import React from "react";
-import styles from "./Login.module.css";
 import styles2 from "../CreateAccount/style.module.css";
 import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Signin({
   Submit,
   logindetail,
   LoginDetail,
   isFormComplete,
+  loading,
 }) {
   return (
     <form onSubmit={Submit} className={styles2.form}>
@@ -40,8 +41,12 @@ export default function Signin({
         </Link>
       </div>{" "}
       {/* <Link to='/Profile-page'> */}
-      <button type='submit' disabled={!isFormComplete}>
-        Login
+      <button
+        type='submit'
+        className={styles2.button}
+        disabled={loading || !isFormComplete}
+      >
+        {loading ? <CircularProgress size={20} color='inherit/' /> : "Login"}
       </button>
       {/* </Link> */}
     </form>

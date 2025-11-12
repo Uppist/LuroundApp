@@ -17,8 +17,6 @@ export default function Update({ isVisible }) {
       {Array.isArray(userService) && userService.length > 0 ? (
         <>
           {userService.map((data, index) => (
-            // console.log(data, index)
-
             <div className={styles.eachoneoffcontainer}>
               <div className={styles.OneOffcontainer} key={data.title}>
                 <div className={styles.titlecontainer}>

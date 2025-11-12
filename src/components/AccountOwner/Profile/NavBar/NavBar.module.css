@@ -96,9 +96,9 @@
   transition: opacity 1.3s;
 }
 
-.notification {
+/* .notification {
   width: 24px;
-}
+} */
 
 .notificationdropdown {
   background-color: white;
@@ -269,7 +269,7 @@
   cursor: pointer;
 }
 
-.notificationbooked:hover {
+.notificationbooked:active {
   background-color: white;
 }
 

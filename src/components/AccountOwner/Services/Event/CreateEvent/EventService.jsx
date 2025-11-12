@@ -2,9 +2,13 @@
 
 import styles from "./style.module.css";
 import styles2 from "../../Retainer/Details.module.css";
-import Upload from "./Upload";
+import UploadImage from "../../../Reuseables/UploadImage";
 import { Link, Outlet } from "react-router-dom";
-export default function EventService({ closeService, handleClick }) {
+export default function EventService({
+  closeService,
+  eventService,
+  setEventService,
+}) {
   return (
     <>
       <div className={styles2.timebased}>
@@ -32,7 +36,7 @@ export default function EventService({ closeService, handleClick }) {
         </Link>
 
         <div className={styles.createeventservice}>
-          <Upload />
+          <UploadImage details={eventService} setDetails={setEventService} />
           <Outlet />
           {/* <CreateEvent handleClick={handleClick} /> */}
         </div>

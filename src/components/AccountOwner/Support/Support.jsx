@@ -6,12 +6,16 @@ import { userContext } from "../../Context";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import arrow from "../../../components/elements/support/Arrow.svg";
 import axios from "axios";
 
 export default function Support() {
   const [isSubject, setIsSubject] = useState("");
   const [isDescription, setIsDescription] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [userData, setUserData] = useContext(userContext);
 
@@ -30,20 +34,22 @@ export default function Support() {
       email: userData.email,
     };
     const token = localStorage.getItem("Token");
-
+    setLoading(true);
     axios
       .post("https://api.luround.com/v1/feedbacks/add", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
-        toast.success("Your request has been submitted");
-        console.log("data sent successfully", data);
+        // console.log(res.data);
+        toast.success(res.data);
+        // console.log("data sent successfully", data);
         setIsSubject("");
         setIsDescription("");
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Error sending data:", err);
+        toast.error("Please try again");
       });
   }
 
@@ -92,14 +98,18 @@ export default function Support() {
           <button
             className={styles.donetime}
             type='button'
-            disabled={!isSubmit}
+            disabled={!isSubmit || loading}
             onClick={Submit}
           >
-            Submit
+            {loading ? (
+              <CircularProgress size={20} color='inherit/' />
+            ) : (
+              "Submit"
+            )}{" "}
           </button>
         </div>
       </div>{" "}
-      <ToastContainer
+      {/* <ToastContainer
         position='top-center'
         autoClose={5000}
         hideProgressBar={true}
@@ -113,7 +123,7 @@ export default function Support() {
         icon={false}
         transition={Zoom}
         closeButton={false}
-      />{" "}
+      />{" "} */}
     </section>
   );
 }

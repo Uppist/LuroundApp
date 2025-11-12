@@ -33,7 +33,7 @@ export default function Contact() {
     setIsValue((prev) => ({ ...prev, [name]: value }));
   }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function AddContact() {
     if (window.innerWidth <= 900) {
@@ -58,7 +58,7 @@ export default function Contact() {
 
   const [isContacts, setIsContacts] = useContext(ContactContext);
 
-  console.log(isContacts);
+  // console.log(isContacts);
 
   return (
     <section className={styles.contact}>

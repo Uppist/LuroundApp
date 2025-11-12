@@ -157,6 +157,10 @@ a {
   cursor: not-allowed;
 }
 
+.button {
+  color: white !important;
+}
+
 .form button:hover {
   background-color: hsla(180, 100%, 36%, 1);
 }

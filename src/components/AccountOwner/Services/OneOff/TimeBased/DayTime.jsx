@@ -1,21 +1,16 @@
 /** @format */
 import { useEffect, useState } from "react";
-import Time from "./Time";
-import styles from "./Time.module.css";
+
+import styles from "./style.module.css";
 import BookingPeriod from "./BookingPeriod";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useOutletContext } from "react-router-dom";
-export default function DayTime({
-  backprice,
-  backone,
-  showPart,
-  handleClick,
-  serviceType,
-  setTimeBased,
-  timeBased,
-}) {
+import Time from "../../../Reuseables/Time/Time";
+import CircularProgress from "@mui/material/CircularProgress";
+
+export default function DayTime({ setTimeBased, timeBased }) {
+  const [loading, setLoading] = useState(false);
   function getInitialTimes(editAvailability, dayInfo, type) {
     const result = {};
     if (Array.isArray(editAvailability)) {
@@ -44,7 +39,7 @@ export default function DayTime({
   const location = useLocation();
 
   const EditTime = location.state || {};
-  console.log(EditTime.availability);
+  // console.log(EditTime.availability);
 
   const dayInfo = [
     "Monday",
@@ -95,6 +90,8 @@ export default function DayTime({
       return acc;
     }, []);
 
+    setLoading(true);
+
     const dataToSend = {
       ...timeBased,
       availability,
@@ -120,9 +117,11 @@ export default function DayTime({
           setTimeout(() => {
             navigate("/oneoff", { state: dataToSend });
           }, 1000);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
         });
     } else {
       axios
@@ -136,10 +135,12 @@ export default function DayTime({
           setTimeout(() => {
             navigate("/oneoff", { state: dataToSend });
           }, 1000);
+          setLoading(false);
         })
         .catch((err) => {
           console.error("Error sending data:", err);
           // toast.error(err);
+          setLoading(false);
         });
     }
   }
@@ -175,9 +176,7 @@ export default function DayTime({
       </div>
 
       <div className={styles.pricingtimebased}>
-        <span className={styles.reschedulebook} onClick={backprice}>
-          Choose Day and Time
-        </span>
+        <span className={styles.reschedulebook}>Choose Day and Time</span>
 
         <div className={styles.inputtime}>
           <div className={`${styles.warning} ${styles.firstwarning}`}>
@@ -221,6 +220,7 @@ export default function DayTime({
               checkedDays={checkedDays}
               selectedFrom={selectedFrom}
               selectedTo={selectedTo}
+              dayInfo={dayInfo}
             />
             <BookingPeriod
               setTimeBased={setTimeBased}
@@ -232,10 +232,14 @@ export default function DayTime({
             <button className={styles.canceltime}>Cancel</button>
             <button
               className={styles.donetime}
-              disabled={!isDone}
+              disabled={!isDone || loading}
               onClick={Submit}
             >
-              Done
+              {loading ? (
+                <CircularProgress size={20} color='inherit/' />
+              ) : (
+                "Done"
+              )}
             </button>
           </div>
         </div>

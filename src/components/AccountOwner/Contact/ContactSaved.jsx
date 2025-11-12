@@ -78,7 +78,7 @@ export default function ContactSaved({
           }
         )
         .then((res) => {
-          console.log(`Transactions for ${contact.email}:`, res.data);
+          // console.log(`Transactions for ${contact.email}:`, res.data);
           setTransactions((prev) => ({
             ...prev,
             [contact.email]: res.data,
@@ -138,7 +138,7 @@ export default function ContactSaved({
             <hr />
           </div>
 
-          <div className='transaction-line'>
+          <div className={styles.lineHeight}>
             {isContacts.map((contact, index) => (
               <div className={styles.saveddetail} key={index}>
                 <span>{contact.name}</span>

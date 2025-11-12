@@ -1,8 +1,7 @@
 /** @format */
 import { useEffect, useState } from "react";
-import styles from "./Time.module.css";
+import styles from "./style.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
 
 export default function PricingTime({ timeBased, setTimeBased }) {
   // Initialize with one default pricing entry for the 15 min slot

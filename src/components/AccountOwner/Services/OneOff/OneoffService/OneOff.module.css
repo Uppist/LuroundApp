@@ -14,6 +14,10 @@
   color: hsla(180, 100%, 96%, 1);
 }
 
+.addservice:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+}
+
 /* .addservice {
 } */
 
@@ -72,6 +76,11 @@
 .dataoneoff {
   display: grid;
   gap: 24px;
+  height: 500px;
+  overflow: scroll;
+}
+.dataoneoff::-webkit-scrollbar {
+  display: none;
 }
 
 .dataoneoff2 {

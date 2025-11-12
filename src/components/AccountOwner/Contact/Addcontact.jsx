@@ -1,10 +1,12 @@
 /** @format */
 
-import React from "react";
+import { React, useState } from "react";
 import styles from "./Contact.module.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export default function Addcontact({
   CancelAddContact,
@@ -16,7 +18,7 @@ export default function Addcontact({
   isContacts,
   setIsContacts,
 }) {
-  console.log(isValue);
+  // console.log(isValue);
 
   const contactSaved =
     (isValue?.name?.trim() || "") !== "" &&
@@ -24,7 +26,10 @@ export default function Addcontact({
     (isValue?.phone_number?.length || 0) === 11;
 
   const navigate = useNavigate();
-  const Submit = () => {
+
+  const [loading, setLoading] = useState(false);
+
+  function Submit() {
     const exists = contacts.some((c) => c.email === isValue.email);
     if (exists) {
       toast.error("A contact with this email already exists.");
@@ -32,14 +37,12 @@ export default function Addcontact({
     }
 
     const token = localStorage.getItem("Token");
-
+    setLoading(true);
     axios
       .post("https://api.luround.com/v1/crm/new-contact", isValue, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
-        console.log("data sent successfully", isValue);
         toast.success("Contact added successfully");
 
         setIsContacts((prev) => [...prev, isValue]);
@@ -49,8 +52,13 @@ export default function Addcontact({
         setTimeout(() => {
           navigate("/contact");
         }, 2000);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
       });
-  };
+  }
 
   return (
     <div className={styles.desktopview}>
@@ -60,23 +68,17 @@ export default function Addcontact({
           <div className={styles.contactline}>
             <div className={styles.contactsvg}>
               <label>Add Contact</label>
-              <svg
+              <CloseOutlinedIcon
+                sx={{
+                  width: 24,
+                  height: 24,
+                  fillOpacity: 0.8,
+                  fill: "#1D2E2E",
+                  fillLinecap: "round",
+                  fillLinejoin: "round",
+                }}
                 onClick={CancelAddContact}
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M6.75781 17.2428L12.0008 11.9998L17.2438 17.2428M17.2438 6.75684L11.9998 11.9998L6.75781 6.75684'
-                  stroke='#1D2E2E'
-                  strokeOpacity='0.8'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
+              />
             </div>
             <hr />
           </div>
@@ -125,10 +127,14 @@ export default function Addcontact({
             </button>
             <button
               className={styles.next}
-              disabled={!contactSaved}
+              disabled={!contactSaved || loading}
               onClick={Submit}
             >
-              Save
+              {loading ? (
+                <CircularProgress size={20} color='inherit/' />
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </div>

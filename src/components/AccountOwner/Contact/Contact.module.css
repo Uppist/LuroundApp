@@ -38,6 +38,12 @@
   font-weight: 600;
   font-family: "Inter";
   color: hsla(180, 100%, 96%, 1);
+  cursor: pointer;
+}
+
+.addcontact:hover {
+  background-color: hsla(180, 100%, 36%, 1);
+  cursor: pointer;
 }
 
 .savedaccount {
@@ -249,7 +255,14 @@
   color: hsla(180, 100%, 96%, 1);
   position: relative;
 }
+.lineHeight {
+  height: 600px;
+  overflow: scroll;
+}
 
+.lineHeight::-webkit-scrollbar {
+  display: none;
+}
 .sendlist {
   padding: 16px;
   margin: 0;

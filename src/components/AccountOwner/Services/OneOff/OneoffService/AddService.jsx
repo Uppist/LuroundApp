@@ -18,7 +18,6 @@ export default function AddService({ onClose, onTime, onProject }) {
         <div className='type-of-service'>
           <div className={styles.service}>
             <span>Choose type of one-off service</span>
-            {/* <hr /> */}
           </div>
           <ul className='dropdown-service'>
             <li className='oneoff-service' onClick={ClickedOne}>

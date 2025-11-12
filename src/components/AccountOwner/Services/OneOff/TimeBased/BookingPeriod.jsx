@@ -1,7 +1,6 @@
 /** @format */
 import { useState } from "react";
-import styles from "./Time.module.css";
-import { useNavigate } from "react-router-dom";
+import styles from "./style.module.css";
 
 export default function BookingPeriod({ setPeriod }) {
   const [state, setState] = useState({

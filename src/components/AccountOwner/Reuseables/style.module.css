@@ -1,0 +1,72 @@
+/** @format */
+
+.imgchoose img {
+  width: 415px;
+}
+
+.imgchoose {
+  margin: 0 auto;
+}
+
+.imageupload img {
+  width: 467px;
+  height: 280px;
+}
+.choose {
+  /* position: absolute; */
+  margin-top: -75px;
+  /* margin-left: 220px; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: end;
+}
+.photo {
+  display: none;
+}
+
+.gallery {
+  background-color: hsla(0, 0%, 27%, 0.74);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.gallery label {
+  cursor: pointer !important;
+}
+
+.templatepopup {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  gap: 30px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.templatepopup label {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+  font-family: "Inter";
+}
+
+.template {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.template img {
+  cursor: pointer;
+}

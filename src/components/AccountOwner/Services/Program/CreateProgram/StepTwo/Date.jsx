@@ -1,7 +1,7 @@
 /** @format */
 import { useEffect, useState } from "react";
-import Time from "./Time";
-import styles from "../../../OneOff/TimeBased/Time.module.css";
+import Time from "../../../../Reuseables/Time/Time";
+import styles from "../../../../Reuseables/Time/time.module.css";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
