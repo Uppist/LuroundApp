@@ -1,7 +1,7 @@
 /** @format */
 /** @format */
 import { useState } from "react";
-import styles from "./Time/module.css";
+import styles from "./time.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Time({
