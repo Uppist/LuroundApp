@@ -125,6 +125,34 @@ input[type="checkbox"]:checked::after {
   gap: 24px;
 }
 
+.selectday {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selectday label {
+  font-size: 16px;
+  font-family: "Inter";
+  color: hsla(180, 23%, 15%, 1);
+  font-weight: 400;
+}
+
+.inpersonvirtual {
+  gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-around;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 1);
+}
+.timegrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .daysselection > div > div {
   font-weight: 400;
   display: flex;
@@ -147,5 +175,5 @@ input[type="checkbox"]:checked::after {
   color: hsla(180, 23%, 15%, 0.8);
   cursor: pointer;
   position: relative;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }

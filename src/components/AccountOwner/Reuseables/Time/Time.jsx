@@ -172,7 +172,7 @@ export default function Time({
                   onClick={() => toggleDropdown(index, "from")}
                 >
                   <span className='selected-list'>
-                    {selectedFrom[index] || "9:00 AM"}
+                    {selectedFrom[index] || "9:00 am"}
                   </span>
                 </div>
                 {isOpenFrom[index] && (
@@ -206,7 +206,7 @@ export default function Time({
                   onClick={() => toggleDropdown(index, "to")}
                 >
                   <span className='selected-list'>
-                    {selectedTo[index] || "9:00 AM"}
+                    {selectedTo[index] || "9:00 am"}
                   </span>
                 </div>
                 {isOpenTo[index] && (
