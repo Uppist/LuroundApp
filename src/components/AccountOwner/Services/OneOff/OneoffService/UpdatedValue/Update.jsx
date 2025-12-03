@@ -22,7 +22,7 @@ export default function Update({ isVisible }) {
                 <div className={styles.titlecontainer}>
                   <div className={styles.daystimeline}>
                     <div className={styles.daystime}>
-                      <img src={data.imageUrl || image} alt='' />
+                      <img src={data.photoUrl || image} alt='' />
                     </div>
                   </div>
                   <div className={styles.personaltrainingdetails}>

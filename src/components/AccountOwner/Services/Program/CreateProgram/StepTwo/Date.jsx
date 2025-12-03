@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Time from "../../../../Reuseables/Time/Time";
 import styles from "../../../../Reuseables/Time/time.module.css";
+import styles2 from "../../../OneOff/TimeBased/style.module.css";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -126,12 +127,12 @@ export default function DateTime({ programService, setProgramService }) {
   });
 
   return (
-    <section className={styles.section}>
-      <div className={styles.pricingtimebased}>
-        <span className={styles.reschedulebook}>Choose Day and Time</span>
+    <section className={styles2.section}>
+      <div className={styles2.pricingtimebased}>
+        <span className={styles2.reschedulebook}>Choose Day and Time</span>
 
-        <div className={styles.inputtime}>
-          <div className={`${styles.warning} ${styles.firstwarning}`}>
+        <div className={styles2.inputtime}>
+          <div className={`${styles2.warning} ${styles2.firstwarning}`}>
             <svg
               width='14'
               height='15'
@@ -170,12 +171,13 @@ export default function DateTime({ programService, setProgramService }) {
               checkedDays={checkedDays}
               selectedFrom={selectedFrom}
               selectedTo={selectedTo}
+              dayInfo={dayInfo}
             />
           </div>
-          <div className={styles.done}>
-            <button className={styles.canceltime}>Cancel</button>
+          <div className={styles2.done}>
+            <button className={styles2.canceltime}>Cancel</button>
             <button
-              className={styles.donetime}
+              className={styles2.donetime}
               onClick={Submit}
               disabled={!Done}
             >
