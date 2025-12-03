@@ -172,7 +172,7 @@ input[type="checkbox"]:checked::after {
   padding: 14px 44px 14px 8px;
   font-size: 14px;
   font-weight: 500;
-  color: hsla(180, 23%, 15%, 0.8);
+  color: hsla(180, 23%, 15%, 0.5);
   cursor: pointer;
   position: relative;
   /* text-transform: uppercase; */
